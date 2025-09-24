@@ -15,12 +15,19 @@ public class Player : MonoBehaviour
     [SerializeField]
     public float inAirBoost;
 
-    // Chekcing Inputs
+    // Chekcing Inputs, player movement
     private float verticalInput;
     private float horizontalInput;
 
     // Checking ground
     public bool isGround;
+
+    // Invincibility
+    [Header("Invincible")]
+    public bool isInvincible;
+    [SerializeField]
+    private float invinicbleDuration;
+    private float invincibleTimer;
 
     // Getting components
     [Header("Components")]
@@ -28,6 +35,8 @@ public class Player : MonoBehaviour
     public Camera cam;
     [SerializeField]
     private Rigidbody rb;
+    [SerializeField]
+    private GameManager gm;
 
     // Setting up values at start
     void Start()
@@ -66,6 +75,17 @@ public class Player : MonoBehaviour
             rb.AddForce(transform.up * jump, ForceMode.Impulse);
 
             Invoke(nameof(jumpStatus), jumpCooldown);
+        }
+
+        // Check invincible
+        if (isInvincible)
+        {
+            gm.isInvincible = true;
+            invincibleTimer += Time.deltaTime;
+            if (invincibleTimer > invinicbleDuration)
+            {
+                gm.isInvincible = false;
+            }
         }
     }
     // Player moving method

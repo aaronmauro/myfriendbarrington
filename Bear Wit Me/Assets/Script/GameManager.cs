@@ -3,17 +3,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // This is the game manager
-    // Respawn
-    public bool backToSpawn;
 
     // Getting components
-    [Header("components")]
+    [Header("Components")]
     [SerializeField]
     private Player player;
+
+    // Manage respawn
+    [Header("Respawn")]
+    public bool backToSpawn;
     [SerializeField]
     private GameObject[] spawnPoints;
     public bool addSpawnCount;
     public int spawnCount;
+
+    public bool isInvincible;
 
     void Start()
     {
@@ -21,13 +25,14 @@ public class GameManager : MonoBehaviour
         // seeting up booleans
         backToSpawn = false;
         addSpawnCount = false;
+        isInvincible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         // if player trigger back to spawn
-        if (backToSpawn)
+        if (backToSpawn && !isInvincible)
         {
             player.transform.position = spawnPoints[spawnCount].transform.position;
             backToSpawn = false;
