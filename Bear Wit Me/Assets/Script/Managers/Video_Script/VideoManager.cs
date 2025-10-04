@@ -10,10 +10,15 @@ public class VideoManager : MonoBehaviour
     // Getting Looping video number
     [Header("Video Number")]
     [SerializeField]
-    private int[] videoToLoop;
-    private bool loopVideo;
+    public int[] videoToLoop;
     [HideInInspector]
-    public int videoCount = 0;
+    public bool loopVideo;
+    [HideInInspector]
+    public int videoCount;
+    //private int videoCountCheck;
+    private int videoControlNumber;
+    [HideInInspector]
+    public bool afterLoopVideo;
     // Video status
     private long currentFrame;
     private long videoFrame;
@@ -23,15 +28,21 @@ public class VideoManager : MonoBehaviour
     [Header("Component")]
     [SerializeField]
     private VideoPlayer videoPlayer;
+    private ButtonManager bm;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Getting Component when starting game
         videoPlayer = GetComponent<VideoPlayer>();
+        GameObject buttonManager = GameObject.Find("ButtonManager");
+        bm = buttonManager.GetComponent<ButtonManager>();
 
         // Play video
         playNextVideo = true;
+        videoCount = 0;
+        //videoCountCheck = 0;
+        videoControlNumber = 0;
     }
 
     // Update is called once per frame
@@ -43,6 +54,13 @@ public class VideoManager : MonoBehaviour
             PlayVideo(Convert.ToString(videoCount));
             playNextVideo = false;
         }
+        /*
+        else if (videoCount != !videoCount)
+        {
+            PlayVideo(Convert.ToString(videoCount));
+            playNextVideo = false;
+        }
+        */ // working later to break the video and straight to next one
         // Calling methods
         checkVideoLoop();
         checkVideoStatus();
@@ -70,16 +88,21 @@ public class VideoManager : MonoBehaviour
         // Getting current frame and the video length
         currentFrame = videoPlayer.frame;
         videoFrame = Convert.ToInt64(videoPlayer.frameCount);
-
+        if (afterLoopVideo)
+        {
+            videoControlNumber = 1;
+        }
         // Compare to check if the video ended
-        if (currentFrame >= videoFrame -1)
+        if (currentFrame >= videoFrame - 1)
         {
             playNextVideo = true;
             // Check if video need to be loop
             if (!loopVideo)
             {
-                videoCount += 1;
+                videoCount += 1 - videoControlNumber;
             }
+            videoControlNumber = 0;
+            afterLoopVideo = false;
         }
     }
     // Check if the video need to loop
@@ -91,6 +114,7 @@ public class VideoManager : MonoBehaviour
             if (videoToLoop[i] == videoCount)
             {
                 loopVideo = true;
+                bm.buttonStatus = true;
             }
             else if (videoToLoop[i] <= videoCount)
             {
