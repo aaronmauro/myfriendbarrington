@@ -10,6 +10,7 @@ public class ButtonReturn : MonoBehaviour
 
     private void Start()
     {
+        // Getting Compoenent
         GameObject videoManager = GameObject.Find("VideoManager");
         vm = videoManager.GetComponent<VideoManager>();
         bm = FindObjectOfType<ButtonManager>();
