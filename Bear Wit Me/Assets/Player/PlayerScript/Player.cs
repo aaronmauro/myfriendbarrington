@@ -38,6 +38,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameManager gm;
 
+    static public bool dialogue = false;
+
     // Setting up values at start
     void Start()
     {
@@ -87,6 +89,10 @@ public class Player : MonoBehaviour
                 gm.isInvincible = false;
             }
         }
+
+   
+
+
     }
     // Player moving method
     private void movePlayer()
@@ -102,4 +108,16 @@ public class Player : MonoBehaviour
     {
         isJump = true;
     }
+
+    private void FixedUpdate()
+    {
+        if (!dialogue)
+        {
+            movePlayer();
+
+        }
+        
+    }
+
+
 }
