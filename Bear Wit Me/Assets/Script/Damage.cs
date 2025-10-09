@@ -5,11 +5,15 @@ public class Damage : MonoBehaviour
     // Component
     private GameManager gm;
 
-    // When player collide with damage object 
-    private void OnCollisionEnter(Collision collision)
+    private void Start()
     {
         GameObject obj = GameObject.Find("GameManager");
         gm = obj.GetComponent<GameManager>();
+    }
+
+    // When player collide with damage object 
+    private void OnCollisionEnter(Collision collision)
+    {
         // If collision to player tag
         if (collision.gameObject.CompareTag("Player"))
         {

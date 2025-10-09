@@ -22,6 +22,7 @@ public class ButtonReturn : MonoBehaviour
         vm.videoCount = buttonValue - 1;
         vm.afterLoopVideo = true;
         vm.loopVideo = false;
+        bm.buttonStatus = false;
         bm.buttons.Remove(gameObject);
         gameObject.SetActive(false);
     }

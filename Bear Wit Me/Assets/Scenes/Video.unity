@@ -423,8 +423,9 @@ MonoBehaviour:
     videoClip: {fileID: 32900000, guid: f17dda755dccc634b8deff71bbcc0fae, type: 3}
   ads2: []
   videoToLoop: 010000000300000005000000
-  continueVideo: 0
+  loopVideo: 0
   videoCount: 1
+  afterLoopVideo: 0
   playNextVideo: 0
   videoPlayer: {fileID: 0}
 --- !u!4 &397532142
@@ -751,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -1298,10 +1299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c144f723665fa674e842c1560828716d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 633554000}
-  - {fileID: 966410103}
-  - {fileID: 2008868028}
+  buttons: []
+  buttonStatus: 0
   videoManager: {fileID: 0}
 --- !u!1 &1851635776
 GameObject:
@@ -1530,7 +1529,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

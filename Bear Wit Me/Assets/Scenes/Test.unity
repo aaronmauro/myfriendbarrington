@@ -1573,7 +1573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923424204}
   m_Layer: 0
-  m_Name: RespawnPoint1
+  m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1594,6 +1594,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1639858826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1137456780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1137456781}
+  - component: {fileID: 1137456782}
+  - component: {fileID: 1137456783}
+  m_Layer: 0
+  m_Name: DangerDetect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1137456781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137456780}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.363, z: 0}
+  m_LocalScale: {x: 1, y: 0.6666667, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1576588607}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1137456782
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137456780}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 1, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1137456783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137456780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c81cc719051cf84582b75ad8cd64672, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1260027709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,10 +1888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1576588608}
   backToSpawn: 0
-  spawnPoints:
-  - {fileID: 923424203}
-  addSpawnCount: 0
-  spawnCount: 0
+  spawnPoints: {fileID: 923424203}
+  dangerDetect: 0
   isInvincible: 0
 --- !u!4 &1556564875
 Transform:
@@ -2058,6 +2122,7 @@ Transform:
   - {fileID: 330585546}
   - {fileID: 1260027710}
   - {fileID: 2036624472}
+  - {fileID: 1137456781}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1576588608
@@ -2461,7 +2526,7 @@ GameObject:
   - component: {fileID: 1931320147}
   m_Layer: 0
   m_Name: hazard
-  m_TagString: Untagged
+  m_TagString: Danger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -26,7 +26,7 @@ public class InteractObject : MonoBehaviour
     {
         if (isTrigger)
         {
-            gameObject.transform.position = Vector3.MoveTowards(transform.position, targetObject.transform.position, speed * Time.deltaTime);
+            gameObject.transform.position = targetObject.transform.position;
         }
     }
 

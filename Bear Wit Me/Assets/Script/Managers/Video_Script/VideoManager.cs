@@ -30,6 +30,10 @@ public class VideoManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private ButtonManager bm;
 
+    // Testing
+    //[SerializeField]
+    //private bool forcePlay;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,13 +58,13 @@ public class VideoManager : MonoBehaviour
             PlayVideo(Convert.ToString(videoCount));
             playNextVideo = false;
         }
-        /*
-        else if (videoCount != !videoCount)
+        
+        else if (afterLoopVideo /*forcePlay*/)
         {
             PlayVideo(Convert.ToString(videoCount));
             playNextVideo = false;
         }
-        */ // working later to break the video and straight to next one
+         // working later to break the video and straight to next one
         // Calling methods
         checkVideoLoop();
         checkVideoStatus();

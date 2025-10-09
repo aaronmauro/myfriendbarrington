@@ -13,9 +13,9 @@ public class GameManager : MonoBehaviour
     [Header("Respawn")]
     public bool backToSpawn;
     [SerializeField]
-    private GameObject[] spawnPoints;
-    public bool addSpawnCount;
-    public int spawnCount;
+    private GameObject spawnPoints;
+    [HideInInspector]
+    public bool dangerDetect;
 
     public bool isInvincible;
 
@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
         // getting components
         // seeting up booleans
         backToSpawn = false;
-        addSpawnCount = false;
         isInvincible = false;
     }
 
@@ -34,19 +33,13 @@ public class GameManager : MonoBehaviour
         // if player trigger back to spawn
         if (backToSpawn && !isInvincible)
         {
-            player.transform.position = spawnPoints[spawnCount].transform.position;
+            player.transform.position = spawnPoints.transform.position;
             backToSpawn = false;
         }
-        if (addSpawnCount)
+        if (player.isGround && !dangerDetect)
         {
-            spawnCount++;
-            addSpawnCount = false;
-            /*
-            if (spawnCount > spawnPoints.Length)
-            {
-                spawnCount = 0;
-            }
-            */ // To be decided
+            spawnPoints.transform.position = player.transform.position;
         }
+        
     }
 }
