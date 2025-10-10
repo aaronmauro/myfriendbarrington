@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +16,9 @@ public class Player : MonoBehaviour
     private bool isJump;
     [SerializeField]
     public float inAirBoost;
+    private float currentSpeed;
+    [SerializeField]
+    private TMP_Text speedText;
 
     // Chekcing Inputs, player movement
     private float verticalInput;
@@ -56,16 +61,11 @@ public class Player : MonoBehaviour
     {
         // Calling methods
         movePlayer();
+        fixSpeed();
 
-        // Drag player
-        if (isGround)
-        {
-            rb.linearDamping = groundDrag;
-        }
-        else
-        {
-            rb.linearDamping = 0;
-        }
+        // Player speed text field
+        currentSpeed = rb.linearVelocity.magnitude;
+        speedText.text = "Current Speed: " + currentSpeed;
 
         // Jump
         if (Input.GetKey(KeyCode.Space) && isJump && isGround)
@@ -89,10 +89,6 @@ public class Player : MonoBehaviour
                 gm.isInvincible = false;
             }
         }
-
-   
-
-
     }
     // Player moving method
     private void movePlayer()
@@ -102,22 +98,40 @@ public class Player : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         // Move player according to input direction and speed
-        rb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * speed);
+        
+
+        // Drag player
+        if (isGround)
+        {
+            rb.linearDamping = groundDrag;
+            rb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * speed);
+        }
+        else if (!isGround)
+        {
+            rb.linearDamping = 0;
+            rb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * speed * inAirBoost);
+        }
     }
     private void jumpStatus()
     {
         isJump = true;
     }
-
     private void FixedUpdate()
     {
         if (!dialogue)
         {
             movePlayer();
-
         }
-        
     }
-
-
+    private void fixSpeed()
+    {
+        // Check for speed (wihtout jumping)
+        Vector3 getLinearVelocity = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.z);
+        // If exceed the speed
+        if (getLinearVelocity.magnitude > speed)
+        {
+            Vector3 limitLinearVelocity = getLinearVelocity.normalized  * speed;
+            rb.linearVelocity = new Vector3(limitLinearVelocity.x,rb.linearVelocity.y,limitLinearVelocity.z);
+        }
+    }
 }

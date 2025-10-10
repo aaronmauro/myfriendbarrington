@@ -1192,7 +1192,7 @@ GameObject:
   - component: {fileID: 758716008}
   - component: {fileID: 758716007}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SpeedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: What is this?
+  m_text: What is this? It's Pikachu!!!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -16.602005, w: 0}
+  m_margin: {x: 0, y: 0, z: -245.67706, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   d_template: {fileID: 684119810}
-  canva: {fileID: 1266459254}
+  canva: {fileID: 0}
 --- !u!135 &842289407
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1593,6 +1593,66 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1639858826}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1101777526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1101777529}
+  - component: {fileID: 1101777528}
+  - component: {fileID: 1101777527}
+  m_Layer: 0
+  m_Name: BubbleSpawnPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1101777527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101777526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 006b7b317b939b64c94057eda7c9deee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleRespawnTime: 3
+  bubblesPrefab: {fileID: 1940972280693844484, guid: 6298a562098ce2742b5299fc2a2a17be, type: 3}
+--- !u!114 &1101777528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101777526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc4ba099d0829c4d8f3f4104a51d3fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleSpawn: []
+--- !u!4 &1101777529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101777526}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.7808237, y: -0.105902314, z: -1.6599998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137456780
 GameObject:
@@ -2031,7 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   d_template: {fileID: 684119810}
-  canva: {fileID: 1266459254}
+  canva: {fileID: 0}
 --- !u!1 &1576588603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,11 +2197,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7914986cb1bb14a4c98510d32873dfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  groundDrag: 0.8
+  speed: 10
+  groundDrag: 8
   jump: 10
   jumpCooldown: 0.1
   inAirBoost: 0.5
+  speedText: {fileID: 758716007}
   isGround: 0
   isInvincible: 1
   invinicbleDuration: 10
@@ -2681,3 +2742,4 @@ SceneRoots:
   - {fileID: 404033567}
   - {fileID: 1566164948}
   - {fileID: 1266459259}
+  - {fileID: 1101777529}

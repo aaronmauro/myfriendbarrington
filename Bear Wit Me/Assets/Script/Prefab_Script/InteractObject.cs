@@ -36,17 +36,21 @@ public class InteractObject : MonoBehaviour
         {
             if (Input.GetKey(interactButton))
             {
-                if (!isHolding)
-                {
-                    isTrigger = true;
-                    isHolding = true;
-                }
-                else if (isHolding)
-                {
-                    isTrigger = false;
-                    isHolding = false;
-                }
+                Invoke(nameof(isPressed), 1f);
             }
+        }
+    }
+    private void isPressed()
+    {
+        if (!isHolding)
+        {
+            isTrigger = true;
+            isHolding = true;
+        }
+        else if (isHolding)
+        {
+            isTrigger = false;
+            isHolding = false;
         }
     }
 }
