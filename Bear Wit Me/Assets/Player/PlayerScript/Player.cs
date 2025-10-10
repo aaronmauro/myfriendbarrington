@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     // Setting serializable field for editor to edit in inspector
     [Header("Movement")]
     [SerializeField] 
-    public float speed;
+    private float speedAcceleration;
+    [SerializeField]
+    private float speedMax;
     [SerializeField]
     public float groundDrag;
     [SerializeField]
@@ -104,12 +106,16 @@ public class Player : MonoBehaviour
         if (isGround)
         {
             rb.linearDamping = groundDrag;
-            rb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * speed);
+            rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
+            if (horizontalInput == 0) // this may break if we ever put in controller inputs due to drift - DV
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
         }
         else if (!isGround)
         {
             rb.linearDamping = 0;
-            rb.AddForce(new Vector3(horizontalInput, 0, verticalInput) * speed * inAirBoost);
+            rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration * inAirBoost);
         }
     }
     private void jumpStatus()
@@ -128,9 +134,9 @@ public class Player : MonoBehaviour
         // Check for speed (wihtout jumping)
         Vector3 getLinearVelocity = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.z);
         // If exceed the speed
-        if (getLinearVelocity.magnitude > speed)
+        if (getLinearVelocity.magnitude > speedMax)
         {
-            Vector3 limitLinearVelocity = getLinearVelocity.normalized  * speed;
+            Vector3 limitLinearVelocity = getLinearVelocity.normalized  * speedMax;
             rb.linearVelocity = new Vector3(limitLinearVelocity.x,rb.linearVelocity.y,limitLinearVelocity.z);
         }
     }

@@ -2596,11 +2596,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7914986cb1bb14a4c98510d32873dfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  groundDrag: 8
-  jump: 10
+  speed: 7
+  groundDrag: 0
+  jump: 25
   jumpCooldown: 0.1
-  inAirBoost: 0.5
+  inAirBoost: 1
   speedText: {fileID: 758716007}
   isGround: 0
   isInvincible: 1
@@ -2616,7 +2616,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576588603}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 4
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
