@@ -27,7 +27,10 @@ public class Player : MonoBehaviour
     private float horizontalInput;
 
     // Checking ground
+    [Header("GroundCheck")]
     public bool isGround;
+    public LayerMask groundMask;
+    public float playerHeight;
 
     // Invincibility
     [Header("Invincible")]
@@ -56,6 +59,7 @@ public class Player : MonoBehaviour
 
         // Setting Up boolean
         isJump = true;
+        isInvincible = false;
     }
 
     // Update is called once per frame
@@ -64,22 +68,14 @@ public class Player : MonoBehaviour
         // Calling methods
         movePlayer();
         fixSpeed();
+        jumping();
 
         // Player speed text field
         currentSpeed = rb.linearVelocity.magnitude;
         speedText.text = "Current Speed: " + currentSpeed;
 
-        // Jump
-        if (Input.GetKey(KeyCode.Space) && isJump && isGround)
-        {
-            isGround = false;
-            isJump = false;
-
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.y);
-            rb.AddForce(transform.up * jump, ForceMode.Impulse);
-
-            Invoke(nameof(jumpStatus), jumpCooldown);
-        }
+        // Ground Check
+        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
 
         // Check invincible
         if (isInvincible)
@@ -105,17 +101,34 @@ public class Player : MonoBehaviour
         // Drag player
         if (isGround)
         {
-            rb.linearDamping = groundDrag;
+            //rb.linearDamping = groundDrag;
             rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
             if (horizontalInput == 0) // this may break if we ever put in controller inputs due to drift - DV
             {
-                rb.linearVelocity = Vector3.zero;
+                rb.linearVelocity = new Vector3(0 , rb.linearVelocity.y, 0);
             }
         }
         else if (!isGround)
         {
-            rb.linearDamping = 0;
+            //rb.linearDamping = 0;
             rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration * inAirBoost);
+        }
+    }
+    private void jumping()
+    {
+        // Jump
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+        {
+            if (isJump && isGround)
+            {
+                isGround = false;
+                isJump = false;
+
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
+                rb.AddForce(transform.up * jump, ForceMode.Impulse);
+
+                Invoke(nameof(jumpStatus), jumpCooldown);
+            }
         }
     }
     private void jumpStatus()
@@ -140,4 +153,5 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector3(limitLinearVelocity.x,rb.linearVelocity.y,limitLinearVelocity.z);
         }
     }
+
 }

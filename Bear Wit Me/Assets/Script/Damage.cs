@@ -22,4 +22,14 @@ public class Damage : MonoBehaviour
             gm.backToSpawn = true;
         }
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        // If collision stay with player
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // back to spawn
+            gm.backToSpawn = true;
+        }
+    }
 }

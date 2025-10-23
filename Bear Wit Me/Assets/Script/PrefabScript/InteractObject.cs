@@ -36,7 +36,7 @@ public class InteractObject : MonoBehaviour
         {
             if (Input.GetKey(interactButton))
             {
-                Invoke(nameof(isPressed), 1f);
+                isPressed();
             }
         }
     }
