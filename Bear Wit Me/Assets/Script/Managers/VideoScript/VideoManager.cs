@@ -55,13 +55,13 @@ public class VideoManager : MonoBehaviour
         // Play next video
         if (playNextVideo)
         {
-            PlayVideo(Convert.ToString(videoCount));
+            playVideo(Convert.ToString(videoCount));
             playNextVideo = false;
         }
         
         else if (afterLoopVideo /*forcePlay*/)
         {
-            PlayVideo(Convert.ToString(videoCount));
+            playVideo(Convert.ToString(videoCount));
             playNextVideo = false;
         }
          // working later to break the video and straight to next one
@@ -70,7 +70,7 @@ public class VideoManager : MonoBehaviour
         checkVideoStatus();
     }
     // Method to play ads1
-    public void PlayVideo(string videoName)
+    public void playVideo(string videoName)
     {
         // Finding the name in the array
         VideosData v = Array.Find(ads1, x => x.Name == videoName);
