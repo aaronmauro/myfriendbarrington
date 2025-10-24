@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private TMP_Text speedText;
 
+  
+
     // Chekcing Inputs, player movement
     private float verticalInput;
     private float horizontalInput;
@@ -153,5 +155,12 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector3(limitLinearVelocity.x,rb.linearVelocity.y,limitLinearVelocity.z);
         }
     }
+
+
+   
+
+
+
+
 
 }
