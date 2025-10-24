@@ -10,7 +10,8 @@ public class SoundWaves : MonoBehaviour
     private GameObject soundWavesPrefab;
     private GameObject _soundWavesObject;
     private Collider _soundWavesCollider;
-    private Collider player;
+    private Collider playerCollider;
+    private Player player;
     [Header("SoundWaveControls")]
     [SerializeField]
     private float respawnSoundTime;
@@ -19,6 +20,9 @@ public class SoundWaves : MonoBehaviour
     private bool isSpawn;
     [SerializeField]
     private float destoryDistance;
+    [SerializeField]
+    private float waveForce;
+
     [Header("Direction")]
     [SerializeField]
     private bool isRight, isLeft, isUp, isDown;
@@ -26,7 +30,8 @@ public class SoundWaves : MonoBehaviour
     void Start()
     {
         GameObject findPlayer = GameObject.Find("Player");
-        player = findPlayer.GetComponent<Collider>();
+        playerCollider = findPlayer.GetComponent<Collider>();
+        player = findPlayer.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -49,8 +54,8 @@ public class SoundWaves : MonoBehaviour
             }
             else if (isLeft)
             {
-                _soundWavesObject.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.x > soundWavesPrefab.transform.position.x - destoryDistance)
+                _soundWavesObject.transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
+                if (_soundWavesObject.transform.position.x < soundWavesPrefab.transform.position.x - destoryDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
@@ -60,31 +65,49 @@ public class SoundWaves : MonoBehaviour
                 _soundWavesObject.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
                 if (_soundWavesObject.transform.position.y > soundWavesPrefab.transform.position.y + destoryDistance)
                 {
+
                     Destroy(_soundWavesObject);
                 }
             }
             else if (isDown)
             {
-                _soundWavesObject.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.y > soundWavesPrefab.transform.position.y - destoryDistance)
+                _soundWavesObject.transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
+                if (_soundWavesObject.transform.position.y < soundWavesPrefab.transform.position.y - destoryDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
             }
         }
-
-        if (player.bounds == null || _soundWavesCollider == null)
+        //Debug.Log(rbPlayer);
+        if (playerCollider.bounds == null || _soundWavesCollider == null)
         {
             return;
         }
-        else if (_soundWavesCollider.bounds.Intersects(player.bounds))
+        else if (_soundWavesCollider.bounds.Intersects(playerCollider.bounds))
         {
-            Debug.Log("Player found");
+            Debug.Log("sound wave touched");
+            player.isPushed = true;
+            if (isRight)
+            {
+                player.isPushedDirection(0,waveForce);
+            }
+            else if (isLeft)
+            {
+                player.isPushedDirection(1, waveForce);
+            }
+            else if (isUp)
+            {
+                player.isPushedDirection(2, waveForce);
+            }
+            else if (isDown)
+            {
+                player.isPushedDirection(3, waveForce);
+            }
         }
         //it works just poping out so many error message, will figure it out
         //if (player != null)
         //{
-        //    Debug.Log("Player found");
+        //    //Debug.Log("Player found");
         //}
     }
 

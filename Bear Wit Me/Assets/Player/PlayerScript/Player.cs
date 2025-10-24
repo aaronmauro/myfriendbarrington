@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class Player : MonoBehaviour
     // This is the player script
     // Setting serializable field for editor to edit in inspector
     [Header("Movement")]
-    [SerializeField] 
+    [SerializeField]
     private float speedAcceleration;
     [SerializeField]
     private float speedMax;
@@ -21,8 +22,9 @@ public class Player : MonoBehaviour
     private float currentSpeed;
     [SerializeField]
     private TMP_Text speedText;
-
-  
+    public bool isPushed;
+    private int pushedDirection;
+    private float pushedSpeed;
 
     // Chekcing Inputs, player movement
     private float verticalInput;
@@ -98,22 +100,36 @@ public class Player : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
 
         // Move player according to input direction and speed
-        
 
+        if (horizontalInput != 0 && !isPushed)
+        {
+            rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
+        }
+        else if (horizontalInput != 0 && isPushed)
+        {
+            pushingPlayer();
+        }
+        else if (horizontalInput == 0 && isPushed) // this may break if we ever put in controller inputs due to drift - DV
+        {
+            pushingPlayer();
+        }
         // Drag player
         if (isGround)
         {
             //rb.linearDamping = groundDrag;
-            rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
-            if (horizontalInput == 0) // this may break if we ever put in controller inputs due to drift - DV
+             if (horizontalInput == 0 && !isPushed)
             {
-                rb.linearVelocity = new Vector3(0 , rb.linearVelocity.y, 0);
+                rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             }
         }
         else if (!isGround)
         {
             //rb.linearDamping = 0;
             rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration * inAirBoost);
+        }
+        if (isPushed)
+        {
+            Invoke("pushedCooldown", 0.1f);
         }
     }
     private void jumping()
@@ -147,20 +163,47 @@ public class Player : MonoBehaviour
     private void fixSpeed()
     {
         // Check for speed (wihtout jumping)
-        Vector3 getLinearVelocity = new Vector3(rb.linearVelocity.x,0f,rb.linearVelocity.z);
+        Vector3 getLinearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
         // If exceed the speed
         if (getLinearVelocity.magnitude > speedMax)
         {
-            Vector3 limitLinearVelocity = getLinearVelocity.normalized  * speedMax;
-            rb.linearVelocity = new Vector3(limitLinearVelocity.x,rb.linearVelocity.y,limitLinearVelocity.z);
+            Vector3 limitLinearVelocity = getLinearVelocity.normalized * speedMax;
+            rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
     }
 
+    public void isPushedDirection(int direction, float force)
+    {
+        pushedDirection = direction;
+        pushedSpeed = force;
+    }
 
-   
+    private void pushedCooldown()
+    {
+        isPushed = false;
+    }
 
-
-
-
-
+    private void pushingPlayer()
+    {
+        if (pushedDirection == 0)
+        {
+            rb.AddForce(Vector3.right * pushedSpeed, ForceMode.Impulse);
+            
+        }
+        else if (pushedDirection == 1)
+        {
+            rb.AddForce(Vector3.left * pushedSpeed, ForceMode.Impulse);
+            //Invoke("pushedCooldown", 1f);
+        }
+        else if (pushedDirection == 2)
+        {
+            rb.AddForce(Vector3.up * pushedSpeed, ForceMode.Impulse);
+            //Invoke("pushedCooldown", 1f);
+        }
+        else if (pushedDirection == 3)
+        {
+            rb.AddForce(Vector3.down * pushedSpeed, ForceMode.Impulse);
+            //Invoke("pushedCooldown", 1f);
+        }
+    }
 }

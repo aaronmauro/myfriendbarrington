@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BubbleSpawnPoint : MonoBehaviour
@@ -10,7 +11,16 @@ public class BubbleSpawnPoint : MonoBehaviour
     // Bubble prefabs
     [SerializeField]
     private GameObject bubblesPrefab;
-    private GameObject spawnedBubblePrefab;
+    private GameObject _spawnedBubblePrefab;
+
+    [SerializeField]
+    private float force;
+    private int direction;
+
+    private void Start()
+    {
+        direction = 2;
+    }
 
     // Update is called once per frame
     void Update()
@@ -20,12 +30,12 @@ public class BubbleSpawnPoint : MonoBehaviour
     // Spawn Bubbles
     private void spawnBubble()
     {
-        if (spawnedBubblePrefab == null)
+        if (_spawnedBubblePrefab == null)
         {
             bubbleRespawnTimer += Time.deltaTime;
             if (bubbleRespawnTimer > bubbleRespawnTime)
             {
-                spawnedBubblePrefab = Instantiate(bubblesPrefab, transform.position, Quaternion.identity);
+                _spawnedBubblePrefab = Instantiate(bubblesPrefab, transform.position, Quaternion.identity);
                 bubbleRespawnTimer = 0;
             }
         }
