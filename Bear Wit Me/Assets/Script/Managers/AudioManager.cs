@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class SoundManger : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
-    private static SoundManger instance;
+    private static AudioManager instance;
 
     private void Awake()
     {

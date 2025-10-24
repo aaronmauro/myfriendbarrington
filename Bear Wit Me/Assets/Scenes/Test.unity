@@ -1568,11 +1568,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundWavesPrefab: {fileID: 7732631693700965459, guid: ddf26989cd328cd43a8ad26640a60680, type: 3}
   respawnSoundTime: 5
+  moveSpeed: 2
+  destoryDistance: 5
   isRight: 1
   isLeft: 0
   isUp: 0
   isDown: 0
-  moveSpeed: 2
 --- !u!4 &850239010
 Transform:
   m_ObjectHideFlags: 0
@@ -2467,6 +2468,7 @@ GameObject:
   - component: {fileID: 1576588606}
   - component: {fileID: 1576588605}
   - component: {fileID: 1576588610}
+  - component: {fileID: 1576588611}
   - component: {fileID: 1576588609}
   - component: {fileID: 1576588608}
   m_Layer: 6
@@ -2623,6 +2625,29 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
+  m_Height: 1.08
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!136 &1576588611
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576588603}
+  m_Material: {fileID: 13400000, guid: a48c6a1a63e4a954ea81820633f3c194, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.55
   m_Height: 1.08
   m_Direction: 1
   m_Center: {x: 0, y: 0.01, z: 0}
