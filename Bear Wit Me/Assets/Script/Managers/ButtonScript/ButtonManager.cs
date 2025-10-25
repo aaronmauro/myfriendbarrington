@@ -7,8 +7,10 @@ public class ButtonManager : MonoBehaviour
 {
     // Getting Buttons
     [SerializeField]
-    public List<GameObject> buttons = new List<GameObject>();
+    public List<List<GameObject>> buttons = new List<List<GameObject>>();
     public bool buttonStatus;
+    [SerializeField]
+    private int totalAdsNumber;
     // Getting Component
     [SerializeField]
     private VideoManager videoManager;
@@ -19,28 +21,32 @@ public class ButtonManager : MonoBehaviour
 
         GameObject vm = GameObject.Find("VideoManager");
         videoManager = vm.GetComponent<VideoManager>();
+        while (buttons.Count <= totalAdsNumber)
+        {
+            buttons.Add(new List<GameObject>());
+        }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
         enableButton();
     }
-
+    // Changing Button active
     private void enableButton()
     {
         if (buttonStatus)
         {
-            for (int i = 0; i < buttons.Count; i++)
+            for (int i = 0; i < buttons[videoManager.adsNumber].Count; i++)
             {
-                buttons[i].SetActive(true);
+                buttons[videoManager.adsNumber][i].SetActive(true);
             }
         }
         else if (!buttonStatus)
         {
-            for (int j = 0; j < buttons.Count; j++)
+            for (int j = 0; j < buttons[videoManager.adsNumber].Count; j++)
             {
-                buttons[j].SetActive(false);
+                buttons[videoManager.adsNumber][j].SetActive(false);
             }
         }
     }

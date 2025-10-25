@@ -6,7 +6,12 @@ public class ButtonReturn : MonoBehaviour
 {
     // Getting video manager
     private VideoManager vm;
-    ButtonManager bm;
+    private ButtonManager bm;
+    // Getting Input
+    [SerializeField]
+    private int inputValues;
+    [SerializeField]
+    private int adsButton;
 
     private void Start()
     {
@@ -14,7 +19,15 @@ public class ButtonReturn : MonoBehaviour
         GameObject videoManager = GameObject.Find("VideoManager");
         vm = videoManager.GetComponent<VideoManager>();
         bm = FindObjectOfType<ButtonManager>();
-        bm.buttons.Add(gameObject);
+        bm.buttons[adsButton].Add(gameObject);
+    }
+    private void Update()
+    {
+        if (vm.videoCount > inputValues)
+        {
+            gameObject.SetActive(false);
+            bm.buttons[adsButton].Remove(gameObject);
+        }
     }
     // When button are presssed
     public void onPress(int buttonValue)
@@ -23,7 +36,7 @@ public class ButtonReturn : MonoBehaviour
         vm.afterLoopVideo = true;
         vm.loopVideo = false;
         bm.buttonStatus = false;
-        bm.buttons.Remove(gameObject);
+        bm.buttons[adsButton].Remove(gameObject);
         gameObject.SetActive(false);
     }
 }

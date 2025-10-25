@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -7,10 +8,12 @@ public class VideoManager : MonoBehaviour
     // Inputing video clips
     [Header("Videos")]
     public VideosData[] ads1, ads2;
+    private VideosData _v;
+    public int adsNumber;
     // Getting Looping video number
     [Header("Video Number")]
-    [SerializeField]
-    public int[] videoToLoop;
+    //[SerializeField]
+    //public int[] videoToLoop;
     [HideInInspector]
     public bool loopVideo;
     [HideInInspector]
@@ -24,6 +27,8 @@ public class VideoManager : MonoBehaviour
     private long videoFrame;
     [HideInInspector]
     public bool playNextVideo;
+    // Change Scene
+    public string[] nextSceneName;
     // Getting Component
     [Header("Component")]
     [SerializeField]
@@ -66,24 +71,41 @@ public class VideoManager : MonoBehaviour
         }
          // working later to break the video and straight to next one
         // Calling methods
-        checkVideoLoop();
+        //checkVideoLoop();
         checkVideoStatus();
+        //Debug.Log(Array.Find(ads2, x => x.isLoop == true));
+        //Debug.Log(ads1);
     }
     // Method to play ads1
     public void playVideo(string videoName)
     {
         // Finding the name in the array
-        VideosData v = Array.Find(ads1, x => x.Name == videoName);
-        // If the program cannot find it
-        if (v == null)
+        if (adsNumber == 0)
         {
-            Debug.Log("Entered Wrong Name");
+            _v = Array.Find(ads1, x => x.Name == videoName);
+        }
+        else if (adsNumber == 1)
+        {
+            _v = Array.Find(ads2, x => x.Name == videoName);
+        }
+        // If the program cannot find it
+        if (_v == null)
+        {
+            //Debug.Log("Entered Wrong Name");
+            // change scene when ran out in the list
+            SceneManagerScript.instance.nextScene(nextSceneName[adsNumber]);
+            adsNumber += 1;
         }
         // Set the clip and play the video
         else
         {
-            videoPlayer.clip = v.videoClip;
+            videoPlayer.clip = _v.videoClip;
             videoPlayer.Play();
+            if (_v.isLoop)
+            {
+                loopVideo = true;
+                bm.buttonStatus = true;
+            }
         }
     }
     // Method to check video status
@@ -109,6 +131,7 @@ public class VideoManager : MonoBehaviour
             afterLoopVideo = false;
         }
     }
+    /*
     // Check if the video need to loop
     private void checkVideoLoop()
     {
@@ -120,10 +143,7 @@ public class VideoManager : MonoBehaviour
                 loopVideo = true;
                 bm.buttonStatus = true;
             }
-            else if (videoToLoop[i] <= videoCount)
-            {
-                // Change scene script here
-            }
         }
     }
+    */
 }

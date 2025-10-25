@@ -10,4 +10,5 @@ public class VideosData
     // set up name and Values we want to get in inspector
     public string Name;
     public VideoClip videoClip;
+    public bool isLoop;
 }
