@@ -27,8 +27,10 @@ public class VideoManager : MonoBehaviour
     private long videoFrame;
     [HideInInspector]
     public bool playNextVideo;
+    private bool isPauseVideo;
     // Change Scene
     public string[] nextSceneName;
+    public KeyCode inputKey;
     // Getting Component
     [Header("Component")]
     [SerializeField]
@@ -69,6 +71,18 @@ public class VideoManager : MonoBehaviour
             playVideo(Convert.ToString(videoCount));
             playNextVideo = false;
         }
+
+        if (isPauseVideo)
+        {
+            if (Input.GetKeyDown(inputKey))
+            {
+                videoCount += 1;
+                isPauseVideo = false;
+                loopVideo = false;
+            }
+        }
+        //Debug.Log(isPauseVideo);
+        //Debug.Log(videoCount);
          // working later to break the video and straight to next one
         // Calling methods
         //checkVideoLoop();
@@ -105,6 +119,14 @@ public class VideoManager : MonoBehaviour
             {
                 loopVideo = true;
                 bm.buttonStatus = true;
+                if (_v.isSmashingButton)
+                {
+                    isPauseVideo = true;
+                }
+            }
+            else if (_v.isSmashingButton)
+            {
+                isPauseVideo = true;
             }
         }
     }
@@ -121,9 +143,12 @@ public class VideoManager : MonoBehaviour
         // Compare to check if the video ended
         if (currentFrame >= videoFrame - 1)
         {
-            playNextVideo = true;
+            if ((loopVideo && isPauseVideo) || !isPauseVideo)
+            {
+                playNextVideo = true;
+            }
             // Check if video need to be loop
-            if (!loopVideo)
+            if (!loopVideo && !isPauseVideo)
             {
                 videoCount += 1 - videoControlNumber;
             }

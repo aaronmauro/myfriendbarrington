@@ -23,10 +23,15 @@ public class ButtonReturn : MonoBehaviour
     }
     private void Update()
     {
+        //Debug.Log(vm.videoCount);
         if (vm.videoCount > inputValues)
         {
             gameObject.SetActive(false);
             bm.buttons[adsButton].Remove(gameObject);
+        }
+        else if (vm.adsNumber > adsButton)
+        {
+            gameObject.SetActive(false);
         }
     }
     // When button are presssed

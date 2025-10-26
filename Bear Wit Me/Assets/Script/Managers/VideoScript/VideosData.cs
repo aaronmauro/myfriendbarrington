@@ -11,4 +11,5 @@ public class VideosData
     public string Name;
     public VideoClip videoClip;
     public bool isLoop;
+    public bool isSmashingButton;
 }

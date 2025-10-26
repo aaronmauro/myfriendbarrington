@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1374494159596250870
+--- !u!1 &1838517671586751842
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7187446486936986688}
-  - component: {fileID: 4819485401172098060}
+  - component: {fileID: 2549081015820184649}
+  - component: {fileID: 2841825461461376842}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: SoundWavesSpawn
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7187446486936986688
+--- !u!4 &2549081015820184649
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374494159596250870}
+  m_GameObject: {fileID: 1838517671586751842}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.28695145, y: 0.038640127, z: -0.1841139}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -45.83654, y: 1.57, z: -0.40145075}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4819485401172098060
+--- !u!114 &2841825461461376842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374494159596250870}
+  m_GameObject: {fileID: 1838517671586751842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35113bba46901b046b53e778dd12deb4, type: 3}
+  m_Script: {fileID: 11500000, guid: 330fe42183156a04eb3cd86554e2bbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7297167683189911020, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-  backToSpawn: 0
-  spawnPoints: {fileID: 4069606640848313793, guid: 19cd55981ec986448b74b71db355d295, type: 3}
-  dangerDetect: 0
-  isInvincible: 0
+  soundWavesPrefab: {fileID: 7732631693700965459, guid: ddf26989cd328cd43a8ad26640a60680, type: 3}
+  respawnSoundTime: 5
+  moveSpeed: 2
+  destoryDistance: 5
+  waveForce: 50
+  isRight: 1
+  isLeft: 0
+  isUp: 0
+  isDown: 0

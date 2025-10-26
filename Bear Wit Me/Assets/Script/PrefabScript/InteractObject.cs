@@ -24,33 +24,35 @@ public class InteractObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isTrigger)
+        if (isTrigger && Input.GetKeyDown(interactButton))
+        {
+            isPressed();
+        }
+        //Debug.Log(isHolding);
+        if (isHolding)
         {
             gameObject.transform.position = targetObject.transform.position;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (Input.GetKey(interactButton))
-            {
-                isPressed();
-            }
+            isTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isTrigger = false;
         }
     }
     private void isPressed()
     {
-        if (!isHolding)
-        {
-            isTrigger = true;
-            isHolding = true;
-        }
-        else if (isHolding)
-        {
-            isTrigger = false;
-            isHolding = false;
-        }
+        isHolding = !isHolding;
+        //Debug.Log(isHolding);
     }
 }
