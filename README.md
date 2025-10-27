@@ -1,4 +1,4 @@
-# Bear Wit Me
+# myfriendbarrington
 Explore the psyche of an 11-year-old child, escaping into an imaginative world, where reality may not be too far behind. Play as your favourite toy in a world of 2.5D platforming and fast paced mechanics as you uncover a new sense of emotional awareness. As you navigate this dream-like atmosphere, watch out as your trauma seeps through from Full Motion Video (FMV) into your 2.5D world. 
 
 My Friend Barrington is a 2.5D platformer game with a fixed side-scroller camera angle. Play as Barrington Bear, a stuffed bear that lives in an imaginative, dreamlike world. Over the course of the game, learn the story of Jordan, an eleven-year-old child dealing with the reality of their stressed-out parents. As you explore Jordan’s imagination through Barrington, you’ll encounter friends and challenges, and overcome obstacles. 
