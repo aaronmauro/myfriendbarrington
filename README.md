@@ -43,7 +43,7 @@ Explore the psyche of a 7 year old child, escaping into an imaginative world, wh
 - Fahd Gebi
 ## Programmer: 
 - Eric Huang (Lead)
-- Hidden Patel
+- Hiten Patel
 - Noah Parfett
 ## Narrative:
 - Leah Harvey (Lead)
