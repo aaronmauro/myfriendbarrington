@@ -234,6 +234,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1256635872488364188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6732560974327894772
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8398220422799430804}
+  m_Layer: 6
+  m_Name: shootTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8398220422799430804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732560974327894772}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1256635872488364188}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9160913495963019049
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,6 +280,7 @@ GameObject:
   - component: {fileID: 1510598625911607243}
   - component: {fileID: 7770062745513796504}
   - component: {fileID: 7297167683189911020}
+  - component: {fileID: 764891244315037115}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -272,6 +304,7 @@ Transform:
   - {fileID: 768874047953554347}
   - {fileID: 261046345756637967}
   - {fileID: 2027932847804398720}
+  - {fileID: 8398220422799430804}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &7543875116307612706
@@ -419,6 +452,7 @@ MonoBehaviour:
   jumpCooldown: 0.1
   inAirBoost: 1
   speedText: {fileID: 0}
+  isPushed: 0
   isGround: 0
   groundMask:
     serializedVersion: 2
@@ -429,3 +463,19 @@ MonoBehaviour:
   cam: {fileID: 758258054690513822}
   rb: {fileID: 0}
   gm: {fileID: 0}
+--- !u!114 &764891244315037115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160913495963019049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4821ecc68b7fe147be698c66dda5e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pullSpeed: 0.5
+  stopDistance: 4
+  hookPrefab: {fileID: 2505872691850183749, guid: cc18acc8f0380684e848299bb997d76d, type: 3}
+  shootTransform: {fileID: 0}
