@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SoundWaves : MonoBehaviour
 {
+    // Storing Prefabs
     [Header("Prefab")]
     [SerializeField]
     private GameObject soundWavesPrefab;
@@ -12,6 +13,7 @@ public class SoundWaves : MonoBehaviour
     private Collider _soundWavesCollider;
     private Collider playerCollider;
     private Player player;
+    // Sound wave status
     [Header("SoundWaveControls")]
     [SerializeField]
     private float respawnSoundTime;
@@ -22,7 +24,7 @@ public class SoundWaves : MonoBehaviour
     private float destoryDistance;
     [SerializeField]
     private float waveForce;
-
+    // Getting Direction
     [Header("Direction")]
     [SerializeField]
     private bool isRight, isLeft, isUp, isDown;
@@ -42,10 +44,13 @@ public class SoundWaves : MonoBehaviour
             StartCoroutine(spawnSoundWaves());
             isSpawn = true;
         }
+        // If sound Wave is Spawned
         if (_soundWavesObject != null)
         {
+            // Check direction
             if (isRight)
             {
+                // Moving Sound Waves
                 _soundWavesObject.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 if (_soundWavesObject.transform.position.x > soundWavesPrefab.transform.position.x + destoryDistance)
                 {
@@ -79,13 +84,15 @@ public class SoundWaves : MonoBehaviour
             }
         }
         //Debug.Log(rbPlayer);
+        // if no player or sound wave don't do anything
         if (playerCollider.bounds == null || _soundWavesCollider == null)
         {
             return;
         }
+        // if sound wave collide with player
         else if (_soundWavesCollider.bounds.Intersects(playerCollider.bounds))
         {
-            Debug.Log("sound wave touched");
+            //Debug.Log("sound wave touched");
             player.isPushed = true;
             if (isRight)
             {
@@ -118,6 +125,7 @@ public class SoundWaves : MonoBehaviour
         isSpawn = false;
     }
 
+    // Generate Sound Waves
     private void soundWaves()
     {
         _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);

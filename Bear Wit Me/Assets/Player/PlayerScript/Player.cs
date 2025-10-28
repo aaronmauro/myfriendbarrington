@@ -113,6 +113,15 @@ public class Player : MonoBehaviour
         {
             pushingPlayer();
         }
+
+        if (horizontalInput >= 0.01)
+        {
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
+        else if (horizontalInput <= -0.99)
+        {
+            transform.rotation = Quaternion.Euler(0, 270, 0);
+        }
         // Drag player
         if (isGround)
         {
