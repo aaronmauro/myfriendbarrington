@@ -3,6 +3,9 @@ Explore the psyche of an 11-year-old child, escaping into an imaginative world, 
 
 My Friend Barrington is a 2.5D platformer game with a fixed side-scroller camera angle. Play as Barrington Bear, a stuffed bear that lives in an imaginative, dreamlike world. Over the course of the game, learn the story of Jordan, an eleven-year-old child dealing with the reality of their stressed-out parents. As you explore Jordan’s imagination through Barrington, you’ll encounter friends and challenges, and overcome obstacles. 
 
+
+## Tough Cookie Productions 
+
 ## Producer:
 - Andre Montrichard (Lead)
 - Ryan Bokla
