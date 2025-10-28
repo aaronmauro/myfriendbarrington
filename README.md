@@ -5,7 +5,7 @@ My Friend Barrington is a 2.5D platformer game with a fixed side-scroller camera
 
 
 ## Tough Cookie Productions 
-
+![alt text](image-url) 
 ## Producer
 - Andre Montrichard (Lead)
 - Ryan Bokla
