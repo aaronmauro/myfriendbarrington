@@ -76,7 +76,7 @@ public class VideoManager : MonoBehaviour
         {
             if (Input.GetKeyDown(inputKey))
             {
-                videoCount += 1;
+                //videoCount += 1;
                 isPauseVideo = false;
                 loopVideo = false;
             }
