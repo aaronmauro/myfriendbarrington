@@ -52,7 +52,7 @@ public class SoundWaves : MonoBehaviour
             {
                 // Moving Sound Waves
                 _soundWavesObject.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.x > soundWavesPrefab.transform.position.x + destoryDistance)
+                if (_soundWavesObject.transform.position.x > transform.position.x + destoryDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
@@ -60,7 +60,7 @@ public class SoundWaves : MonoBehaviour
             else if (isLeft)
             {
                 _soundWavesObject.transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.x < soundWavesPrefab.transform.position.x - destoryDistance)
+                if (_soundWavesObject.transform.position.x < transform.position.x - destoryDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
@@ -68,7 +68,7 @@ public class SoundWaves : MonoBehaviour
             else if (isUp)
             {
                 _soundWavesObject.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.y > soundWavesPrefab.transform.position.y + destoryDistance)
+                if (_soundWavesObject.transform.position.y > transform.position.y + destoryDistance)
                 {
 
                     Destroy(_soundWavesObject);
@@ -77,7 +77,7 @@ public class SoundWaves : MonoBehaviour
             else if (isDown)
             {
                 _soundWavesObject.transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.y < soundWavesPrefab.transform.position.y - destoryDistance)
+                if (_soundWavesObject.transform.position.y < transform.position.y - destoryDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
@@ -128,6 +128,7 @@ public class SoundWaves : MonoBehaviour
     // Generate Sound Waves
     private void soundWaves()
     {
+       
         _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);
         _soundWavesCollider = _soundWavesObject.GetComponent<Collider>();
         if (_soundWavesObject == null)
