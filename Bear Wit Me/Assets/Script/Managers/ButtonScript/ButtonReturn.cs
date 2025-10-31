@@ -19,7 +19,10 @@ public class ButtonReturn : MonoBehaviour
         GameObject videoManager = GameObject.Find("VideoManager");
         vm = videoManager.GetComponent<VideoManager>();
         bm = FindObjectOfType<ButtonManager>();
-        bm.buttons[adsButton].Add(gameObject);
+        if (VideoManager.adsNumber == adsButton )
+        {
+            bm.buttons[adsButton].Add(gameObject);
+        }
     }
     private void Update()
     {
@@ -29,7 +32,7 @@ public class ButtonReturn : MonoBehaviour
             gameObject.SetActive(false);
             bm.buttons[adsButton].Remove(gameObject);
         }
-        else if (vm.adsNumber > adsButton)
+        else if (VideoManager.adsNumber > adsButton)
         {
             gameObject.SetActive(false);
         }

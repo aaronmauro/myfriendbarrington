@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8523725238712547304}
   - component: {fileID: 6485232443187426384}
   m_Layer: 0
-  m_Name: CinemachineCamera
+  m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2799667325609318535}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.053930048, y: 2.1994394e-15, z: -4.9420095e-16, w: 0.99854475}
+  m_LocalRotation: {x: 0.053930636, y: 0, z: 0, w: 0.9985447}
   m_LocalPosition: {x: 0.02, y: 0.29699993, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 6.183, y: 0, z: 0}
 --- !u!114 &693398685646434810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,13 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 0
-    m_Value: 0
+    m_Value: 1
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1256635872488364188, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -95,7 +95,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 1.3, z: -12}
+  FollowOffset: {x: 0, y: 3.25, z: -12}
 --- !u!114 &6485232443187426384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 1.24, z: 0.12}
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 0

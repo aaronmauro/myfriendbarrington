@@ -9,7 +9,7 @@ public class VideoManager : MonoBehaviour
     [Header("Videos")]
     public VideosData[] ads1, ads2;
     private VideosData _v;
-    public int adsNumber;
+    public static int adsNumber;
     // Getting Looping video number
     [Header("Video Number")]
     //[SerializeField]
@@ -40,6 +40,11 @@ public class VideoManager : MonoBehaviour
     // Testing
     //[SerializeField]
     //private bool forcePlay;
+
+    //private void Awake()
+    //{
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -81,9 +86,11 @@ public class VideoManager : MonoBehaviour
                 loopVideo = false;
             }
         }
+        //Debug.Log(adsNumber);
+        //Debug.Log(ads1.Length);
         //Debug.Log(isPauseVideo);
         //Debug.Log(videoCount);
-         // working later to break the video and straight to next one
+        // working later to break the video and straight to next one
         // Calling methods
         //checkVideoLoop();
         checkVideoStatus();
@@ -107,8 +114,8 @@ public class VideoManager : MonoBehaviour
         {
             //Debug.Log("Entered Wrong Name");
             // change scene when ran out in the list
-            SceneManagerScript.instance.nextScene(nextSceneName[adsNumber]);
             adsNumber += 1;
+            SceneManagerScript.instance.nextScene(nextSceneName[adsNumber]);
         }
         // Set the clip and play the video
         else
