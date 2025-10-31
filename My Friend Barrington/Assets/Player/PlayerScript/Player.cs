@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 
 public class Player : MonoBehaviour
@@ -29,6 +30,7 @@ public class Player : MonoBehaviour
     // Chekcing Inputs, player movement
     private float verticalInput;
     private float horizontalInput;
+    public bool playerInput;
 
     // Checking ground
     [Header("GroundCheck")]
@@ -72,16 +74,21 @@ public class Player : MonoBehaviour
         // Setting Up boolean
         isJump = true;
         isInvincible = false;
+        playerInput = true;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         // Calling methods
-        movePlayer();
-        fixSpeed();
-        jumping();
-
+        if (playerInput)
+        {
+            movePlayer();
+            fixSpeed();
+            jumping();
+        }
+        else
+        {
+            freezePlayer();
+        }
         // Player speed text field
         currentSpeed = rb.linearVelocity.magnitude;
         speedText.text = "Current Speed: " + currentSpeed;
@@ -98,7 +105,16 @@ public class Player : MonoBehaviour
                 gm.isInvincible = false;
             }
         }
+        if (!dialogue && playerInput)
+        {
+            movePlayer();
+        }
     }
+    // Update is called once per frame
+    //void Update()
+    //{
+
+    //}
     // Player moving method
     private void movePlayer()
     {
@@ -173,13 +189,7 @@ public class Player : MonoBehaviour
     {
         isJump = true;
     }
-    private void FixedUpdate()
-    {
-        if (!dialogue)
-        {
-            movePlayer();
-        }
-    }
+
     private void fixSpeed()
     {
         // Check for speed (wihtout jumping)
@@ -241,6 +251,11 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.down * pushedSpeed, ForceMode.Impulse);
             //Invoke("pushedCooldown", 1f);
         }
+    }
+    
+    public void freezePlayer()
+    {
+        rb.linearVelocity = Vector3.zero;
     }
 
     private void OnDrawGizmos()

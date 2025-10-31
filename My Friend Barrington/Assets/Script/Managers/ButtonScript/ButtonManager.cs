@@ -15,16 +15,24 @@ public class ButtonManager : MonoBehaviour
     [SerializeField]
     private VideoManager videoManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        while (buttons.Count <= totalAdsNumber)
+        {
+            buttons.Add(new List<GameObject>());
+        }
+        for (int j = 0; j < buttons[VideoManager.adsNumber].Count; j++)
+        {
+            buttons[VideoManager.adsNumber][j].SetActive(false);
+        }
+    }
     void Start()
     {
         buttonStatus = false;
 
         GameObject vm = GameObject.Find("VideoManager");
         videoManager = vm.GetComponent<VideoManager>();
-        while (buttons.Count <= totalAdsNumber)
-        {
-            buttons.Add(new List<GameObject>());
-        }
+
     }
     
     // Update is called once per frame
@@ -36,6 +44,7 @@ public class ButtonManager : MonoBehaviour
         {
             //Debug.Log("happy happy happy");
             //Debug.Log(VideoManager.adsNumber);
+            //Debug.Log(buttons[VideoManager.adsNumber].Count == 0);
             if (VideoManager.adsNumber == 0)
             {
                 videoManager.videoCount = videoManager.ads1.Length;

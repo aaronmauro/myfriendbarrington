@@ -114,8 +114,8 @@ public class VideoManager : MonoBehaviour
         {
             //Debug.Log("Entered Wrong Name");
             // change scene when ran out in the list
-            adsNumber += 1;
             SceneManagerScript.instance.nextScene(nextSceneName[adsNumber]);
+            adsNumber += 1;
         }
         // Set the clip and play the video
         else
