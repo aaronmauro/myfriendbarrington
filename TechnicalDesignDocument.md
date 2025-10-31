@@ -1,6 +1,8 @@
-Technical Design Document   
+<div align="center">
+	 <H1>Technical Design Document</H1>
+</div>
 
-Scene
+<H2>Scene Settings</H2> 
 
 All Prefab: 
 
@@ -9,7 +11,7 @@ Z: Around -1 to 1
 Set all Hazards and playable objects set to Z Position 
 
 
-Player
+<H2>Player</H2>
 
 Player Settings: 
 
@@ -24,7 +26,7 @@ Transform:
 		
 Rigidbody: 
 
-	Mass: 4 
+	Mass: 6.7
 	
 	Constraints: 
 	
@@ -32,17 +34,17 @@ Rigidbody:
 		
 Player Script: 
 
-	Speed Acceleration: 45 
+	Speed Acceleration: 50 
 	
-	Speed Max: 7 
+	Speed Max: 6.7
 	
 	Ground Drag: 0 
 	
-	Jump: 25 
+	Jump: 65
 	
 	Jump Cooldown: 0.1 
 	
-	In Air Boost: 1 
+	In Air Boost: 0.75
 
 
 Player Code:
@@ -59,7 +61,7 @@ Player Code:
 	Jump Key Code: Space
 	}
 
-Mechanics 
+<H2>Mechanics</H2> 
 
 
 Sticky Hand Code:
@@ -76,9 +78,21 @@ Sticky Hand Code:
 	
 	Move player from positionX & positionY
 	
-	On release of pressing E 
+	Press E to Release Hook 
+
+	Press E to Remove Hook 
+
+	In Grapple Range Enable Hook 
+
+	Else Hook Disabled 
 	
 	Destroy line 
+
+	Pull Speed: 0.3
+
+	Stop Distance: 2.5 
+
+	Hook Force : 30
 	}
 
 Interact Button: 
@@ -299,7 +313,7 @@ Lever:
 	
 	}
 
-Managers
+<H2>Managers</H2>
 
 Game Manger:
 
@@ -458,7 +472,7 @@ Camera Manager:
     END FUNCTION
 }
 
-Unity Program Folder:
+<H2>Unity Program Folder:</H2>
 
 Player Folder:
 
@@ -597,14 +611,37 @@ Prefab Folder:
 		Alphabet_blocks
 		
 		Bubble_bottle
+
+		Cloud_1 
+
+		Cloud_2 
+		
 		
 	3DLevel2 
 	
 		Trees.Obj
+
+		Banana_1 
+
+		Glassshards
+
+		snake
 		
 	3DLevel3 
 	
 		pirate-ship.Obj
+
+		anchor 
+
+		Bed 
+
+		Flag
+
+		Mast 
+
+		Pillow 
+
+		SteeringWheel
 		
 	Environment 
 	
@@ -619,6 +656,8 @@ Prefab Folder:
 		FelliniFerret.Obj
 		
 		MarvinMonkey.Obj
+
+		StickyHand 
 		
 	
 Audio Folder:
@@ -674,10 +713,7 @@ Ads1 Testing
 Ads2 Testing
 
 	RoxaneCutscene
-	
-Testing
 
-	TestingVideo
 
 Scenes Folder:
 
@@ -696,7 +732,7 @@ Scenes Folder:
 	Cinematest
 
 
-Access GitHub: 
+<H2>Access GitHub:</H2> 
 
 School Computer using GitHub:  
 
@@ -762,7 +798,7 @@ There will be 3 branches use correct department branch, if pushing to main let P
 
 When merging or updating branch make sure each branch has been pushed before merging to main 
  
-Software/File Type   
+<H2>Software/File Type</H2>   
 
 File Naming Conventions: 
 
@@ -800,7 +836,7 @@ Canva
 Wix   
 FMOD 2.03 
 
-Resources   
+<H2>Resources</H2>   
 
 https://learn.unity.com/  
 
