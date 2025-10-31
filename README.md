@@ -9,8 +9,9 @@ My Friend Barrington is a 2.5D platformer game with a fixed side-scroller camera
 
 
 ## Producer
+- Ryan Bokla(Lead)
 - Andre Montrichard (Lead)
-- Ryan Bokla
+
 ## Marketing
 - Uzochi Ifemenam (Lead)
 - Brandon Patel
