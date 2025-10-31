@@ -34,7 +34,9 @@ public class Player : MonoBehaviour
     [Header("GroundCheck")]
     public bool isGround;
     public LayerMask groundMask;
+    public LayerMask platformMask;
     public float playerHeight;
+    public bool moveRespawn;
 
     // Invincibility
     [Header("Invincible")]
@@ -51,8 +53,14 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]
     private GameManager gm;
+    [SerializeField]
+    private DangerDetect dangerDectect;
 
+    // Dialogue
     static public bool dialogue = false;
+
+    // Gizmo
+    private Color gizmoColour = Color.yellow;
 
     // Setting up values at start
     void Start()
@@ -78,8 +86,7 @@ public class Player : MonoBehaviour
         currentSpeed = rb.linearVelocity.magnitude;
         speedText.text = "Current Speed: " + currentSpeed;
 
-        // Ground Check
-        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        isGroundRayCast();
 
         // Check invincible
         if (isInvincible)
@@ -117,10 +124,14 @@ public class Player : MonoBehaviour
         if (horizontalInput >= 0.01)
         {
             transform.rotation = Quaternion.Euler(0, 90, 0);
+            dangerDectect.direction = true;
+            //dangerDectect.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         else if (horizontalInput <= -0.99)
         {
             transform.rotation = Quaternion.Euler(0, 270, 0);
+            dangerDectect.direction = false;
+            //dangerDectect.transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
         // Drag player
         if (isGround)
@@ -192,6 +203,22 @@ public class Player : MonoBehaviour
         isPushed = false;
     }
 
+    private void isGroundRayCast()
+    {
+        
+        // Ground Check
+        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+
+        if (Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, platformMask))
+        {
+            moveRespawn = false;
+        }
+        else
+        {
+            moveRespawn = true;
+        }
+    }
+
     private void pushingPlayer()
     {
         if (pushedDirection == 0)
@@ -214,5 +241,11 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.down * pushedSpeed, ForceMode.Impulse);
             //Invoke("pushedCooldown", 1f);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = gizmoColour;
+        Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
     }
 }
