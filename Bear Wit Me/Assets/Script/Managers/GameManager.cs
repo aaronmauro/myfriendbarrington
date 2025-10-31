@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Player player;
+    [SerializeField]
+    private CinemachineCamera playerCam;
 
     // Manage respawn
     [Header("Respawn")]
@@ -18,6 +21,11 @@ public class GameManager : MonoBehaviour
     public bool dangerDetect;
 
     public bool isInvincible;
+
+    private void Awake()
+    {
+        playerCam.enabled = true;
+    }
 
     void Start()
     {

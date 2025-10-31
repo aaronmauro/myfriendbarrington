@@ -31,23 +31,53 @@ public class ButtonManager : MonoBehaviour
     void Update()
     {
         enableButton();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Debug.Log("happy happy happy");
+            //Debug.Log(VideoManager.adsNumber);
+            if (VideoManager.adsNumber == 0)
+            {
+                videoManager.videoCount = videoManager.ads1.Length;
+                videoManager.afterLoopVideo = true;
+            }
+            else if (VideoManager.adsNumber == 1)
+            {
+                videoManager.videoCount = videoManager.ads2.Length;
+                videoManager.afterLoopVideo = true;
+            }
+        }
     }
     // Changing Button active
     private void enableButton()
     {
         if (buttonStatus)
         {
-            for (int i = 0; i < buttons[videoManager.adsNumber].Count; i++)
+            if (buttons[VideoManager.adsNumber].Count == 0)
             {
-                buttons[videoManager.adsNumber][i].SetActive(true);
+                return;
+            }
+            else
+            {
+                for (int i = 0; i < buttons[VideoManager.adsNumber].Count; i++)
+                {
+                    buttons[VideoManager.adsNumber][i].SetActive(true);
+                }
             }
         }
         else if (!buttonStatus)
         {
-            for (int j = 0; j < buttons[videoManager.adsNumber].Count; j++)
+            if (buttons[VideoManager.adsNumber].Count == 0)
             {
-                buttons[videoManager.adsNumber][j].SetActive(false);
+                return;
             }
+            else
+            {
+                for (int j = 0; j < buttons[VideoManager.adsNumber].Count; j++)
+                {
+                    buttons[VideoManager.adsNumber][j].SetActive(false);
+                }
+            }    
         }
     }
 }
