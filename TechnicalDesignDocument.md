@@ -6,6 +6,9 @@ All Prefab:
 
 Z: Around -1 to 1
 
+Set all Hazards and playable objects set to Z Position 
+
+
 Player
 
 Player Settings: 
