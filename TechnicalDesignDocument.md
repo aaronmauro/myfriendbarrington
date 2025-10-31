@@ -458,186 +458,321 @@ Camera Manager:
 Unity Program Folder:
 
 Player Folder:
+
 	Player Script
+	
 		DangerDetect 
+		
 		Player 
 
 Script Folder:
+
 	Manager Folder:
+	
 		Button Folder
+		
 			Button Manager
+			
 			Button Input Return Script
+			
 		NPC
+		
 			NPC System
+			
 			Next Dialogues
+			
 Video Script
+
 			Video Manager
+			
 			VideosData 
+			
 		Game Manager
+		
 		Audio Manager
+		
 	PrefabScript
+	
 		Bubble Script
-			Bubbles 
+		
+			Bubbles
+			
 			Bubble Spawn Point
+			
 		Bush
+		
 		Interact Object
+		
 		Sound Waves
+		
 Breaking Block
+
 		Moving Block
+		
 		Rift
+		
 	Damage
+	
 	Grapple 
+	
 	Hook
 
 Prefab Folder:
+
 	Materials 
+	
 		Boundary 
+		
 		Rift 
+		
 		BreakingPlatform
+		
 		Bush
+		
 		Hazard 
+		
 		TestingRiftMaterials 
+		
 	PhysicsMaterials 
+	
 		HighFriction
+		
 		LowFriction 
+		
 		Slip
+		
 		Hook
+		
 	Objects
+	
 		Bubbles 
+		
 		SoundWave
+		
 	Platform 
+	
 		BreakingPlatform
+		
 		MovingPlatform
+		
 		Pillow
 
 	Player
+	
 		Player
 	
 	Mechanics
+	
 		Bush
+		
 		Hazard 
+		
 		MovableBox
+		
 		NPC
+		
 		RiftpointA 
+		
 		RiftpointB
 	
 2D-Art Folder:
+
 	Environment
+	
 		Background 
+		
 	UI
 		Buttons 
+		
 		Font
 		
 
 3D-Art Folder:
+
 	3Dlevel1 
+	
 		Alphabet_blocks
+		
 		Bubble_bottle
+		
 	3DLevel2 
+	
 		Trees.Obj
+		
 	3DLevel3 
+	
 		pirate-ship.Obj
+		
 	Environment 
+	
 	Obstacle
+	
 	CharacterModel
+	
 		BarringtonModel.Obj
+		
 		ParrotPete.Obj
+		
 		FelliniFerret.Obj
+		
 		MarvinMonkey.Obj
 		
 	
 Audio Folder:
+
 	Background Audio	
+	
 		Background Music 
 		
 	Environment Audio
+	
 		  Rift Audio 
+		  
 		SoundWave Audio
 		
 	Player Audio
+	
 		Walking Audio
+		
 		Jumping Audio
+		
 		Damage Audio
+		
 		Talking Audio 
+		
 		Running Audio 
 		
 	NPC Audio
 		Talking Audio
 	SFX
+	
 		Glass Audio 
+		
 		WhoopieCushion Audio
+		
 		StickyHand Audio 
-		BubbleBridge Audio 
+		
+		BubbleBridge Audio
+		
 	Video Audio	
+	
 		LiveCutSceneAudio 1
+		
 		LiveCutSceneAudio 2
+		
 		LiveCutSceneAudio 3
 		
 Video Folder:
+
 Ads1 Testing
+
 	StickyHandVideo
+	
 Ads2 Testing
+
 	RoxaneCutscene
+	
 Testing
+
 	TestingVideo
 
 Scenes Folder:
+
 	Lvl 1
+	
 	Lvl 2
+	
 	Lvl 3
+	
 	LevelDesign
+
 	Test
+	
 	Video
+	
 	Cinematest
 
 
 Access GitHub: 
+
 School Computer using GitHub:  
-Find GitHub Desktop on desktop https://github.com/aaronmauro/myfriendbarrington    
+
+Find GitHub Desktop on desktop https://github.com/aaronmauro/myfriendbarrington   
+
 Login to your GitHub Account  
+
 Select "myfriendbarrington" and select "Clone myfriendbarrington"  
+
 Optional but suggested (remember/change the Local path to a place you will remember)  
+
 Click "Clone" 
+
 Click on "Current branch" on top left, click on branches corresponding to your role. 
+
 Click on "Show in Explorer"  
+
 Click on "My Friend Barrington"  
+
 Click on "Assets"  
+
 Click on "Scenes"  
+
 Select any Unity scene file ending with ".unity" (ex. Lvl1.unity, test.unity)
+
 Wait and Have Fun Good Luck  
 
 
 Personal Computer using GitHub:  
-Follow the first 5 steps ONCE (don't repeat this step each time, unless something happened)  
+
+Follow the first 5 steps ONCE (don't repeat this step each time, unless something happened)
+
 Remember your file location is very important on personal computer  
+
 On top of the GitHub Desktop find "Fetch origin" and click on it every time you wanted to access to the file (updating the file each time you use)  
+
 Follow step 6-11 if you wanted to access to the game  
+
 if anything happen ping any programmer  
 
 For Commit and Pushing to GitHub:  
+
 Before pushing to GitHub server, remember to check and save in Unity  
+
 Open GitHub Desktop that is already on your screen  
+
 On the bottom left find text box "Summary (required)" Write something (ex. Updated on Frog Enemies, Just anything for other people to see, keep it simple)  
+
 For the text box below, "Description", this is optional for people want to write more detail  
+
 Click on the blue button "Commit to main"  
+
 Find "Push origin" button and click SUPER IMPORTANT  
+
 You are free to close the GitHub Desktop and Unity  
 
 Additionally:  
 If you want to find the cloned file, Open GitHub Desktop, Find and click on "Show in Explorer" / click on "Repository" and click on "Show in Explorer" / Ctrl + Shift + F 
+
 https://github.com/aaronmauro/myfriendbarrington/branches/all
-There will be 5 branches use correct department branch, if pushing to main let Programmer team know 
+
+There will be 3 branches use correct department branch, if pushing to main let Programmer team know 
+
 When merging or updating branch make sure each branch has been pushed before merging to main 
  
 Software/File Type   
+
 File Naming Conventions: 
 
 PascalCase 
+
 Short and Concise Names 
+
 Address What the asset is 
+
 Any object the player interacts with should be tagged with PlayerInteractable 
  
 Character/Object Name_Location_Material/AssetType 
+
 Character/Object Name_Location_Material/AssetType_PlayerInteractable 
  
 _texture 
@@ -663,21 +798,39 @@ Wix
 FMOD 2.03 
 
 Resources   
+
 https://learn.unity.com/  
+
 To learn unity functions and tools to help with problems when using unity
+
 https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Resources.html
+
 Script functions for coding in C# and unity     
+
 https://docs.unity3d.com/6000.2/Documentation/Manual/animeditor-AnimatingAGameObject.html#:~:text=You%20can%20animate%20any%20property,keyframes%20while%20in%20Record%20mode.
+
 Animating Gameobjects in Unity3D   
-https://stackoverflow.com/questions  
+
+https://stackoverflow.com/questions
+
 Looking for potential similar bugs that you may be facing when coding  
+
 https://docs.github.com/en
+
 Information on GitHub Usage and how to use    
+
 https://unity.com/features/cinemachine  
+
 Information on how to use cinemachine in the unity 3D project 
+
 https://www.youtube.com/@unity  
+
 Tutorial videos and beginners guide to working in Unity 
+
 https://learn.microsoft.com/en-us/dotnet/csharp/  
+
 To learn C# language for Unity
+
 https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/setup-follow-camera.html
+
 Cinemachine camera Follow target document 
