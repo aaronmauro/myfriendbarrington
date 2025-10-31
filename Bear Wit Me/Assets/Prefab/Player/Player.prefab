@@ -66,6 +66,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c81cc719051cf84582b75ad8cd64672, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 0
+  gizmoColour: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  rayLength: 0
 --- !u!1 &5445098428182122146
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +96,7 @@ Transform:
   m_GameObject: {fileID: 5445098428182122146}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9, y: 1.407, z: 1.219}
+  m_LocalPosition: {x: 0.9, y: 1.407, z: 1.414}
   m_LocalScale: {x: 1, y: 0.6666667, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -318,13 +323,18 @@ MonoBehaviour:
   isGround: 0
   groundMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1280
+  platformMask:
+    serializedVersion: 2
+    m_Bits: 256
   playerHeight: 0.1
+  moveRespawn: 0
   isInvincible: 0
   invinicbleDuration: 10
   cam: {fileID: 4674247139765658665, guid: 305ef4cc8a6fb544fab07ee14fe11fd3, type: 3}
   rb: {fileID: 0}
   gm: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
+  dangerDectect: {fileID: 3824942644402062671}
 --- !u!114 &7036776493708863538
 MonoBehaviour:
   m_ObjectHideFlags: 0

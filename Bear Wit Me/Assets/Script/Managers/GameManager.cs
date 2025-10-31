@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             player.transform.position = spawnPoints.transform.position;
             backToSpawn = false;
         }
-        if (player.isGround && !dangerDetect)
+        if (player.isGround && player.moveRespawn && !dangerDetect)
         {
             spawnPoints.transform.position = player.transform.position;
         }
