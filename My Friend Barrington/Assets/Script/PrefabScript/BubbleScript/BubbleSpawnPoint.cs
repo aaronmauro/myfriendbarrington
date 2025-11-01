@@ -13,8 +13,8 @@ public class BubbleSpawnPoint : MonoBehaviour
     private GameObject bubblesPrefab;
     private GameObject _spawnedBubblePrefab;
 
-    [SerializeField]
-    private float force;
+    //[SerializeField]
+    //private float force;
     private int direction;
 
     private void Start()

@@ -38,6 +38,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        respawn();
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            exitTheGame();
+        }
+    }
+
+    private void respawn()
+    {
         // if player trigger back to spawn
         if (backToSpawn && !isInvincible)
         {
@@ -48,6 +58,12 @@ public class GameManager : MonoBehaviour
         {
             spawnPoints.transform.position = player.transform.position;
         }
-        
+    }
+
+    private void exitTheGame()
+    {
+        Application.Quit();
+
+        Debug.Log("Quit");
     }
 }
