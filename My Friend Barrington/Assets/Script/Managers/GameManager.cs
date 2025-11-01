@@ -24,7 +24,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerCam.enabled = true;
+        if (playerCam != null)
+        {
+            playerCam.enabled = true;
+        }
+        else
+        {
+            return;
+        }
     }
 
     void Start()
