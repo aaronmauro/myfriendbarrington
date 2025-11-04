@@ -5,7 +5,7 @@ My Friend Barrington is a 2.5D platformer game with a fixed side-scroller camera
 
 
 ## Tough Cookie Productions Team
-<img src= "GitHubArt/pfp.png" width ="200"/> 
+<img src= "GitHubArt/FINALtoughcookie copy.png" width ="200"/> 
 
 
 ## Producer
