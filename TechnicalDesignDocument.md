@@ -93,7 +93,24 @@ Sticky Hand Code:
 	Stop Distance: 2.5 
 
 	Hook Force : 30
+
+	OnCollision with Grapple Point 
+	Enable Grapple Hook 
+	
 	}
+
+Grapple Point Code: 
+
+{
+	Player Tag On collision With Grapple Point 
+
+	Enable Grapple Hook 
+
+	Player Press E to Use Hook In range 
+
+	
+
+}
 
 Interact Button: 
 
@@ -881,6 +898,14 @@ https://discord.com/
 Google Suites: 
 
 https://workspace.google.com/intl/en_ca/ 
+
+<H2>System Requirement</H2>
+
+| Operating system | Operating system version | CPU | Graphics API | Additional Requiremnts |
+| :--------------- | ------------------------ | :-: | ------------ | ---------------------: |
+| Windows		   | Windows 10/11 Version    | x86, x64 architecture with SSE2 instruction set support, Arm64 | DX10, DX11, DX12 or Vulkan capable GPUs | Hardware vendor officially supported drivers |
+																																																			
+
 
 <H2>Resources</H2>   
 
