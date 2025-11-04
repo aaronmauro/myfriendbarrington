@@ -823,18 +823,64 @@ Narrative: Narrative .txt files for documents/scripts
 2D: Procreate 300 DPI (Procreate 5.4.2)  
   
 3D: Steam .obj File (4.5.3 LTS Steam)  
+
 3D Printing STL file type   
+
 FBX Animated Objects  
+
 Video: video mp4/ link file type   
-Unity 6000.0.53f1  
+
+Unity 6000.0.53f1
+
+https://unity.com/cn/releases/editor/whats-new/6000.0.53f1 
+
 Cinemachine 3.1.4 
-GitHub Desktop 3.5   
-Blender 4.5.3 LTS   
+
+https://unity.com/features/cinemachine 
+
+GitHub Desktop 3.5
+
+https://desktop.github.com/download/ 
+
+Blender 4.5.4 LTS   
+
+https://www.blender.org/download/
+
 Procreate 5.4.2 LTS   
+
+https://procreate.com/ 
+
 Da Vicini Resolve 20.2.1  
-Canva   
-Wix   
+
+https://www.blackmagicdesign.com/ca/products/davinciresolve 
+
+Canva:   
+
+https://www.canva.com/ 
+
+Wix:   
+
+https://www.wix.com/ 
+
 FMOD 2.03 
+
+https://www.fmod.com/docs/2.03/studio/welcome-to-fmod-studio-new-in-203.html 
+
+Figma: 
+
+https://www.figma.com/ 
+
+Microsoft Planner: 
+
+https://planner.cloud.microsoft/ 
+
+Discord: 
+
+https://discord.com/ 
+
+Google Suites: 
+
+https://workspace.google.com/intl/en_ca/ 
 
 <H2>Resources</H2>   
 
