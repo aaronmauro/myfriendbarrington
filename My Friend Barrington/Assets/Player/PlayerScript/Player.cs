@@ -252,6 +252,11 @@ public class Player : MonoBehaviour
             //Invoke("pushedCooldown", 1f);
         }
     }
+
+    public void inBubbleStream(float floatForce)
+    {
+        rb.AddForce(Vector3.up * floatForce, ForceMode.Acceleration);
+    }
     
     public void freezePlayer()
     {
