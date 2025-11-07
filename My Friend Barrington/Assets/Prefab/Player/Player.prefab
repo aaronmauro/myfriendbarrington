@@ -128,13 +128,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9056889842189889971}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25094187, y: -0, z: 0.000000014901161, w: 0.96800226}
+  m_LocalRotation: {x: -0.41113392, y: -0.00000008940696, z: 0.00000008940696, w: 0.91157496}
   m_LocalPosition: {x: 0, y: 1.344, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1256635872488364188}
-  m_LocalEulerAnglesHint: {x: -29.067, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -48.552, y: 0, z: 0}
 --- !u!1 &9160913495963019049
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +260,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9160913495963019049}
   serializedVersion: 4
-  m_Mass: 5
+  m_Mass: 6.7
   m_Drag: 0
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -292,13 +292,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedAcceleration: 50
-  speedMax: 8
+  speedMax: 6.7
   groundDrag: 0
   jump: 65
   jumpCooldown: 0.1
   inAirBoost: 0.75
   speedText: {fileID: 0}
   isPushed: 0
+  playerInput: 0
   isGround: 0
   groundMask:
     serializedVersion: 2
@@ -326,8 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4821ecc68b7fe147be698c66dda5e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullSpeed: 0.3
-  stopDistance: 2.5
+  pullSpeed: 0.1
+  stopDistance: 4
   hookPrefab: {fileID: 2505872691850183749, guid: cc18acc8f0380684e848299bb997d76d, type: 3}
   shootTransform: {fileID: 8729877887227340866}
 --- !u!75 &1135848239920613219
