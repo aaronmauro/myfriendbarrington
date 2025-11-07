@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f040ea5dd677464b80f5250360d1e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCollider: {fileID: 1576588610}
+  playerCollider: {fileID: 0}
   excludeLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -1139,6 +1139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
+  respawnDelay: 2
+  destroyDelay: 0.75
 --- !u!65 &816764418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1433,6 +1435,7 @@ MonoBehaviour:
   respawnSoundTime: 5
   moveSpeed: 2
   destoryDistance: 5
+  waveForce: 0
   isRight: 1
   isLeft: 0
   isUp: 0
@@ -2108,6 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1576588608}
+  playerCam: {fileID: 0}
   backToSpawn: 0
   spawnPoints: {fileID: 923424203}
   dangerDetect: 0
@@ -2264,11 +2268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7914986cb1bb14a4c98510d32873dfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &1576588610 stripped
-CapsuleCollider:
-  m_CorrespondingSourceObject: {fileID: 8730700482520644423, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-  m_PrefabInstance: {fileID: 4013784751145076028}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1629163829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2997,8 +2996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetA: {fileID: 389484396}
   targetB: {fileID: 458432310}
-  currentTarget: {fileID: 389484396}
   speed: 1
+  switchDistance: 0.05
 --- !u!65 &2015929898
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3103,7 +3102,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1256635872488364188, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.02
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1256635872488364188, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3111,7 +3110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1256635872488364188, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1256635872488364188, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalRotation.w
