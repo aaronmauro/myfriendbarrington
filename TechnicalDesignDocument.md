@@ -88,14 +88,33 @@ Sticky Hand Code:
 	
 	Destroy line 
 
-	Pull Speed: 0.3
+	Pull Speed: 0.1
 
-	Stop Distance: 2.5 
+	Stop Distance: 4
 
-	Hook Force : 30
+	Hook Force : 25
 
 	OnCollision with Grapple Point 
 	Enable Grapple Hook 
+
+	Hook Code:
+	
+	{	
+		Create hook Line render 
+		
+		Check Grapple Layer 
+		
+		OnCollision on Grapple Layer Intiate Pull 
+
+		If hook Not In Range/Does not Latch 
+
+		Destroy Hook
+
+	}
+
+	
+
+	
 	
 	}
 
@@ -108,9 +127,15 @@ Grapple Point Code:
 
 	Player Press E to Use Hook In range 
 
+	Hook Enables When in Range 
+
+	Activation Range = 20f
+
 	
 
 }
+
+
 
 Interact Button: 
 
