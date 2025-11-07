@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -38,14 +39,14 @@ public class ChangeScene : MonoBehaviour
         //Debug.Log(player.playerInput);
         if (changeScene) 
         {
-            cm.enabled = true;
-            Invoke("changeSceneController", 5f);
+            playVideo();
+            //Invoke("changeSceneController", 5f);
             player.playerInput = false;
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             //Debug.Log("happy happy happy");
-            cm.enabled = true;
+            playVideo();
             Invoke("changeSceneController", 5f);
             player.playerInput = false;
         }
@@ -62,7 +63,7 @@ public class ChangeScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            cm.enabled = true;
+            playVideo();
             Invoke("changeSceneController", 5f);
             player.playerInput = false;
         }
@@ -73,5 +74,18 @@ public class ChangeScene : MonoBehaviour
         player.playerInput = true;
         SceneManagerScript.instance.nextScene(sceneName);
         changeScene = false;
+    }
+
+    private IEnumerator playVideo()
+    {
+        cm.enabled = true;
+        yield return new WaitForSeconds(5f);
+        CinemachineFollow testing = cm.GetComponent<CinemachineFollow>();
+    }
+
+    private IEnumerator exitVideo()
+    {
+        cm.enabled = true;
+        yield return new WaitForSeconds(5f);
     }
 }
