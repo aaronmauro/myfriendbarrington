@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Hook : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class Hook : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(DespawnIfNoContact(1f));
     }
 
     // Update is called once per frame
@@ -46,23 +47,32 @@ public class Hook : MonoBehaviour
 
     }
 
+    private bool hasLatched = false;
+
     private void OnTriggerEnter(Collider other)
     {
-        if((LayerMask.GetMask("Grapple") & 1 << other.gameObject.layer) > 0)
+        if (hasLatched) return;
+
+        if ((LayerMask.GetMask("Grapple") & 1 << other.gameObject.layer) > 0)
         {
+            hasLatched = true;
             rigid.useGravity = false;
             rigid.isKinematic = true;
-
             grapple.StartPull();
-
-
-
-
         }
     }
 
 
+    private IEnumerator DespawnIfNoContact(float timeout)
+    {
+        yield return new WaitForSeconds(timeout);
 
+        // If the hook hasn't latched onto anything, destroy it
+        if (!rigid.isKinematic)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
 
