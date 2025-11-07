@@ -524,7 +524,7 @@ Player Folder:
 		
 		Player 
 
-Script Folder:
+Scripts Folder:
 
 	Manager Folder:
 	
@@ -540,7 +540,7 @@ Script Folder:
 			
 			Next Dialogues
 			
-Video Script
+		Video Script
 
 			Video Manager
 			
@@ -548,7 +548,11 @@ Video Script
 			
 		Game Manager
 		
-		Audio Manager
+		Audio Folder
+
+			AudioClass
+
+			AudioManager
 		
 	PrefabScript
 	
