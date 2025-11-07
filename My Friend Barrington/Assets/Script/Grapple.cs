@@ -8,6 +8,8 @@ public class Grapple : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform shootTransform;
 
+    private GrapplePoint[] grapplePoints;
+
     Hook hook;
     bool pulling;
     Rigidbody rigid;
@@ -18,20 +20,25 @@ public class Grapple : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         pulling = false;
+        grapplePoints = FindObjectsOfType<GrapplePoint>();
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
         if (hook == null && Input.GetKeyDown(KeyCode.E))
         {
-            StopAllCoroutines();
-            pulling = false;
-            hook = Instantiate(hookPrefab, shootTransform.position, Quaternion.identity).GetComponent<Hook>();
-            hook.Initialize(this, shootTransform);
-            StartCoroutine(DestroyHookAfterLifetime());
-
-
+            GrapplePoint availablePoint = GetNearestGrapplePoint();
+            if (availablePoint != null)
+            {
+                StopAllCoroutines();
+                pulling = false;
+                hook = Instantiate(hookPrefab, shootTransform.position, Quaternion.identity).GetComponent<Hook>();
+                hook.Initialize(this, shootTransform);
+                StartCoroutine(DestroyHookAfterLifetime());
+            }
         }
         else if (hook != null && Input.GetKeyDown(KeyCode.E))
         {
@@ -42,7 +49,7 @@ public class Grapple : MonoBehaviour
 
         if (!pulling || hook == null) return;
 
-        if(Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
+        if (Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
         {
             DestroyHook();
         }
@@ -53,6 +60,17 @@ public class Grapple : MonoBehaviour
 
 
     }
+
+    GrapplePoint GetNearestGrapplePoint()
+    {
+        foreach (var point in grapplePoints)
+        {
+            if (point.IsInRange(transform.position))
+                return point;
+        }
+        return null;
+    }
+
 
     public void StartPull()
     {
@@ -67,12 +85,12 @@ public class Grapple : MonoBehaviour
         Destroy(hook.gameObject);
         hook = null;
 
-        
+
     }
 
     private IEnumerator DestroyHookAfterLifetime()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(5f);
 
         DestroyHook();
     }
