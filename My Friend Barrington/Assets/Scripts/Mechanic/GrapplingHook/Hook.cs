@@ -10,7 +10,7 @@ public class Hook : MonoBehaviour
     LineRenderer lineRenderer;
 
 
-
+    // Called by the Grapple to initialize the hook
 
     public void Initialize(Grapple grapple, Transform shootTransform)
     {
@@ -35,6 +35,7 @@ public class Hook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Update the line renderer to draw the rope between the grapple and the hook
         Vector3[] positions = new Vector3[]
         {
             transform.position,
@@ -49,6 +50,7 @@ public class Hook : MonoBehaviour
 
     private bool hasLatched = false;
 
+    // Called when the hook collides with another collider
     private void OnTriggerEnter(Collider other)
     {
         if (hasLatched) return;
@@ -62,6 +64,7 @@ public class Hook : MonoBehaviour
         }
     }
 
+    // Despawn the hook if it hasn't latched onto anything within the timeout period
 
     private IEnumerator DespawnIfNoContact(float timeout)
     {

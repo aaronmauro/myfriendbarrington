@@ -24,6 +24,7 @@ public class InteractObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Show or hide the interact text based on whether the player is in range
         if (isTrigger && Input.GetKeyDown(interactButton))
         {
             isPressed();
@@ -35,6 +36,7 @@ public class InteractObject : MonoBehaviour
         }
     }
 
+    // Detect when the player enters the trigger collider
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -43,6 +45,7 @@ public class InteractObject : MonoBehaviour
         }
     }
 
+    // Detect when the player exits the trigger collider
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -50,6 +53,8 @@ public class InteractObject : MonoBehaviour
             isTrigger = false;
         }
     }
+
+    // Toggle the holding state when the interact button is pressed
     private void isPressed()
     {
         isHolding = !isHolding;
