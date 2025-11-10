@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+// Manages the activation and deactivation of buttons based on the current advertisement number.
 public class ButtonManager : MonoBehaviour
 {
     // Getting Buttons
@@ -17,6 +19,7 @@ public class ButtonManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        // Initialize button lists for each advertisement number
         while (buttons.Count <= totalAdsNumber)
         {
             buttons.Add(new List<GameObject>());
@@ -34,10 +37,11 @@ public class ButtonManager : MonoBehaviour
         videoManager = vm.GetComponent<VideoManager>();
 
     }
-    
+
     // Update is called once per frame
     void Update()
     {
+        // Enable or disable buttons based on buttonStatus
         enableButton();
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -60,6 +64,7 @@ public class ButtonManager : MonoBehaviour
     // Changing Button active
     private void enableButton()
     {
+        // Enable buttons if buttonStatus is true
         if (buttonStatus)
         {
             if (buttons[VideoManager.adsNumber].Count == 0)
@@ -82,11 +87,12 @@ public class ButtonManager : MonoBehaviour
             }
             else
             {
+                // Disable buttons if buttonStatus is false
                 for (int j = 0; j < buttons[VideoManager.adsNumber].Count; j++)
                 {
                     buttons[VideoManager.adsNumber][j].SetActive(false);
                 }
-            }    
+            }
         }
     }
 }

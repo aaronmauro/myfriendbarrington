@@ -18,6 +18,7 @@ public class BubbleStream : MonoBehaviour
         
     }
 
+    // When the player is inside the bubble stream, apply a continuous upward force
     private void OnTriggerStay(Collider other)
     {
         Player player = other.gameObject.GetComponent<Player>();

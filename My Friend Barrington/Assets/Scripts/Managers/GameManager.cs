@@ -45,8 +45,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Respawn player
         respawn();
         
+        // Exit game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             exitTheGame();

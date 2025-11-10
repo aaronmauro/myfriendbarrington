@@ -30,11 +30,13 @@ public class BubbleSpawnPoint : MonoBehaviour
     // Spawn Bubbles
     private void spawnBubble()
     {
+        // If there is no bubble spawned, start the respawn timer
         if (_spawnedBubblePrefab == null)
         {
             bubbleRespawnTimer += Time.deltaTime;
             if (bubbleRespawnTimer > bubbleRespawnTime)
             {
+                // Spawn bubble at the spawn point position
                 _spawnedBubblePrefab = Instantiate(bubblesPrefab, transform.position, Quaternion.identity);
                 bubbleRespawnTimer = 0;
             }

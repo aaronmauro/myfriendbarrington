@@ -31,6 +31,7 @@ public class SoundWaves : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Getting Compoennt
         GameObject findPlayer = GameObject.Find("Player");
         playerCollider = findPlayer.GetComponent<Collider>();
         player = findPlayer.GetComponent<Player>();
@@ -39,8 +40,11 @@ public class SoundWaves : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If sound Wave is not Spawned
         if (!isSpawn)
         {
+
+            
             StartCoroutine(spawnSoundWaves());
             isSpawn = true;
         }
@@ -65,6 +69,7 @@ public class SoundWaves : MonoBehaviour
                     Destroy(_soundWavesObject);
                 }
             }
+            // Up and Down
             else if (isUp)
             {
                 _soundWavesObject.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
@@ -74,6 +79,7 @@ public class SoundWaves : MonoBehaviour
                     Destroy(_soundWavesObject);
                 }
             }
+            // Down
             else if (isDown)
             {
                 _soundWavesObject.transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
@@ -118,6 +124,7 @@ public class SoundWaves : MonoBehaviour
         //}
     }
 
+    // Respawn Sound Waves after certain time
     private IEnumerator spawnSoundWaves()
     {
         yield return new WaitForSeconds(respawnSoundTime);
