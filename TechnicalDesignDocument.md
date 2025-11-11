@@ -112,15 +112,10 @@ Sticky Hand Code:
 
 	}
 
-	
+	Grapple Point Code: 
 
+	{
 	
-	
-	}
-
-Grapple Point Code: 
-
-{
 	Player Tag On collision With Grapple Point 
 
 	Enable Grapple Hook 
@@ -131,9 +126,7 @@ Grapple Point Code:
 
 	Activation Range = 20f
 
-	
-
-}
+	}
 
 
 
@@ -516,43 +509,87 @@ Camera Manager:
 
 <H2>Unity Program Folder:</H2>
 
-Player Folder:
-
-	Player Script
-	
-		DangerDetect 
-		
-		Player 
-
 Scripts Folder:
 
-	Manager Folder:
+	Managers Folder:
+
+		GameManager 
 	
-		Button Folder
+		Button Folder:
 		
 			Button Manager
 			
 			Button Input Return Script
-			
-		NPC
+
+		Audio Manager:
+
+			Audio Class 
+
+			Audio Manager 
+
+		Scene Script: 
+
+			Change Scene
+
+			Scene Manager
+
+		Text Script: 
+
+			TextManager 
+
+			TextScript 
+
+		Video Script:
+
+			VideoManager 
+
+			VideoData 
 		
-			NPC System
 			
-			Next Dialogues
-			
-		Video Script
+	Mechanic Folder:
 
-			Video Manager
-			
-			VideosData 
-			
-		Game Manager
-		
-		Audio Folder
+		BubbleScript: 
 
-			AudioClass
+			Bubbles
 
-			AudioManager
+			BubbleSpawnPoint 
+
+			BubbleStream 
+
+		GrapplingHook:
+
+			Grapple 
+
+			GrapplePoint
+
+			Hook 
+
+		PlatformMechanic: 
+
+			BreakingBlock 
+
+			BreakingBox
+
+			Bush 
+
+			Lever 
+
+			MovingBlock
+
+			Pillow 
+
+			PillowFort 
+
+			Rift 
+
+			SoundWaves  
+
+		PlayerMechanic: 
+
+			Damage 	
+
+			InteractObject 
+			
 		
 	PrefabScript
 	
