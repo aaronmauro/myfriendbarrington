@@ -22,7 +22,7 @@ public class SoundWaves : MonoBehaviour
     private float moveSpeed;
     private bool isSpawn;
     [SerializeField]
-    private float destoryDistance;
+    private float destroyDistance;
     [SerializeField]
     private float waveForce;
     public bool inBush;
@@ -90,15 +90,15 @@ public class SoundWaves : MonoBehaviour
             {
                 // Moving Sound Waves
                 _soundWavesObject.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.x > transform.position.x + destoryDistance)
+                if (_soundWavesObject.transform.position.x > transform.position.x + destroyDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
             }
             else if (isLeft)
             {
-                _soundWavesObject.transform.Translate(-Vector3.right * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.x < transform.position.x - destoryDistance)
+                _soundWavesObject.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+                if (_soundWavesObject.transform.position.x < transform.position.x - destroyDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
@@ -107,7 +107,7 @@ public class SoundWaves : MonoBehaviour
             else if (isUp)
             {
                 _soundWavesObject.transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.y > transform.position.y + destoryDistance)
+                if (_soundWavesObject.transform.position.y > transform.position.y + destroyDistance)
                 {
 
                     Destroy(_soundWavesObject);
@@ -116,8 +116,8 @@ public class SoundWaves : MonoBehaviour
             // Down
             else if (isDown)
             {
-                _soundWavesObject.transform.Translate(-Vector3.up * moveSpeed * Time.deltaTime);
-                if (_soundWavesObject.transform.position.y < transform.position.y - destoryDistance)
+                _soundWavesObject.transform.Translate(Vector3.down * moveSpeed * Time.deltaTime);
+                if (_soundWavesObject.transform.position.y < transform.position.y - destroyDistance)
                 {
                     Destroy(_soundWavesObject);
                 }
