@@ -13,6 +13,7 @@ public class SoundWaves : MonoBehaviour
     private Collider _soundWavesCollider;
     private Collider playerCollider;
     private Player player;
+    private GameObject findPlayer;
     // Sound wave status
     [Header("SoundWaveControls")]
     [SerializeField]
@@ -24,6 +25,7 @@ public class SoundWaves : MonoBehaviour
     private float destroyDistance;
     [SerializeField]
     private float waveForce;
+    public bool inBush;
     // Getting Direction
     [Header("Direction")]
     [SerializeField]
@@ -32,9 +34,10 @@ public class SoundWaves : MonoBehaviour
     void Start()
     {
         // Getting Compoennt
-        GameObject findPlayer = GameObject.Find("Player");
+        findPlayer = GameObject.Find("Player");
         playerCollider = findPlayer.GetComponent<Collider>();
         player = findPlayer.GetComponent<Player>();
+        inBush = false;
     }
 
     // Update is called once per frame
@@ -43,11 +46,42 @@ public class SoundWaves : MonoBehaviour
         // If sound Wave is not Spawned
         if (!isSpawn)
         {
-
-            
             StartCoroutine(spawnSoundWaves());
             isSpawn = true;
         }
+        Debug.Log(inBush);
+
+        moveSoundWave();
+        pushPlayer();
+        //it works just poping out so many error message, will figure it out
+        //if (player != null)
+        //{
+        //    //Debug.Log("Player found");
+        //}
+    }
+
+    // Respawn Sound Waves after certain time
+    private IEnumerator spawnSoundWaves()
+    {
+        yield return new WaitForSeconds(respawnSoundTime);
+        soundWaves();
+        isSpawn = false;
+    }
+
+    // Generate Sound Waves
+    private void soundWaves()
+    {
+       
+        _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);
+        _soundWavesCollider = _soundWavesObject.GetComponent<Collider>();
+        if (_soundWavesObject == null)
+        {
+            isSpawn = false;
+        }
+    }
+
+    private void moveSoundWave()
+    {
         // If sound Wave is Spawned
         if (_soundWavesObject != null)
         {
@@ -89,6 +123,10 @@ public class SoundWaves : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void pushPlayer()
+    {
         //Debug.Log(rbPlayer);
         // if no player or sound wave don't do anything
         if (playerCollider.bounds == null || _soundWavesCollider == null)
@@ -96,13 +134,14 @@ public class SoundWaves : MonoBehaviour
             return;
         }
         // if sound wave collide with player
-        else if (_soundWavesCollider.bounds.Intersects(playerCollider.bounds))
+        else if (_soundWavesCollider.bounds.Intersects(playerCollider.bounds) && !inBush)
         {
             //Debug.Log("sound wave touched");
             player.isPushed = true;
+            Physics.IgnoreCollision(playerCollider, _soundWavesCollider, false);
             if (isRight)
             {
-                player.isPushedDirection(0,waveForce);
+                player.isPushedDirection(0, waveForce);
             }
             else if (isLeft)
             {
@@ -117,30 +156,9 @@ public class SoundWaves : MonoBehaviour
                 player.isPushedDirection(3, waveForce);
             }
         }
-        //it works just poping out so many error message, will figure it out
-        //if (player != null)
-        //{
-        //    //Debug.Log("Player found");
-        //}
-    }
-
-    // Respawn Sound Waves after certain time
-    private IEnumerator spawnSoundWaves()
-    {
-        yield return new WaitForSeconds(respawnSoundTime);
-        soundWaves();
-        isSpawn = false;
-    }
-
-    // Generate Sound Waves
-    private void soundWaves()
-    {
-       
-        _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);
-        _soundWavesCollider = _soundWavesObject.GetComponent<Collider>();
-        if (_soundWavesObject == null)
+        else if (inBush)
         {
-            isSpawn = false;
+            Physics.IgnoreCollision(playerCollider, _soundWavesCollider, true);
         }
     }
 }
