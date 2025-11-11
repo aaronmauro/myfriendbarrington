@@ -15,6 +15,7 @@ public class TextScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Adding itself to TextManager list
         GameObject tmFind = GameObject.Find("TextManager");
         tm = tmFind.GetComponent<TextManager>();
         tm.texts.Add(gameObject);

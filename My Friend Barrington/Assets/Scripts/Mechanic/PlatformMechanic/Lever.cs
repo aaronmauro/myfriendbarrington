@@ -27,6 +27,7 @@ public class Lever : MonoBehaviour
     void Update()
     {
      
+        // Check for player interaction
        
         if (isTrigger && Input.GetKeyDown(interactButton))
         {
@@ -42,7 +43,7 @@ public class Lever : MonoBehaviour
     }
         
 
-
+// When Player enters the lever collider
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -50,9 +51,10 @@ public class Lever : MonoBehaviour
             isTrigger = true;
         }
     }
-
+    // When Player exits the lever collider
     private void OnTriggerExit(Collider other)
     {
+        
         if (other.gameObject.CompareTag("Player"))
         {
             isTrigger = false;

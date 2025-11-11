@@ -88,29 +88,47 @@ Sticky Hand Code:
 	
 	Destroy line 
 
-	Pull Speed: 0.3
+	Pull Speed: 0.1
 
-	Stop Distance: 2.5 
+	Stop Distance: 4
 
-	Hook Force : 30
+	Hook Force : 25
 
 	OnCollision with Grapple Point 
 	Enable Grapple Hook 
+
+	Hook Code:
 	
+	{	
+		Create hook Line render 
+		
+		Check Grapple Layer 
+		
+		OnCollision on Grapple Layer Intiate Pull 
+
+		If hook Not In Range/Does not Latch 
+
+		Destroy Hook
+
 	}
 
-Grapple Point Code: 
+	Grapple Point Code: 
 
-{
+	{
+	
 	Player Tag On collision With Grapple Point 
 
 	Enable Grapple Hook 
 
 	Player Press E to Use Hook In range 
 
-	
+	Hook Enables When in Range 
 
-}
+	Activation Range = 20f
+
+	}
+
+
 
 Interact Button: 
 
@@ -491,39 +509,87 @@ Camera Manager:
 
 <H2>Unity Program Folder:</H2>
 
-Player Folder:
+Scripts Folder:
 
-	Player Script
+	Managers Folder:
+
+		GameManager 
 	
-		DangerDetect 
-		
-		Player 
-
-Script Folder:
-
-	Manager Folder:
-	
-		Button Folder
+		Button Folder:
 		
 			Button Manager
 			
 			Button Input Return Script
-			
-		NPC
-		
-			NPC System
-			
-			Next Dialogues
-			
-Video Script
 
-			Video Manager
-			
-			VideosData 
-			
-		Game Manager
+		Audio Manager:
+
+			Audio Class 
+
+			Audio Manager 
+
+		Scene Script: 
+
+			Change Scene
+
+			Scene Manager
+
+		Text Script: 
+
+			TextManager 
+
+			TextScript 
+
+		Video Script:
+
+			VideoManager 
+
+			VideoData 
 		
-		Audio Manager
+			
+	Mechanic Folder:
+
+		BubbleScript: 
+
+			Bubbles
+
+			BubbleSpawnPoint 
+
+			BubbleStream 
+
+		GrapplingHook:
+
+			Grapple 
+
+			GrapplePoint
+
+			Hook 
+
+		PlatformMechanic: 
+
+			BreakingBlock 
+
+			BreakingBox
+
+			Bush 
+
+			Lever 
+
+			MovingBlock
+
+			Pillow 
+
+			PillowFort 
+
+			Rift 
+
+			SoundWaves  
+
+		PlayerMechanic: 
+
+			Damage 	
+
+			InteractObject 
+			
 		
 	PrefabScript
 	

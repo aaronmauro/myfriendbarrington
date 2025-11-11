@@ -19,6 +19,7 @@ public class Bush : MonoBehaviour
         
     }
 
+    // When Player is inside the bush collider
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -26,6 +27,8 @@ public class Bush : MonoBehaviour
             playerCollider.excludeLayers = excludeLayer;
         }
     }
+
+    //  When Player exits the bush collider
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

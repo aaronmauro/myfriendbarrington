@@ -253,16 +253,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Bubble stream floating method
     public void inBubbleStream(float floatForce)
     {
         rb.AddForce(Vector3.up * floatForce, ForceMode.Acceleration);
     }
-    
+
     public void freezePlayer()
     {
         rb.linearVelocity = Vector3.zero;
     }
 
+
+    // Gizmo to show ground check raycast
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmoColour;
