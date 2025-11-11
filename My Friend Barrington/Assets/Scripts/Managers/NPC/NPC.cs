@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 public class NPC : MonoBehaviour
 {
+    public GameObject interactPrompt;
     public GameObject DialoguePanel;
     public Text DialogueText;
     public string[] dialogue;
@@ -83,7 +84,9 @@ public class NPC : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             playerIsClose = true;
+            interactPrompt.SetActive(true);
         }
     }
 
@@ -92,6 +95,7 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerIsClose = false;
+            interactPrompt.SetActive(false);
             zeroText();
         }
     }
