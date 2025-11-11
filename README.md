@@ -71,5 +71,7 @@ My Friend Barrington is a 2.5D platformer game with a fixed side-scroller camera
 - Donna Marrie Phelps
 - Ryan Bokla
 ## Social 
-[Instagram]( https://www.instagram.com/itsbarringtonbear?igsh=MWNiYXplamgydW4ybA==)
+[itsbarringtonbear]( https://www.instagram.com/itsbarringtonbear?igsh=MWNiYXplamgydW4ybA==)
+[toughcookieproduction](https://www.instagram.com/toughcookieproductions?igsh=cG44Z2FsbzVpanBr)
+
 

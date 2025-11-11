@@ -18,15 +18,17 @@ public class PillowFort : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Move towards the current target
         
         transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
 
-       
+       // Calculate distance to current target
         float distanceToCurrent = Vector3.Distance(transform.position, currentTarget.position);
 
-       
+       // Switch target if close enough
         if (distanceToCurrent < switchDistance)
         {
+            // Switch target
             currentTarget = (currentTarget == targetA) ? targetB : targetA;
         }
     }

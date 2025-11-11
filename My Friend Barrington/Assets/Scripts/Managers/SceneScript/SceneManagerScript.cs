@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Manages scene changes
 public class SceneManagerScript : MonoBehaviour
 {
     // Create instance to access in another script
@@ -9,6 +10,7 @@ public class SceneManagerScript : MonoBehaviour
     // Don't destory on load
     private void Awake()
     {
+
         if (instance == null)
         {
             instance = this;

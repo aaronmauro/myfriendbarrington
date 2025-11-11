@@ -15,6 +15,7 @@ public class Rift : MonoBehaviour
 
     private void Start()
     {
+        // Get Player component
         GameObject findPlayer = GameObject.Find("Player");
         otherRift = tpTransform.GetComponent<Rift>();
         player = findPlayer.GetComponent<Player>();
@@ -38,6 +39,7 @@ public class Rift : MonoBehaviour
         {
             if (!isTp)
             {
+                // Teleport the player to the other rift's position
                 player.transform.position = tpTransform.transform.position;
                 isTp = true;
                 otherRift.isTp = true;
@@ -49,6 +51,7 @@ public class Rift : MonoBehaviour
 
     private IEnumerator startCooldown()
     {
+        // Wait for cooldown duration
         yield return new WaitForSeconds(tpCooldown);
         isTp = false;
     }
