@@ -7,33 +7,34 @@ public class Bush : MonoBehaviour
     private Collider playerCollider;
     [SerializeField]
     private LayerMask excludeLayer;
+    [SerializeField]
+    private SoundWaves waves;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        // Getting Compoennt
+        if (other.gameObject.CompareTag("Player"))
+        {
+            waves.inBush = true;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /*
     // When Player is inside the bush collider
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            playerCollider.excludeLayers = excludeLayer;
+            Debug.Log("help");
+            
         }
     }
+    */
 
     //  When Player exits the bush collider
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            playerCollider.includeLayers = excludeLayer;
+            waves.inBush = false;
         }
     }
 }
