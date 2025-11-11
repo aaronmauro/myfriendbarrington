@@ -1,69 +1,85 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+
+
 
 public class NPC : MonoBehaviour
 {
-   public GameObject dialoguePanel;
-   public Text dialogueText;
+    public GameObject DialoguePanel;
+    public Text DialogueText;
     public string[] dialogue;
     private int index;
 
+    public GameObject  continueButton;
     public float wordSpeed;
     public bool playerIsClose;
 
-   
+
     void Update()
     {
-        if(Input.GetKeyDown(keyCode.E) && playerIsClose)
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
-            if (dialoguePanel.activeInHierarchy)
+            if (DialoguePanel.activeInHierarchy)
             {
                 zeroText();
             }
             else
             {
-                dialoguePanel.SetActive(true);
-                StaertCoroutine(Typing());
+                DialoguePanel.SetActive(true);
+                StartCoroutine(Typing());
             }
         }
+
+        if(DialogueText.text == dialogue[index])
+        {
+            continueButton.SetActive(true);
+        }
+
+
     }
 
     public void zeroText()
     {
-        dialogueText.text = "";
+        DialogueText.text = "";
         index = 0;
-        dialoguePanel.SetActive(false);
+        DialoguePanel.SetActive(false);
     }
 
     IEnumerator Typing()
     {
         foreach (char letter in dialogue[index].ToCharArray())
         {
-            dialogueText.text += letter;
+            DialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
         }
     }
 
     public void NextLine()
     {
+
+        continueButton.SetActive(false);    
+
         if (index < dialogue.Length - 1)
         {
             index++;
-            dialogueText.text = "";
+            DialogueText.text = "";
             StartCoroutine(Typing());
         }
         else
         {
             zeroText();
         }
-   
+
     }
 
 
 
 
 
-    private void OnTriggerEnter3D(Collider3D other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -71,7 +87,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit3D(Collider3D other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -79,10 +95,4 @@ public class NPC : MonoBehaviour
             zeroText();
         }
     }
-
-
-
-
-
-
 }
