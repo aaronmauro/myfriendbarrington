@@ -16,9 +16,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+
     void FixedUpdate()
     {
-        
+        // Move towards the current target
         transform.position = Vector3.MoveTowards(transform.position, currentTarget.position, speed * Time.deltaTime);
 
        
@@ -31,6 +32,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    //  Handle player collision with the moving platform
     private void OnCollisionEnter(Collision collision)
     {
         // Make player follow the moving platform
@@ -40,6 +42,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    // Detach player when they leave the platform
     private void OnCollisionExit(Collision collision)
     {
         // Detach player when they leave the platform

@@ -12,6 +12,7 @@ public class TextManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Getting VideoManager component
         GameObject findVM = GameObject.Find("VideoManager");
         vm = findVM.GetComponent<VideoManager>();
     }
@@ -19,8 +20,10 @@ public class TextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //  Check which text to be active
         for (int i = 0; i < texts.Count; i++)
         {
+            // Get TextScript component
             ts = texts[i].GetComponent<TextScript>();
             if (VideoManager.adsNumber == ts.whenTextActive && vm.videoCount == ts.whichVideoNumber)
             {

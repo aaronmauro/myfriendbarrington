@@ -6,12 +6,14 @@ public class Pillow : MonoBehaviour
 private float force;
 private Player player;
 
-
+    // When Player collides with the pillow
     private void OnCollisionEnter(Collision collision)
     {
+        // Get Player component
         Player player = collision.gameObject.GetComponent<Player>();
         if (collision.gameObject.CompareTag("Player"))
         {
+            // Apply force to the player
             player.isPushed = true;
             player.isPushedDirection(2, force);
            

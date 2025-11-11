@@ -18,6 +18,7 @@ public class Grapple : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Get the Rigidbody component
         rigid = GetComponent<Rigidbody>();
         pulling = false;
         grapplePoints = FindObjectsOfType<GrapplePoint>();
@@ -28,6 +29,7 @@ public class Grapple : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Shoot or retract the hook based on player input
         if (hook == null && Input.GetKeyDown(KeyCode.E))
         {
             GrapplePoint availablePoint = GetNearestGrapplePoint();
@@ -61,6 +63,8 @@ public class Grapple : MonoBehaviour
 
     }
 
+
+    // Get the nearest grapple point within range
     GrapplePoint GetNearestGrapplePoint()
     {
         foreach (var point in grapplePoints)

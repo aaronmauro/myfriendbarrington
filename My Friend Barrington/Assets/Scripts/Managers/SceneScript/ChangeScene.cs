@@ -19,11 +19,15 @@ public class ChangeScene : MonoBehaviour
     {
         cm.enabled = false;
     }
+    
+    
     private void Start()
     {
+        
         changeScene = false;
         GameObject vmFind = GameObject.Find("VideoManager");
         GameObject playerFind = GameObject.Find("Player");
+        
         if (vmFind != null)
         {
             vm = vmFind.GetComponent<VideoManager>();
@@ -37,7 +41,7 @@ public class ChangeScene : MonoBehaviour
     private void Update()
     {
         //Debug.Log(player.playerInput);
-        if (changeScene) 
+        if (changeScene)
         {
             playVideo();
             //Invoke("changeSceneController", 5f);
@@ -59,6 +63,8 @@ public class ChangeScene : MonoBehaviour
             VideoManager.adsNumber = nextAds;
         }
     }
+    
+    // triggers scene change when player enters collider
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -69,6 +75,7 @@ public class ChangeScene : MonoBehaviour
         }
     }
 
+    // controls scene change
     private void changeSceneController()
     {
         player.playerInput = true;
@@ -76,6 +83,7 @@ public class ChangeScene : MonoBehaviour
         changeScene = false;
     }
 
+    // plays video before scene change
     private IEnumerator playVideo()
     {
         cm.enabled = true;
@@ -83,6 +91,7 @@ public class ChangeScene : MonoBehaviour
         CinemachineFollow testing = cm.GetComponent<CinemachineFollow>();
     }
 
+    //  disables cinemachine after video
     private IEnumerator exitVideo()
     {
         cm.enabled = true;

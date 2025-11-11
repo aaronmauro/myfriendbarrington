@@ -1,5 +1,7 @@
 using UnityEngine;
 
+
+//A point in the world that the player can grapple to.
 public class GrapplePoint : MonoBehaviour
 {
     public float activationRange = 20f;
