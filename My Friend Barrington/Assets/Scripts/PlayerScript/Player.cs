@@ -24,8 +24,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private TMP_Text speedText;
     public bool isPushed;
-    private int pushedDirection;
-    private float pushedSpeed;
+    //private int pushedDirection;
+    //private float pushedSpeed;
 
     // Chekcing Inputs, player movement
     private float verticalInput;
@@ -124,18 +124,18 @@ public class Player : MonoBehaviour
 
         // Move player according to input direction and speed
 
-        if (horizontalInput != 0 && !isPushed)
+        if (horizontalInput != 0/* && !isPushed*/)
         {
             rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
         }
-        else if (horizontalInput != 0 && isPushed)
-        {
-            pushingPlayer();
-        }
-        else if (horizontalInput == 0 && isPushed) // this may break if we ever put in controller inputs due to drift - DV
-        {
-            pushingPlayer();
-        }
+        //else if (horizontalInput != 0 && isPushed)
+        //{
+        //    //pushingPlayer();
+        //}
+        //else if (horizontalInput == 0 && isPushed) // this may break if we ever put in controller inputs due to drift - DV
+        //{
+        //    //pushingPlayer();
+        //}
 
         if (horizontalInput >= 0.01)
         {
@@ -201,12 +201,13 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
     }
-
+    /*
     public void isPushedDirection(int direction, float force)
     {
         pushedDirection = direction;
         pushedSpeed = force;
     }
+    */
 
     private void pushedCooldown()
     {
@@ -229,8 +230,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void pushingPlayer()
+    public void pushingPlayer(Vector3 dir, float force)
     {
+        /*
         if (pushedDirection == 0)
         {
             rb.AddForce(Vector3.right * pushedSpeed, ForceMode.Impulse);
@@ -251,6 +253,9 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.down * pushedSpeed, ForceMode.Impulse);
             //Invoke("pushedCooldown", 1f);
         }
+        */
+        rb.AddForce(dir * force, ForceMode.Impulse);
+        Invoke("pushedCooldown", 1f);
     }
 
     // Bubble stream floating method

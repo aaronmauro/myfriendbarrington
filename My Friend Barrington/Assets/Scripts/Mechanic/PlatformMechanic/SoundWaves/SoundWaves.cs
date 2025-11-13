@@ -23,13 +23,27 @@ public class SoundWaves : MonoBehaviour
     private bool isSpawn;
     [SerializeField]
     private float destroyDistance;
+    private float travelDistance;
     [SerializeField]
     private float waveForce;
     public bool inBush;
+
+    // Trigger to Activate
+    [Header("RunCode")]
+    public bool isRun;
+    
+    // enumerations of different directions
+    public enum GoingDirection
+    {
+        isRight, isLeft, isUp, isDown
+    }
     // Getting Direction
     [Header("Direction")]
-    [SerializeField]
-    private bool isRight, isLeft, isUp, isDown;
+    public GoingDirection goingdirection;
+
+    private Vector3 direction = Vector3.zero;
+    //[SerializeField]
+    //private bool isRight, isLeft, isUp, isDown;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,20 +52,29 @@ public class SoundWaves : MonoBehaviour
         playerCollider = findPlayer.GetComponent<Collider>();
         player = findPlayer.GetComponent<Player>();
         inBush = false;
+
+        direction = checkingDirection(goingdirection);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // return if don't run this script
+        if (!isRun) return;
+
         // If sound Wave is not Spawned
         if (!isSpawn)
         {
             StartCoroutine(spawnSoundWaves());
             isSpawn = true;
         }
-        Debug.Log(inBush);
-
-        moveSoundWave();
+        //Debug.Log(inBush);
+        // If sound Wave is Spawned
+        if (_soundWavesObject != null)
+        {
+            moveSoundWaves();
+            //Debug.Log(direction);
+        }
         pushPlayer();
         //it works just poping out so many error message, will figure it out
         //if (player != null)
@@ -80,11 +103,11 @@ public class SoundWaves : MonoBehaviour
         }
     }
 
-    private void moveSoundWave()
+    // checking soundwave moving direction
+    private Vector3 checkingDirection(GoingDirection dir)
     {
-        // If sound Wave is Spawned
-        if (_soundWavesObject != null)
-        {
+
+            /*
             // Check direction
             if (isRight)
             {
@@ -122,27 +145,53 @@ public class SoundWaves : MonoBehaviour
                     Destroy(_soundWavesObject);
                 }
             }
+            */
+            switch (dir)
+            {
+                case GoingDirection.isRight:
+                    return Vector3.right;
+                case GoingDirection.isLeft:
+                    return Vector3.left;
+                case GoingDirection.isUp:
+                    return Vector3.up;
+                case GoingDirection.isDown:
+                    return Vector3.down;
+                default:
+                    return Vector3.zero;
+            }
+        }
+
+    // moving sound wave and destory when reaching a destory distance
+    private void moveSoundWaves()
+    {
+        _soundWavesObject.transform.Translate(direction * moveSpeed * Time.deltaTime);
+        travelDistance = Vector3.Distance(_soundWavesObject.transform.position, transform.position);
+        if (travelDistance > destroyDistance)
+        {
+            Destroy(_soundWavesObject);
         }
     }
 
+    // Pushing player method
     private void pushPlayer()
     {
         //Debug.Log(rbPlayer);
-        // if no player or sound wave don't do anything
+        // If no player or sound wave don't do anything
         if (playerCollider.bounds == null || _soundWavesCollider == null)
         {
             return;
         }
-        // if sound wave collide with player
+        // If sound wave collide with player
         else if (_soundWavesCollider.bounds.Intersects(playerCollider.bounds) && !inBush)
         {
             //Debug.Log("sound wave touched");
             player.isPushed = true;
             Physics.IgnoreCollision(playerCollider, _soundWavesCollider, false);
-            if (isRight)
-            {
-                player.isPushedDirection(0, waveForce);
-            }
+            //if (isRight)
+            //{
+            player.pushingPlayer(direction, waveForce);
+            //}
+            /*
             else if (isLeft)
             {
                 player.isPushedDirection(1, waveForce);
@@ -155,6 +204,7 @@ public class SoundWaves : MonoBehaviour
             {
                 player.isPushedDirection(3, waveForce);
             }
+            */
         }
         else if (inBush)
         {
