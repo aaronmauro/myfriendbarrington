@@ -178,11 +178,49 @@ Interact Button:
 SoundWaves:
 
 	{
-	
+		Get SoundwavePrefab
 
+		RespawnPointTime 
 
+		DestroyDistance 
 
+		TravelDistance 
 
+		Public enum Going Direction 
+
+		{
+			All Directions 
+		}
+
+	  private void soundWaves()
+	  
+	  {
+  
+      _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);
+      _soundWavesCollider = _soundWavesObject.GetComponent<Collider>();
+      if (_soundWavesObject == null)
+      {
+          isSpawn = false;
+      }
+	  
+	  }
+	  
+		switch (dir)
+ 		{
+     case GoingDirection.isRight:
+         return Vector3.right;
+     case GoingDirection.isLeft:
+         return Vector3.left;
+     case GoingDirection.isUp:
+         return Vector3.up;
+     case GoingDirection.isDown:
+         return Vector3.down;
+     default:
+         return Vector3.zero;
+		 
+ 		}
+		
+		moveSoundWaves()
 
 	}
 	
