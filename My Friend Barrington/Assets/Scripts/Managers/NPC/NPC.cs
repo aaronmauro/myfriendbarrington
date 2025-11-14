@@ -3,9 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 
-
+// sorry to touch your code (Eric)
 public class NPC : MonoBehaviour
 {
     public GameObject interactPrompt;
@@ -17,35 +18,49 @@ public class NPC : MonoBehaviour
     public GameObject  continueButton;
     public float wordSpeed;
     public bool playerIsClose;
+    public bool inDialouge;
 
     public InputActionReference talkAction;
-    public InputActionReference continueAction;
+    //public InputActionReference continueAction;
 
     void Update()
     {
-        if (talkAction.action.triggered && playerIsClose)
+        if (playerIsClose)
         {
-            if (DialoguePanel.activeInHierarchy)
+            if (talkAction.action.triggered && !inDialouge)
             {
-                zeroText();
-            }
-            else
-            {
-                DialoguePanel.SetActive(true);
-                StartCoroutine(Typing());
-            }
-        }
+                if (DialoguePanel.activeInHierarchy)
+                {
+                    zeroText();
+                }
+                else
+                {
+                    DialoguePanel.SetActive(true);
+                    StartCoroutine(Typing());
+                    inDialouge = true;
+                }
 
-        if (DialogueText.text == dialogue[index])
-        {
-            continueButton.SetActive(true);
 
-            // Check controller input for advancing dialogue
-            if (continueAction.action.triggered)
+            }
+            else if (talkAction.action.triggered && inDialouge)
             {
                 NextLine();
+
             }
+            if (DialogueText.text == dialogue[index])
+            {
+                //Debug.Log("Have fun");
+                continueButton.SetActive(true);
+
+                //// Check controller input for advancing dialogue
+                //if (talkAction.action.triggered)
+                //{
+
+                //}
+            }
+
         }
+        //Debug.Log(dialogue.Length);
 
     }
 
@@ -54,6 +69,7 @@ public class NPC : MonoBehaviour
         DialogueText.text = "";
         index = 0;
         DialoguePanel.SetActive(false);
+        inDialouge = false;
     }
 
     IEnumerator Typing()
@@ -82,10 +98,6 @@ public class NPC : MonoBehaviour
         }
 
     }
-
-
-
-
 
     private void OnTriggerEnter(Collider other)
     {
