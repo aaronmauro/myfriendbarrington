@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.InputSystem;
 
 
 public class Player : MonoBehaviour
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
     private GameManager gm;
     [SerializeField]
     private DangerDetect dangerDectect;
+    public InputActionReference jumpAction;
 
     // Dialogue
     static public bool dialogue = false;
@@ -64,6 +66,15 @@ public class Player : MonoBehaviour
     // Gizmo
     private Color gizmoColour = Color.yellow;
 
+    private void OnEnable()
+    {
+        jumpAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        jumpAction.action.Disable();
+    }
     // Setting up values at start
     void Start()
     {
@@ -76,6 +87,14 @@ public class Player : MonoBehaviour
         isInvincible = false;
         playerInput = true;
     }
+    private void Update()
+    {
+        // Calling methods
+        if (playerInput)
+        {
+            jumping();
+        }
+    }
     private void FixedUpdate()
     {
         // Calling methods
@@ -83,7 +102,6 @@ public class Player : MonoBehaviour
         {
             movePlayer();
             fixSpeed();
-            jumping();
         }
         else
         {
@@ -171,7 +189,7 @@ public class Player : MonoBehaviour
     private void jumping()
     {
         // Jump
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
+        if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.triggered/* || Input.GetKey(KeyCode.W)*/)
         {
             if (isJump && isGround)
             {
