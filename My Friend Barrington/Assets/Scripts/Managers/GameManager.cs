@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
         if (backToSpawn && !isInvincible)
         {
             player.transform.position = spawnPoints.transform.position;
+            var playRg = player.GetComponent<Rigidbody>();
+            playRg.linearVelocity = new Vector3(0, 0, 0);
             backToSpawn = false;
         }
         if (player.isGround && player.moveRespawn && !dangerDetect)
