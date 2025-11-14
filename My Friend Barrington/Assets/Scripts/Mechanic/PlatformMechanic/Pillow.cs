@@ -15,7 +15,8 @@ private Player player;
         {
             // Apply force to the player
             player.isPushed = true;
-            player.isPushedDirection(2, force);
+            //player.isPushedDirection(2, force); sorry changing your script because I changed the method
+            player.pushingPlayer(Vector3.up, force);
            
         }
     }
