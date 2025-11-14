@@ -175,6 +175,17 @@ Interact Button:
 	Getting Key Code (Player Input): E
 	
 	}
+SoundWaves:
+
+	{
+	
+
+
+
+
+
+	}
+	
 
 
 Pushing Mechanics:
