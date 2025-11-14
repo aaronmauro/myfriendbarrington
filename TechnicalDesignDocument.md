@@ -61,6 +61,18 @@ Player Code:
 	Jump Key Code: Space
 	}
 
+Player Controller:
+
+	JumpAction = A Button || SpaceBar 
+
+	MoveLeft/Right Action = Left JoyStick || A/D
+
+	Interact/Talk = X || E 
+
+	HookAction = B || E 
+
+	
+
 <H2>Mechanics</H2> 
 
 
@@ -78,9 +90,9 @@ Sticky Hand Code:
 	
 	Move player from positionX & positionY
 	
-	Press E to Release Hook 
+	Press Hook Action  to Release Hook 
 
-	Press E to Remove Hook 
+	Press Hook Action to Remove Hook 
 
 	In Grapple Range Enable Hook 
 
@@ -120,7 +132,7 @@ Sticky Hand Code:
 
 	Enable Grapple Hook 
 
-	Player Press E to Use Hook In range 
+	Player Press HookAction to Use Hook In range 
 
 	Hook Enables When in Range 
 
