@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.InputSystem;
 
 
 
@@ -18,10 +18,12 @@ public class NPC : MonoBehaviour
     public float wordSpeed;
     public bool playerIsClose;
 
+    public InputActionReference talkAction;
+    public InputActionReference continueAction;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
+        if (talkAction.action.triggered && playerIsClose)
         {
             if (DialoguePanel.activeInHierarchy)
             {
@@ -34,11 +36,16 @@ public class NPC : MonoBehaviour
             }
         }
 
-        if(DialogueText.text == dialogue[index])
+        if (DialogueText.text == dialogue[index])
         {
             continueButton.SetActive(true);
-        }
 
+            // Check controller input for advancing dialogue
+            if (continueAction.action.triggered)
+            {
+                NextLine();
+            }
+        }
 
     }
 

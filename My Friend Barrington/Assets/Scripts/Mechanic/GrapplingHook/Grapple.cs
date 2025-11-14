@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class Grapple : MonoBehaviour
 {
     [SerializeField] float pullSpeed = 0.5f;
@@ -14,7 +14,17 @@ public class Grapple : MonoBehaviour
     bool pulling;
     Rigidbody rigid;
 
+    public InputActionReference hookAction;
 
+    private void OnEnable()
+    {
+      hookAction.action.Enable();
+    }
+
+    private void OnDisable()
+    {
+        hookAction.action.Disable();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,7 +40,7 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         // Shoot or retract the hook based on player input
-        if (hook == null && Input.GetKeyDown(KeyCode.E))
+        if (hook == null && hookAction.action.triggered) //Input.GetKeyDown(KeyCode.E))
         {
             GrapplePoint availablePoint = GetNearestGrapplePoint();
             if (availablePoint != null)
@@ -42,7 +52,7 @@ public class Grapple : MonoBehaviour
                 StartCoroutine(DestroyHookAfterLifetime());
             }
         }
-        else if (hook != null && Input.GetKeyDown(KeyCode.E))
+        else if (hook != null && hookAction.action.triggered)
         {
             DestroyHook();
         }
