@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -14,13 +15,19 @@ public class GameManager : MonoBehaviour
 
     // Manage respawn
     [Header("Respawn")]
-    public bool backToSpawn;
+    //public bool backToSpawn;
     [SerializeField]
     private GameObject spawnPoints;
     [HideInInspector]
     public bool dangerDetect;
 
-    public bool isInvincible;
+    //public bool isInvincible;
+    [Header("Music")]
+    public string backGroundAudio;
+
+    [Header("Build Components")]
+    public int gameFrameRate;
+    public bool vsync;
 
     private void Awake()
     {
@@ -32,45 +39,68 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+
+        // Application frame rate
+        Application.targetFrameRate = gameFrameRate;
+        QualitySettings.vSyncCount = vsync ? 1 : 0;
+
     }
 
     void Start()
     {
         // getting components
         // seeting up booleans
-        backToSpawn = false;
-        isInvincible = false;
+        //backToSpawn = false;
+        //isInvincible = false;
+
+        if (backGroundAudio == null)
+        {
+            return;
+        }
+        else
+        {
+            AudioManager.instance.playBackgroundMusic(backGroundAudio);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Respawn player
-        respawn();
+        // if player trigger back to spawn
+        //if (backToSpawn && !isInvincible)
+        //{
+        //    // Respawn player
+        //    respawn();
+        //}
         
+        moveRespawn();
         // Exit game
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             exitTheGame();
         }
+
+        //Debug.Log(backToSpawn);
     }
 
-    private void respawn()
+    // respawn player Method
+    public void respawn()
     {
-        // if player trigger back to spawn
-        if (backToSpawn && !isInvincible)
-        {
-            player.transform.position = spawnPoints.transform.position;
-            var playRg = player.GetComponent<Rigidbody>();
-            playRg.linearVelocity = new Vector3(0, 0, 0);
-            backToSpawn = false;
-        }
+        player.transform.position = spawnPoints.transform.position;
+        var playRg = player.GetComponent<Rigidbody>();
+        playRg.linearVelocity = Vector3.zero;
+        //backToSpawn = false;
+    }
+
+    private void moveRespawn()
+    {
         if (player.isGround && player.moveRespawn && !dangerDetect)
         {
             spawnPoints.transform.position = player.transform.position;
         }
     }
 
+    // Method exit the game
     private void exitTheGame()
     {
         Application.Quit();

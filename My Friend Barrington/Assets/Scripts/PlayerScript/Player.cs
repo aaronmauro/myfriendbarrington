@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
         isGroundRayCast();
 
         // Check invincible
+        /*
         if (isInvincible)
         {
             gm.isInvincible = true;
@@ -123,10 +124,14 @@ public class Player : MonoBehaviour
                 gm.isInvincible = false;
             }
         }
+        */
         if (!dialogue && playerInput)
         {
             movePlayer();
         }
+
+        //Debug.Log(playerInput);
+        //Debug.Log(jumpAction.action.triggered);
     }
     // Update is called once per frame
     //void Update()
@@ -145,6 +150,8 @@ public class Player : MonoBehaviour
         if (horizontalInput != 0/* && !isPushed*/)
         {
             rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
+            // Play Foot Foot Steps here
+            //AudioManager.instance.playPlayerSFX("PlatformWalk");
         }
         //else if (horizontalInput != 0 && isPushed)
         //{
@@ -189,12 +196,15 @@ public class Player : MonoBehaviour
     private void jumping()
     {
         // Jump
-        if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.triggered/* || Input.GetKey(KeyCode.W)*/)
+        if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.IsPressed()/* || Input.GetKey(KeyCode.W)*/)
         {
             if (isJump && isGround)
             {
                 isGround = false;
                 isJump = false;
+
+                // Play Jumping Sound
+                //AudioManager.instance.playPlayerSFX("PlatformJump");
 
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
                 rb.AddForce(transform.up * jump, ForceMode.Impulse);
