@@ -32,7 +32,7 @@ Rigidbody:
 	
 	Freeze Position:  Z 
 		
-Player Script: 
+Player Inspector Value Script: 
 
 	Speed Acceleration: 50 
 	
@@ -45,6 +45,14 @@ Player Script:
 	Jump Cooldown: 0.1 
 	
 	In Air Boost: 0.75
+
+	Grapple
+
+	Pull Speed: 3.5
+
+	Stop Distance: 4 
+
+	Hook Force: 25
 
 
 Player Code:
