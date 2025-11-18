@@ -34,13 +34,13 @@ Rigidbody:
 		
 Player Inspector Value Script: 
 
-	Speed Acceleration: 50 
+	Speed Acceleration: 50
 	
-	Speed Max: 6.7
+	Speed Max: 10
 	
 	Ground Drag: 0 
 	
-	Jump: 65
+	Jump: 90
 	
 	Jump Cooldown: 0.1 
 	
@@ -64,7 +64,7 @@ Player Code:
 	like being pushed or floating in bubble streams. It uses Unity’s physics system 	
 	(Rigidbody) and the new Input System (InputActionReference) for player input.
 	
-	Get axis vertical: W
+	
 	
 	Get axis horizontal: A and D
 	
