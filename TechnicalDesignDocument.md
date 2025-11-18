@@ -59,6 +59,10 @@ Player Code:
 
 	Void movePlayer()
 	{
+
+	This script controls a player character in Unity, handling movement, jumping, ground detection, invincibility, and interactions 
+	like being pushed or floating in bubble streams. It uses Unity’s physics system 	
+	(Rigidbody) and the new Input System (InputActionReference) for player input.
 	
 	Get axis vertical: W
 	
@@ -85,6 +89,10 @@ Player Controller:
 
 
 Sticky Hand Code:
+
+	This script implements a grappling hook mechanic for a player in Unity. 
+	It allows the player to shoot a hook toward nearby grapple points, pull themselves toward the hook, 
+	and automatically retract or destroy the hook under certain conditions.
 
 	Public void Stickyhand()
 	{
