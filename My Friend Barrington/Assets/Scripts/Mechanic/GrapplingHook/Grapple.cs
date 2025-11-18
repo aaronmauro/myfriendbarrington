@@ -62,8 +62,16 @@ public class Grapple : MonoBehaviour
 
 
 
-        if (!pulling || hook == null) return;
+        
 
+        
+
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (!pulling || hook == null) return;
         if (Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
         {
             DestroyHook();
@@ -72,8 +80,6 @@ public class Grapple : MonoBehaviour
         {
             rigid.AddForce((hook.transform.position - transform.position).normalized * pullSpeed, ForceMode.VelocityChange);
         }
-
-
     }
 
 
