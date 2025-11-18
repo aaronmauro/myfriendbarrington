@@ -20,7 +20,8 @@ public class Damage : MonoBehaviour
         {
             //GameManager gm = GetComponent<GameManager>();
             // back to spawn
-            gm.backToSpawn = true;
+            //gm.backToSpawn = true;
+            gm.respawn();
         }
    
     }
@@ -31,7 +32,8 @@ public class Damage : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             // back to spawn
-            gm.backToSpawn = true;
+            //gm.backToSpawn = true;
+            gm.respawn();
         }
     }
 }

@@ -60,6 +60,10 @@ public class NPC : MonoBehaviour
             }
 
         }
+        else
+        {
+            zeroText();
+        }
         //Debug.Log(dialogue.Length);
 
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    public AudioClass[] playerSound, bgSound, SFXsound;
+    public AudioClass[] playerSound, bgSound, SFXSound, NPCSound;
     [SerializeField]
-    private AudioSource playerSFX, bgSFX, SFX;
+    private AudioSource playerSFX, bgSFX, SFX, NPCSFX;
 
     // create instance to access form other script
     public static AudioManager instance;
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void playBackgroundSFX(string name)
+    public void playBackgroundMusic(string name)
     {
         AudioClass _whatevereIWant = Array.Find(bgSound, x => x.names == name);
 
@@ -56,7 +56,7 @@ public class AudioManager : MonoBehaviour
 
     public void playSFX(string name)
     {
-        AudioClass _whatevereIWant = Array.Find(SFXsound, x => x.names == name);
+        AudioClass _whatevereIWant = Array.Find(SFXSound, x => x.names == name);
 
         if (_whatevereIWant == null)
         {
@@ -66,6 +66,20 @@ public class AudioManager : MonoBehaviour
         {
             SFX.clip = _whatevereIWant.clip;
             SFX.Play();
+        }
+    }
+    public void playNPCSFX(string name)
+    {
+        AudioClass _whatevereIWant = Array.Find(NPCSound, x => x.names == name);
+
+        if (_whatevereIWant == null)
+        {
+            Debug.Log("Audio name entered is wrong");
+        }
+        else
+        {
+            NPCSFX.clip = _whatevereIWant.clip;
+            NPCSFX.Play();
         }
     }
 }

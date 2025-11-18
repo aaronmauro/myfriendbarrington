@@ -32,7 +32,7 @@ Rigidbody:
 	
 	Freeze Position:  Z 
 		
-Player Script: 
+Player Inspector Value Script: 
 
 	Speed Acceleration: 50 
 	
@@ -46,11 +46,23 @@ Player Script:
 	
 	In Air Boost: 0.75
 
+	Grapple
+
+	Pull Speed: 3.5
+
+	Stop Distance: 4 
+
+	Hook Force: 25
+
 
 Player Code:
 
 	Void movePlayer()
 	{
+
+	This script controls a player character in Unity, handling movement, jumping, ground detection, invincibility, and interactions 
+	like being pushed or floating in bubble streams. It uses Unity’s physics system 	
+	(Rigidbody) and the new Input System (InputActionReference) for player input.
 	
 	Get axis vertical: W
 	
@@ -77,6 +89,10 @@ Player Controller:
 
 
 Sticky Hand Code:
+
+	This script implements a grappling hook mechanic for a player in Unity. 
+	It allows the player to shoot a hook toward nearby grapple points, pull themselves toward the hook, 
+	and automatically retract or destroy the hook under certain conditions.
 
 	Public void Stickyhand()
 	{
@@ -978,6 +994,10 @@ Unity 6000.0.53f1
 
 https://unity.com/cn/releases/editor/whats-new/6000.0.53f1 
 
+Inkle
+
+https://www.inklestudios.com/ink/
+
 Cinemachine 3.1.4 
 
 https://unity.com/features/cinemachine 
@@ -1071,3 +1091,7 @@ To learn C# language for Unity
 https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/setup-follow-camera.html
 
 Cinemachine camera Follow target document 
+
+https://www.inklestudios.com/ink/web-tutorial/
+
+To learn how to code scripts in Inkle 
