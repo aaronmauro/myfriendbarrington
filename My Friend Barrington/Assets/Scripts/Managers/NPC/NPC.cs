@@ -35,6 +35,8 @@ public class NPC : MonoBehaviour
                 }
                 else
                 {
+                    // Play npc audio
+                    AudioManager.instance.playNPCSFX("FelliniFerret");
                     DialoguePanel.SetActive(true);
                     StartCoroutine(Typing());
                     inDialouge = true;
@@ -45,7 +47,8 @@ public class NPC : MonoBehaviour
             else if (talkAction.action.triggered && inDialouge)
             {
                 NextLine();
-
+                // Play npc audio
+                AudioManager.instance.playNPCSFX("FelliniFerret");
             }
             if (DialogueText.text == dialogue[index])
             {

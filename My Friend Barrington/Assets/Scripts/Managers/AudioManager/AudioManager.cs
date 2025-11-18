@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     public AudioClass[] playerSound, bgSound, SFXSound, NPCSound;
     [SerializeField]
-    private AudioSource playerSFX, bgSFX, SFX, NPCSFX;
+    private AudioSource playerSFX, bgSFX, SFX, NPCSFX, playerWalkingSFX;
 
     // create instance to access form other script
     public static AudioManager instance;
@@ -35,7 +35,20 @@ public class AudioManager : MonoBehaviour
         else
         {
             playerSFX.clip = _whatevereIWant.clip;
+            playerSFX.enabled = true;
             playerSFX.Play();
+        }
+    }
+
+    public void playPlayerWalking(bool isWalking)
+    {
+        if (isWalking)
+        {
+            playerWalkingSFX.enabled = true;
+        }
+        else
+        {
+            playerWalkingSFX.enabled = false;
         }
     }
 
