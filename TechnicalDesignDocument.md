@@ -986,6 +986,10 @@ Unity 6000.0.53f1
 
 https://unity.com/cn/releases/editor/whats-new/6000.0.53f1 
 
+Inkle
+
+https://www.inklestudios.com/ink/
+
 Cinemachine 3.1.4 
 
 https://unity.com/features/cinemachine 
@@ -1079,3 +1083,7 @@ To learn C# language for Unity
 https://docs.unity3d.com/Packages/com.unity.cinemachine@3.1/manual/setup-follow-camera.html
 
 Cinemachine camera Follow target document 
+
+https://www.inklestudios.com/ink/web-tutorial/
+
+To learn how to code scripts in Inkle 
