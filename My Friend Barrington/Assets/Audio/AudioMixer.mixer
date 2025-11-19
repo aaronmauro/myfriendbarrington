@@ -33,6 +33,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-2043326411252776930
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: e0b0c7e265fadee4ba4a01d12fd21cb5
+  m_EffectName: Attenuation
+  m_MixLevel: 833c319f56721a044a3bedccad1b0ea6
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-1735384005345329572
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -47,6 +61,25 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!243 &-876764216398628187
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: PlayerWalking
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 2a027cd19e3904446adf14c4c6561e5f
+  m_Children: []
+  m_Volume: 8b092d646b112cc4bb541c5cb6b6b299
+  m_Pitch: e9230d31338686d4bb220b3a92f8650c
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -2043326411252776930}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -70,6 +103,7 @@ AudioMixerController:
     - 98502d26915ce82438bd94b95f42af37
     - 8ca652c7b71e6924e84677fb658e6a9b
     - 89a89eb5162177a4a9bf5f2a097d65c8
+    - 2a027cd19e3904446adf14c4c6561e5f
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -84,6 +118,7 @@ AudioMixerGroupController:
   m_GroupID: 33055d40710e7de4886244dc27775ca1
   m_Children:
   - {fileID: 5278997187335152871}
+  - {fileID: -876764216398628187}
   - {fileID: -2993172029593779462}
   - {fileID: 3311289669528715607}
   - {fileID: 4197245736180940454}

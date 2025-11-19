@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
     public bool playerInput;
+    private bool isWalking;
 
     // Checking ground
     [Header("GroundCheck")]
@@ -41,12 +42,14 @@ public class Player : MonoBehaviour
     public float playerHeight;
     public bool moveRespawn;
 
+    /*
     // Invincibility
     [Header("Invincible")]
     public bool isInvincible;
     [SerializeField]
     private float invinicbleDuration;
     private float invincibleTimer;
+    */
 
     // Getting components
     [Header("Components")]
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour
 
         // Setting Up boolean
         isJump = true;
-        isInvincible = false;
+        //isInvincible = false;
         playerInput = true;
     }
     private void Update()
@@ -113,6 +116,9 @@ public class Player : MonoBehaviour
 
         isGroundRayCast();
 
+        // Player walking Audio
+        AudioManager.instance.playPlayerWalking(isWalking);
+
         // Check invincible
         /*
         if (isInvincible)
@@ -129,7 +135,6 @@ public class Player : MonoBehaviour
         {
             movePlayer();
         }
-
         //Debug.Log(playerInput);
         //Debug.Log(jumpAction.action.triggered);
     }
@@ -150,8 +155,11 @@ public class Player : MonoBehaviour
         if (horizontalInput != 0/* && !isPushed*/)
         {
             rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
+            if (isJump)
+            {
+                isWalking = true;
+            }
             // Play Foot Foot Steps here
-            //AudioManager.instance.playPlayerSFX("PlatformWalk");
         }
         //else if (horizontalInput != 0 && isPushed)
         //{
@@ -181,6 +189,8 @@ public class Player : MonoBehaviour
              if (horizontalInput == 0 && !isPushed)
             {
                 rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+                // Play Foot Foot Steps here
+                isWalking = false;
             }
         }
         else if (!isGround)
@@ -196,7 +206,7 @@ public class Player : MonoBehaviour
     private void jumping()
     {
         // Jump
-        if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.IsPressed()/* || Input.GetKey(KeyCode.W)*/)
+        if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.triggered/* || Input.GetKey(KeyCode.W)*/)
         {
             if (isJump && isGround)
             {
@@ -204,12 +214,13 @@ public class Player : MonoBehaviour
                 isJump = false;
 
                 // Play Jumping Sound
-                //AudioManager.instance.playPlayerSFX("PlatformJump");
+                AudioManager.instance.playPlayerSFX("PlatformJump");
+                isWalking = false;
 
                 rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
                 rb.AddForce(transform.up * jump, ForceMode.Impulse);
 
-                Invoke(nameof(jumpStatus), jumpCooldown);
+                Invoke(nameof(jumpStatus), jumpCooldown); // cannot hold space now :<
             }
         }
     }
