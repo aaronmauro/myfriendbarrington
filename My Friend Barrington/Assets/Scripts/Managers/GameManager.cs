@@ -53,7 +53,8 @@ public class GameManager : MonoBehaviour
         //backToSpawn = false;
         //isInvincible = false;
 
-        if (backGroundAudio == null)
+        //Debug.Log(backGroundAudio);
+        if (backGroundAudio == "") // Why can't this bull null :<
         {
             return;
         }
