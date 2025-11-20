@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameManager gm;
     [SerializeField]
+    private Animator anim;
+    [SerializeField]
     private DangerDetect dangerDectect;
     public InputActionReference jumpAction;
 
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
         // Getting component from player
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        anim = GetComponent<Animator>();
 
         // Setting Up boolean
         isJump = true;
@@ -118,6 +121,7 @@ public class Player : MonoBehaviour
 
         // Player walking Audio
         AudioManager.instance.playPlayerWalking(isWalking);
+        anim.SetBool("PlayerWalk", isWalking);
 
         // Check invincible
         /*
