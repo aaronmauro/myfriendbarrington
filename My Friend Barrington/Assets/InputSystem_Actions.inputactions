@@ -103,6 +103,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "End",
+                    "type": "Button",
+                    "id": "415f34e3-8237-4572-ac1b-79000b3b8798",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -406,10 +415,21 @@
                 {
                     "name": "",
                     "id": "eb40bb66-4559-4dfa-9a2f-820438abb426",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<HID::PowerA NSW Wired Controller>/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Joystick",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "475ad27a-4177-415a-bce7-4cb225409a35",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -493,28 +513,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2e13f48d-aaf6-430f-8c8e-5c144f4e3327",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "94f9741c-ac08-4f67-bf76-f60ad6d50a42",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4f4649ac-64a8-4a73-af11-b3faef356a4d",
                     "path": "<Gamepad>/buttonEast",
                     "interactions": "",
@@ -559,6 +557,17 @@
                 },
                 {
                     "name": "",
+                    "id": "657cf87d-2223-46cb-8251-0d9c5ca92b63",
+                    "path": "<HID::PowerA NSW Wired Controller>/button8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6e249e7a-046f-4282-88e1-ac16424ec8cf",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -576,6 +585,39 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Talk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b95fba16-49e1-442f-9a5b-4e19d92a91eb",
+                    "path": "<HID::PowerA NSW Wired Controller>/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Talk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "565b5dee-097c-4724-b003-b9da7f0bfc94",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "End",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee95bb17-8573-4b60-a24f-01b94cbf3979",
+                    "path": "<HID::PowerA NSW Wired Controller>/button13",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "End",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1102,7 +1144,7 @@
             "id": "dbcb742c-62d1-47d9-9502-7811b7289835",
             "actions": [
                 {
-                    "name": "Game",
+                    "name": "End",
                     "type": "Button",
                     "id": "5d725e61-5431-4068-92f5-f00f03e4d326",
                     "expectedControlType": "",
@@ -1119,7 +1161,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Game",
+                    "action": "End",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "95f86402-67bb-4ee0-b8e4-e9b184796d50",
+                    "path": "<HID::PowerA NSW Wired Controller>/button13",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "End",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

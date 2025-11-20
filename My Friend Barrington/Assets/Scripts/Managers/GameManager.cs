@@ -1,6 +1,8 @@
 using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
     [Header("Build Components")]
     public int gameFrameRate;
     public bool vsync;
+
+    public InputActionReference EndAction;
 
     private void Awake()
     {
@@ -76,7 +80,7 @@ public class GameManager : MonoBehaviour
         
         moveRespawn();
         // Exit game
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (EndAction.action.triggered)
         {
             exitTheGame();
         }
