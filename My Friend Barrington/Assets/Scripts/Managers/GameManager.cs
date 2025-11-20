@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CinemachineCamera playerCam;
 
+    private bool isVideoScene;
+
     // Manage respawn
     [Header("Respawn")]
     //public bool backToSpawn;
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour
         //Debug.Log(backGroundAudio);
         if (backGroundAudio == "") // Why can't this bull null :<
         {
-            return;
+            AudioManager.instance.playBackgroundMusic(backGroundAudio);
         }
         else
         {
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Method exit the game
-    private void exitTheGame()
+    public void exitTheGame()
     {
         Application.Quit();
 

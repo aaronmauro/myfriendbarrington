@@ -310,6 +310,7 @@ public class Player : MonoBehaviour
     public void freezePlayer()
     {
         rb.linearVelocity = Vector3.zero;
+        isWalking = false;
     }
 
 

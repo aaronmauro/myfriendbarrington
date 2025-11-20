@@ -59,6 +59,8 @@ public class AudioManager : MonoBehaviour
         if (_whatevereIWant == null)
         {
             Debug.Log("Audio name entered is wrong");
+            //Debug.Log(videoScene);
+            bgSFX.Stop();
         }
         else
         {

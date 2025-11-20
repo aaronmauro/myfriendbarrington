@@ -12,18 +12,30 @@ public class ChangeScene : MonoBehaviour
     private int nextAds;
     [SerializeField]
     private CinemachineCamera cm;
+    public bool exitScreen;
 
     private VideoManager vm;
     private Player player;
     private void Awake()
     {
-        cm.enabled = false;
+        if (!exitScreen)
+        {
+            cm.enabled = false;
+        }
+        else
+        {
+            return;
+        }
     }
     
     
     private void Start()
     {
-        
+        if (exitScreen)
+        {
+            cm.enabled = false;
+        }
+        // Setting
         changeScene = false;
         GameObject vmFind = GameObject.Find("VideoManager");
         GameObject playerFind = GameObject.Find("Player");
@@ -40,6 +52,7 @@ public class ChangeScene : MonoBehaviour
     }
     private void Update()
     {
+        // Change Scene Script
         //Debug.Log(player.playerInput);
         if (changeScene)
         {
@@ -51,7 +64,8 @@ public class ChangeScene : MonoBehaviour
         {
             //Debug.Log("happy happy happy");
             playVideo();
-            Invoke("changeSceneController", 5f);
+            //Invoke("changeSceneController", 5f);
+            StartCoroutine(playVideo());
             player.playerInput = false;
         }
         if (vm == null)
@@ -70,7 +84,8 @@ public class ChangeScene : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playVideo();
-            Invoke("changeSceneController", 5f);
+            //Invoke("changeSceneController", 5f);
+            StartCoroutine(playVideo());
             player.playerInput = false;
         }
     }
@@ -83,18 +98,25 @@ public class ChangeScene : MonoBehaviour
         changeScene = false;
     }
 
+    //public void buttonChangeScene(string name)
+    //{
+    //    SceneManagerScript.instance.nextScene(name);
+    //}
+
     // plays video before scene change
     private IEnumerator playVideo()
     {
         cm.enabled = true;
         yield return new WaitForSeconds(5f);
-        CinemachineFollow testing = cm.GetComponent<CinemachineFollow>();
+        SceneManagerScript.instance.nextScene(sceneName);
     }
 
     //  disables cinemachine after video
+    /*
     private IEnumerator exitVideo()
     {
         cm.enabled = true;
         yield return new WaitForSeconds(5f);
     }
+    */
 }
