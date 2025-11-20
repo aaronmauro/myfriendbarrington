@@ -17,17 +17,17 @@ public class NPC : MonoBehaviour
 
     public GameObject  continueButton;
     public float wordSpeed;
-    public bool playerIsClose;
-    public bool inDialouge;
+    public static bool playerIsClose;
+    public static bool inDialouge;
 
     public InputActionReference talkAction;
     //public InputActionReference continueAction;
 
     void Update()
     {
-        if (playerIsClose)
+        if (NPC.playerIsClose)
         {
-            if (talkAction.action.triggered && !inDialouge)
+            if (talkAction.action.triggered && !NPC.inDialouge)
             {
                 if (DialoguePanel.activeInHierarchy)
                 {
@@ -39,12 +39,12 @@ public class NPC : MonoBehaviour
                     AudioManager.instance.playNPCSFX("FelliniFerret");
                     DialoguePanel.SetActive(true);
                     StartCoroutine(Typing());
-                    inDialouge = true;
+                    NPC.inDialouge = true;
                 }
 
 
             }
-            else if (talkAction.action.triggered && inDialouge)
+            else if (talkAction.action.triggered && NPC.inDialouge)
             {
                 NextLine();
                 // Play npc audio
@@ -76,7 +76,7 @@ public class NPC : MonoBehaviour
         DialogueText.text = "";
         index = 0;
         DialoguePanel.SetActive(false);
-        inDialouge = false;
+        NPC.inDialouge = false;
     }
 
     IEnumerator Typing()
@@ -111,7 +111,7 @@ public class NPC : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             
-            playerIsClose = true;
+            NPC.playerIsClose = true;
             interactPrompt.SetActive(true);
         }
     }
@@ -120,7 +120,7 @@ public class NPC : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerIsClose = false;
+            NPC.playerIsClose = false;
             interactPrompt.SetActive(false);
             zeroText();
         }

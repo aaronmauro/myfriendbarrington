@@ -24,6 +24,6 @@ public class ButtonCollect : MonoBehaviour
 
     public void UpdateScore()
     {
-        messageText.text = "Buttons: " + buttonCount;
+        messageText.text = "x" + buttonCount;
     }
 }
