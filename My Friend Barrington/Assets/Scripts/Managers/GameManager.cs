@@ -63,6 +63,7 @@ public class GameManager : MonoBehaviour
         if (backGroundAudio == "") // Why can't this bull null :<
         {
             AudioManager.instance.playBackgroundMusic(backGroundAudio);
+            return;
         }
         else
         {

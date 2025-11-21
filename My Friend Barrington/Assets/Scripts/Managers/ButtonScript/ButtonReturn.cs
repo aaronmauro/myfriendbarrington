@@ -45,6 +45,7 @@ public class ButtonReturn : MonoBehaviour
         vm.loopVideo = false;
         bm.buttonStatus = false;
         bm.buttons[adsButton].Remove(gameObject);
+        //Debug.Log(inputValues);
         gameObject.SetActive(false);
     }
 }
