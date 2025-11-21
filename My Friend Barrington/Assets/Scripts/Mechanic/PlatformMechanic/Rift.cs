@@ -12,6 +12,7 @@ public class Rift : MonoBehaviour
     [SerializeField]
     private float tpCooldown;
     public bool isTp;
+    public bool hideSpawn;
 
     private void Start()
     {
@@ -52,6 +53,10 @@ public class Rift : MonoBehaviour
     private IEnumerator startCooldown()
     {
         // Wait for cooldown duration
+        if (hideSpawn)
+        {
+            gameObject.SetActive(false);
+        }
         yield return new WaitForSeconds(tpCooldown);
         isTp = false;
     }

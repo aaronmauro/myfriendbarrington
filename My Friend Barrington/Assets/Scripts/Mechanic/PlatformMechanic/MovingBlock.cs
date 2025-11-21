@@ -7,6 +7,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Transform currentTarget;
     public float speed = 0.5f;
     public float switchDistance = 0.05f;
+    // sorry changing the script Eric
+    // draw gizmos
+    public Color color = Color.red;
+    public Color color2 = Color.green;
+    public float sphereSize = 1.0f;
+
 
     void Start()
     {
@@ -50,5 +56,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             collision.transform.SetParent(null);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = color;
+        Gizmos.DrawWireSphere(targetA.position, sphereSize);
+        Gizmos.color = color2;
+        Gizmos.DrawWireSphere(targetB.position, sphereSize);
     }
 }
