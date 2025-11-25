@@ -10,6 +10,7 @@ public class Grapple : MonoBehaviour
     [SerializeField] float stopDistance = 4f;
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform shootTransform;
+    [SerializeField] float maxHookSpeed = 20f;
 
     private GrapplePoint[] grapplePoints;
 
@@ -79,6 +80,19 @@ public class Grapple : MonoBehaviour
         else
         {
             rigid.AddForce((hook.transform.position - transform.position).normalized * pullSpeed, ForceMode.VelocityChange);
+            fixSpeed();
+        }
+    }
+
+    private void fixSpeed()
+    {
+        // Check for speed (wihtout jumping)
+        Vector3 getLinearVelocity = new Vector3(rigid.linearVelocity.x, rigid.linearVelocity.y, rigid.linearVelocity.z);
+        // If exceed the speed
+        if (getLinearVelocity.magnitude > maxHookSpeed)
+        {
+            Vector3 limitLinearVelocity = getLinearVelocity.normalized * maxHookSpeed;
+            rigid.linearVelocity = new Vector3(limitLinearVelocity.x, limitLinearVelocity.y * 0.5f, limitLinearVelocity.z);
         }
     }
 
