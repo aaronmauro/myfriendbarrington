@@ -11,7 +11,7 @@ private Player player;
     {
         // Get Player component
         Player player = collision.gameObject.GetComponent<Player>();
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.isPlayer())
         {
             // Apply force to the player
             player.isPushed = true;

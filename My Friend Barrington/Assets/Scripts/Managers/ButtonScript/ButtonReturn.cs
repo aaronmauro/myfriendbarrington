@@ -16,7 +16,7 @@ public class ButtonReturn : MonoBehaviour
     private void Start()
     {
         // Getting Compoenent
-        GameObject videoManager = GameObject.Find("VideoManager");
+        GameObject videoManager = GameObject.Find(GeneralGameTags.VideoManager);
         vm = videoManager.GetComponent<VideoManager>();
         bm = FindObjectOfType<ButtonManager>();
         if (VideoManager.adsNumber == adsButton )

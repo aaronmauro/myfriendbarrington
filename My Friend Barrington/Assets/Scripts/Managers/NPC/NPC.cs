@@ -25,51 +25,78 @@ public class NPC : MonoBehaviour
 
     void Update()
     {
-        if (NPC.playerIsClose)
+        if (!NPC.playerIsClose)
         {
-            if (talkAction.action.triggered && !NPC.inDialouge)
+            zeroText();
+            return;
+        }
+
+        /*
+        if (talkAction.action.triggered && !NPC.inDialouge)
+        {
+            if (DialoguePanel.activeInHierarchy)
             {
-                if (DialoguePanel.activeInHierarchy)
-                {
-                    zeroText();
-                }
-                else
-                {
-                    // Play npc audio
-                    AudioManager.instance.playNPCSFX("FelliniFerret");
-                    DialoguePanel.SetActive(true);
-                    StartCoroutine(Typing());
-                    NPC.inDialouge = true;
-                }
-
-
+                zeroText();
             }
-            else if (talkAction.action.triggered && NPC.inDialouge)
+            else
             {
-                NextLine();
                 // Play npc audio
                 AudioManager.instance.playNPCSFX("FelliniFerret");
+                DialoguePanel.SetActive(true);
+                StartCoroutine(Typing());
+                NPC.inDialouge = true;
             }
+        }
+        */
+        if (!talkAction.action.triggered)
+        {
             if (DialogueText.text == dialogue[index])
             {
                 //Debug.Log("Have fun");
                 continueButton.SetActive(true);
-
-                //// Check controller input for advancing dialogue
-                //if (talkAction.action.triggered)
-                //{
-
-                //}
             }
-
+            return;
         }
+        if (NPC.inDialouge)
+        {
+            NextLine();
+            // Play npc audio
+            AudioManager.instance.playNPCSFX("FelliniFerret");
+            return;
+        }
+        if (DialoguePanel.activeInHierarchy)
+        {
+            zeroText();
+            return;
+        }
+        /*
+        if (DialogueText.text == dialogue[index])
+        {
+            //Debug.Log("Have fun");
+            continueButton.SetActive(true);
+
+            //// Check controller input for advancing dialogue
+            //if (talkAction.action.triggered)
+            //{
+
+            //}
+        }
+        */
+        // Play npc audio
+        AudioManager.instance.playNPCSFX("FelliniFerret");
+        DialoguePanel.SetActive(true);
+        StartCoroutine(Typing());
+        NPC.inDialouge = true;
+    }
+        /*
         else
         {
             zeroText();
         }
+        */
         //Debug.Log(dialogue.Length);
 
-    }
+    
 
     public void zeroText()
     {
@@ -108,7 +135,7 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(GeneralGameTags.Player))
         {
             
             NPC.playerIsClose = true;
@@ -118,7 +145,7 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(GeneralGameTags.Player))
         {
             NPC.playerIsClose = false;
             interactPrompt.SetActive(false);

@@ -18,7 +18,7 @@ public class DangerDetect : MonoBehaviour
     // start
     private void Start()
     {
-        GameObject gManager = GameObject.Find("GameManager");
+        GameObject gManager = GameObject.Find(GeneralGameTags.GameManager);
         gm = gManager.GetComponent<GameManager>(); 
 
         direction = true;
@@ -50,14 +50,14 @@ public class DangerDetect : MonoBehaviour
     // Checking if danger ahead
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Danger"))
+        if (other.gameObject.CompareTag(GeneralGameTags.DangerBox))
         {
             gm.dangerDetect = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Danger"))
+        if (other.gameObject.CompareTag(GeneralGameTags.DangerBox))
         {
             gm.dangerDetect = false;
         }

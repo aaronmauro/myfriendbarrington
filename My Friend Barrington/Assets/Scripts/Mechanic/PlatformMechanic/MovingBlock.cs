@@ -42,7 +42,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Make player follow the moving platform
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.isPlayer())
         {
             collision.transform.SetParent(transform);
         }
@@ -52,7 +52,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         // Detach player when they leave the platform
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.isPlayer())
         {
             collision.transform.SetParent(null);
         }

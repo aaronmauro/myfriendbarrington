@@ -18,7 +18,7 @@ public class Bubbles : MonoBehaviour
     {
         // getting player
         Player player = collision.gameObject.GetComponent<Player>();
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.isPlayer())
         {
             player.isPushed = true;
             //player.isPushedDirection(2, force);

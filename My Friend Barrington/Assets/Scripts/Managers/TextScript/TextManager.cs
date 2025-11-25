@@ -13,7 +13,7 @@ public class TextManager : MonoBehaviour
     void Start()
     {
         // Getting VideoManager component
-        GameObject findVM = GameObject.Find("VideoManager");
+        GameObject findVM = GameObject.Find(GeneralGameTags.VideoManager);
         vm = findVM.GetComponent<VideoManager>();
     }
 

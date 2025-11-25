@@ -33,7 +33,7 @@ public class ButtonManager : MonoBehaviour
     {
         buttonStatus = false;
 
-        GameObject vm = GameObject.Find("VideoManager");
+        GameObject vm = GameObject.Find(GeneralGameTags.VideoManager);
         videoManager = vm.GetComponent<VideoManager>();
 
     }
