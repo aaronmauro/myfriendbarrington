@@ -37,8 +37,8 @@ public class ChangeScene : MonoBehaviour
         }
         // Setting
         changeScene = false;
-        GameObject vmFind = GameObject.Find("VideoManager");
-        GameObject playerFind = GameObject.Find("Player");
+        GameObject vmFind = GameObject.Find(GeneralGameTags.VideoManager);
+        GameObject playerFind = GameObject.Find(GeneralGameTags.Player);
         
         if (vmFind != null)
         {
@@ -81,7 +81,7 @@ public class ChangeScene : MonoBehaviour
     // triggers scene change when player enters collider
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             playVideo();
             //Invoke("changeSceneController", 5f);

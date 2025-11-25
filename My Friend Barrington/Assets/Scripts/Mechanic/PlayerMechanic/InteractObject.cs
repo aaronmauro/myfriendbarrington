@@ -39,7 +39,7 @@ public class InteractObject : MonoBehaviour
     // Detect when the player enters the trigger collider
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             isTrigger = true;
         }
@@ -48,7 +48,7 @@ public class InteractObject : MonoBehaviour
     // Detect when the player exits the trigger collider
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             isTrigger = false;
         }

@@ -17,7 +17,7 @@ public class Rift : MonoBehaviour
     private void Start()
     {
         // Get Player component
-        GameObject findPlayer = GameObject.Find("Player");
+        GameObject findPlayer = GameObject.Find(GeneralGameTags.Player);
         otherRift = tpTransform.GetComponent<Rift>();
         player = findPlayer.GetComponent<Player>();
     }
@@ -36,7 +36,7 @@ public class Rift : MonoBehaviour
         }
         */
         // Teleport Player
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             if (!isTp)
             {

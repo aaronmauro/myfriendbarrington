@@ -48,7 +48,7 @@ public class SoundWaves : MonoBehaviour
     void Start()
     {
         // Getting Compoennt
-        findPlayer = GameObject.Find("Player");
+        findPlayer = GameObject.Find(GeneralGameTags.Player);
         playerCollider = findPlayer.GetComponent<Collider>();
         player = findPlayer.GetComponent<Player>();
         inBush = false;

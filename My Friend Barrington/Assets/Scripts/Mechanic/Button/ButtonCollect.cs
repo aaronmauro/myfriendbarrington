@@ -13,7 +13,7 @@ public class ButtonCollect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && button != null)
+        if (other.gameObject.isPlayer() && button != null)
         {
             button.SetActive(false);
 

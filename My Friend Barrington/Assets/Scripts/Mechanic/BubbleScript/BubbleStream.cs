@@ -24,7 +24,7 @@ public class BubbleStream : MonoBehaviour
         Player player = other.gameObject.GetComponent<Player>();
         //Debug.Log(player);
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             player.inBubbleStream(force);
         }
