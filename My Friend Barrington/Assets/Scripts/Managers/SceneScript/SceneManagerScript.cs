@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,5 +26,17 @@ public class SceneManagerScript : MonoBehaviour
     public void nextScene(string name)
     {
         SceneManager.LoadScene(name);
+
+
     }
+    public IEnumerator loadScene(string name)
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(name);
+    }
+    public void delayNextScene(string name)
+    {
+        StartCoroutine(loadScene(name));
+    }
+
 }
