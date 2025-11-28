@@ -52,6 +52,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        EndAction.action.Enable();
+        EndAction.action.performed += exitTheGame;
+    }
+
     void Start()
     {
         // getting components
@@ -83,10 +89,10 @@ public class GameManager : MonoBehaviour
         
         moveRespawn();
         // Exit game
-        if (EndAction.action.triggered)
-        {
-            exitTheGame();
-        }
+        //if (EndAction.action.triggered)
+        //{
+        //    exitTheGame();
+        //}
 
         //Debug.Log(backToSpawn);
     }
@@ -109,7 +115,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Method exit the game
-    public void exitTheGame()
+    public void exitTheGame(InputAction.CallbackContext context)
     {
         Application.Quit();
 

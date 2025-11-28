@@ -240,6 +240,17 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &100055500 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5289430659717092177, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
+  m_PrefabInstance: {fileID: 402246291427694560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c144f723665fa674e842c1560828716d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &132990289 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4664762408699424080, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
@@ -652,6 +663,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5289430659717092177, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
+      propertyPath: skipVideo
+      value: 
+      objectReference: {fileID: 5117921196772801829, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 5289430659717092177, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
+      propertyPath: inputAction.m_Name
+      value: Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289430659717092177, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
+      propertyPath: inputAction.m_SingletonActionBindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289430659717092177, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
+      propertyPath: inputAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 0e7753b5-ee11-4549-9b4d-537eefc67a58
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289430659717092177, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
+      propertyPath: inputAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Input
+      objectReference: {fileID: 0}
     - target: {fileID: 6147987487730245274, guid: 86fbd78efcfa492419ce773854abe419, type: 3}
       propertyPath: m_Name
       value: ButtonManager
@@ -936,7 +967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -944,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 132990289}
     - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: onPress
+      value: onButtonPressed
       objectReference: {fileID: 0}
     - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -953,6 +984,14 @@ PrefabInstance:
     - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 100055500}
+    - target: {fileID: 1126337935895263813, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: ButtonManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1360470993210045558, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_Pivot.x
@@ -1033,6 +1072,10 @@ PrefabInstance:
     - target: {fileID: 1360470993210045558, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1383889864173831080, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+      propertyPath: m_text
+      value: Hold Enter To Skip The Video
       objectReference: {fileID: 0}
     - target: {fileID: 2737440688049753995, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       propertyPath: m_Type
