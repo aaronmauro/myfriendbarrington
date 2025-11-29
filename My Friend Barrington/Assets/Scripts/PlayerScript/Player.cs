@@ -74,11 +74,13 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         jumpAction.action.Enable();
+        jumpAction.action.performed += jumping;
     }
 
     private void OnDisable()
     {
         jumpAction.action.Disable();
+        jumpAction.action.performed -= jumping;
     }
     // Setting up values at start
     void Start()
@@ -96,32 +98,31 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // Calling methods
-        if (playerInput)
-        {
-            jumping();
-        }
+        //if (playerInput)
+        //{
+        //    jumping();
+        //}
+        Debug.Log(isWalking);
     }
     private void FixedUpdate()
     {
         // Calling methods
-        if (playerInput)
-        {
-            movePlayer();
-            fixSpeed();
-        }
-        else
+        //if (playerInput)
+        //{
+        //    movePlayer();
+        //    fixSpeed();
+        //}
+        //else
+        //{
+        //    freezePlayer();
+        //}
+        if (!playerInput)
         {
             freezePlayer();
+            return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
         }
-        // Player speed text field
-        currentSpeed = rb.linearVelocity.magnitude;
-        speedText.text = "Current Speed: " + currentSpeed;
-
-        isGroundRayCast();
-
-        // Player walking Audio
-        AudioManager.instance.playPlayerWalking(isWalking);
-        anim.SetBool("PlayerWalk", isWalking);
+        movePlayer();
+        fixSpeed();
 
         // Check invincible
         /*
@@ -206,26 +207,36 @@ public class Player : MonoBehaviour
         {
             Invoke("pushedCooldown", 0.1f);
         }
+        // Player speed text field
+        currentSpeed = rb.linearVelocity.magnitude;
+        speedText.text = "Current Speed: " + currentSpeed;
+
+        isGroundRayCast();
+
+        // Player walking Audio
+        AudioManager.instance.playPlayerWalking(isWalking);
+        anim.SetBool("PlayerWalk", isWalking);
+
     }
-    private void jumping()
+    private void jumping(InputAction.CallbackContext context)
     {
         // Jump
-        if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.triggered/* || Input.GetKey(KeyCode.W)*/)
+        //if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.triggered/* || Input.GetKey(KeyCode.W)*/)
+        //{
+        //}
+        if (isJump && isGround)
         {
-            if (isJump && isGround)
-            {
-                isGround = false;
-                isJump = false;
+            isGround = false;
+            isJump = false;
 
-                // Play Jumping Sound
-                AudioManager.instance.playPlayerSFX("PlatformJump");
-                isWalking = false;
+            // Play Jumping Sound
+            AudioManager.instance.playPlayerSFX("PlatformJump");
+            isWalking = false;
 
-                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
-                rb.AddForce(transform.up * jump, ForceMode.Impulse);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.y);
+            rb.AddForce(transform.up * jump, ForceMode.Impulse);
 
-                Invoke(nameof(jumpStatus), jumpCooldown); // cannot hold space now :<
-            }
+            Invoke(nameof(jumpStatus), jumpCooldown); // cannot hold space now :<
         }
     }
     private void jumpStatus()
@@ -311,6 +322,8 @@ public class Player : MonoBehaviour
     {
         rb.linearVelocity = Vector3.zero;
         isWalking = false;
+        AudioManager.instance.playPlayerWalking(isWalking);
+        anim.SetBool("PlayerWalk", isWalking);
     }
 
 
