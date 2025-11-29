@@ -5,6 +5,8 @@ using Ink.Runtime;
 using System.Runtime.CompilerServices;
 using System.Collections;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+//using Ink.Parsed;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -63,12 +65,12 @@ public class DialogueManager : MonoBehaviour
         {
             return; 
         }
-
+        /* commenting out, uncomment to fix - Eric
         if (InputManager.GetInstance().GetSubmitPressed())
         {
             ContinueStory();
         }
-
+        */
     }
 
    
@@ -113,7 +115,10 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayChoices()
     {
-        List<Choice> currentChoices = currentStory.currentChoices;
+        // i don't know what list you are using (ink or collect system, so i just use collect for now and make the game to run - Eric
+        List<Choice> currentChoices = new List<Choice>();
+        currentChoices = currentStory.currentChoices;
+        //List<Choice> currentChoices = currentStory.currentChoices;
 
         if (currentChoices.Count > choices.Length)
         {
