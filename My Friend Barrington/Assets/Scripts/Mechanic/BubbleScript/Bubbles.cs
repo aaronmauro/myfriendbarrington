@@ -20,7 +20,7 @@ public class Bubbles : MonoBehaviour
         Player player = collision.gameObject.GetComponent<Player>();
         if (collision.gameObject.isPlayer())
         {
-            player.isPushed = true;
+            //player.isPushed = true;
             //player.isPushedDirection(2, force);
             // pushing player;
             player.pushingPlayer(Vector3.up, force);

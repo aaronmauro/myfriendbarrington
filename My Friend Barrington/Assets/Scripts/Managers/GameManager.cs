@@ -54,8 +54,17 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // interesting lambda, learn something new! quick and easy
         EndAction.action.Enable();
-        EndAction.action.performed += exitTheGame;
+        EndAction.action.performed += ctx =>
+        {
+            Application.Quit();
+            Debug.Log("Quit");
+        };
+    }
+    private void OnDisable()
+    {
+        EndAction.action.Disable();
     }
 
     void Start()
@@ -115,10 +124,10 @@ public class GameManager : MonoBehaviour
     }
 
     // Method exit the game
-    public void exitTheGame(InputAction.CallbackContext context)
-    {
-        Application.Quit();
+    //public void exitTheGame(InputAction.CallbackContext context)
+    //{
+    //    Application.Quit();
 
-        Debug.Log("Quit");
-    }
+    //    Debug.Log("Quit");
+    //}
 }

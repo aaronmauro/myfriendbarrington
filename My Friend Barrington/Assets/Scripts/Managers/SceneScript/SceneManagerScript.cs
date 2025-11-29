@@ -38,5 +38,4 @@ public class SceneManagerScript : MonoBehaviour
     {
         StartCoroutine(loadScene(name));
     }
-
 }

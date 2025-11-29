@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Pillow : MonoBehaviour
 {
-    [SerializeField]
+[SerializeField]
 private float force;
 private Player player;
 
@@ -14,7 +14,7 @@ private Player player;
         if (collision.gameObject.isPlayer())
         {
             // Apply force to the player
-            player.isPushed = true;
+            //player.isPushed = true;
             //player.isPushedDirection(2, force); sorry changing your script because I changed the method
             player.pushingPlayer(Vector3.up, force);
            

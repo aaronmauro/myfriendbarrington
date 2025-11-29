@@ -38,10 +38,10 @@ public class DialogueTrigger : MonoBehaviour
     
 
 
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        if(GetComponent<Collider>().gameObject.tag == "Player")
+        if(other.gameObject.isPlayer()) // a bit tweaking the code
         {
             playerInRange = true;
         }
@@ -50,7 +50,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (GetComponent<Collider>().gameObject.tag == "Player")
+        if (other.gameObject.isPlayer())
         {
             playerInRange = false;
         }

@@ -11,7 +11,6 @@ public class ButtonManager : MonoBehaviour
     public static ButtonManager instance;
 
     // Getting Buttons
-    [SerializeField]
     public List<List<GameObject>> buttons = new List<List<GameObject>>();
     [SerializeField]
     private int totalAdsNumber;
@@ -77,9 +76,8 @@ public class ButtonManager : MonoBehaviour
     {
         buttonStatus = false;
         //enableButton(false);
-
-        GameObject vm = GameObject.Find(GeneralGameTags.VideoManager);
-        videoManager = vm.GetComponent<VideoManager>();
+ 
+        videoManager = gameObject.findVideoManager();
 
     }
 
