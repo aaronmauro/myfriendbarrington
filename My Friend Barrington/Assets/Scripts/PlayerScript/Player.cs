@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
     public LayerMask platformMask;
     public float playerHeight;
-    public bool moveRespawn;
+    //public bool moveRespawn;
 
     /*
     // Invincibility
@@ -367,6 +367,7 @@ public class Player : MonoBehaviour
         // Ground Check
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
 
+        /* infinite question mark why do did here -Eric :?
         if (isGround)
         {
             moveRespawn = false;
@@ -375,6 +376,7 @@ public class Player : MonoBehaviour
         {
             moveRespawn = true;
         }
+        */
     }
 
     public void pushingPlayer(Vector3 dir, float force)

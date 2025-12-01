@@ -31,7 +31,7 @@ public class ChangeScene : MonoBehaviour
     
     private void Start()
     {
-        Debug.Log("Happy?");
+        //Debug.Log("Happy?");
         if (exitScreen)
         {
             cm.enabled = false;

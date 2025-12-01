@@ -18,34 +18,15 @@ public class DangerDetect : MonoBehaviour
     // start
     private void Start()
     {
-        GameObject gManager = GameObject.Find(GeneralGameTags.GameManager);
-        gm = gManager.GetComponent<GameManager>(); 
+        gm = gameObject.findGameManager();
 
         direction = true;
     }
 
     private void Update()
     {
-        // checking infront are floor
-        if (direction)
-        {
-            rayPosition = new Vector3(transform.position.x + dectectDistance, transform.position.y, transform.position.z);
-        }
-        else if (!direction)
-        {
-            rayPosition = new Vector3(transform.position.x + -dectectDistance, transform.position.y, transform.position.z);
-        }
-        isGround = Physics.Raycast(rayPosition, Vector3.down, out RaycastHit hit ,rayLength, floorMask);
-        //Debug.Log(isGround);
-        if (!isGround)
-        {
-            gm.dangerDetect = true;
-        }
-        else
-        {
-            gm.dangerDetect = false;
-        }
-
+        // Run methods
+        dynamicRespawn();
     }
     // Checking if danger ahead
     private void OnTriggerStay(Collider other)
@@ -58,6 +39,31 @@ public class DangerDetect : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag(GeneralGameTags.DangerBox))
+        {
+            gm.dangerDetect = false;
+        }
+    }
+
+    // dynamic Respawn methods
+    private void dynamicRespawn()
+    {
+        // checking infront are floor
+        if (direction)
+        {
+            rayPosition = new Vector3(transform.position.x + dectectDistance, transform.position.y, transform.position.z);
+        }
+        else if (!direction)
+        {
+            rayPosition = new Vector3(transform.position.x + -dectectDistance, transform.position.y, transform.position.z);
+        }
+        isGround = Physics.Raycast(rayPosition, Vector3.down, out RaycastHit hit, rayLength, floorMask);
+        //Debug.Log(isGround);
+        // checking ground
+        if (!isGround)
+        {
+            gm.dangerDetect = true;
+        }
+        else
         {
             gm.dangerDetect = false;
         }

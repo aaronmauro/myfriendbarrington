@@ -117,7 +117,8 @@ public class GameManager : MonoBehaviour
 
     private void moveRespawn()
     {
-        if (player.isGround && player.moveRespawn && !dangerDetect)
+        //Debug.Log(player.moveRespawn);
+        if (player.isGround && !dangerDetect)
         {
             spawnPoints.transform.position = player.transform.position;
         }

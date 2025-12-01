@@ -20,6 +20,8 @@ public class ButtonCollect : MonoBehaviour
     {
         if (other.gameObject.isPlayer() && button != null)
         {
+            // Play Coin Sound Here
+            //AudioManager.instance.playSFX("Coin");
             button.SetActive(false);
 
             buttonCount++;        // increases the global count
