@@ -11,7 +11,7 @@ public class SceneManagerScript : MonoBehaviour
     // Don't destory on load
     private void Awake()
     {
-        // create singletons
+
         if (instance == null)
         {
             instance = this;
@@ -26,14 +26,14 @@ public class SceneManagerScript : MonoBehaviour
     public void nextScene(string name)
     {
         SceneManager.LoadScene(name);
+
+
     }
-    // wait second load scene
     public IEnumerator loadScene(string name)
     {
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(name);
     }
-    // delay loading next scene methods
     public void delayNextScene(string name)
     {
         StartCoroutine(loadScene(name));
