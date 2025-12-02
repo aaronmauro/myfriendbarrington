@@ -11,15 +11,27 @@ public class InputManager : MonoBehaviour
     private bool interactPressed = false;
     private bool submitPressed = false;
 
+    // Player
+    // Input Action Map
+    public InputActionReference jumpAction;
+    public InputActionReference moveAction;
+    public delegate void PlayerAction();
+    public PlayerAction playerAction;
+
     private static InputManager instance;
 
     private void Awake()
     {
-       if(instance != null)
+       if(instance == null)
+       {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+       }
+        else
         {
-            Debug.LogError("Found more than one Input Manager in the scene");
+            //Debug.LogError("Found more than one Input Manager in the scene");
+            Destroy(gameObject);
         }
-       instance = this;
     }
 
     public static InputManager GetInstance()
@@ -27,30 +39,30 @@ public class InputManager : MonoBehaviour
         return instance;
     }
 
-    public void MovePressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            moveDirection = context.ReadValue<Vector2>();
+    //public void MovePressed(InputAction.CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+    //        moveDirection = context.ReadValue<Vector2>();
 
-        }
-        else if (context.canceled)
-        {
-            moveDirection = context.ReadValue<Vector2>();
-        }
-    }
+    //    }
+    //    else if (context.canceled)
+    //    {
+    //        moveDirection = context.ReadValue<Vector2>();
+    //    }
+    //}
 
-    public void JumpPressed(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            jumpPressed = true;
-        }
-        else if (context.canceled)
-        {
-            jumpPressed = false;
-        }
-    }
+    //public void JumpPressed(InputAction.CallbackContext context)
+    //{
+    //    if (context.performed)
+    //    {
+    //        jumpPressed = true;
+    //    }
+    //    else if (context.canceled)
+    //    {
+    //        jumpPressed = false;
+    //    }
+    //}
 
     public void InteractButtonPressed(InputAction.CallbackContext context)
     {
