@@ -168,10 +168,10 @@ public class Player : MonoBehaviour
             }
         }
         */
-        if (!dialogue && playerInput)
-        {
-            //movePlayer();
-        }
+        //if (!dialogue && playerInput)
+        //{
+        //    //movePlayer();
+        //}
         //Debug.Log(playerInput);
         //Debug.Log(jumpAction.action.triggered);
     }

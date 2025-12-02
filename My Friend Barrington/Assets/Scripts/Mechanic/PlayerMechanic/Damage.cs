@@ -7,8 +7,7 @@ public class Damage : MonoBehaviour
 
     private void Start()
     {
-        GameObject obj = GameObject.Find(GeneralGameTags.GameManager);
-        gm = obj.GetComponent<GameManager>();
+        gm = gameObject.findGameManager();
     }
 
     // When player collide with damage object 
