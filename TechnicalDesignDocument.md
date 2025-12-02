@@ -34,15 +34,19 @@ Rigidbody:
 		
 Player Inspector Value Script: 
 
-	Speed Acceleration: 50
+	Speed Acceleration: 50 NEW 8 
 	
 	Speed Max: 10
 	
-	Ground Drag: 0 
+	Ground Drag: 0 NEW 2 
 	
-	Jump: 90
+	Jump: 90 NEW 5.6
 	
-	Jump Cooldown: 0.1 
+	Jump Cooldown: 0.1 NEW 0.5
+
+	Max Jump Timer 0.4
+
+	Jump Force Increase 0.39 
 	
 	In Air Boost: 0.75
 
@@ -52,7 +56,7 @@ Player Inspector Value Script:
 
 	Stop Distance: 4 
 
-	Hook Force: 25
+	Hook Force: 25  
 
 
 Player Code:
