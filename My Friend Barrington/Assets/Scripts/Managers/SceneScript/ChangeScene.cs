@@ -46,16 +46,8 @@ public class ChangeScene : MonoBehaviour
 
         player = gameObject.findPlayer();
         //Debug.Log(player);
-        if (player == null)
-        {
-            Debug.Log("No Player in Scene");
-            return;
-        }
-        else if (vm == null)
-        {
-            Debug.Log("No Video Manager in Scene");
-            return;
-        }
+        if (player == null) return;
+        if (vm == null) return;
         //cm.enabled = false;
     }
     private void Update()

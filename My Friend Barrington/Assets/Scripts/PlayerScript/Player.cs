@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     private float speedAcceleration;
     [SerializeField]
     private float speedMax;
-    public float groundDrag;
+    public float linearDrag;
+    public float gravity;
     public float jump, jumpCooldown;
     private bool isJump;
     private float jumpButtonHoldTimer;
@@ -69,32 +70,36 @@ public class Player : MonoBehaviour
     {
         // add new input system
         InputManager.GetInstance().jumpAction.action.started += jumpStart;
-        jumpAction.action.canceled += jumpEnd;
-        moveAction.action.canceled += stopPlayer;
+        InputManager.GetInstance().jumpAction.action.canceled += jumpEnd;
+        InputManager.GetInstance().moveAction.action.started += startPlayer;
+        InputManager.GetInstance().moveAction.action.canceled += stopPlayer;
         // Add Delegate section
-        playerAction += fixSpeed;
-        playerAction += movePlayer;
-        playerAction += isGroundRayCast;
-        playerAction += jumpForce;
+        InputManager.GetInstance().playerAction += fixSpeed;
+        InputManager.GetInstance().playerAction += movePlayer;
+        InputManager.GetInstance().playerAction += isGroundRayCast;
+        InputManager.GetInstance().playerAction += jumpForce;
+        InputManager.GetInstance().playerAction += playerAnimation;
         // Enable Actions
-        jumpAction.action.Enable();
-        moveAction.action.Enable();
+        InputManager.GetInstance().jumpAction.action.Enable();
+        InputManager.GetInstance().moveAction.action.Enable();
     }
 
     private void OnDisable()
     {
         // Remove new input system
-        jumpAction.action.started -= jumpStart;
-        moveAction.action.canceled -= jumpEnd;
-        moveAction.action.canceled -= stopPlayer;
+        InputManager.GetInstance().jumpAction.action.started -= jumpStart;
+        InputManager.GetInstance().jumpAction.action.canceled -= jumpEnd;
+        InputManager.GetInstance().moveAction.action.started -= startPlayer;
+        InputManager.GetInstance().moveAction.action.canceled -= stopPlayer;
         // Remove Delegate Section
-        playerAction -= fixSpeed;
-        playerAction -= movePlayer;
-        playerAction -= isGroundRayCast;
-        playerAction -= jumpForce;
+        InputManager.GetInstance().playerAction -= fixSpeed;
+        InputManager.GetInstance().playerAction -= movePlayer;
+        InputManager.GetInstance().playerAction -= isGroundRayCast;
+        InputManager.GetInstance().playerAction -= jumpForce;
+        InputManager.GetInstance().playerAction -= playerAnimation;
         // Disable Action
-        jumpAction.action.Disable();
-        moveAction.action.Disable();
+        InputManager.GetInstance().jumpAction.action.Disable();
+        InputManager.GetInstance().moveAction.action.Disable();
     }
     // Setting up values at start
     void Start()
@@ -107,12 +112,15 @@ public class Player : MonoBehaviour
         // Setting Up boolean
         rb.freezeRotation = true;
         playerInput = true;
-        rb.linearDamping = groundDrag;
+        rb.linearDamping = linearDrag;
+        // affect how fast player falls
+        Physics.gravity = new Vector3(0f, gravity, 0f);
     }
     private void FixedUpdate()
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
-        playerAction?.Invoke();
+        InputManager.GetInstance().playerAction?.Invoke();
+        //Debug.Log(isWalking);
     }
 
     // Player moving method
@@ -130,7 +138,7 @@ public class Player : MonoBehaviour
         }
 
         // Getting values from user input
-        Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
+        Vector2 moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
 
         // Player cannot Input, end
@@ -147,27 +155,29 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = true;
+            isWalking = true;
         }
         else if (playerDir < 0)
         {
             transform.rotation = Quaternion.Euler(0, 270, 0);
             dangerDectect.direction = false;
+            isWalking = true;
         }
 
         // Drag player
         currentSpeed = rb.linearVelocity.magnitude;
         speedText.text = "Current Speed: " + currentSpeed;
-
-        // Player walking Audio
-        AudioManager.instance.playPlayerWalking(isWalking);
-        anim.SetBool("PlayerWalk", isWalking);
-
+    }
+    private void startPlayer(InputAction.CallbackContext context)
+    {
+        isWalking = true;
     }
 
     private void stopPlayer(InputAction.CallbackContext context)
     {
         // reset player velocity
         rb.linearVelocity = Vector3.zero;
+        isWalking = false;
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
@@ -197,6 +207,7 @@ public class Player : MonoBehaviour
 
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, jump, rb.linearVelocity.z);
+
     }
 
     private void jumpForce()
@@ -210,7 +221,7 @@ public class Player : MonoBehaviour
         // apply force based on how long player pressed
         if (jumpButtonHoldTimer < maxJumpTimer)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpForceIncrease, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
         }
     }
 
@@ -224,6 +235,13 @@ public class Player : MonoBehaviour
             Vector3 limitLinearVelocity = getLinearVelocity.normalized * speedMax;
             rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
+    }
+
+    private void playerAnimation()
+    {
+        // Player walking Audio
+        AudioManager.instance.playPlayerWalking(isWalking);
+        anim.SetBool("PlayerWalk", isWalking);
     }
 
     private void isGroundRayCast()
