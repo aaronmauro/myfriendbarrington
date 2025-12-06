@@ -12,7 +12,7 @@ public class Bush : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             waves.inBush = true;
         }
@@ -32,7 +32,7 @@ public class Bush : MonoBehaviour
     //  When Player exits the bush collider
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             waves.inBush = false;
         }

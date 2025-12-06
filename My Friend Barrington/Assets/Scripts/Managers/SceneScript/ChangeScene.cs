@@ -31,22 +31,30 @@ public class ChangeScene : MonoBehaviour
     
     private void Start()
     {
+        //Debug.Log("Happy?");
         if (exitScreen)
         {
             cm.enabled = false;
         }
         // Setting
         changeScene = false;
-        GameObject vmFind = GameObject.Find("VideoManager");
-        GameObject playerFind = GameObject.Find("Player");
-        
-        if (vmFind != null)
+        //GameObject vmFind = GameObject.Find(GeneralGameTags.VideoManager);
+        //GameObject playerFind = GameObject.Find(GeneralGameTags.Player);
+
+        //Debug.Log(gameObject.findVideoManager());
+        vm = gameObject.findVideoManager();
+
+        player = gameObject.findPlayer();
+        //Debug.Log(player);
+        if (player == null)
         {
-            vm = vmFind.GetComponent<VideoManager>();
+            Debug.Log("No Player in Scene");
+            return;
         }
-        if (playerFind != null)
+        else if (vm == null)
         {
-            player = playerFind.GetComponent<Player>();
+            Debug.Log("No Video Manager in Scene");
+            return;
         }
         //cm.enabled = false;
     }
@@ -81,11 +89,14 @@ public class ChangeScene : MonoBehaviour
     // triggers scene change when player enters collider
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
+
             playVideo();
             //Invoke("changeSceneController", 5f);
             StartCoroutine(playVideo());
+            //Debug.Log(player);
+            //Debug.Log(player.playerInput);
             player.playerInput = false;
         }
     }

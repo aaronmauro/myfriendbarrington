@@ -186,7 +186,7 @@
                     "id": "d2581a9b-1d11-4566-b27d-b92aff5fabbc",
                     "path": "<Keyboard>/a",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": ";Keyboard&Mouse",
                     "action": "Move",
                     "isComposite": false,
@@ -1173,6 +1173,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "End",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "ButtonManager",
+            "id": "2c3be74b-e04d-412c-a602-1d9937ec9750",
+            "actions": [
+                {
+                    "name": "SkipVideo",
+                    "type": "Button",
+                    "id": "73eafa2f-8f6c-41a9-9733-9240fdf10bb0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6cd3beb0-2c15-4ac8-9b20-ee0740fd56ea",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "Hold(duration=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipVideo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

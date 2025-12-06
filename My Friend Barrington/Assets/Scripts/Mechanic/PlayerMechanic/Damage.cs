@@ -7,7 +7,7 @@ public class Damage : MonoBehaviour
 
     private void Start()
     {
-        GameObject obj = GameObject.Find("GameManager");
+        GameObject obj = GameObject.Find(GeneralGameTags.GameManager);
         gm = obj.GetComponent<GameManager>();
     }
 
@@ -16,7 +16,7 @@ public class Damage : MonoBehaviour
     {
         // If collision to player tag
      
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.isPlayer())
         {
             //GameManager gm = GetComponent<GameManager>();
             // back to spawn
@@ -29,7 +29,7 @@ public class Damage : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         // If collision stay with player
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.isPlayer())
         {
             // back to spawn
             //gm.backToSpawn = true;

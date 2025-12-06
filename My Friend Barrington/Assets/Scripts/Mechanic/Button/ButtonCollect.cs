@@ -11,10 +11,17 @@ public class ButtonCollect : MonoBehaviour
 
     public TMP_Text messageText;
 
+    void Start()
+    {
+        messageText = GameObject.Find("messageText").GetComponent<TMP_Text>(); // if our game is ever super laggy on start, this is why - DV
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player") && button != null)
+        if (other.gameObject.isPlayer() && button != null)
         {
+            // Play Coin Sound Here
+            //AudioManager.instance.playSFX("Coin");
             button.SetActive(false);
 
             buttonCount++;        // increases the global count

@@ -16,7 +16,7 @@ public class TextScript : MonoBehaviour
     void Start()
     {
         // Adding itself to TextManager list
-        GameObject tmFind = GameObject.Find("TextManager");
+        GameObject tmFind = GameObject.Find(GeneralGameTags.TextManager);
         tm = tmFind.GetComponent<TextManager>();
         tm.texts.Add(gameObject);
     }

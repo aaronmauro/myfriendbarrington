@@ -52,6 +52,21 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        // interesting lambda, learn something new! quick and easy
+        EndAction.action.Enable();
+        EndAction.action.performed += ctx =>
+        {
+            Application.Quit();
+            Debug.Log("Quit");
+        };
+    }
+    private void OnDisable()
+    {
+        EndAction.action.Disable();
+    }
+
     void Start()
     {
         // getting components
@@ -83,10 +98,10 @@ public class GameManager : MonoBehaviour
         
         moveRespawn();
         // Exit game
-        if (EndAction.action.triggered)
-        {
-            exitTheGame();
-        }
+        //if (EndAction.action.triggered)
+        //{
+        //    exitTheGame();
+        //}
 
         //Debug.Log(backToSpawn);
     }
@@ -102,17 +117,18 @@ public class GameManager : MonoBehaviour
 
     private void moveRespawn()
     {
-        if (player.isGround && player.moveRespawn && !dangerDetect)
+        //Debug.Log(player.moveRespawn);
+        if (player.isGround && !dangerDetect)
         {
             spawnPoints.transform.position = player.transform.position;
         }
     }
 
     // Method exit the game
-    public void exitTheGame()
-    {
-        Application.Quit();
+    //public void exitTheGame(InputAction.CallbackContext context)
+    //{
+    //    Application.Quit();
 
-        Debug.Log("Quit");
-    }
+    //    Debug.Log("Quit");
+    //}
 }

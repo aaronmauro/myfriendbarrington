@@ -51,7 +51,7 @@ public class VideoManager : MonoBehaviour
     {
         // Getting Component when starting game
         videoPlayer = GetComponent<VideoPlayer>();
-        GameObject buttonManager = GameObject.Find("ButtonManager");
+        GameObject buttonManager = GameObject.Find(GeneralGameTags.ButtonManager);
         bm = buttonManager.GetComponent<ButtonManager>();
 
         // Play video

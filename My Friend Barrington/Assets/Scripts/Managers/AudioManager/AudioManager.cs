@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField]
     public AudioClass[] playerSound, bgSound, SFXSound, NPCSound;
     [SerializeField]
     private AudioSource playerSFX, bgSFX, SFX, NPCSFX, playerWalkingSFX;

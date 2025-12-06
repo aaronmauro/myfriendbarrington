@@ -48,7 +48,7 @@ public class SoundWaves : MonoBehaviour
     void Start()
     {
         // Getting Compoennt
-        findPlayer = GameObject.Find("Player");
+        findPlayer = GameObject.Find(GeneralGameTags.Player);
         playerCollider = findPlayer.GetComponent<Collider>();
         player = findPlayer.GetComponent<Player>();
         inBush = false;
@@ -185,7 +185,7 @@ public class SoundWaves : MonoBehaviour
         else if (_soundWavesCollider.bounds.Intersects(playerCollider.bounds) && !inBush)
         {
             //Debug.Log("sound wave touched");
-            player.isPushed = true;
+            //player.isPushed = true;
             Physics.IgnoreCollision(playerCollider, _soundWavesCollider, false);
             //if (isRight)
             //{

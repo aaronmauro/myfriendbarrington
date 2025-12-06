@@ -55,7 +55,7 @@ public class Hook : MonoBehaviour
     {
         if (hasLatched) return;
 
-        if ((LayerMask.GetMask("Grapple") & 1 << other.gameObject.layer) > 0)
+        if ((LayerMask.GetMask(GeneralGameTags.Grapple) & 1 << other.gameObject.layer) > 0)
         {
             hasLatched = true;
             rigid.useGravity = false;

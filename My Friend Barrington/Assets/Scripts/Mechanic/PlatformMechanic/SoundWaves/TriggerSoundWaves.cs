@@ -9,7 +9,7 @@ public class TriggerSoundWaves : MonoBehaviour
     // Activate Sound Wave
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             waves.isRun = true;
         }

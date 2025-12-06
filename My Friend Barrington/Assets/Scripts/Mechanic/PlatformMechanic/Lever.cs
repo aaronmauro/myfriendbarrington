@@ -46,7 +46,7 @@ public class Lever : MonoBehaviour
 // When Player enters the lever collider
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             isTrigger = true;
         }
@@ -55,7 +55,7 @@ public class Lever : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.isPlayer())
         {
             isTrigger = false;
         }
