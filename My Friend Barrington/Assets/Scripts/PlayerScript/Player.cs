@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     private float speedAcceleration;
     [SerializeField]
     private float speedMax;
-    public float groundDrag;
+    public float linearDrag;
+    public float gravity;
     public float jump, jumpCooldown;
     private bool isJump;
     private float jumpButtonHoldTimer;
@@ -22,19 +23,12 @@ public class Player : MonoBehaviour
     private float maxJumpTimer;
     [SerializeField]
     private float jumpForceIncrease;
-    //[SerializeField]
-    //private float maxJumpingForce;
     public float inAirBoost;
     private float currentSpeed;
     [SerializeField]
     private TMP_Text speedText;
-    //public bool isPushed;
-    //private int pushedDirection;
-    //private float pushedSpeed;
 
     // Chekcing Inputs, player movement
-    private float verticalInput;
-    private float horizontalInput;
     public bool playerInput = true;
     private bool isWalking;
 
@@ -44,36 +38,26 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
     public LayerMask platformMask;
     public float playerHeight;
-    //public bool moveRespawn;
-
-    /*
-    // Invincibility
-    [Header("Invincible")]
-    public bool isInvincible;
-    [SerializeField]
-    private float invinicbleDuration;
-    private float invincibleTimer;
-    */
 
     // Getting components
     [Header("Components")]
     public Camera cam;
     [SerializeField]
     private Rigidbody rb;
-    [SerializeField]
-    private GameManager gm;
+    //[SerializeField]
+    //private GameManager gm;
     [SerializeField]
     private Animator anim;
     [SerializeField]
     private DangerDetect dangerDectect;
 
     // Input Action Map
-    public InputActionReference jumpAction;
-    public InputActionReference moveAction;
+    //public InputActionReference jumpAction;
+    //public InputActionReference moveAction;
 
     // Delegate
-    public delegate void PlayerAction();
-    private PlayerAction playerAction;
+    //public delegate void PlayerAction();
+    //private PlayerAction playerAction;
 
     // Dialogue
     static public bool dialogue = false;
@@ -84,32 +68,38 @@ public class Player : MonoBehaviour
     // Cool new trick
     private void OnEnable()
     {
-        //jumpAction.action.performed += jumping;
-        jumpAction.action.started += jumpStart;
-        jumpAction.action.canceled += jumpEnd;
-        moveAction.action.canceled += stopPlayer;
-        playerAction += fixSpeed;
-        playerAction += movePlayer;
-        playerAction += isGroundRayCast;
-        playerAction += jumpForce;
-        jumpAction.action.Enable();
-        moveAction.action.Enable();
-        //moveAction.action.performed += movePlayer;
+        // add new input system
+        InputManager.GetInstance().jumpAction.action.started += jumpStart;
+        InputManager.GetInstance().jumpAction.action.canceled += jumpEnd;
+        InputManager.GetInstance().moveAction.action.started += startPlayer;
+        InputManager.GetInstance().moveAction.action.canceled += stopPlayer;
+        // Add Delegate section
+        InputManager.GetInstance().playerAction += fixSpeed;
+        InputManager.GetInstance().playerAction += movePlayer;
+        InputManager.GetInstance().playerAction += isGroundRayCast;
+        InputManager.GetInstance().playerAction += jumpForce;
+        InputManager.GetInstance().playerAction += playerAnimation;
+        // Enable Actions
+        InputManager.GetInstance().jumpAction.action.Enable();
+        InputManager.GetInstance().moveAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        //jumpAction.action.performed -= jumping;
-        jumpAction.action.started -= jumpStart;
-        moveAction.action.canceled -= jumpEnd;
-        moveAction.action.canceled -= stopPlayer;
-        playerAction -= fixSpeed;
-        playerAction -= movePlayer;
-        playerAction -= isGroundRayCast;
-        playerAction -= jumpForce;
-        jumpAction.action.Disable();
-        moveAction.action.Disable();
-        //moveAction.action.performed -= movePlayer;
+        // Remove new input system
+        InputManager.GetInstance().jumpAction.action.started -= jumpStart;
+        InputManager.GetInstance().jumpAction.action.canceled -= jumpEnd;
+        InputManager.GetInstance().moveAction.action.started -= startPlayer;
+        InputManager.GetInstance().moveAction.action.canceled -= stopPlayer;
+        // Remove Delegate Section
+        InputManager.GetInstance().playerAction -= fixSpeed;
+        InputManager.GetInstance().playerAction -= movePlayer;
+        InputManager.GetInstance().playerAction -= isGroundRayCast;
+        InputManager.GetInstance().playerAction -= jumpForce;
+        InputManager.GetInstance().playerAction -= playerAnimation;
+        // Disable Action
+        InputManager.GetInstance().jumpAction.action.Disable();
+        InputManager.GetInstance().moveAction.action.Disable();
     }
     // Setting up values at start
     void Start()
@@ -117,69 +107,22 @@ public class Player : MonoBehaviour
         // Getting component from player
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        gm = gameObject.findGameManager();
+        //gm = gameObject.findGameManager(); i guess we are not using game manager for now?
 
         // Setting Up boolean
         rb.freezeRotation = true;
-        //isJump = true;
-        //isInvincible = false;
         playerInput = true;
-        rb.linearDamping = groundDrag;
-    }
-    private void Update()
-    {
-
-        // Calling methods
-        //if (playerInput)
-        //{
-        //    jumping();
-        //}
-        //Debug.Log(isWalking);
-        //Debug.Log(isGround);
-        //Debug.Log(isJump);
+        rb.linearDamping = linearDrag;
+        // affect how fast player falls
+        Physics.gravity = new Vector3(0f, gravity, 0f);
     }
     private void FixedUpdate()
     {
-        // Calling methods
-        //if (playerInput)
-        //{
-        //    movePlayer();
-        //    fixSpeed();
-        //}
-        //else
-        //{
-        //    freezePlayer();
-        //}
-
-        //movePlayer();
-        //fixSpeed();
-        // well atleast merge move and speed line inside one?
-        playerAction?.Invoke();
-
-        // Check invincible
-        /*
-        if (isInvincible)
-        {
-            gm.isInvincible = true;
-            invincibleTimer += Time.deltaTime;
-            if (invincibleTimer > invinicbleDuration)
-            {
-                gm.isInvincible = false;
-            }
-        }
-        */
-        if (!dialogue && playerInput)
-        {
-            //movePlayer();
-        }
-        //Debug.Log(playerInput);
-        //Debug.Log(jumpAction.action.triggered);
+        // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
+        InputManager.GetInstance().playerAction?.Invoke();
+        //Debug.Log(isWalking);
     }
-    // Update is called once per frame
-    //void Update()
-    //{
 
-    //}
     // Player moving method
     private void movePlayer()
     {
@@ -193,149 +136,94 @@ public class Player : MonoBehaviour
             freezePlayer();
             return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
         }
-        // Getting player pressing which button (w,a,s,d)
-        //verticalInput = Input.GetAxisRaw("Vertical"); // do not use .GetAxis, unlimited speed
-        //horizontalInput = Input.GetAxisRaw("Horizontal");
 
         // Getting values from user input
-        Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
+        Vector2 moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
-        //Debug.Log(moveInput.x);
 
         // Player cannot Input, end
         if (moveInput == Vector2.zero) return;
 
         // Player Movement
         rb.linearVelocity = playerMovement;
-        //if (isJump)
-        //{
-        //    isWalking = true;
-        //}
-
-        // Move player according to input direction and speed
-        //if (horizontalInput != 0/* && !isPushed*/)
-        //{
-        //    rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration);
-        //    // Play Foot Steps here
-        //}
-        //else if (horizontalInput != 0 && isPushed)
-        //{
-        //    //pushingPlayer();
-        //}
-        //else if (horizontalInput == 0 && isPushed) // this may break if we ever put in controller inputs due to drift - DV
-        //{
-        //    //pushingPlayer();
-        //}
 
         // Fianlly found something to fix when input is too small like controller and the face won't change :D
         float playerDir = Mathf.Sign(moveInput.x);
 
+        // Rotate player based on input
         if (playerDir > 0)
         {
             transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = true;
-            //dangerDectect.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            isWalking = true;
         }
         else if (playerDir < 0)
         {
             transform.rotation = Quaternion.Euler(0, 270, 0);
             dangerDectect.direction = false;
-            //dangerDectect.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            isWalking = true;
         }
 
         // Drag player
-
-        //if (isPushed)
-        //{
-        //    Invoke("pushedCooldown", 0.1f);
-        //}
-        // Player speed text field
         currentSpeed = rb.linearVelocity.magnitude;
         speedText.text = "Current Speed: " + currentSpeed;
-
-        //isGroundRayCast();
-
-        // Player walking Audio
-        AudioManager.instance.playPlayerWalking(isWalking);
-        anim.SetBool("PlayerWalk", isWalking);
-
+    }
+    private void startPlayer(InputAction.CallbackContext context)
+    {
+        isWalking = true;
     }
 
     private void stopPlayer(InputAction.CallbackContext context)
     {
+        // reset player velocity
         rb.linearVelocity = Vector3.zero;
-        //if (isGround && isPushed)
-        //{
-        //    Debug.Log("this is true");
-        //    rb.linearVelocity = Vector3.zero;
-        //    // Play Foot Foot Steps here
-
-        //}
-        //else if (!isGround)
-        //{
-        //    //rb.linearDamping = 0;
-        //    //rb.AddForce(new Vector3(horizontalInput, 0, /*verticalInput*/0) * speedAcceleration * inAirBoost);
-        //    //rb.linearVelocity = playerMovement * inAirBoost;
-        //}
+        isWalking = false;
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        // start pressing jump button
         jumping();
     }
 
     private void jumpEnd(InputAction.CallbackContext context)
     {
+        // end pressing jump button
         isJump = false;
     }
 
     private void jumping()
     {
         // Jump
-        //if (/*Input.GetKey(KeyCode.Space)*/jumpAction.action.triggered/* || Input.GetKey(KeyCode.W)*/)
-        //{
-        //}
+        // End code if not touching Ground
         if (!isGround) return;
-        //{
-        //    Debug.Log("stop jumping plz");
-        //    return;
-        //}
 
-        isJump = true;
-
-        jumpButtonHoldTimer = 0;
-
-        //float jumpInput = jumpAction.action.ReadValue<float>();
-        // Play Jumping Sound
-        //Debug.Log(jumpInput);
+        // play Audio
         AudioManager.instance.playPlayerSFX("PlatformJump");
+
+        // Turn on Bools
+        isJump = true;
+        jumpButtonHoldTimer = 0;
         isWalking = false;
 
+        // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, jump, rb.linearVelocity.z);
-        //rb.AddForce(transform.up * jump, ForceMode.Impulse);
-
-        //isGround = false;
-        //isJump = false;
-
-        //Invoke(nameof(jumpStatus), jumpCooldown); // cannot hold space now :<
 
     }
 
     private void jumpForce()
     {
+        // don't run the code if jump is not pressed
         if (!isJump) return;
 
+        // timer for how long player pressed the button
         jumpButtonHoldTimer += Time.deltaTime;
 
+        // apply force based on how long player pressed
         if (jumpButtonHoldTimer < maxJumpTimer)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpForceIncrease, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
         }
     }
-
-    //private void jumpStatus()
-    //{
-    //    isJump = true;
-    //}
 
     private void fixSpeed()
     {
@@ -348,73 +236,36 @@ public class Player : MonoBehaviour
             rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
     }
-    /*
-    public void isPushedDirection(int direction, float force)
-    {
-        pushedDirection = direction;
-        pushedSpeed = force;
-    }
-    */
 
-    //private void pushedCooldown()
-    //{
-    //    isPushed = false;
-    //}
+    private void playerAnimation()
+    {
+        // Player walking Audio
+        AudioManager.instance.playPlayerWalking(isWalking);
+        anim.SetBool("PlayerWalk", isWalking);
+    }
 
     private void isGroundRayCast()
     {
-        
         // Ground Check
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
-
-        /* infinite question mark why do did here -Eric :?
-        if (isGround)
-        {
-            moveRespawn = false;
-        }
-        else
-        {
-            moveRespawn = true;
-        }
-        */
     }
 
     public void pushingPlayer(Vector3 dir, float force)
     {
-        /*
-        if (pushedDirection == 0)
-        {
-            rb.AddForce(Vector3.right * pushedSpeed, ForceMode.Impulse);
-            
-        }
-        else if (pushedDirection == 1)
-        {
-            rb.AddForce(Vector3.left * pushedSpeed, ForceMode.Impulse);
-            //Invoke("pushedCooldown", 1f);
-        }
-        else if (pushedDirection == 2)
-        {
-            rb.AddForce(Vector3.up * pushedSpeed, ForceMode.Impulse);
-            //Invoke("pushedCooldown", 1f);
-        }
-        else if (pushedDirection == 3)
-        {
-            rb.AddForce(Vector3.down * pushedSpeed, ForceMode.Impulse);
-            //Invoke("pushedCooldown", 1f);
-        }
-        */
+        // Add force based on dirction and force given
         rb.AddForce(dir * force, ForceMode.Impulse);
-        //Invoke("pushedCooldown", 1f);
     }
 
     // Bubble stream floating method
     public void inBubbleStream(float floatForce)
     {
+        // Add force in bubble stream
         rb.AddForce(Vector3.up * floatForce, ForceMode.Acceleration);
     }
 
     public void freezePlayer()
     {
+        // Stop player from moving
         rb.linearVelocity = Vector3.zero;
         isWalking = false;
         AudioManager.instance.playPlayerWalking(isWalking);
