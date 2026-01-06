@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     // Input Action Map
     public InputActionReference jumpAction;
     public InputActionReference moveAction;
+    public InputActionReference hookAction;
     public delegate void PlayerAction();
     public PlayerAction playerAction;
 
