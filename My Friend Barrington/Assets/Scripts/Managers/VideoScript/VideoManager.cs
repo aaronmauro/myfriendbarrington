@@ -13,12 +13,10 @@ public class VideoManager : MonoBehaviour
     // Getting Looping video number
     [Header("Video Number")]
     //[SerializeField]
-    //public int[] videoToLoop;
     [HideInInspector]
     public bool loopVideo;
     [HideInInspector]
     public int videoCount;
-    //private int videoCountCheck;
     private int videoControlNumber;
     [HideInInspector]
     public bool afterLoopVideo;
@@ -37,15 +35,6 @@ public class VideoManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private ButtonManager bm;
 
-    // Testing
-    //[SerializeField]
-    //private bool forcePlay;
-
-    //private void Awake()
-    //{
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -57,7 +46,6 @@ public class VideoManager : MonoBehaviour
         // Play video
         playNextVideo = true;
         videoCount = 0;
-        //videoCountCheck = 0;
         videoControlNumber = 0;
     }
 
@@ -86,16 +74,10 @@ public class VideoManager : MonoBehaviour
                 loopVideo = false;
             }
         }
-        //Debug.Log(adsNumber);
-        //Debug.Log(ads1.Length);
-        //Debug.Log(isPauseVideo);
-        //Debug.Log(videoCount);
         // working later to break the video and straight to next one
         // Calling methods
-        //checkVideoLoop();
         checkVideoStatus();
-        //Debug.Log(Array.Find(ads2, x => x.isLoop == true));
-        //Debug.Log(ads1);
+
     }
     // Method to play ads1
     public void playVideo(string videoName)
@@ -112,7 +94,6 @@ public class VideoManager : MonoBehaviour
         // If the program cannot find it
         if (_v == null)
         {
-            //Debug.Log("Entered Wrong Name");
             // change scene when ran out in the list
             SceneManagerScript.instance.nextScene(nextSceneName[adsNumber]);
             adsNumber += 1;
@@ -163,19 +144,4 @@ public class VideoManager : MonoBehaviour
             afterLoopVideo = false;
         }
     }
-    /*
-    // Check if the video need to loop
-    private void checkVideoLoop()
-    {
-        // Check if loop video input same as current video 
-        for (int i = 0; i < videoToLoop.Length; i++)
-        {
-            if (videoToLoop[i] == videoCount)
-            {
-                loopVideo = true;
-                bm.buttonStatus = true;
-            }
-        }
-    }
-    */
 }

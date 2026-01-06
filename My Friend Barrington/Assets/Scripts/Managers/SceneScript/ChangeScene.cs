@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ChangeScene : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ChangeScene : MonoBehaviour
     private Player player;
     private void Awake()
     {
+        // move camera
         if (!exitScreen)
         {
             cm.enabled = false;
@@ -27,45 +29,39 @@ public class ChangeScene : MonoBehaviour
             return;
         }
     }
-    
-    
+
+    // enable and disable skip level
+    private void OnEnable()
+    {
+        InputManager.GetInstance().skipLevelAction.action.performed += skipLevel;
+        InputManager.GetInstance().skipLevelAction.action.Enable();
+    }
+    private void OnDisable()
+    {
+        InputManager.GetInstance().skipLevelAction.action.performed -= skipLevel;
+        InputManager.GetInstance().skipLevelAction.action.Disable();
+    }
+
     private void Start()
     {
-        //Debug.Log("Happy?");
         if (exitScreen)
         {
             cm.enabled = false;
         }
         // Setting
         changeScene = false;
-        //GameObject vmFind = GameObject.Find(GeneralGameTags.VideoManager);
-        //GameObject playerFind = GameObject.Find(GeneralGameTags.Player);
-
-        //Debug.Log(gameObject.findVideoManager());
         vm = gameObject.findVideoManager();
-
         player = gameObject.findPlayer();
-        //Debug.Log(player);
+        // if cannot find the gameObject
         if (player == null) return;
         if (vm == null) return;
-        //cm.enabled = false;
     }
     private void Update()
     {
         // Change Scene Script
-        //Debug.Log(player.playerInput);
         if (changeScene)
         {
             playVideo();
-            //Invoke("changeSceneController", 5f);
-            player.playerInput = false;
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            //Debug.Log("happy happy happy");
-            playVideo();
-            //Invoke("changeSceneController", 5f);
-            StartCoroutine(playVideo());
             player.playerInput = false;
         }
         if (vm == null)
@@ -77,22 +73,16 @@ public class ChangeScene : MonoBehaviour
             VideoManager.adsNumber = nextAds;
         }
     }
-    
     // triggers scene change when player enters collider
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.isPlayer())
         {
-
             playVideo();
-            //Invoke("changeSceneController", 5f);
             StartCoroutine(playVideo());
-            //Debug.Log(player);
-            //Debug.Log(player.playerInput);
             player.playerInput = false;
         }
     }
-
     // controls scene change
     private void changeSceneController()
     {
@@ -100,12 +90,6 @@ public class ChangeScene : MonoBehaviour
         SceneManagerScript.instance.nextScene(sceneName);
         changeScene = false;
     }
-
-    //public void buttonChangeScene(string name)
-    //{
-    //    SceneManagerScript.instance.nextScene(name);
-    //}
-
     // plays video before scene change
     private IEnumerator playVideo()
     {
@@ -113,13 +97,12 @@ public class ChangeScene : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManagerScript.instance.nextScene(sceneName);
     }
-
-    //  disables cinemachine after video
-    /*
-    private IEnumerator exitVideo()
+    // skip level
+    private void skipLevel(InputAction.CallbackContext context)
     {
-        cm.enabled = true;
-        yield return new WaitForSeconds(5f);
+        Debug.Log("why am i here");
+        playVideo();
+        StartCoroutine(playVideo());
+        player.playerInput = false;
     }
-    */
 }

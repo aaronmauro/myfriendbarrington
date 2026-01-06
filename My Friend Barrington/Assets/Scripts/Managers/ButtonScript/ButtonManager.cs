@@ -14,38 +14,13 @@ public class ButtonManager : MonoBehaviour
     public List<List<GameObject>> buttons = new List<List<GameObject>>();
     [SerializeField]
     private int totalAdsNumber;
+    public bool buttonStatus;
     // Getting Component
     [SerializeField]
     private VideoManager videoManager;
-
     public InputActionReference skipVideo;
-    //public delegate void ButtonStatusDelegate(ButtonManager buttonManager);
-    //ButtonStatusDelegate buttonStatusDelegate;
 
-    //[SerializeField]
-    //private bool ButtonStatus;
-    public bool buttonStatus;
-    //public bool _ButtonStatus
-    //{
-    //    get { return buttonStatus; }
-    //    set 
-    //    {
-    //        Debug.Log(value);
-    //        if (buttonStatus == value) 
-    //        {
-    //            Debug.Log("not happpy");
-    //            enableButton(false);
-    //            return;
-    //        }
-
-    //        buttonStatus = value;
-
-    //        // Enable or disable buttons based on buttonStatus
-    //        enableButton(true);
-    //        //enableButton();
-    //        //buttonStatusDelegate(this);
-    //    }
-    //}
+    // singleton this :>
     private void Awake()
     {
         if (instance == null)
@@ -59,7 +34,7 @@ public class ButtonManager : MonoBehaviour
         }
         addButton();
     }
-
+    // adding and removing skipping video methods
     private void OnEnable()
     {
         skipVideo.action.performed += skipVideoMethod;
@@ -75,25 +50,14 @@ public class ButtonManager : MonoBehaviour
     void Start()
     {
         buttonStatus = false;
-        //enableButton(false);
- 
         videoManager = gameObject.findVideoManager();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        // show and hide button
         enableButton(buttonStatus);
-        //Debug.Log(_ButtonStatus);
-        //Debug.Log(buttonStatus);
-        //if (skipVideo.action.triggered)
-        //{
-        //    //Debug.Log("happy happy happy");
-        //    //Debug.Log(VideoManager.adsNumber);
-        //    //Debug.Log(buttons[VideoManager.adsNumber].Count == 0);
-             
-        //}
     }
     // Changing Button active
     private void enableButton(bool isActive)
@@ -111,6 +75,7 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    // adding button on the list
     private void addButton()
     {
         // Initialize button lists for each advertisement number
@@ -124,6 +89,7 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
+    // button to skip video
     private void skipVideoMethod(InputAction.CallbackContext context)
     {
         if (VideoManager.adsNumber == 0)

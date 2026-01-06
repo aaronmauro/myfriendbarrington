@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
         // Application frame rate
         Application.targetFrameRate = gameFrameRate;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
-
     }
 
     private void OnEnable()
@@ -70,11 +69,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // getting components
-        // seeting up booleans
-        //backToSpawn = false;
-        //isInvincible = false;
-
-        //Debug.Log(backGroundAudio);
         if (backGroundAudio == "") // Why can't this bull null :<
         {
             AudioManager.instance.playBackgroundMusic(backGroundAudio);
@@ -89,32 +83,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if player trigger back to spawn
-        //if (backToSpawn && !isInvincible)
-        //{
-        //    // Respawn player
-        //    respawn();
-        //}
-        
+        // moving respawn point
         moveRespawn();
-        // Exit game
-        //if (EndAction.action.triggered)
-        //{
-        //    exitTheGame();
-        //}
-
-        //Debug.Log(backToSpawn);
     }
-
     // respawn player Method
     public void respawn()
     {
         player.transform.position = spawnPoints.transform.position;
         var playRg = player.GetComponent<Rigidbody>();
         playRg.linearVelocity = Vector3.zero;
-        //backToSpawn = false;
     }
-
+    // move respawn method
     private void moveRespawn()
     {
         //Debug.Log(player.moveRespawn);
@@ -123,12 +102,4 @@ public class GameManager : MonoBehaviour
             spawnPoints.transform.position = player.transform.position;
         }
     }
-
-    // Method exit the game
-    //public void exitTheGame(InputAction.CallbackContext context)
-    //{
-    //    Application.Quit();
-
-    //    Debug.Log("Quit");
-    //}
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// create my own class for store items
 [System.Serializable]
 public class AudioClass
 {
