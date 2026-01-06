@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput)), DefaultExecutionOrder(-1)]
 public class InputManager : MonoBehaviour
 {
     private Vector2 moveDirection = Vector2.zero;
@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     // Input Action Map
     public InputActionReference jumpAction;
     public InputActionReference moveAction;
-    public InputActionReference hookAction;
+    public InputActionReference skipLevelAction;
     public delegate void PlayerAction();
     public PlayerAction playerAction;
 

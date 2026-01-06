@@ -15,15 +15,14 @@ public class ButtonReturn : MonoBehaviour
 
     private void Awake()
     {
+        // finding button manager
         bm = GameObject.Find(GeneralGameTags.ButtonManager).GetComponent<ButtonManager>();
-        //ButtonManager.buttonStatusDelegate += onButtonPressed;
     }
     private void Start()
     {
         // Getting Compoenent
         GameObject videoManager = GameObject.Find(GeneralGameTags.VideoManager);
         vm = videoManager.GetComponent<VideoManager>();
-        //bm = FindObjectOfType<ButtonManager>();
         if (VideoManager.adsNumber == adsButton )
         {
             bm.buttons[adsButton].Add(gameObject);
@@ -31,7 +30,7 @@ public class ButtonReturn : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log(vm.videoCount);
+        // checking what video to show the buttons
         if (vm.videoCount > inputValues)
         {
             gameObject.SetActive(false);
@@ -50,10 +49,10 @@ public class ButtonReturn : MonoBehaviour
         vm.loopVideo = false;
         bm.buttonStatus = false;
         bm.buttons[adsButton].Remove(gameObject);
-        //Debug.Log(inputValues);
         gameObject.SetActive(false);
     }
 
+    // all the status when button the pressed - delay
     public void onButtonPressed(ButtonManager bm)
     {
         vm.videoCount = inputValues - 1;
@@ -61,7 +60,6 @@ public class ButtonReturn : MonoBehaviour
         vm.loopVideo = false;
         bm.buttonStatus = false;
         bm.buttons[adsButton].Remove(gameObject);
-        //Debug.Log(inputValues);
         gameObject.SetActive(false);
     }
 }
