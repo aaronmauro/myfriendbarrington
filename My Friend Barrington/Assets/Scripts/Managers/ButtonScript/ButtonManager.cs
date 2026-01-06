@@ -25,27 +25,27 @@ public class ButtonManager : MonoBehaviour
     //[SerializeField]
     //private bool ButtonStatus;
     public bool buttonStatus;
-    public bool _ButtonStatus
-    {
-        get { return buttonStatus; }
-        set 
-        {
-            Debug.Log(value);
-            if (buttonStatus == value) 
-            {
-                Debug.Log("not happpy");
-                enableButton(false);
-                return;
-            }
+    //public bool _ButtonStatus
+    //{
+    //    get { return buttonStatus; }
+    //    set 
+    //    {
+    //        Debug.Log(value);
+    //        if (buttonStatus == value) 
+    //        {
+    //            Debug.Log("not happpy");
+    //            enableButton(false);
+    //            return;
+    //        }
 
-            buttonStatus = value;
+    //        buttonStatus = value;
 
-            // Enable or disable buttons based on buttonStatus
-            enableButton(true);
-            //enableButton();
-            //buttonStatusDelegate(this);
-        }
-    }
+    //        // Enable or disable buttons based on buttonStatus
+    //        enableButton(true);
+    //        //enableButton();
+    //        //buttonStatusDelegate(this);
+    //    }
+    //}
     private void Awake()
     {
         if (instance == null)
@@ -84,6 +84,7 @@ public class ButtonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enableButton(buttonStatus);
         //Debug.Log(_ButtonStatus);
         //Debug.Log(buttonStatus);
         //if (skipVideo.action.triggered)
