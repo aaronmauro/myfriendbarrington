@@ -102,7 +102,7 @@ public class BasicInkExample : MonoBehaviour {
 	[SerializeField]
 	private Canvas canvas = null;
 
-	// UI Prefabs
+	// UI Prefabs+
 	[SerializeField]
 	private Text textPrefab = null;
 	[SerializeField]
