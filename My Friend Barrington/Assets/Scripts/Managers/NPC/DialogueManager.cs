@@ -1,41 +1,40 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
-using System.Runtime.CompilerServices;
-using System.Collections;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
-//using Ink.Parsed;
 
 public class DialogueManager : MonoBehaviour
 {
+
     [Header("Dialogue UI")]
 
     [SerializeField] private GameObject dialoguePanel;
-
     [SerializeField] private TextMeshProUGUI dialogueText;
-
-    private static DialogueManager instance;
 
     [Header("Choices UI")]
 
     [SerializeField] private GameObject[] choices;
-
     private TextMeshProUGUI[] choicesText;
 
     private Story currentStory;
 
     public bool dialogueIsPlaying { get; private set; }
 
+    private static DialogueManager instance;
+    public event System.Action OnDialogueEnd;
+    [SerializeField] private PlayerController playerController;
+
+
     private void Awake()
     {
+
         if (instance != null)
         {
-            Debug.LogWarning("Found more than one Dialogue Manager in the scene");
+            Debug.LogWarning("Found more than one Dialogue Manager in the scene ");
         }
         instance = this;
-
     }
 
     public static DialogueManager GetInstance()
@@ -49,13 +48,11 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
 
         choicesText = new TextMeshProUGUI[choices.Length];
-
         int index = 0;
-
         foreach (GameObject choice in choices)
         {
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-            index++; 
+            index++;
         }
     }
 
@@ -63,18 +60,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (!dialogueIsPlaying)
         {
-            return; 
+            return;
         }
-        /* commenting out, uncomment to fix - Eric
+
         if (InputManager.GetInstance().GetSubmitPressed())
         {
             ContinueStory();
         }
-        */
     }
-
-   
-
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
@@ -83,10 +76,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(true);
 
         ContinueStory();
-    
-
-
-
     }
 
     private IEnumerator ExitDialogueMode()
@@ -96,8 +85,10 @@ public class DialogueManager : MonoBehaviour
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
-    }
 
+        // Notify listeners that dialogue has ended
+        OnDialogueEnd?.Invoke();
+    }
     private void ContinueStory()
     {
         if (currentStory.canContinue)
@@ -110,15 +101,11 @@ public class DialogueManager : MonoBehaviour
         {
             StartCoroutine(ExitDialogueMode());
         }
-
     }
 
     private void DisplayChoices()
     {
-        // i don't know what list you are using (ink or collect system, so i just use collect for now and make the game to run - Eric
-        List<Choice> currentChoices = new List<Choice>();
-        currentChoices = currentStory.currentChoices;
-        //List<Choice> currentChoices = currentStory.currentChoices;
+        List<Choice> currentChoices = currentStory.currentChoices;
 
         if (currentChoices.Count > choices.Length)
         {
@@ -132,7 +119,6 @@ public class DialogueManager : MonoBehaviour
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
             index++;
-
         }
 
         for (int i = index; i < choices.Length; i++)
@@ -141,6 +127,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         StartCoroutine(SelectFirstChoice());
+
     }
 
     private IEnumerator SelectFirstChoice()
@@ -156,16 +143,4 @@ public class DialogueManager : MonoBehaviour
     }
 
 
-
 }
-
-
-
-// put this in player code 
-//private void FixedUpdate()
-//{
- //   if (DialogueManager.GetInstance().dialogueIsPlaying)
-   // {
-      //  return;
-  //  }
-//}
