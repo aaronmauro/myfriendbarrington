@@ -12,12 +12,6 @@ public class BubbleStream : MonoBehaviour
         bxCollider = GetComponent<BoxCollider>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // When the player is inside the bubble stream, apply a continuous upward force
     private void OnTriggerStay(Collider other)
     {
