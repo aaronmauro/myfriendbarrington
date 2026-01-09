@@ -11,7 +11,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private TextAsset inkJSON;
 
     private bool playerInRange;
-    private PlayerController playerController; // Reference to PlayerController
+    private Player player; // Reference to PlayerController
 
 
 
@@ -19,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
 
 private void Awake()
 {
-    playerController = FindObjectOfType<PlayerController>();
+  player = FindObjectOfType<Player>();
 
     // Check if DialogueManager exists before subscribing
     if (DialogueManager.GetInstance() != null)
@@ -34,30 +34,31 @@ private void Awake()
 
 private void Update()
 {
-    if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
-    {
-        visualCue.SetActive(true);
-        if (InputManager.GetInstance().GetInteractPressed())
+        if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-            playerController.LockMovement(true); // Lock player movement when dialogue starts
+            visualCue.SetActive(true);
+            if (InputManager.GetInstance().GetInteractPressed())
+            {
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                LockPlayerMovement(true); // Lock player movement when dialogue starts
+            }
+        }
+        else
+        {
+            visualCue.SetActive(false);
         }
     }
-    else
-    {
-        visualCue.SetActive(false);
-    }
-}
 
-public void LockMovement(bool isLocked)
-{
-    if (playerController != null)
+    private void LockPlayerMovement(bool isLocked)
     {
-        playerController.isInteracting = isLocked; // Correctly reference isInteracting
+        if (player != null)
+        {
+            player.playerInput = !isLocked; // Use playerInput from Player class
+            Player.dialogue = isLocked; // Set the static dialogue variable
+        }
     }
-}
 
-private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
 {
     if (collider.gameObject.tag == "Player")
     {
@@ -73,15 +74,12 @@ private void OnTriggerExit(Collider collider)
     }
 }
 
-private void UnlockPlayerMovement()
-{
-    if (playerController != null)
+    private void UnlockPlayerMovement()
     {
-        playerController.LockMovement(false);
+        LockPlayerMovement(false);
     }
-}
 
-private void OnDestroy()
+    private void OnDestroy()
 {
     if (DialogueManager.GetInstance() != null)
     {

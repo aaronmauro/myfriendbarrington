@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
 
     private static DialogueManager instance;
     public event System.Action OnDialogueEnd;
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] private Player player;
 
 
     private void Awake()
