@@ -60,14 +60,6 @@ public class Grapple : MonoBehaviour
         {
             DestroyHook();
         }
-
-
-
-        
-
-        
-
-
     }
 
     private void FixedUpdate()
@@ -121,8 +113,6 @@ public class Grapple : MonoBehaviour
         pulling = false;
         Destroy(hook.gameObject);
         hook = null;
-
-
     }
 
     private IEnumerator DestroyHookAfterLifetime()
@@ -131,9 +121,4 @@ public class Grapple : MonoBehaviour
 
         DestroyHook();
     }
-
-
-
-
-
 }
