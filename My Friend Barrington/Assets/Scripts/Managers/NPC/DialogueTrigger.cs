@@ -12,35 +12,53 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool playerInRange;
     private Player player; // Reference to PlayerController
+    private bool hasSubscribed = false;
 
 
 
 
 
-private void Awake()
-{
-  player = FindObjectOfType<Player>();
-
-    // Check if DialogueManager exists before subscribing
-    if (DialogueManager.GetInstance() != null)
+    private void Awake()
     {
-        DialogueManager.GetInstance().OnDialogueEnd += UnlockPlayerMovement;
+        player = FindObjectOfType<Player>();
     }
-    else
-    {
-        Debug.LogError("DialogueManager is missing from the scene! Make sure it's added.");
-    }
-}
 
-private void Update()
-{
+    private void Start()
+    {
+        // Try to subscribe in Start instead of Awake
+        TrySubscribeToDialogueManager();
+    }
+
+    private void TrySubscribeToDialogueManager()
+    {
+        if (!hasSubscribed && DialogueManager.GetInstance() != null)
+        {
+            DialogueManager.GetInstance().OnDialogueEnd += UnlockPlayerMovement;
+            hasSubscribed = true;
+        }
+    }
+
+
+    private void Update()
+    {
+        // Make sure DialogueManager exists before trying to use it
+        if (DialogueManager.GetInstance() == null)
+        {
+            // Try to subscribe if we haven't yet
+            if (!hasSubscribed)
+            {
+                TrySubscribeToDialogueManager();
+            }
+            return;
+        }
+
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed())
             {
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-                LockPlayerMovement(true); // Lock player movement when dialogue starts
+                LockPlayerMovement(true);
             }
         }
         else
@@ -59,12 +77,16 @@ private void Update()
     }
 
     private void OnTriggerEnter(Collider collider)
-{
-    if (collider.gameObject.tag == "Player")
     {
-        playerInRange = true;
+        if (collider.gameObject.tag == "Player") 
+        {
+            playerInRange = true;
+
+        }
+
+       
+        
     }
-}
 
 private void OnTriggerExit(Collider collider)
 {

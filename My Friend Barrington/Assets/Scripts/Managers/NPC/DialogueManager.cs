@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -113,11 +114,20 @@ public class DialogueManager : MonoBehaviour
         }
 
         int index = 0;
-
         foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
+
+            // Automatically hook up button to call MakeChoice
+            int choiceIndex = index; // Capture index for lambda
+            Button button = choices[index].GetComponent<Button>();
+            if (button != null)
+            {
+                button.onClick.RemoveAllListeners(); // Clear old listeners
+                button.onClick.AddListener(() => MakeChoice(choiceIndex));
+            }
+
             index++;
         }
 
@@ -127,7 +137,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         StartCoroutine(SelectFirstChoice());
-
     }
 
     private IEnumerator SelectFirstChoice()
@@ -139,8 +148,15 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        currentStory.ChooseChoiceIndex(choiceIndex);
+        if (currentStory != null)
+        {
+            currentStory.ChooseChoiceIndex(choiceIndex);
+            ContinueStory(); // Important: Continue the story after making a choice
+        }
+        else
+        {
+            Debug.LogError("Cannot make choice - currentStory is null!");
+        }
     }
-
 
 }

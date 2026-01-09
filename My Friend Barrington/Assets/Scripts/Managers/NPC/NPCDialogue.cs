@@ -3,75 +3,91 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class NPCDialogue : MonoBehaviour
 {
     public GameObject dialoguePanel;
-    public Text dialogueText;
+    public TextMeshProUGUI dialogueText;
     public string[] dialogue;
     private int index;
-
     public GameObject contButton;
     public float wordSpeed;
     public bool playerIsClose;
 
-
     private void Start()
     {
-
-        if (dialoguePanel.activeInHierarchy)
+        // Make sure dialogue panel starts hidden
+        if (dialoguePanel != null)
         {
-            zeroText();
-        }
-        else
-        {
-            dialoguePanel.SetActive(true);
-            StartCoroutine(Typing());
-        }
-        if (dialogueText.text == dialogue[index])
-        {
-            contButton.SetActive(true);
+            dialoguePanel.SetActive(false);
         }
 
+        // Hide continue button at start
+        if (contButton != null)
+        {
+            contButton.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.T)) //&& playerIsClose)
+        if (Input.GetKeyDown(KeyCode.E) && playerIsClose)
         {
-            if (dialoguePanel.activeInHierarchy)
+            if (dialoguePanel != null && dialoguePanel.activeInHierarchy)
             {
                 zeroText();
             }
             else
             {
-                dialoguePanel.SetActive(true);
-                StartCoroutine(Typing());
+                if (dialoguePanel != null)
+                {
+                    dialoguePanel.SetActive(true);
+                    StartCoroutine(Typing());
+                }
             }
         }
 
-        if (dialogueText.text == dialogue[index])
+        // Check if current dialogue is fully typed
+        if (dialogueText != null && dialogue != null && index < dialogue.Length)
         {
-            contButton.SetActive(true);
+            if (dialogueText.text == dialogue[index])
+            {
+                if (contButton != null)
+                {
+                    contButton.SetActive(true);
+                }
+            }
         }
-
     }
-
 
     public void zeroText()
     {
-        dialogueText.text = "";
+        if (dialogueText != null)
+        {
+            dialogueText.text = "";
+        }
         index = 0;
-        dialoguePanel.SetActive(false);
 
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
 
-    }
+        if (contButton != null)
+        {
+            contButton.SetActive(false);
+        }
+    } // <-- CLOSE zeroText() here!
 
+    // Typing() should be its own separate method, not inside zeroText()
     IEnumerator Typing()
     {
+        if (dialogue == null || index >= dialogue.Length || dialogueText == null)
+        {
+            yield break;
+        }
+
         foreach (char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
@@ -81,14 +97,19 @@ public class NPCDialogue : MonoBehaviour
 
     public void NextLine()
     {
-        contButton.SetActive(false);
+        if (contButton != null)
+        {
+            contButton.SetActive(false);
+        }
 
-        if (index < dialogue.Length - 1)
+        if (dialogue != null && index < dialogue.Length - 1)
         {
             index++;
-            dialogueText.text = "";
+            if (dialogueText != null)
+            {
+                dialogueText.text = "";
+            }
             StartCoroutine(Typing());
-
         }
         else
         {
@@ -96,8 +117,6 @@ public class NPCDialogue : MonoBehaviour
             SceneManager.LoadSceneAsync(8);
         }
     }
-
-
 
     private void OnTriggerEnter(Collider other)
     {
