@@ -78,7 +78,28 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
+    // Called when continue button is clicked
+    public void OnContinueButtonClicked()
+    {
+        Debug.Log("Continue button clicked");
 
+        if (currentStory == null)
+        {
+            Debug.LogError("Current story is null!");
+            return;
+        }
+
+        if (currentStory.canContinue)
+        {
+            // Continue to next line
+            ContinueStory();
+        }
+        else
+        {
+            // End dialogue
+            StartCoroutine(ExitDialogueMode());
+        }
+    }
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         Debug.Log("=== EnterDialogueMode called ===");
@@ -227,34 +248,31 @@ public class DialogueManager : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+
+        if (choices != null && choices.Length > 0 && choices[0] != null && choices[0].activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        }
     }
 
     public void MakeChoice(int choiceIndex)
     {
-        if (currentStory != null && choiceIndex < currentStory.currentChoices.Count)
-        {
-            currentStory.ChooseChoiceIndex(choiceIndex);
-            ContinueStory();
-        }
-        else
-        {
-            Debug.LogError($"Cannot make choice - index {choiceIndex} out of range or story is null!");
-        }
-    }
+        Debug.Log($"MakeChoice called with index: {choiceIndex}");
+        Debug.Log($"Available choices: {currentStory.currentChoices.Count}");
 
-    // Called when continue button is clicked
-    public void OnContinueButtonClicked()
-    {
-        if (currentStory.canContinue)
+        if (currentStory == null)
         {
-            // Continue to next line
-            ContinueStory();
+            Debug.LogError("Cannot make choice - currentStory is null!");
+            return;
         }
-        else
+
+        if (choiceIndex < 0 || choiceIndex >= currentStory.currentChoices.Count)
         {
-            // End dialogue
-            StartCoroutine(ExitDialogueMode());
+            Debug.LogError($"Choice index {choiceIndex} is out of range! Available: {currentStory.currentChoices.Count}");
+            return;
         }
+
+        currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
     }
 }

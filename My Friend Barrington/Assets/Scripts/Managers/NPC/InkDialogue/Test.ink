@@ -1,12 +1,13 @@
+-> main
+
 === main ===
-Hello! This is a test.
 Which pokemon do you choose?
-+ [Charmander]
+* [Charmander]
     You chose Charmander!
     -> END
-+ [Bulbasaur]
+* [Bulbasaur]
     You chose Bulbasaur!
     -> END
-+ [Squirtle]
+* [Squirtle]
     You chose Squirtle!
     -> END
