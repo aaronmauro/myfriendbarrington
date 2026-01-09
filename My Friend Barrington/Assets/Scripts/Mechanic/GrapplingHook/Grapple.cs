@@ -121,4 +121,10 @@ public class Grapple : MonoBehaviour
 
         DestroyHook();
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position,stopDistance);
+    }
 }
