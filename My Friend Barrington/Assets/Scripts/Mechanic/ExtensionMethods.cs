@@ -14,14 +14,14 @@ public static class ExtensionMethods
         GameObject findGameManagerObject = GameObject.Find(GeneralGameTags.GameManager);
         if (findGameManagerObject == null)
         {
-            Debug.Log("Cannot find" + GeneralGameTags.GameManager);
+            //Debug.Log("Cannot find" + GeneralGameTags.GameManager);
             return null;
         }
 
         GameManager gm = findGameManagerObject.GetComponent<GameManager>();
         if (gm == null)
         {
-            Debug.Log("Cannot find Script" + GeneralGameTags.GameManager);
+           // Debug.Log("Cannot find Script" + GeneralGameTags.GameManager);
             return null;
         }
 
@@ -33,14 +33,14 @@ public static class ExtensionMethods
         GameObject findGameObject = GameObject.Find(GeneralGameTags.VideoManager);
         if (findGameObject == null)
         {
-            Debug.Log("Cannot find" + GeneralGameTags.VideoManager);
+           // Debug.Log("Cannot find" + GeneralGameTags.VideoManager);
             return null;
         }
 
         VideoManager vm = findGameObject.GetComponent<VideoManager>();
         if (vm == null)
         {
-            Debug.Log("Cannot find Script" + GeneralGameTags.VideoManager);
+           // Debug.Log("Cannot find Script" + GeneralGameTags.VideoManager);
             return null;
         }
 
@@ -52,14 +52,14 @@ public static class ExtensionMethods
         GameObject findPlayerObject = GameObject.Find(GeneralGameTags.Player);
         if (findPlayerObject == null)
         {
-            Debug.Log("Cannot find" + GeneralGameTags.Player);
+            //Debug.Log("Cannot find" + GeneralGameTags.Player);
             return null;
         }
 
         Player player = findPlayerObject.GetComponent<Player>();
         if (player == null)
         {
-            Debug.Log("Cannot find Script" + GeneralGameTags.Player);
+            //Debug.Log("Cannot find Script" + GeneralGameTags.Player);
             return null;
         }
         //Debug.Log()

@@ -41,10 +41,8 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        // Make sure DialogueManager exists before trying to use it
         if (DialogueManager.GetInstance() == null)
         {
-            // Try to subscribe if we haven't yet
             if (!hasSubscribed)
             {
                 TrySubscribeToDialogueManager();
@@ -55,8 +53,11 @@ public class DialogueTrigger : MonoBehaviour
         if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
-            if (InputManager.GetInstance().GetInteractPressed())
+
+            // Try direct input check
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("Starting dialogue from trigger!");
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
                 LockPlayerMovement(true);
             }

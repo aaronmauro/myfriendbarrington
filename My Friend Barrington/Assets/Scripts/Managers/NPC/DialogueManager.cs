@@ -8,32 +8,29 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-
     [Header("Dialogue UI")]
-
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
 
     [Header("Choices UI")]
-
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    private Story currentStory;
+    [Header("Continue Button")]
+    [SerializeField] private GameObject continueButton;
 
+    private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
     private static DialogueManager instance;
     public event System.Action OnDialogueEnd;
     [SerializeField] private Player player;
 
-
     private void Awake()
     {
-
         if (instance != null)
         {
-            Debug.LogWarning("Found more than one Dialogue Manager in the scene ");
+            Debug.LogWarning("Found more than one Dialogue Manager in the scene");
         }
         instance = this;
     }
@@ -55,6 +52,17 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
         }
+
+        // Set up continue button
+        if (continueButton != null)
+        {
+            continueButton.SetActive(false);
+            Button btn = continueButton.GetComponent<Button>();
+            if (btn != null)
+            {
+                btn.onClick.AddListener(OnContinueButtonClicked);
+            }
+        }
     }
 
     private void Update()
@@ -64,7 +72,8 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (InputManager.GetInstance().GetSubmitPressed())
+        // Allow Space to continue when there are no choices
+        if (Input.GetKeyDown(KeyCode.Space) && currentStory.currentChoices.Count == 0)
         {
             ContinueStory();
         }
@@ -72,9 +81,15 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)
     {
+        Debug.Log("=== EnterDialogueMode called ===");
+        Debug.Log("inkJSON: " + (inkJSON != null ? inkJSON.name : "NULL"));
+
         currentStory = new Story(inkJSON.text);
+        Debug.Log("Story created. Can continue: " + currentStory.canContinue);
+
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+        Debug.Log("Panel activated");
 
         ContinueStory();
     }
@@ -87,19 +102,26 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
 
-        // Notify listeners that dialogue has ended
         OnDialogueEnd?.Invoke();
     }
+
     private void ContinueStory()
     {
+        Debug.Log("=== ContinueStory called ===");
+        Debug.Log("Can continue: " + currentStory.canContinue);
+
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
+            string text = currentStory.Continue();
+            Debug.Log("Story text: " + text);
+            dialogueText.text = text;
 
+            Debug.Log("Current choices count: " + currentStory.currentChoices.Count);
             DisplayChoices();
         }
         else
         {
+            Debug.Log("Story cannot continue - exiting");
             StartCoroutine(ExitDialogueMode());
         }
     }
@@ -108,35 +130,97 @@ public class DialogueManager : MonoBehaviour
     {
         List<Choice> currentChoices = currentStory.currentChoices;
 
-        if (currentChoices.Count > choices.Length)
+        // If there are choices, show them and hide continue button
+        if (currentChoices.Count > 0)
         {
-            Debug.LogError("More choices were given than the UI can support. Number of choices given:" + currentChoices.Count);
-        }
-
-        int index = 0;
-        foreach (Choice choice in currentChoices)
-        {
-            choices[index].gameObject.SetActive(true);
-            choicesText[index].text = choice.text;
-
-            // Automatically hook up button to call MakeChoice
-            int choiceIndex = index; // Capture index for lambda
-            Button button = choices[index].GetComponent<Button>();
-            if (button != null)
+            if (continueButton != null)
             {
-                button.onClick.RemoveAllListeners(); // Clear old listeners
-                button.onClick.AddListener(() => MakeChoice(choiceIndex));
+                continueButton.SetActive(false);
             }
 
-            index++;
-        }
+            if (currentChoices.Count > choices.Length)
+            {
+                Debug.LogError("More choices than UI supports: " + currentChoices.Count);
+            }
 
-        for (int i = index; i < choices.Length; i++)
+            int index = 0;
+            foreach (Choice choice in currentChoices)
+            {
+                if (index >= choices.Length)
+                    break;
+
+                if (choices[index] != null)
+                {
+                    choices[index].gameObject.SetActive(true);
+
+                    if (choicesText[index] != null)
+                    {
+                        choicesText[index].text = choice.text;
+                    }
+
+                    int choiceIndex = index;
+                    Button button = choices[index].GetComponent<Button>();
+                    if (button != null)
+                    {
+                        button.onClick.RemoveAllListeners();
+                        button.onClick.AddListener(() => MakeChoice(choiceIndex));
+                    }
+                }
+
+                index++;
+            }
+
+            // Hide unused choice buttons
+            for (int i = index; i < choices.Length; i++)
+            {
+                if (choices[i] != null)
+                {
+                    choices[i].gameObject.SetActive(false);
+                }
+            }
+
+            StartCoroutine(SelectFirstChoice());
+        }
+        else
         {
-            choices[i].gameObject.SetActive(false);
-        }
+            // No choices - hide all choice buttons
+            HideAllChoices();
 
-        StartCoroutine(SelectFirstChoice());
+            if (currentStory.canContinue)
+            {
+                // More dialogue - show continue button
+                if (continueButton != null)
+                {
+                    continueButton.SetActive(true);
+                    TextMeshProUGUI btnText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+                    if (btnText != null)
+                    {
+                        btnText.text = "Continue";
+                    }
+                }
+            }
+            else
+            {
+                // Story ended - show close button
+                if (continueButton != null)
+                {
+                    continueButton.SetActive(true);
+                    TextMeshProUGUI btnText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+                    if (btnText != null)
+                    {
+                        btnText.text = "Close";
+                    }
+                }
+            }
+        }
+    }
+
+    private void HideAllChoices()
+    {
+        foreach (GameObject choice in choices)
+        {
+            choice.SetActive(false);
+        }
     }
 
     private IEnumerator SelectFirstChoice()
@@ -148,15 +232,29 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)
     {
-        if (currentStory != null)
+        if (currentStory != null && choiceIndex < currentStory.currentChoices.Count)
         {
             currentStory.ChooseChoiceIndex(choiceIndex);
-            ContinueStory(); // Important: Continue the story after making a choice
+            ContinueStory();
         }
         else
         {
-            Debug.LogError("Cannot make choice - currentStory is null!");
+            Debug.LogError($"Cannot make choice - index {choiceIndex} out of range or story is null!");
         }
     }
 
+    // Called when continue button is clicked
+    public void OnContinueButtonClicked()
+    {
+        if (currentStory.canContinue)
+        {
+            // Continue to next line
+            ContinueStory();
+        }
+        else
+        {
+            // End dialogue
+            StartCoroutine(ExitDialogueMode());
+        }
+    }
 }

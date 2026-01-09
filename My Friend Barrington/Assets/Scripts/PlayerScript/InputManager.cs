@@ -16,6 +16,8 @@ public class InputManager : MonoBehaviour
     public InputActionReference jumpAction;
     public InputActionReference moveAction;
     public InputActionReference skipLevelAction;
+    public InputActionReference interactAction;
+
     public delegate void PlayerAction();
     public PlayerAction playerAction;
 
@@ -65,8 +67,9 @@ public class InputManager : MonoBehaviour
     //    }
     //}
 
-    public void InteractButtonPressed(InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
+        Debug.Log("OnInteract called! Phase: " + context.phase); // Add this line
         if (context.performed)
         {
             interactPressed = true;
@@ -110,7 +113,7 @@ public class InputManager : MonoBehaviour
 
     public bool GetSubmitPressed()
     {
-        bool result = interactPressed;
+        bool result = submitPressed;
         interactPressed = false;
         return result;
     }
