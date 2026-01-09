@@ -11,6 +11,8 @@ public class Grapple : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform shootTransform;
     [SerializeField] float maxHookSpeed = 20f;
+    private float forceTimer;
+    [SerializeField] private float forceIncreaseTime = 1.5f;
     private bool applyForce;
 
     private GrapplePoint[] grapplePoints;
@@ -75,15 +77,24 @@ public class Grapple : MonoBehaviour
         else
         {
             rigid.AddForce((hook.transform.position - transform.position).normalized * pullSpeed, ForceMode.VelocityChange);
-            if (player.isRight /*&& !applyForce*/)
+            if (player.isRight && !applyForce)
             {
                 rigid.AddForce(Vector3.right * 2f, ForceMode.Impulse);
-                //applyForce = true;
+                forceTimer += Time.deltaTime;
+                //Debug.Log(forceTimer);
+                if (forceTimer >= forceIncreaseTime)
+                {
+                    applyForce = true;
+                }
             }
-            else if (!player.isRight /*&& !applyForce*/)
+            else if (!player.isRight && !applyForce)
             {
                 rigid.AddForce(-Vector3.right * 2f, ForceMode.Impulse);
-                //applyForce = true;
+                forceTimer += Time.deltaTime;
+                if (forceTimer >= forceIncreaseTime)
+                {
+                    applyForce = true;
+                }
             }
             fixSpeed();
         }
@@ -125,6 +136,7 @@ public class Grapple : MonoBehaviour
 
         pulling = false;
         applyForce = false;
+        forceTimer = 0f;
         Destroy(hook.gameObject);
         hook = null;
     }
