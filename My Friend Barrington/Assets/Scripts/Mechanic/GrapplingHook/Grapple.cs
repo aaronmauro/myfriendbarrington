@@ -11,12 +11,14 @@ public class Grapple : MonoBehaviour
     [SerializeField] GameObject hookPrefab;
     [SerializeField] Transform shootTransform;
     [SerializeField] float maxHookSpeed = 20f;
+    private bool applyForce;
 
     private GrapplePoint[] grapplePoints;
 
     Hook hook;
     bool pulling;
     Rigidbody rigid;
+    Player player;
 
     public InputActionReference hookAction;
 
@@ -36,6 +38,7 @@ public class Grapple : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         pulling = false;
         grapplePoints = FindObjectsOfType<GrapplePoint>();
+        player = gameObject.findPlayer();
     }
 
 
@@ -72,6 +75,16 @@ public class Grapple : MonoBehaviour
         else
         {
             rigid.AddForce((hook.transform.position - transform.position).normalized * pullSpeed, ForceMode.VelocityChange);
+            if (player.isRight /*&& !applyForce*/)
+            {
+                rigid.AddForce(Vector3.right * 2f, ForceMode.Impulse);
+                //applyForce = true;
+            }
+            else if (!player.isRight /*&& !applyForce*/)
+            {
+                rigid.AddForce(-Vector3.right * 2f, ForceMode.Impulse);
+                //applyForce = true;
+            }
             fixSpeed();
         }
     }
@@ -111,6 +124,7 @@ public class Grapple : MonoBehaviour
         if (hook == null) return;
 
         pulling = false;
+        applyForce = false;
         Destroy(hook.gameObject);
         hook = null;
     }

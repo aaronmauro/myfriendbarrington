@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     // Chekcing Inputs, player movement
     public bool playerInput = true;
     private bool isWalking;
+    public bool isRight;
 
     // Checking ground
     [Header("GroundCheck")]
@@ -50,14 +51,6 @@ public class Player : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private DangerDetect dangerDectect;
-
-    // Input Action Map
-    //public InputActionReference jumpAction;
-    //public InputActionReference moveAction;
-
-    // Delegate
-    //public delegate void PlayerAction();
-    //private PlayerAction playerAction;
 
     // Dialogue
     static public bool dialogue = false;
@@ -79,6 +72,7 @@ public class Player : MonoBehaviour
         InputManager.GetInstance().playerAction += isGroundRayCast;
         InputManager.GetInstance().playerAction += jumpForce;
         InputManager.GetInstance().playerAction += playerAnimation;
+        InputManager.GetInstance().playerAction += playerRotation;
         // Enable Actions
         InputManager.GetInstance().jumpAction.action.Enable();
         InputManager.GetInstance().moveAction.action.Enable();
@@ -97,6 +91,7 @@ public class Player : MonoBehaviour
         InputManager.GetInstance().playerAction -= isGroundRayCast;
         InputManager.GetInstance().playerAction -= jumpForce;
         InputManager.GetInstance().playerAction -= playerAnimation;
+        InputManager.GetInstance().playerAction -= playerRotation;
         // Disable Action
         InputManager.GetInstance().jumpAction.action.Disable();
         InputManager.GetInstance().moveAction.action.Disable();
@@ -120,7 +115,6 @@ public class Player : MonoBehaviour
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
         InputManager.GetInstance().playerAction?.Invoke();
-        //Debug.Log(isWalking);
     }
 
     // Player moving method
@@ -153,14 +147,12 @@ public class Player : MonoBehaviour
         // Rotate player based on input
         if (playerDir > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            dangerDectect.direction = true;
+            isRight = true;
             isWalking = true;
         }
         else if (playerDir < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 270, 0);
-            dangerDectect.direction = false;
+            isRight = false;
             isWalking = true;
         }
 
@@ -272,7 +264,19 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerWalk", isWalking);
     }
 
-
+    public void playerRotation()
+    {
+        if (isRight)
+        {
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+            dangerDectect.direction = true;
+        }
+        else if (!isRight)
+        {
+            transform.rotation = Quaternion.Euler(0, 270, 0);
+            dangerDectect.direction = false;
+        }
+    }
     // Gizmo to show ground check raycast
     private void OnDrawGizmos()
     {
