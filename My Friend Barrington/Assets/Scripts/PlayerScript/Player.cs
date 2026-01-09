@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     // This is the player script
     // Setting serializable field for editor to edit in inspector
     [Header("Movement")]
+    private NewMonoBehaviourScript currentPlatform;
     [SerializeField]
     private float speedAcceleration;
     [SerializeField]
@@ -121,6 +122,11 @@ public class Player : MonoBehaviour
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
         InputManager.GetInstance().playerAction?.Invoke();
         //Debug.Log(isWalking);
+
+        if (isGround && currentPlatform != null)
+        {
+            rb.MovePosition(rb.position + currentPlatform.PlatformDelta);
+        }    
     }
 
     // Player moving method
@@ -278,5 +284,16 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = gizmoColour;
         Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentPlatform = collision.gameObject.GetComponent<NewMonoBehaviourScript>();
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<NewMonoBehaviourScript>())
+            currentPlatform = null;
+
     }
 }
