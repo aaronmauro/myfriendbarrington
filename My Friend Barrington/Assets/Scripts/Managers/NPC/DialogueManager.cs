@@ -22,6 +22,10 @@ public class DialogueManager : MonoBehaviour
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
+    private Coroutine selectFirstChoiceCoroutine;
+
+    private bool isProcessingChoice = false;
+
     private static DialogueManager instance;
     public event System.Action OnDialogueEnd;
     [SerializeField] private Player player;
@@ -114,6 +118,21 @@ public class DialogueManager : MonoBehaviour
 
         ContinueStory();
     }
+    private IEnumerator SelectFirstChoice()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+
+        if (currentStory != null &&
+            currentStory.currentChoices.Count > 0 &&
+            choices != null &&
+            choices.Length > 0 &&
+            choices[0] != null &&
+            choices[0].activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        }
+    }
 
     private IEnumerator ExitDialogueMode()
     {
@@ -146,6 +165,7 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(ExitDialogueMode());
         }
     }
+
 
     private void DisplayChoices()
     {
@@ -181,10 +201,12 @@ public class DialogueManager : MonoBehaviour
 
                     int choiceIndex = index;
                     Button button = choices[index].GetComponent<Button>();
+
                     if (button != null)
                     {
                         button.onClick.RemoveAllListeners();
                         button.onClick.AddListener(() => MakeChoice(choiceIndex));
+                        button.interactable = true;
                     }
                 }
 
@@ -200,7 +222,12 @@ public class DialogueManager : MonoBehaviour
                 }
             }
 
-            StartCoroutine(SelectFirstChoice());
+            if (selectFirstChoiceCoroutine != null)
+            {
+                StopCoroutine(selectFirstChoiceCoroutine);
+            }
+
+            selectFirstChoiceCoroutine = StartCoroutine(SelectFirstChoice());
         }
         else
         {
@@ -214,6 +241,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     continueButton.SetActive(true);
                     TextMeshProUGUI btnText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+
                     if (btnText != null)
                     {
                         btnText.text = "Continue";
@@ -227,6 +255,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     continueButton.SetActive(true);
                     TextMeshProUGUI btnText = continueButton.GetComponentInChildren<TextMeshProUGUI>();
+
                     if (btnText != null)
                     {
                         btnText.text = "Close";
@@ -236,6 +265,8 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+
+
     private void HideAllChoices()
     {
         foreach (GameObject choice in choices)
@@ -244,21 +275,17 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SelectFirstChoice()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
-
-        if (choices != null && choices.Length > 0 && choices[0] != null && choices[0].activeInHierarchy)
-        {
-            EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
-        }
-    }
 
     public void MakeChoice(int choiceIndex)
     {
+        if (isProcessingChoice)
+        {
+            Debug.Log("Already processing a choice, ignoring");
+            return;
+        }
+
         Debug.Log($"MakeChoice called with index: {choiceIndex}");
-        Debug.Log($"Available choices: {currentStory.currentChoices.Count}");
+        Debug.Log($"Available choices BEFORE: {currentStory.currentChoices.Count}");
 
         if (currentStory == null)
         {
@@ -272,7 +299,25 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        // IMMEDIATELY disable all choice buttons to prevent double-clicks
+        isProcessingChoice = true;
+        foreach (GameObject choice in choices)
+        {
+            if (choice != null)
+            {
+                Button btn = choice.GetComponent<Button>();
+                if (btn != null)
+                {
+                    btn.interactable = false;
+                }
+            }
+        }
+
+        // Now process the choice
         currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
+
+        // Re-enable buttons for next set of choices (DisplayChoices will handle this)
+        isProcessingChoice = false;
     }
 }
