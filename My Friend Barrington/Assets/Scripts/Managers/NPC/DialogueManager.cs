@@ -19,12 +19,19 @@ public class DialogueManager : MonoBehaviour
     [Header("Continue Button")]
     [SerializeField] private GameObject continueButton;
 
+    [Header("Typewriter Effect")]
+    [SerializeField] private float typingSpeed = 0.04f; // Time between each character
+    [SerializeField] private bool canSkipTyping = true; // Allow players to skip typing animation
+
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
 
     private Coroutine selectFirstChoiceCoroutine;
+    private Coroutine typingCoroutine;
 
     private bool isProcessingChoice = false;
+    private bool isTyping = false;
+    private string currentText = "";
 
     private static DialogueManager instance;
     public event System.Action OnDialogueEnd;
@@ -53,7 +60,19 @@ public class DialogueManager : MonoBehaviour
         int index = 0;
         foreach (GameObject choice in choices)
         {
-            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            // Get ALL TextMeshProUGUI components and find the one that's a child of the button
+            TextMeshProUGUI[] textComponents = choice.GetComponentsInChildren<TextMeshProUGUI>();
+
+            // If there are multiple text components, use the last one (usually the one inside the button)
+            if (textComponents.Length > 0)
+            {
+                choicesText[index] = textComponents[textComponents.Length - 1];
+            }
+            else
+            {
+                Debug.LogError($"No TextMeshProUGUI found on choice button {index}!");
+            }
+
             index++;
         }
 
@@ -76,12 +95,22 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        // Allow Space to continue when there are no choices
+        // Allow Space to skip typing or continue when there are no choices
         if (Input.GetKeyDown(KeyCode.Space) && currentStory.currentChoices.Count == 0)
         {
-            ContinueStory();
+            if (isTyping && canSkipTyping)
+            {
+                // Skip the typing animation
+                SkipTyping();
+            }
+            else if (!isTyping)
+            {
+                // Continue to next line
+                ContinueStory();
+            }
         }
     }
+
     // Called when continue button is clicked
     public void OnContinueButtonClicked()
     {
@@ -90,6 +119,13 @@ public class DialogueManager : MonoBehaviour
         if (currentStory == null)
         {
             Debug.LogError("Current story is null!");
+            return;
+        }
+
+        // If currently typing, skip to the end
+        if (isTyping && canSkipTyping)
+        {
+            SkipTyping();
             return;
         }
 
@@ -104,6 +140,7 @@ public class DialogueManager : MonoBehaviour
             StartCoroutine(ExitDialogueMode());
         }
     }
+
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         Debug.Log("=== EnterDialogueMode called ===");
@@ -118,6 +155,7 @@ public class DialogueManager : MonoBehaviour
 
         ContinueStory();
     }
+
     private IEnumerator SelectFirstChoice()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -138,6 +176,14 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
+        // Stop any ongoing typing
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
+        isTyping = false;
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = "";
@@ -154,10 +200,16 @@ public class DialogueManager : MonoBehaviour
         {
             string text = currentStory.Continue();
             Debug.Log("Story text: " + text);
-            dialogueText.text = text;
+
+            // Start typing effect instead of displaying text immediately
+            currentText = text;
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeText(text));
 
             Debug.Log("Current choices count: " + currentStory.currentChoices.Count);
-            DisplayChoices();
         }
         else
         {
@@ -166,6 +218,45 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private IEnumerator TypeText(string text)
+    {
+        isTyping = true;
+        dialogueText.text = "";
+
+        // Hide choices and continue button while typing
+        HideAllChoices();
+        if (continueButton != null)
+        {
+            continueButton.SetActive(false);
+        }
+
+        foreach (char c in text)
+        {
+            dialogueText.text += c;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        isTyping = false;
+        typingCoroutine = null;
+
+        // After typing is complete, display choices or continue button
+        DisplayChoices();
+    }
+
+    private void SkipTyping()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
+        dialogueText.text = currentText;
+        isTyping = false;
+
+        // Display choices or continue button after skipping
+        DisplayChoices();
+    }
 
     private void DisplayChoices()
     {
@@ -265,8 +356,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-
-
     private void HideAllChoices()
     {
         foreach (GameObject choice in choices)
@@ -274,7 +363,6 @@ public class DialogueManager : MonoBehaviour
             choice.SetActive(false);
         }
     }
-
 
     public void MakeChoice(int choiceIndex)
     {
