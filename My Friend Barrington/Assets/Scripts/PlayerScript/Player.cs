@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public bool playerInput = true;
     private bool isWalking;
     public bool isRight;
+    private Vector2 moveInput;
 
     // Checking ground
     [Header("GroundCheck")]
@@ -120,19 +121,14 @@ public class Player : MonoBehaviour
     // Player moving method
     private void movePlayer()
     {
-        if (!playerInput)
-        {
-            freezePlayer();
-            return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
-        }
-        if (dialogue)
+        if (!playerInput || dialogue)
         {
             freezePlayer();
             return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
         }
 
         // Getting values from user input
-        Vector2 moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
+        moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
 
         // Player cannot Input, end
@@ -198,7 +194,7 @@ public class Player : MonoBehaviour
         isWalking = false;
 
         // jump movement - being remove later
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, jump, rb.linearVelocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x + moveInput.x, jump, rb.linearVelocity.z);
 
     }
 
@@ -213,7 +209,7 @@ public class Player : MonoBehaviour
         // apply force based on how long player pressed
         if (jumpButtonHoldTimer < maxJumpTimer)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x + moveInput.x, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
         }
     }
 
