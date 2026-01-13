@@ -9,6 +9,9 @@ public class ButtonCollect : MonoBehaviour
     [SerializeField]
     public GameObject button;
 
+    [SerializeField]
+    public int buttonWorth;
+
     public TMP_Text messageText;
 
     private void OnTriggerEnter(Collider other)
@@ -21,7 +24,7 @@ public class ButtonCollect : MonoBehaviour
 
             button.SetActive(false);
 
-            buttonCount++;        // increases the global count
+            buttonCount = buttonCount + buttonWorth;        // increases the global count
             UpdateScore();
         }
     }

@@ -7,19 +7,26 @@ public class Lever : MonoBehaviour
     // Inspector
     [SerializeField]
     public KeyCode interactButton;
-    public Material targetMaterial;
-    [SerializeField]
-    Renderer objectRenderer;
-    public Collider myCollider;
+
     
     [SerializeField]
     private GameObject targetObject;
     private bool isTrigger;
-  
+    
+
 
     void Start()
     {
         isTrigger = false;
+            if (targetObject == null)
+            {
+                targetObject.SetActive(false);
+            }
+            if (targetObject != null)
+            {
+                targetObject.SetActive(true);
+            }
+        
        
     }
 
@@ -28,19 +35,24 @@ public class Lever : MonoBehaviour
     {
      
         // Check for player interaction
-       
-        if (isTrigger && Input.GetKeyDown(interactButton))
-        {
-            myCollider.enabled = false;
-
-            if (objectRenderer != null && targetMaterial != null)
+        if (targetObject == null)
             {
-                // Assign the new material
-                objectRenderer.material = targetMaterial;
+                if (isTrigger && Input.GetKeyDown(interactButton))
+                {
+                targetObject.SetActive(false);
+                }
             }
-
+ 
+        else if (targetObject != null){
+             if (isTrigger && Input.GetKeyDown(interactButton))
+                {
+                targetObject.SetActive(true);
+                }
+              
+            }
+    
         }
-    }
+    
         
 
 // When Player enters the lever collider
