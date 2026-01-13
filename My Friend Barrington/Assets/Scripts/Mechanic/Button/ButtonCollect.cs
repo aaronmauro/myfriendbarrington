@@ -9,12 +9,10 @@ public class ButtonCollect : MonoBehaviour
     [SerializeField]
     public GameObject button;
 
-    public TMP_Text messageText;
+    [SerializeField]
+    public int buttonWorth;
 
-    void Start()
-    {
-        messageText = GameObject.Find("messageText").GetComponent<TMP_Text>(); // if our game is ever super laggy on start, this is why - DV
-    }
+    public TMP_Text messageText;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,7 +24,7 @@ public class ButtonCollect : MonoBehaviour
 
             button.SetActive(false);
 
-            buttonCount++;        // increases the global count
+            buttonCount = buttonCount + buttonWorth;        // increases the global count
             UpdateScore();
         }
     }
