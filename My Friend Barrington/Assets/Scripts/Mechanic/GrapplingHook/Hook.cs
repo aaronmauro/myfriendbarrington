@@ -21,11 +21,6 @@ public class Hook : MonoBehaviour
         rigid.AddForce(transform.forward * hookForce, ForceMode.Impulse);
     }
 
-
-
-
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,9 +38,6 @@ public class Hook : MonoBehaviour
         };
 
         lineRenderer.SetPositions(positions);
-
-
-
     }
 
     private bool hasLatched = false;
@@ -76,10 +68,4 @@ public class Hook : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
-
-
-
-
 }

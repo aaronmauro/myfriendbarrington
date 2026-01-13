@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private Player player;
     [SerializeField]
     private CinemachineCamera playerCam;
+    [SerializeField]
+    private float zoomOutMultipliers;
 
     private bool isVideoScene;
 
@@ -85,6 +87,7 @@ public class GameManager : MonoBehaviour
     {
         // moving respawn point
         moveRespawn();
+        zoomOutAtStart();
     }
     // respawn player Method
     public void respawn()
@@ -100,6 +103,18 @@ public class GameManager : MonoBehaviour
         if (player.isGround && !dangerDetect)
         {
             spawnPoints.transform.position = player.transform.position;
+        }
+    }
+
+    private void zoomOutAtStart()
+    {
+        if (playerCam.Lens.FieldOfView <= 60)
+        {
+            playerCam.Lens.FieldOfView += Time.deltaTime * zoomOutMultipliers;
+        }
+        else
+        {
+            return;
         }
     }
 }
