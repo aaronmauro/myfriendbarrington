@@ -1010,9 +1010,9 @@ GitHub Desktop 3.5
 
 https://desktop.github.com/download/ 
 
-Blender 4.5.4 LTS   
+Blender 5.0   
 
-https://www.blender.org/download/
+https://www.blender.org/download/releases/5-0/ 
 
 Procreate 5.4.2 LTS   
 

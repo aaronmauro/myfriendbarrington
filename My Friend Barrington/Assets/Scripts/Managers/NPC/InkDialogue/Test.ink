@@ -1,14 +1,13 @@
--> main 
+-> main
 
-=== main === 
+=== main ===
 Which pokemon do you choose?
-    + [Charmander]
-        -> chosen("Charmander")
-    + [Bulbasaur]
-        -> chosen("Bulbasaur")
-    + [Squirtle]
-        -> chosen("Squirtle")
-        
-=== chosen(pokemon) ===
-You chose {pokemon}!
--> END
+* [Charmander]
+    You chose Charmander!
+    -> END
+* [Bulbasaur]
+    You chose Bulbasaur!
+    -> END
+* [Squirtle]
+    You chose Squirtle!
+    -> END
