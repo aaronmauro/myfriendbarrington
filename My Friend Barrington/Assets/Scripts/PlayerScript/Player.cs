@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speedMax;
     public float linearDrag;
-    public float gravity;
+    //public float gravity;
     public float jump, jumpCooldown;
     private bool isJump;
     private float jumpButtonHoldTimer;
@@ -23,10 +23,12 @@ public class Player : MonoBehaviour
     private float maxJumpTimer;
     [SerializeField]
     private float jumpForceIncrease;
-    public float inAirBoost;
-    private float currentSpeed;
-    [SerializeField]
-    private TMP_Text speedText;
+    public float fixedInAirVelocity;
+
+    // Visual Speed Text
+    //private float currentSpeed;
+    //[SerializeField]
+    //private TMP_Text speedText;
 
     // Chekcing Inputs, player movement
     public bool playerInput = true;
@@ -74,6 +76,7 @@ public class Player : MonoBehaviour
         InputManager.GetInstance().playerAction += jumpForce;
         InputManager.GetInstance().playerAction += playerAnimation;
         InputManager.GetInstance().playerAction += playerRotation;
+        InputManager.GetInstance().playerAction += fixTheAir;
         // Enable Actions
         InputManager.GetInstance().jumpAction.action.Enable();
         InputManager.GetInstance().moveAction.action.Enable();
@@ -93,6 +96,7 @@ public class Player : MonoBehaviour
         InputManager.GetInstance().playerAction -= jumpForce;
         InputManager.GetInstance().playerAction -= playerAnimation;
         InputManager.GetInstance().playerAction -= playerRotation;
+        InputManager.GetInstance().playerAction -= fixTheAir;
         // Disable Action
         InputManager.GetInstance().jumpAction.action.Disable();
         InputManager.GetInstance().moveAction.action.Disable();
@@ -110,12 +114,21 @@ public class Player : MonoBehaviour
         playerInput = true;
         rb.linearDamping = linearDrag;
         // affect how fast player falls
-        Physics.gravity = new Vector3(0f, gravity, 0f);
+        //Physics.gravity = new Vector3(0f, gravity, 0f);
     }
+    
     private void FixedUpdate()
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
         InputManager.GetInstance().playerAction?.Invoke();
+
+        // Player Movement
+        //moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
+        //rb.linearVelocity = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
+        //if (isJump)
+        //{
+        //    rb.linearVelocity = new Vector3(moveInput.x * speedAcceleration, jump, rb.linearVelocity.z);
+        //}
     }
 
     // Player moving method
@@ -130,6 +143,7 @@ public class Player : MonoBehaviour
         // Getting values from user input
         moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
+        //Debug.Log(rb.linearVelocity.y + "-1");
 
         // Player cannot Input, end
         if (moveInput == Vector2.zero) return;
@@ -151,20 +165,18 @@ public class Player : MonoBehaviour
             isRight = false;
             isWalking = true;
         }
-
         // Drag player
-        currentSpeed = rb.linearVelocity.magnitude;
-        speedText.text = "Current Speed: " + currentSpeed;
+        //currentSpeed = rb.linearVelocity.magnitude;
+        //speedText.text = "Current Speed: " + currentSpeed;
     }
     private void startPlayer(InputAction.CallbackContext context)
     {
         isWalking = true;
     }
-
     private void stopPlayer(InputAction.CallbackContext context)
     {
         // reset player velocity
-        rb.linearVelocity = Vector3.zero;
+        rb.linearVelocity = new Vector3(0f, rb.linearVelocity.y, 0f);
         isWalking = false;
     }
     private void jumpStart(InputAction.CallbackContext context)
@@ -172,13 +184,11 @@ public class Player : MonoBehaviour
         // start pressing jump button
         jumping();
     }
-
     private void jumpEnd(InputAction.CallbackContext context)
     {
         // end pressing jump button
         isJump = false;
     }
-
     private void jumping()
     {
         // Jump
@@ -194,10 +204,9 @@ public class Player : MonoBehaviour
         isWalking = false;
 
         // jump movement - being remove later
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x + moveInput.x, jump, rb.linearVelocity.z);
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
 
     }
-
     private void jumpForce()
     {
         // don't run the code if jump is not pressed
@@ -209,10 +218,10 @@ public class Player : MonoBehaviour
         // apply force based on how long player pressed
         if (jumpButtonHoldTimer < maxJumpTimer)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x + moveInput.x, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
         }
+        //Debug.Log(rb.linearVelocity.y + "-2");
     }
-
     private void fixSpeed()
     {
         // Check for speed (wihtout jumping)
@@ -221,36 +230,28 @@ public class Player : MonoBehaviour
         if (getLinearVelocity.magnitude > speedMax)
         {
             Vector3 limitLinearVelocity = getLinearVelocity.normalized * speedMax;
-            rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
+            //rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
     }
-
     private void playerAnimation()
     {
         // Player walking Audio
         AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
     }
-
     private void isGroundRayCast()
     {
         // Ground Check
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
     }
-
-    public void pushingPlayer(Vector3 dir, float force)
+    // aplly froce in air
+    private void fixTheAir()
     {
-        // Add force based on dirction and force given
-        rb.AddForce(dir * force, ForceMode.Impulse);
+        if (!isGround)
+        {
+            rb.AddForce(Vector3.down * fixedInAirVelocity, ForceMode.VelocityChange);
+        }
     }
-
-    // Bubble stream floating method
-    public void inBubbleStream(float floatForce)
-    {
-        // Add force in bubble stream
-        rb.AddForce(Vector3.up * floatForce, ForceMode.Acceleration);
-    }
-
     public void freezePlayer()
     {
         // Stop player from moving
@@ -259,7 +260,6 @@ public class Player : MonoBehaviour
         AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
     }
-
     public void playerRotation()
     {
         if (isRight)
@@ -272,6 +272,18 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 270, 0);
             dangerDectect.direction = false;
         }
+    }
+    public void pushingPlayer(Vector3 dir, float force)
+    {
+        // Add force based on dirction and force given
+        rb.AddForce(dir * force, ForceMode.Impulse);
+    }
+
+    // Bubble stream floating method
+    public void inBubbleStream(float floatForce)
+    {
+        // Add force in bubble stream
+        rb.AddForce(Vector3.up * floatForce, ForceMode.Acceleration);
     }
     // Gizmo to show ground check raycast
     private void OnDrawGizmos()
