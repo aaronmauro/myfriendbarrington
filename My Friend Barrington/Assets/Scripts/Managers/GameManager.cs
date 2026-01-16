@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
@@ -76,6 +77,22 @@ public class GameManager : MonoBehaviour
         // moving respawn point
         moveRespawn();
     }
+
+    private void FixedUpdate() // THIS IS ALL TEMPORARY STUFF FOR PLAYTESTING WEEKLY BUILDS, BY DV
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            SceneManager.LoadScene("Lvl 1");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SceneManager.LoadScene("Lvl2");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SceneManager.LoadScene("Lvl3");
+        }
+    }
+
     // respawn player Method
     public void respawn()
     {
