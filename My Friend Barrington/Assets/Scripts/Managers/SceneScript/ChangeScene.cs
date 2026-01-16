@@ -17,18 +17,18 @@ public class ChangeScene : MonoBehaviour
 
     private VideoManager vm;
     private Player player;
-    //private void Awake()
-    //{
-    //    // move camera
-    //    if (!exitScreen)
-    //    {
-    //        cm.enabled = false;
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
+    private void Awake()
+    {
+        // move camera
+        if (!exitScreen)
+        {
+            cm.enabled = false;
+        }
+        else
+        {
+            return;
+        }
+    }
 
     // enable and disable skip level
     private void OnEnable()
@@ -61,7 +61,7 @@ public class ChangeScene : MonoBehaviour
         // Change Scene Script
         if (changeScene)
         {
-            playVideo();
+            StartCoroutine(playVideo());
             player.playerInput = false;
         }
         if (vm == null)
@@ -78,7 +78,7 @@ public class ChangeScene : MonoBehaviour
     {
         if (other.gameObject.isPlayer())
         {
-            playVideo();
+            //playVideo();
             StartCoroutine(playVideo());
             player.playerInput = false;
         }
@@ -94,6 +94,7 @@ public class ChangeScene : MonoBehaviour
     private IEnumerator playVideo()
     {
         cm.enabled = true;
+        Debug.Log(cm.enabled);
         yield return new WaitForSeconds(5f);
         SceneManagerScript.instance.nextScene(sceneName);
     }
@@ -101,7 +102,7 @@ public class ChangeScene : MonoBehaviour
     private void skipLevel(InputAction.CallbackContext context)
     {
         Debug.Log("why am i here");
-        playVideo();
+        //playVideo();
         StartCoroutine(playVideo());
         player.playerInput = false;
     }

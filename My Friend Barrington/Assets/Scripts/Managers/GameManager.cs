@@ -12,10 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Player player;
-    [SerializeField]
-    private CinemachineCamera playerCam;
-    [SerializeField]
-    private float zoomOutMultipliers;
+
 
     private bool isVideoScene;
 
@@ -39,15 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (playerCam != null)
-        {
-            playerCam.enabled = true;
-        }
-        else
-        {
-            return;
-        }
-
         // Application frame rate
         Application.targetFrameRate = gameFrameRate;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
@@ -87,7 +75,6 @@ public class GameManager : MonoBehaviour
     {
         // moving respawn point
         moveRespawn();
-        zoomOutAtStart();
     }
     // respawn player Method
     public void respawn()
@@ -106,15 +93,4 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void zoomOutAtStart()
-    {
-        if (playerCam.Lens.FieldOfView <= 60)
-        {
-            playerCam.Lens.FieldOfView += Time.deltaTime * zoomOutMultipliers;
-        }
-        else
-        {
-            return;
-        }
-    }
 }
