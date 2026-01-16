@@ -773,7 +773,7 @@ MonoBehaviour:
   changeScene: 0
   sceneName: Video
   nextAds: 1
-  cm: {fileID: 92463474}
+  cm: {fileID: 811362388}
   exitScreen: 0
 --- !u!1 &369282827
 GameObject:
@@ -1574,8 +1574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 12
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -2801,7 +2801,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 693398685646434810, guid: 399b1d3d53f28074abe2ede8f5c2ccde, type: 3}
       propertyPath: Priority.Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 693398685646434810, guid: 399b1d3d53f28074abe2ede8f5c2ccde, type: 3}
       propertyPath: Priority.m_Value
@@ -4270,8 +4270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca5f7b197096304d85e8c1b7509925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 92463474}
+  Cam: []
   zoomOutMultipliers: 15
+  touchedTV: 0
 --- !u!1 &1563505303
 GameObject:
   m_ObjectHideFlags: 0

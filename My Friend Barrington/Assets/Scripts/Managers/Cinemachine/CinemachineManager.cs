@@ -5,10 +5,13 @@ public class CinemachineManager : MonoBehaviour
 {
     [SerializeField]
     private CinemachineCamera playerCam;
+    [SerializeField]
+    private CinemachineCamera[] Cam;
 
     [SerializeField]
     private float zoomOutMultipliers;
     private bool startGameZoomOut;
+    public bool touchedTV;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +25,10 @@ public class CinemachineManager : MonoBehaviour
         if (startGameZoomOut)
         {
             zoomOutAtStart();
+        }
+        if (touchedTV)
+        {
+            playerCam.enabled = false;
         }
     }
 
