@@ -153,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.65
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.15
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
       propertyPath: m_LocalPosition.z
@@ -206,6 +206,14 @@ PrefabInstance:
     - target: {fileID: -6623991746115829512, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6459988035129417048, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -38.34
+      objectReference: {fileID: 0}
+    - target: {fileID: -6459988035129417048, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 160.46
       objectReference: {fileID: 0}
     - target: {fileID: -5851535383338936019, guid: ddb4823a391558a408f00e79c6f60395, type: 3}
       propertyPath: m_Layer
@@ -393,15 +401,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedAcceleration: 8
-  speedMax: 10
-  groundDrag: 2
-  jump: 5.6
+  speedMax: 12
+  linearDrag: 2
+  jump: 27
   jumpCooldown: 0.5
   maxJumpTimer: 0.4
   jumpForceIncrease: 0.39
-  inAirBoost: 0.75
-  speedText: {fileID: 0}
+  fixedInAirVelocity: 0.4
   playerInput: 0
+  isRight: 0
   isGround: 0
   groundMask:
     serializedVersion: 2
@@ -412,11 +420,8 @@ MonoBehaviour:
   playerHeight: 0.1
   cam: {fileID: 4674247139765658665, guid: 305ef4cc8a6fb544fab07ee14fe11fd3, type: 3}
   rb: {fileID: 0}
-  gm: {fileID: 0}
   anim: {fileID: 0}
   dangerDectect: {fileID: 1699712372482336491}
-  jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &1399207384272806977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,11 +434,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4821ecc68b7fe147be698c66dda5e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullSpeed: 3.5
+  pullSpeed: 0.75
   stopDistance: 4
   hookPrefab: {fileID: 2505872691850183749, guid: cc18acc8f0380684e848299bb997d76d, type: 3}
   shootTransform: {fileID: 1548035406244906106}
   maxHookSpeed: 20
+  forceIncreaseTime: 1.5
   hookAction: {fileID: 5783778043314893216, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!95 &8182975410346426427
 Animator:
