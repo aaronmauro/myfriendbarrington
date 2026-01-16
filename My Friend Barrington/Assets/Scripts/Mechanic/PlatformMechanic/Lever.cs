@@ -1,77 +1,46 @@
-
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    // Inspector
-    [SerializeField]
-    public KeyCode interactButton;
-
-    
-    [SerializeField]
+    [SerializeField] 
+    private KeyCode interactButton = KeyCode.E;
+    [SerializeField] 
     private GameObject targetObject;
-    private bool isTrigger;
-    
 
+
+    [SerializeField] 
+    private bool startEnabled = false;
+
+    [SerializeField] 
+    private bool isUsed;
+
+    private bool isTrigger;
 
     void Start()
     {
-        isTrigger = false;
-            if (targetObject == null)
-            {
-                targetObject.SetActive(false);
-            }
-            if (targetObject != null)
-            {
-                targetObject.SetActive(true);
-            }
-        
-       
+        if (targetObject != null)
+            targetObject.SetActive(startEnabled);
     }
 
-    // Update is called once per frame
     void Update()
     {
-     
-        // Check for player interaction
-        if (targetObject == null)
-            {
-                if (isTrigger && Input.GetKeyDown(interactButton))
-                {
-                targetObject.SetActive(false);
-                }
-            }
- 
-        else if (targetObject != null){
-             if (isTrigger && Input.GetKeyDown(interactButton))
-                {
-                targetObject.SetActive(true);
-                }
-              
-            }
-    
+        if (isTrigger && targetObject != null && Input.GetKeyDown(interactButton) && isUsed == false)
+        {
+            
+            targetObject.SetActive(!targetObject.activeSelf);
+            isUsed = true;
         }
-    
-        
+    }
 
-// When Player enters the lever collider
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.isPlayer())
-        {
+        if (other.CompareTag("Player"))
             isTrigger = true;
-        }
-    }
-    // When Player exits the lever collider
-    private void OnTriggerExit(Collider other)
-    {
-        
-        if (other.gameObject.isPlayer())
-        {
-            isTrigger = false;
-        }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            isTrigger = false;
+    }
 }
- 
