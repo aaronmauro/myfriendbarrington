@@ -24,10 +24,13 @@ public class GrapplePoint : MonoBehaviour
 
     private void Update()
     {
-        fillAmount = 1 - Vector3.Distance(transform.position, player.transform.position)/100f;
-        //Debug.Log(fillAmount);
+        if (fillImage != null)
+        {
+            fillAmount = 1 - Vector3.Distance(transform.position, player.transform.position)/100f;
+            //Debug.Log(fillAmount);
 
-        fillImage.fillAmount = fillAmount;
+            fillImage.fillAmount = fillAmount;
+        }
     }
 
     public bool IsInRange(Vector3 playerPosition)

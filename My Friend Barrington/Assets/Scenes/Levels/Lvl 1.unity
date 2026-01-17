@@ -21315,6 +21315,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
+--- !u!81 &1207317379
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207317373}
+  m_Enabled: 1
 --- !u!1 &1208383724
 GameObject:
   m_ObjectHideFlags: 0
@@ -25318,6 +25326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3543533285088538151, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 59970573}
     - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
       propertyPath: player
       value: 
@@ -36884,6 +36896,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2106333095676178431, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1207317374}
+    - targetCorrespondingSourceObject: {fileID: 2106333095676178431, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1207317379}
   m_SourcePrefab: {fileID: 100100000, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
 --- !u!1 &2145144788
 GameObject:
