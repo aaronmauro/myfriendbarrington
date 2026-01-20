@@ -103,6 +103,9 @@ public class GameManager : MonoBehaviour
     // move respawn method
     private void moveRespawn()
     {
+        if (spawnPoints = null) return;
+        if (player = null) return;
+
         //Debug.Log(player.moveRespawn);
         if (player.isGround && !dangerDetect)
         {
