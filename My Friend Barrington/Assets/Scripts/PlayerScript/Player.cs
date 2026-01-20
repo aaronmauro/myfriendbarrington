@@ -218,7 +218,7 @@ public class Player : MonoBehaviour
         // apply force based on how long player pressed
         if (jumpButtonHoldTimer < maxJumpTimer)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, rb.linearVelocity.y + jumpForceIncrease, rb.linearVelocity.z);
         }
         //Debug.Log(rb.linearVelocity.y + "-2");
     }
