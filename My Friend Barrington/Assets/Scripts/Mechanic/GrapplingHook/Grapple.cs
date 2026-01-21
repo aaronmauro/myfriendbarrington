@@ -13,6 +13,7 @@ public class Grapple : MonoBehaviour
     [SerializeField] float maxHookSpeed = 20f;
     private float forceTimer;
     [SerializeField] private float forceIncreaseTime = 1.5f;
+    [SerializeField] float lifetime = 0f;
     private bool applyForce;
 
     private GrapplePoint[] grapplePoints;
@@ -72,7 +73,7 @@ public class Grapple : MonoBehaviour
         if (!pulling || hook == null) return;
         if (Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
         {
-            DestroyHook();
+            //DestroyHook(); new behaviour - DV
         }
         else
         {
@@ -128,6 +129,7 @@ public class Grapple : MonoBehaviour
     public void StartPull()
     {
         pulling = true;
+        player.Swing(this);
     }
 
     private void DestroyHook()
@@ -135,6 +137,7 @@ public class Grapple : MonoBehaviour
         if (hook == null) return;
 
         pulling = false;
+        player.Swing(null);
         applyForce = false;
         forceTimer = 0f;
         Destroy(hook.gameObject);
@@ -143,8 +146,8 @@ public class Grapple : MonoBehaviour
 
     private IEnumerator DestroyHookAfterLifetime()
     {
-        yield return new WaitForSeconds(5f);
-
+        yield return new WaitForSeconds(lifetime);
+        if (lifetime == 0f) yield break;
         DestroyHook();
     }
 
@@ -152,5 +155,17 @@ public class Grapple : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position,stopDistance);
+    }
+
+    public void moveSwing(Vector2 moveInput)
+    {
+        Vector3 playerMovement = new Vector3(moveInput.x * 200f, rigid.linearVelocity.y, rigid.linearVelocity.z);
+        //Debug.Log(rb.linearVelocity.y + "-1");
+        //Debug.Log("before: "+playerMovement.ToString());
+        // HERE WE GO LADS
+        //playerMovement = Vector3.RotateTowards(playerMovement.y, hook.transform.position - transform.position, 10f, 0f);
+        //Debug.Log("after:  "+playerMovement.ToString());
+        // Player Movement
+        rigid.AddForce(playerMovement);
     }
 }

@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     public bool isRight;
     private Vector2 moveInput;
 
+    // Swinging status - DV
+    private Grapple swing = null;
+
     // Checking ground
     [Header("GroundCheck")]
     public bool isGround;
@@ -144,11 +147,18 @@ public class Player : MonoBehaviour
         moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         moveInput = new Vector2(moveInput.x,0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
         moveInput.Normalize();
-        Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
-        //Debug.Log(rb.linearVelocity.y + "-1");
 
         // Player cannot Input, end
         if (moveInput == Vector2.zero) return;
+
+        if (swing != null) // use swinging movement instead - DV
+        {
+            swing.moveSwing(moveInput);
+            return;
+        }
+
+        Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
+        //Debug.Log(rb.linearVelocity.y + "-1");
 
         // Player Movement
         rb.linearVelocity = playerMovement;
@@ -160,12 +170,12 @@ public class Player : MonoBehaviour
         if (playerDir > 0)
         {
             isRight = true;
-            isWalking = true;
+            if(isGround) isWalking = true; // only walk on the ground foo - DV
         }
         else if (playerDir < 0)
         {
             isRight = false;
-            isWalking = true;
+            if(isGround) isWalking = true; // only walk on the ground foo - DV
         }
         // Drag player
         //currentSpeed = rb.linearVelocity.magnitude;
@@ -173,7 +183,7 @@ public class Player : MonoBehaviour
     }
     private void startPlayer(InputAction.CallbackContext context)
     {
-        isWalking = true;
+        //isWalking = true; // only walk on the ground foo - DV
     }
     private void stopPlayer(InputAction.CallbackContext context)
     {
@@ -292,5 +302,10 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = gizmoColour;
         Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
+    }
+
+    public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
+    {
+        swing = swinging;
     }
 }
