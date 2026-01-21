@@ -14,6 +14,11 @@ public class ButtonCollect : MonoBehaviour
 
     public TMP_Text messageText;
 
+    private void Start()
+    {
+        messageText = GameObject.Find("messageText").GetComponent<TMP_Text>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.isPlayer() && button != null)
