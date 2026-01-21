@@ -142,10 +142,9 @@ public class Player : MonoBehaviour
 
         // Getting values from user input
         moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
-        moveInput = new Vector2(moveInput.x,0); // THIS LINE AND THE FOLLOWING SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
+        moveInput = new Vector2(moveInput.x,0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
         moveInput.Normalize();
         Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
-        Debug.Log(moveInput.x);
         //Debug.Log(rb.linearVelocity.y + "-1");
 
         // Player cannot Input, end
