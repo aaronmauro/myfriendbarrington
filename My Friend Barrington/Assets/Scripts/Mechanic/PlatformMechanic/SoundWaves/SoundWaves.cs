@@ -57,7 +57,7 @@ public class SoundWaves : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // return if don't run this script
         if (!isRun) return;
@@ -164,7 +164,8 @@ public class SoundWaves : MonoBehaviour
     // moving sound wave and destory when reaching a destory distance
     private void moveSoundWaves()
     {
-        _soundWavesObject.transform.Translate(direction * moveSpeed * Time.deltaTime);
+        //_soundWavesObject.transform.Translate(direction * moveSpeed * Time.deltaTime);
+        _soundWavesObject.GetComponent<Rigidbody>().MovePosition(_soundWavesObject.transform.position+Vector3.left*moveSpeed*Time.fixedDeltaTime);
         travelDistance = Vector3.Distance(_soundWavesObject.transform.position, transform.position);
         if (travelDistance > destroyDistance)
         {

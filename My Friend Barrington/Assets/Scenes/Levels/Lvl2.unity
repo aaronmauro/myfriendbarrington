@@ -8519,30 +8519,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-      propertyPath: jump
-      value: 24.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-      propertyPath: speedMax
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-      propertyPath: linearDrag
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-      propertyPath: maxJumpTimer
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-      propertyPath: jumpForceIncrease
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-      propertyPath: fixedInAirVelocity
-      value: 0.37
-      objectReference: {fileID: 0}
     - target: {fileID: 8736630847852726758, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_Drag
       value: 2.5
@@ -8550,6 +8526,14 @@ PrefabInstance:
     - target: {fileID: 8736630847852726758, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_Mass
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736630847852726758, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736630847852726758, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12687,7 +12671,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: waveForce
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: goingdirection
@@ -20403,7 +20387,7 @@ PrefabInstance:
     - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 2057801966}
+      objectReference: {fileID: 2057801974}
     - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
       propertyPath: playerCam
       value: 
@@ -23971,7 +23955,7 @@ Transform:
   m_GameObject: {fileID: 980628113}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 306, y: 4, z: 0}
+  m_LocalPosition: {x: 306, y: 5, z: 0}
   m_LocalScale: {x: 30, y: 6, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49509,7 +49493,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2199821953794235339, guid: 7f677d9006df7f24e843efcae6358624, type: 3}
   m_PrefabInstance: {fileID: 2057753945}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2057801966 stripped
+--- !u!4 &2057801969 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1617041197981578565, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+  m_PrefabInstance: {fileID: 314275055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2057801974 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3856784886780340791, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
   m_PrefabInstance: {fileID: 314275055}
@@ -49520,11 +49509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7914986cb1bb14a4c98510d32873dfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2057801969 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1617041197981578565, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-  m_PrefabInstance: {fileID: 314275055}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2058230605
 GameObject:
   m_ObjectHideFlags: 0

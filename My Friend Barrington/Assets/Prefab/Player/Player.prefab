@@ -369,8 +369,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2106333095676178431}
   serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 2.5
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -400,14 +400,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7914986cb1bb14a4c98510d32873dfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedAcceleration: 8
-  speedMax: 12
-  linearDrag: 2
-  jump: 27
+  speedAcceleration: 11
+  speedMax: 10
+  linearDrag: 2.5
+  jump: 15
   jumpCooldown: 0.5
-  maxJumpTimer: 0.4
-  jumpForceIncrease: 0.39
-  fixedInAirVelocity: 0.4
+  maxJumpTimer: 0.58
+  jumpForceIncrease: 0.72
+  fixedInAirVelocity: 0.37
   playerInput: 0
   isRight: 0
   isGround: 0
