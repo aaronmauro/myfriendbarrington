@@ -193,6 +193,11 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        if (swing != null)
+        {
+            isGround = true;
+            swing.DestroyHook();
+        }
         // start pressing jump button
         jumping();
     }

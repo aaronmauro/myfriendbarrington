@@ -132,7 +132,7 @@ public class Grapple : MonoBehaviour
         player.Swing(this);
     }
 
-    private void DestroyHook()
+    public void DestroyHook()
     {
         if (hook == null) return;
 
