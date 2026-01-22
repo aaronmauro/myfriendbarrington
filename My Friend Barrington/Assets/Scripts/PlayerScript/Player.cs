@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     //[SerializeField]
     //private TMP_Text speedText;
 
-    // Chekcing Inputs, player movement
+    // Checking Inputs, player movement
     public bool playerInput = true;
     private bool isWalking;
     public bool isRight;
@@ -42,7 +42,8 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
     public LayerMask platformMask;
     public float playerHeight;
-
+    private NewMonoBehaviourScript currentPlatform;
+    private Vector3 lastPlatformPosition;
     // Getting components
     [Header("Components")]
     public Camera cam;
@@ -121,7 +122,17 @@ public class Player : MonoBehaviour
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
         InputManager.GetInstance().playerAction?.Invoke();
+    
+    if (isGround && currentPlatform != null)
+    {
+        Vector3 platformDelta = currentPlatform.transform.position - lastPlatformPosition;
 
+        // move player only by the platform's horizontal movement
+        rb.MovePosition(rb.position + new Vector3(platformDelta.x, 0f, 0f));
+
+        lastPlatformPosition = currentPlatform.transform.position;
+    }
+    
         // Player Movement
         //moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         //rb.linearVelocity = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
@@ -202,7 +213,8 @@ public class Player : MonoBehaviour
         isJump = true;
         jumpButtonHoldTimer = 0;
         isWalking = false;
-
+        currentPlatform = null;
+        
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
 
@@ -290,5 +302,25 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = gizmoColour;
         Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        NewMonoBehaviourScript platform =
+            collision.gameObject.GetComponent<NewMonoBehaviourScript>();
+
+        if (platform != null)
+        {
+            currentPlatform = platform;
+            lastPlatformPosition = platform.transform.position;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<NewMonoBehaviourScript>())
+        {
+            currentPlatform = null;
+        }
     }
 }

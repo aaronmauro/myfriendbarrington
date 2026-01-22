@@ -21,6 +21,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         Vector3 oldPos = transform.position;
 
         transform.position = Vector3.MoveTowards(
@@ -35,5 +36,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             currentTarget = (currentTarget == targetA) ? targetB : targetA;
         }
+    
     }
+
 }
