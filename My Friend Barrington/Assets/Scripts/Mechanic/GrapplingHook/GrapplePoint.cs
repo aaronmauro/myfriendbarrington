@@ -9,7 +9,7 @@ public class GrapplePoint : MonoBehaviour
     public float activationRange = 20f;
 
     [SerializeField]
-    private Image fillImage;
+   // private Image fillImage;
     private float fillAmount;
     private Vector3 testing;
 
@@ -24,13 +24,13 @@ public class GrapplePoint : MonoBehaviour
 
     private void Update()
     {
-        if (fillImage != null)
+       /* if (fillImage != null)
         {
             fillAmount = 1 - Vector3.Distance(transform.position, player.transform.position)/100f;
             //Debug.Log(fillAmount);
 
             fillImage.fillAmount = fillAmount;
-        }
+        }*/
     }
 
     public bool IsInRange(Vector3 playerPosition)

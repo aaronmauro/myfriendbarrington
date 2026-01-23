@@ -16,8 +16,6 @@ public class Grapple : MonoBehaviour
     [SerializeField] float lifetime = 0f;
     private bool applyForce;
 
-    private GrapplePoint[] grapplePoints;
-
     Hook hook;
     bool pulling;
     Rigidbody rigid;
@@ -40,7 +38,6 @@ public class Grapple : MonoBehaviour
         // Get the Rigidbody component
         rigid = GetComponent<Rigidbody>();
         pulling = false;
-        grapplePoints = FindObjectsOfType<GrapplePoint>();
         player = gameObject.findPlayer();
     }
 
@@ -117,7 +114,9 @@ public class Grapple : MonoBehaviour
     // Get the nearest grapple point within range
     GrapplePoint GetNearestGrapplePoint()
     {
-        foreach (var point in grapplePoints)
+        // Query current GrapplePoints in the scene so ones enabled at runtime (by your lever) are found.
+        var points = FindObjectsOfType<GrapplePoint>();
+        foreach (var point in points)
         {
             if (point.IsInRange(transform.position))
                 return point;
