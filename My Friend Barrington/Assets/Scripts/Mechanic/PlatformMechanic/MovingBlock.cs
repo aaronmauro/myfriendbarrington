@@ -39,4 +39,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(targetA.position, 1f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(targetB.position, 1f);
+    }
 }
