@@ -5,6 +5,8 @@ public class Hook : MonoBehaviour
 {
     [SerializeField] float hookForce = 25f;
 
+    private Transform shootTransform;
+
     Grapple grapple;
     Rigidbody rigid;
     LineRenderer lineRenderer;
@@ -16,8 +18,11 @@ public class Hook : MonoBehaviour
     {
         transform.forward = shootTransform.forward;
         this.grapple = grapple;
+        this.shootTransform = shootTransform;
+
         rigid = GetComponent<Rigidbody>();
         lineRenderer = GetComponent<LineRenderer>();
+
         rigid.AddForce(transform.forward * hookForce, ForceMode.Impulse);
     }
 
@@ -33,8 +38,8 @@ public class Hook : MonoBehaviour
         // Update the line renderer to draw the rope between the grapple and the hook
         Vector3[] positions = new Vector3[]
         {
-            transform.position,
-            grapple.transform.position
+            shootTransform.position,   // origin at hand
+            transform.position  
         };
 
         lineRenderer.SetPositions(positions);
