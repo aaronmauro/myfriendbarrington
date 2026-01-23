@@ -12,13 +12,18 @@ public class ButtonManager : MonoBehaviour
 
     // Getting Buttons
     public List<List<GameObject>> buttons = new List<List<GameObject>>();
+    public ButtonReturn buttonValue;
     [SerializeField]
     private int totalAdsNumber;
     public bool buttonStatus;
+    public int numberOfChocie;
     // Getting Component
+    private int totalAddition;
+    private int videoAddition = 9; // control what video to play next
+
     [SerializeField]
     private VideoManager videoManager;
-    public InputActionReference skipVideo;
+    //public InputActionReference skipVideo;
 
     // singleton this :>
     private void Awake()
@@ -37,14 +42,18 @@ public class ButtonManager : MonoBehaviour
     // adding and removing skipping video methods
     private void OnEnable()
     {
-        skipVideo.action.performed += skipVideoMethod;
-        skipVideo.action.Enable();
+        InputManager.GetInstance().videoSkipAction.action.performed += skipVideoMethod;
+        InputManager.GetInstance().videoNextAction.action.performed += nextVideoMethod;
+        InputManager.GetInstance().videoSkipAction.action.Enable();
+        InputManager.GetInstance().videoNextAction.action.Enable();
     }
 
     private void OnDisable()
     {
-        skipVideo.action.performed -= skipVideoMethod;
-        skipVideo.action.Disable();
+        InputManager.GetInstance().videoSkipAction.action.performed -= skipVideoMethod;
+        InputManager.GetInstance().videoNextAction.action.performed -= nextVideoMethod;
+        InputManager.GetInstance().videoSkipAction.action.Disable();
+        InputManager.GetInstance().videoNextAction.action.Disable();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -58,6 +67,8 @@ public class ButtonManager : MonoBehaviour
     {
         // show and hide button
         enableButton(buttonStatus);
+
+        //Debug.Log(totalAddition);
     }
     // Changing Button active
     private void enableButton(bool isActive)
@@ -102,5 +113,56 @@ public class ButtonManager : MonoBehaviour
             videoManager.videoCount = videoManager.ads2.Length;
             videoManager.afterLoopVideo = true;
         }
+    }
+    // playe next video method
+    private void nextVideoMethod(InputAction.CallbackContext context)
+    {
+        videoManager.videoCount++;
+        videoManager.afterLoopVideo = true;
+        Debug.Log("Next Video: " + videoManager.videoCount);
+    }
+
+    // check witch video to play
+    private void whatVideoToPlay(int num)
+    {
+        // create a list, adding the video scene number to the list pending to play;
+        switch (num)
+        {
+            case 2:
+                videoManager.newVideoList.Add(14);
+                break;
+            case 3:
+                videoManager.newVideoList.Add(14);
+                break;
+            case 4:
+                videoManager.newVideoList.Add(14);
+                break;
+            case 5:
+                videoManager.newVideoList.Add(4);
+                break;
+            case 6:
+                videoManager.newVideoList.Add(3);
+                break;
+            case 7:
+                videoManager.newVideoList.Add(2);
+                break;
+/*            case 9:
+                videoManager.videoCount = 1;
+                break;*/
+/*            default:
+                videoManager.skipVideoCount = 1;
+                break;*/
+        }
+    }
+
+    public void calculateVideoNumber()
+    {
+        totalAddition = 0;
+        for (int k = 0; k < buttons[VideoManager.adsNumber].Count; k++)
+        {
+            totalAddition += buttons[VideoManager.adsNumber][k].GetComponent<ButtonReturn>().buttonValue;
+        }
+        videoAddition = totalAddition;
+        whatVideoToPlay(videoAddition);
     }
 }

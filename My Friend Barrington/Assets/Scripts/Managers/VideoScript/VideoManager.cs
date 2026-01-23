@@ -9,6 +9,7 @@ public class VideoManager : MonoBehaviour
     [Header("Videos")]
     public VideosData[] ads1, ads2;
     private VideosData _v;
+    public List<int> newVideoList = new List<int>();
     public static int adsNumber;
     // Getting Looping video number
     [Header("Video Number")]
@@ -29,6 +30,12 @@ public class VideoManager : MonoBehaviour
     // Change Scene
     public string[] nextSceneName;
     public KeyCode inputKey;
+    public int skipVideoCount;
+
+    // remote raw image
+    [SerializeField]
+    private GameObject remoteImage;
+
     // Getting Component
     [Header("Component")]
     [SerializeField]
@@ -43,10 +50,15 @@ public class VideoManager : MonoBehaviour
         GameObject buttonManager = GameObject.Find(GeneralGameTags.ButtonManager);
         bm = buttonManager.GetComponent<ButtonManager>();
 
+        // Adding list
+        newVideoList.Add(0);
+        newVideoList.Add(1);
+
         // Play video
         playNextVideo = true;
         videoCount = 0;
         videoControlNumber = 0;
+        remoteImage.SetActive(false);
     }
 
     // Update is called once per frame
@@ -74,9 +86,12 @@ public class VideoManager : MonoBehaviour
                 loopVideo = false;
             }
         }
+
         // working later to break the video and straight to next one
         // Calling methods
         checkVideoStatus();
+        //Debug.Log(skipVideoCount);
+        //Debug.Log(videoCount);
 
     }
     // Method to play ads1
@@ -103,10 +118,12 @@ public class VideoManager : MonoBehaviour
         {
             videoPlayer.clip = _v.videoClip;
             videoPlayer.Play();
+            remoteImage.SetActive(false);
             if (_v.isLoop)
             {
                 loopVideo = true;
                 bm.buttonStatus = true;
+                remoteImage.SetActive(true);
                 if (_v.isSmashingButton)
                 {
                     isPauseVideo = true;
