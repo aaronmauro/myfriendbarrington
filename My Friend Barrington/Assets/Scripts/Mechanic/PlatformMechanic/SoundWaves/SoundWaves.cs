@@ -165,7 +165,7 @@ public class SoundWaves : MonoBehaviour
     private void moveSoundWaves()
     {
         //_soundWavesObject.transform.Translate(direction * moveSpeed * Time.deltaTime);
-        _soundWavesObject.GetComponent<Rigidbody>().MovePosition(_soundWavesObject.transform.position+Vector3.left*moveSpeed*Time.fixedDeltaTime);
+        _soundWavesObject.GetComponent<Rigidbody>().MovePosition(_soundWavesObject.transform.position+direction*moveSpeed*Time.fixedDeltaTime);
         travelDistance = Vector3.Distance(_soundWavesObject.transform.position, transform.position);
         if (travelDistance > destroyDistance)
         {
