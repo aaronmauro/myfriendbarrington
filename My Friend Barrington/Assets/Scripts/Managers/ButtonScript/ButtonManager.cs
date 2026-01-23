@@ -129,13 +129,13 @@ public class ButtonManager : MonoBehaviour
         switch (num)
         {
             case 2:
-                videoManager.skipVideoCount = 3;
+                videoManager.newVideoList.Add(14);
                 break;
             case 3:
-                videoManager.skipVideoCount = 1;
+                videoManager.newVideoList.Add(14);
                 break;
             case 4:
-                videoManager.skipVideoCount = 2;
+                videoManager.newVideoList.Add(14);
                 break;
             case 5:
                 videoManager.newVideoList.Add(4);
