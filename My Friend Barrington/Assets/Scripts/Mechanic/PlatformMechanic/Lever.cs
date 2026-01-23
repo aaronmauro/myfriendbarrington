@@ -14,6 +14,9 @@ public class Lever : MonoBehaviour
     [SerializeField] 
     private bool isUsed;
 
+    [SerializeField]
+    private ParticleSystem interactParticles;
+
     private bool isTrigger;
 
     void Start()
@@ -29,6 +32,10 @@ public class Lever : MonoBehaviour
             
             targetObject.SetActive(!targetObject.activeSelf);
             isUsed = true;
+
+            if (interactParticles != null)
+                interactParticles.Play();
+
         }
     }
 
