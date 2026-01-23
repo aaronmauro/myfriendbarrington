@@ -1,18 +1,21 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using UnityEngine.UI;
 
 public class PillowCollector : MonoBehaviour
 {
     [SerializeField]
-    private int pillowsCollected = 0;
+    private int pillowsNeeded = 4;
 
     [SerializeField]
     private Image FadeToBlack;
     private bool FadeStart = false;
     private float fade = 0;
+
+    public TMP_Text pillowText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,9 +43,9 @@ public class PillowCollector : MonoBehaviour
         if (other.GetComponent<PillowCollectable>() != null)
         {
             other.GetComponent<PillowCollectable>().Collect();
-            pillowsCollected += 1;
-            Debug.Log(pillowsCollected);
-            if(pillowsCollected >= 4)
+            pillowsNeeded -= 1;
+            pillowText.text = pillowsNeeded.ToString();
+            if(pillowsNeeded <= 0)
             {
                 EndLevel();
             }
