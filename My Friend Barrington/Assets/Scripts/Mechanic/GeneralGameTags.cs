@@ -6,6 +6,7 @@ public class GeneralGameTags
     public const string Player = "Player";
     public const string Box = "MovableBox";
     public const string DangerBox = "Danger";
+    public const string PlayerCamera = "PlayerCamera";
 
     // Managers Tags
     public const string GameManager = "GameManager";

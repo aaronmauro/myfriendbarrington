@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class Bush : MonoBehaviour
@@ -9,12 +10,24 @@ public class Bush : MonoBehaviour
     private LayerMask excludeLayer;
     [SerializeField]
     private SoundWaves waves;
+    [SerializeField]
+    private CinemachineCamera playerCam;
+    [SerializeField]
+    private float nearClipPlane;
+    private float orignalClipPlane;
+
+    private void Start()
+    {
+        playerCam = gameObject.findPlayerCamera();
+        orignalClipPlane = playerCam.Lens.NearClipPlane;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.isPlayer())
         {
             waves.inBush = true;
+            playerCam.Lens.NearClipPlane = nearClipPlane;
         }
     }
     /*
@@ -35,6 +48,7 @@ public class Bush : MonoBehaviour
         if (other.gameObject.isPlayer())
         {
             waves.inBush = false;
+            playerCam.Lens.NearClipPlane = orignalClipPlane;
         }
     }
 }

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
         // getting components
         if (backGroundAudio == "") // Why can't this bull null :<
         {
-            AudioManager.instance.playBackgroundMusic(backGroundAudio);
+            //AudioManager.instance.playBackgroundMusic(backGroundAudio);
             return;
         }
         else
@@ -103,8 +103,8 @@ public class GameManager : MonoBehaviour
     // move respawn method
     private void moveRespawn()
     {
-        if (spawnPoints = null) return;
-        if (player = null) return;
+        if (spawnPoints == null) return;
+        if (player == null) return;
 
         //Debug.Log(player.moveRespawn);
         if (player.isGround && !dangerDetect)

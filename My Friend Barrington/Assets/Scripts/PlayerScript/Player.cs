@@ -64,6 +64,10 @@ public class Player : MonoBehaviour
     // Gizmo
     private Color gizmoColour = Color.yellow;
 
+    // Platform
+    private NewMonoBehaviourScript currentPlatform;
+    private Vector3 lastPlatformPosition;
+
     // Cool new trick
     private void OnEnable()
     {
@@ -116,8 +120,6 @@ public class Player : MonoBehaviour
         rb.freezeRotation = true;
         playerInput = true;
         rb.linearDamping = linearDrag;
-        // affect how fast player falls
-        //Physics.gravity = new Vector3(0f, gravity, 0f);
     }
     
     private void FixedUpdate()
@@ -125,13 +127,15 @@ public class Player : MonoBehaviour
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
         InputManager.GetInstance().playerAction?.Invoke();
 
-        // Player Movement
-        //moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
-        //rb.linearVelocity = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
-        //if (isJump)
-        //{
-        //    rb.linearVelocity = new Vector3(moveInput.x * speedAcceleration, jump, rb.linearVelocity.z);
-        //}
+        if (isGround && currentPlatform != null)
+        {
+            Vector3 platformDelta = currentPlatform.transform.position - lastPlatformPosition;
+
+            // move player only by the platform's horizontal movement
+            rb.MovePosition(rb.position + new Vector3(platformDelta.x, 0f, 0f));
+
+            lastPlatformPosition = currentPlatform.transform.position;
+        }
     }
 
     // Player moving method
@@ -184,6 +188,7 @@ public class Player : MonoBehaviour
     private void startPlayer(InputAction.CallbackContext context)
     {
         //isWalking = true; // only walk on the ground foo - DV
+        // lol i didn't realize it,
     }
     private void stopPlayer(InputAction.CallbackContext context)
     {
@@ -219,6 +224,7 @@ public class Player : MonoBehaviour
         isJump = true;
         jumpButtonHoldTimer = 0;
         isWalking = false;
+        currentPlatform = null;
 
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
@@ -302,6 +308,26 @@ public class Player : MonoBehaviour
         // Add force in bubble stream
         rb.AddForce(Vector3.up * floatForce, ForceMode.Acceleration);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        NewMonoBehaviourScript platform =
+            collision.gameObject.GetComponent<NewMonoBehaviourScript>();
+
+        if (platform != null)
+        {
+            currentPlatform = platform;
+            lastPlatformPosition = platform.transform.position;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<NewMonoBehaviourScript>())
+        {
+            currentPlatform = null;
+        }
+    }
+
     // Gizmo to show ground check raycast
     private void OnDrawGizmos()
     {

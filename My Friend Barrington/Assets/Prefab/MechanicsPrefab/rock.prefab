@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 4aa3287464484cd45ac816a46caa3552, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -40
+      value: -20.052727
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa3287464484cd45ac816a46caa3552, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.93
+      value: -1.339179
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa3287464484cd45ac816a46caa3552, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.72
+      value: -2.8667374
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4aa3287464484cd45ac816a46caa3552, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85,6 +85,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   waves: {fileID: 0}
+  playerCam: {fileID: 0}
+  nearClipPlane: 6.22
 --- !u!65 &795928558787852327
 BoxCollider:
   m_ObjectHideFlags: 0

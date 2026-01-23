@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public static class ExtensionMethods
@@ -64,5 +65,10 @@ public static class ExtensionMethods
         }
         //Debug.Log()
         return player;
+    }
+    // finding player camera
+    public static CinemachineCamera findPlayerCamera(this GameObject gameObject)
+    {
+        return GameObject.Find(GeneralGameTags.PlayerCamera).GetComponent<CinemachineCamera>();
     }
 }
