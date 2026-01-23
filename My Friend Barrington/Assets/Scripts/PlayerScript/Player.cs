@@ -30,11 +30,14 @@ public class Player : MonoBehaviour
     //[SerializeField]
     //private TMP_Text speedText;
 
-    // Checking Inputs, player movement
+    // Chekcing Inputs, player movement
     public bool playerInput = true;
     private bool isWalking;
     public bool isRight;
     private Vector2 moveInput;
+
+    // Swinging status - DV
+    private Grapple swing = null;
 
     // Checking ground
     [Header("GroundCheck")]
@@ -42,8 +45,7 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
     public LayerMask platformMask;
     public float playerHeight;
-    private NewMonoBehaviourScript currentPlatform;
-    private Vector3 lastPlatformPosition;
+
     // Getting components
     [Header("Components")]
     public Camera cam;
@@ -122,17 +124,7 @@ public class Player : MonoBehaviour
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
         InputManager.GetInstance().playerAction?.Invoke();
-    
-    if (isGround && currentPlatform != null)
-    {
-        Vector3 platformDelta = currentPlatform.transform.position - lastPlatformPosition;
 
-        // move player only by the platform's horizontal movement
-        rb.MovePosition(rb.position + new Vector3(platformDelta.x, 0f, 0f));
-
-        lastPlatformPosition = currentPlatform.transform.position;
-    }
-    
         // Player Movement
         //moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         //rb.linearVelocity = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
@@ -153,11 +145,20 @@ public class Player : MonoBehaviour
 
         // Getting values from user input
         moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
-        Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
-        //Debug.Log(rb.linearVelocity.y + "-1");
+        moveInput = new Vector2(moveInput.x,0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
+        moveInput.Normalize();
 
         // Player cannot Input, end
         if (moveInput == Vector2.zero) return;
+
+        if (swing != null) // use swinging movement instead - DV
+        {
+            swing.moveSwing(moveInput);
+            return;
+        }
+
+        Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
+        //Debug.Log(rb.linearVelocity.y + "-1");
 
         // Player Movement
         rb.linearVelocity = playerMovement;
@@ -169,12 +170,12 @@ public class Player : MonoBehaviour
         if (playerDir > 0)
         {
             isRight = true;
-            isWalking = true;
+            if(isGround) isWalking = true; // only walk on the ground foo - DV
         }
         else if (playerDir < 0)
         {
             isRight = false;
-            isWalking = true;
+            if(isGround) isWalking = true; // only walk on the ground foo - DV
         }
         // Drag player
         //currentSpeed = rb.linearVelocity.magnitude;
@@ -182,7 +183,7 @@ public class Player : MonoBehaviour
     }
     private void startPlayer(InputAction.CallbackContext context)
     {
-        isWalking = true;
+        //isWalking = true; // only walk on the ground foo - DV
     }
     private void stopPlayer(InputAction.CallbackContext context)
     {
@@ -192,6 +193,11 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        if (swing != null)
+        {
+            isGround = true;
+            swing.DestroyHook();
+        }
         // start pressing jump button
         jumping();
     }
@@ -213,8 +219,7 @@ public class Player : MonoBehaviour
         isJump = true;
         jumpButtonHoldTimer = 0;
         isWalking = false;
-        currentPlatform = null;
-        
+
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
 
@@ -230,7 +235,7 @@ public class Player : MonoBehaviour
         // apply force based on how long player pressed
         if (jumpButtonHoldTimer < maxJumpTimer)
         {
-            rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, rb.linearVelocity.y + jumpButtonHoldTimer, rb.linearVelocity.z);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, rb.linearVelocity.y + jumpForceIncrease, rb.linearVelocity.z);
         }
         //Debug.Log(rb.linearVelocity.y + "-2");
     }
@@ -304,23 +309,8 @@ public class Player : MonoBehaviour
         Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
     {
-        NewMonoBehaviourScript platform =
-            collision.gameObject.GetComponent<NewMonoBehaviourScript>();
-
-        if (platform != null)
-        {
-            currentPlatform = platform;
-            lastPlatformPosition = platform.transform.position;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.GetComponent<NewMonoBehaviourScript>())
-        {
-            currentPlatform = null;
-        }
+        swing = swinging;
     }
 }
