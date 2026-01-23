@@ -91,6 +91,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("Lvl3");
         }
+        if (Input.GetKeyDown(KeyCode.End))
+        {
+            player.transform.position = new Vector3(750,-195,0);
+        }
     }
 
     // respawn player Method
