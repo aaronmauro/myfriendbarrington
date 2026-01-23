@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 
 public class GameManager : MonoBehaviour
@@ -100,9 +101,9 @@ public class GameManager : MonoBehaviour
     // respawn player Method
     public void respawn()
     {
-        player.transform.position = spawnPoints.transform.position;
-        var playRg = player.GetComponent<Rigidbody>();
-        playRg.linearVelocity = Vector3.zero;
+        player.gameObject.SetActive(false);
+        StartCoroutine(RespawnDelay1(0.25f));
+        
     }
     // move respawn method
     private void moveRespawn()
@@ -115,6 +116,21 @@ public class GameManager : MonoBehaviour
         {
             spawnPoints.transform.position = player.transform.position;
         }
+    }
+
+    private IEnumerator RespawnDelay1(float delay) // they aint ready for this one - DV
+    {
+        yield return new WaitForSeconds(delay);
+        player.transform.position = spawnPoints.transform.position;
+        StartCoroutine(RespawnDelay2(0.25f));
+    }
+
+    private IEnumerator RespawnDelay2(float delay) // ohhhh they aint ready - DV
+    {
+        yield return new WaitForSeconds(delay);
+        player.gameObject.SetActive(true);
+        var playRg = player.GetComponent<Rigidbody>();
+        playRg.linearVelocity = Vector3.zero;
     }
 
 }
