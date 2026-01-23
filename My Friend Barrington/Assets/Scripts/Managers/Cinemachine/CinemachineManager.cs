@@ -15,8 +15,11 @@ public class CinemachineManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerCam.enabled = true;
-        startGameZoomOut = true;
+        if (playerCam != null)
+        {
+            playerCam.enabled = true;
+            startGameZoomOut = true;
+        }
     }
 
     // Update is called once per frame

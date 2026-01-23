@@ -17,6 +17,8 @@ public class InputManager : MonoBehaviour
     public InputActionReference moveAction;
     public InputActionReference skipLevelAction;
     public InputActionReference interactAction;
+    public InputActionReference videoSkipAction;
+    public InputActionReference videoNextAction;
 
     public delegate void PlayerAction();
     public PlayerAction playerAction;

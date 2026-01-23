@@ -1362,6 +1362,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "NextVideo",
+                    "type": "Button",
+                    "id": "ae3e3087-576b-49d4-ba25-56583ddadf78",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1373,6 +1382,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipVideo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b7b8ba7-5fbd-4982-874d-7a755f9919c4",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextVideo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
