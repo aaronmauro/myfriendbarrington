@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 
+
 public class AudioManager : MonoBehaviour
 {
     // lots of different sounds
     public AudioClass[] playerSound, bgSound, SFXSound, NPCSound;
     [SerializeField]
-    private AudioSource playerSFX, bgSFX, SFX, NPCSFX, playerWalkingSFX;
+    public AudioSource playerSFX, bgSFX, SFX, NPCSFX, playerWalkingSFX;
 
     // create instance to access form other script
     public static AudioManager instance;

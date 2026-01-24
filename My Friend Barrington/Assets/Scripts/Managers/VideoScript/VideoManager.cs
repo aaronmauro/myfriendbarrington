@@ -43,6 +43,15 @@ public class VideoManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private ButtonManager bm;
 
+    private void Awake()
+    {
+        if (FindFirstObjectByType<AudioManager>() != null)
+        {
+            //Destroy(FindFirstObjectByType<AudioManager>());
+            AudioManager.instance.bgSFX.Stop();
+        }
+
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -95,7 +104,7 @@ public class VideoManager : MonoBehaviour
         //Debug.Log(skipVideoCount);
         //Debug.Log(videoCount);
         //Debug.Log(newVideoCount);
-        Debug.Log(_v);
+        //Debug.Log(_v);
 
     }
     // Method to play ads1

@@ -14,6 +14,8 @@ public class ChangeScene : MonoBehaviour
     [SerializeField]
     private CinemachineCamera cm;
     public bool exitScreen;
+    [SerializeField]
+    private GameObject boatVideo;
 
     private VideoManager vm;
     private Player player;
@@ -55,6 +57,7 @@ public class ChangeScene : MonoBehaviour
         // if cannot find the gameObject
         if (player == null) return;
         if (vm == null) return;
+        if (boatVideo == null) return;
     }
     private void Update()
     {
@@ -94,7 +97,11 @@ public class ChangeScene : MonoBehaviour
     private IEnumerator playVideo()
     {
         cm.enabled = true;
-        Debug.Log(cm.enabled);
+        if (boatVideo != null)
+        {
+            boatVideo.SetActive(true);
+        }
+        //Debug.Log(cm.enabled);
         yield return new WaitForSeconds(5f);
         SceneManagerScript.instance.nextScene(sceneName);
     }
