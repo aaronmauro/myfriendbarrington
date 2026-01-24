@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Manages scene changes
 public class SceneManagerScript : MonoBehaviour

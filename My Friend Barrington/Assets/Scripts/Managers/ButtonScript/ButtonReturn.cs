@@ -67,9 +67,10 @@ public class ButtonReturn : MonoBehaviour
     // checking when player click
     private void playerOnClick()
     {
-        Debug.Log("testing");
-        vm.videoCount = inputValues[bm.numberOfChocie]; // testing
+        //Debug.Log("testing");
+        //vm.videoCount = inputValues[bm.numberOfChocie]; // testing
         vm.newVideoList.Add(inputValues[bm.numberOfChocie]);
+        vm.newVideoCount += 1;
         vm.afterLoopVideo = true;
         bm.numberOfChocie++;
         vm.loopVideo = false;
