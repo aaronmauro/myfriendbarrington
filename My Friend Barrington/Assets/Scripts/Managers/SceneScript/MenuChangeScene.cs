@@ -9,25 +9,23 @@ public class MenuChangeScene : MonoBehaviour
     private Button optionButton;
     [SerializeField]
     private Button mainButton;
+    [SerializeField]
+    private bool mainMenuCheck;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // Finding Button
-        startButton = GameObject.Find("StartButton").GetComponent<Button>();
-        optionButton = GameObject.Find("OptionsButton").GetComponent<Button>();
-        mainButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
-        if (startButton != null && optionButton != null)
+        //startButton = GameObject.Find("StartButton").GetComponent<Button>();
+        //optionButton = GameObject.Find("OptionsButton").GetComponent<Button>();
+        //mainButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
+        if (mainMenuCheck)
         {
             startButton.onClick.AddListener(startGame);
             optionButton.onClick.AddListener(optionMenu);
         }
-        else if (mainButton != null)
-        {
-            optionButton.onClick.AddListener(optionMenu);
-        }
         else
         {
-            return;
+            mainButton.onClick.AddListener(mainMenu);
         }
     }
 
@@ -51,6 +49,7 @@ public class MenuChangeScene : MonoBehaviour
     // main menu
     private void mainMenu()
     {
+        Debug.Log("Going to Main Menu");
         SceneManagerScript.instance.nextScene("MainMenu(StartScreen)");
     }
 }
