@@ -132,5 +132,11 @@ public class GameManager : MonoBehaviour
         var playRg = player.GetComponent<Rigidbody>();
         playRg.linearVelocity = Vector3.zero;
     }
-
+    
+    // quit the game for escape button
+    public void onEscapePressed()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
 }
