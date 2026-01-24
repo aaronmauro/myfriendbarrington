@@ -152,6 +152,7 @@ public class ButtonManager : MonoBehaviour
             //    break;
             default:
                 videoManager.newVideoList.Add(14);
+                videoManager.newVideoList.Add(15);
                 break;
         }
     }

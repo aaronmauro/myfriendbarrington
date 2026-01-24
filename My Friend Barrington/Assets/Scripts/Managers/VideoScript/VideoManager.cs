@@ -95,6 +95,7 @@ public class VideoManager : MonoBehaviour
         //Debug.Log(skipVideoCount);
         //Debug.Log(videoCount);
         //Debug.Log(newVideoCount);
+        Debug.Log(_v);
 
     }
     // Method to play ads1
