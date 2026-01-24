@@ -118,6 +118,7 @@ public class ButtonManager : MonoBehaviour
     private void nextVideoMethod(InputAction.CallbackContext context)
     {
         videoManager.videoCount++;
+        videoManager.newVideoCount++;
         videoManager.afterLoopVideo = true;
         Debug.Log("Next Video: " + videoManager.videoCount);
     }
@@ -129,13 +130,13 @@ public class ButtonManager : MonoBehaviour
         switch (num)
         {
             case 2:
-                videoManager.newVideoList.Add(14);
+                videoManager.newVideoList.Add(8);
                 break;
             case 3:
-                videoManager.newVideoList.Add(14);
+                videoManager.newVideoList.Add(9);
                 break;
             case 4:
-                videoManager.newVideoList.Add(14);
+                videoManager.newVideoList.Add(10);
                 break;
             case 5:
                 videoManager.newVideoList.Add(4);
@@ -146,12 +147,12 @@ public class ButtonManager : MonoBehaviour
             case 7:
                 videoManager.newVideoList.Add(2);
                 break;
-/*            case 9:
-                videoManager.videoCount = 1;
-                break;*/
-/*            default:
-                videoManager.skipVideoCount = 1;
-                break;*/
+            //case 0:
+            //    videoManager.newVideoList.Add(14);
+            //    break;
+            default:
+                videoManager.newVideoList.Add(14);
+                break;
         }
     }
 

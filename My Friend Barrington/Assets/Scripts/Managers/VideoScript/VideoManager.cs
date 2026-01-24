@@ -9,7 +9,8 @@ public class VideoManager : MonoBehaviour
     [Header("Videos")]
     public VideosData[] ads1, ads2;
     private VideosData _v;
-    public List<int> newVideoList = new List<int>();
+    public List<int> newVideoList = new List<int>(new int[8]);
+    public int newVideoCount;
     public static int adsNumber;
     // Getting Looping video number
     [Header("Video Number")]
@@ -57,6 +58,7 @@ public class VideoManager : MonoBehaviour
         // Play video
         playNextVideo = true;
         videoCount = 0;
+        newVideoCount = 0;
         videoControlNumber = 0;
         remoteImage.SetActive(false);
     }
@@ -92,6 +94,7 @@ public class VideoManager : MonoBehaviour
         checkVideoStatus();
         //Debug.Log(skipVideoCount);
         //Debug.Log(videoCount);
+        //Debug.Log(newVideoCount);
 
     }
     // Method to play ads1
@@ -100,7 +103,7 @@ public class VideoManager : MonoBehaviour
         // Finding the name in the array
         if (adsNumber == 0)
         {
-            _v = Array.Find(ads1, x => x.Name == videoName);
+            _v = Array.Find(ads1, x => x.Name == Convert.ToString(newVideoList[newVideoCount]));
         }
         else if (adsNumber == 1)
         {
@@ -150,11 +153,13 @@ public class VideoManager : MonoBehaviour
         {
             if ((loopVideo && isPauseVideo) || !isPauseVideo)
             {
+                //newVideoCount++;
                 playNextVideo = true;
             }
             // Check if video need to be loop
             if (!loopVideo && !isPauseVideo)
             {
+                newVideoCount += 1 - videoControlNumber;
                 videoCount += 1 - videoControlNumber;
             }
             videoControlNumber = 0;
