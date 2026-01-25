@@ -259,7 +259,7 @@ public class Player : MonoBehaviour
     private void playerAnimation()
     {
         // Player walking Audio
-        AudioManager.instance.playPlayerWalking(isWalking);
+        //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
     }
     private void isGroundRayCast()

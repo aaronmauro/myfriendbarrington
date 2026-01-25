@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            AudioManager.instance.playBackgroundMusic(backGroundAudio);
+            //AudioManager.instance.playBackgroundMusic(backGroundAudio);
         }
     }
 
