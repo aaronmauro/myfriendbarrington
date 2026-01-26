@@ -13,9 +13,14 @@ public class ButtonCollect : MonoBehaviour
     public int buttonWorth;
 
     public TMP_Text messageText;
+    private Renderer colour;
+    [SerializeField]
+    private Color[] colors;
 
     private void Start()
     {
+        colour = GetComponent<Renderer>();
+        changeColour();
         messageText = GameObject.Find("messageText").GetComponent<TMP_Text>();
     }
 
@@ -25,7 +30,6 @@ public class ButtonCollect : MonoBehaviour
         {
             // Play Coin Sound Here
             //AudioManager.instance.playSFX("Coin");
-
 
             button.SetActive(false);
 
@@ -37,5 +41,10 @@ public class ButtonCollect : MonoBehaviour
     public void UpdateScore()
     {
         messageText.text = "x" + buttonCount;
+    }
+
+    private void changeColour()
+    {
+        colour.material.color = colors[Random.Range(0, colors.Length)];
     }
 }
