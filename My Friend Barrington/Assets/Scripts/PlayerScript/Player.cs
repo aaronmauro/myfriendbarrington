@@ -218,7 +218,7 @@ public class Player : MonoBehaviour
         if (!isGround) return;
 
         // play Audio
-        AudioManager.instance.playPlayerSFX("PlatformJump");
+        //AudioManager.instance.playPlayerSFX("PlatformJump");
 
         // Turn on Bools
         isJump = true;
@@ -280,7 +280,7 @@ public class Player : MonoBehaviour
         // Stop player from moving
         rb.linearVelocity = Vector3.zero;
         isWalking = false;
-        AudioManager.instance.playPlayerWalking(isWalking);
+        //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
     }
     public void playerRotation()
