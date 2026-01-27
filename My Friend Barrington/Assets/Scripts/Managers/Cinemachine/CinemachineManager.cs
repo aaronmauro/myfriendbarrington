@@ -1,4 +1,5 @@
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CinemachineManager : MonoBehaviour
@@ -7,11 +8,15 @@ public class CinemachineManager : MonoBehaviour
     private CinemachineCamera playerCam;
     [SerializeField]
     private CinemachineCamera[] Cam;
+   
+
 
     [SerializeField]
     private float zoomOutMultipliers;
     private bool startGameZoomOut;
     public bool touchedTV;
+    [SerializeField]
+    private int zoomOutValue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +42,7 @@ public class CinemachineManager : MonoBehaviour
 
     private void zoomOutAtStart()
     {
-        if (playerCam.Lens.FieldOfView <= 60)
+        if (playerCam.Lens.FieldOfView <= zoomOutValue)
         {
             playerCam.Lens.FieldOfView += Time.deltaTime * zoomOutMultipliers;
         }
