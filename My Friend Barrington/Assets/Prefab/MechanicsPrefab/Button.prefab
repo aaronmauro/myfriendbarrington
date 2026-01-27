@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7143505317020651708}
-  m_Mesh: {fileID: -2432090755550338912, guid: a94d41a98278a914b880495dae19ea65, type: 3}
+  m_Mesh: {fileID: 2534964839176971238, guid: 4257d54bdd54d3c48ba5163c9b1a4e97, type: 3}
 --- !u!23 &4290065265377303943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -125,14 +125,12 @@ MonoBehaviour:
   button: {fileID: 7143505317020651708}
   buttonWorth: 1
   messageText: {fileID: 0}
-  colors:
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0, g: 0.20701385, b: 1, a: 0}
-  - {r: 1, g: 0.80982494, b: 0, a: 0}
-  - {r: 0.14967108, g: 1, b: 0, a: 0}
-  - {r: 1, g: 0, b: 0.8950033, a: 0}
-  - {r: 1, g: 0.39462644, b: 0, a: 0}
-  - {r: 0, g: 1, b: 0.8412695, a: 0}
+  materials:
+  - {fileID: 2100000, guid: 30b01d967aca8cd48b311b0b36ddbe5d, type: 2}
+  - {fileID: 2100000, guid: 1b72383ca8cd4184599bfbb12c78346a, type: 2}
+  - {fileID: 2100000, guid: 3aafeca5cb2cc354b81e0e6c8b3d397b, type: 2}
+  - {fileID: 2100000, guid: ae41f71772517c8449c45028f4b3b6ed, type: 2}
+  materialType: 1
 --- !u!95 &2868261842678623516
 Animator:
   serializedVersion: 7

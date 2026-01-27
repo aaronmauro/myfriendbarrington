@@ -15,7 +15,19 @@ public class ButtonCollect : MonoBehaviour
     public TMP_Text messageText;
     private Renderer colour;
     [SerializeField]
-    private Color[] colors;
+    private Material[] materials;
+
+    public enum pickMaterial
+    {
+        Pink,
+        Blue,
+        Purple,
+        Red
+    }
+
+    public pickMaterial materialType;
+    //private Color[] colors;
+
 
     private void Start()
     {
@@ -45,6 +57,22 @@ public class ButtonCollect : MonoBehaviour
 
     private void changeColour()
     {
-        colour.material.color = colors[Random.Range(0, colors.Length)];
+        if (materialType == pickMaterial.Pink)
+        {
+            colour.material = materials[0];
+        }
+        else if (materialType == pickMaterial.Blue)
+        {
+            colour.material = materials[1];
+        }
+        else if (materialType == pickMaterial.Purple)
+        {
+            colour.material = materials[2];
+        }
+        else if (materialType == pickMaterial.Red)
+        {
+            colour.material = materials[3];
+        }
+        //colour.material.color = colors[Random.Range(0, colors.Length)];
     }
 }
