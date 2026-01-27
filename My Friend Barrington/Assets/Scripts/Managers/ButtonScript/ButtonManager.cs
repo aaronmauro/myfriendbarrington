@@ -68,7 +68,7 @@ public class ButtonManager : MonoBehaviour
         // show and hide button
         enableButton(buttonStatus);
 
-        //Debug.Log(totalAddition);
+        //Debug.Log(videoManager.newVideoList.Count);
     }
     // Changing Button active
     private void enableButton(bool isActive)
@@ -105,7 +105,8 @@ public class ButtonManager : MonoBehaviour
     {
         if (VideoManager.adsNumber == 0)
         {
-            videoManager.videoCount = videoManager.ads1.Length;
+            // maybe next scene?
+            videoManager.newVideoCount = videoManager.newVideoList.Count - 1;
             videoManager.afterLoopVideo = true;
         }
         else if (VideoManager.adsNumber == 1)
