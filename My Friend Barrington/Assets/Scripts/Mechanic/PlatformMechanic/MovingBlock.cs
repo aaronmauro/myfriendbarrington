@@ -1,12 +1,13 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public Transform targetA;
     public Transform targetB;
 
     private Transform currentTarget;
-    private Vector3 lastPosition;
+    private Rigidbody rb;
 
     public float speed = 0.5f;
     public float switchDistance = 0.05f;
@@ -15,35 +16,44 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+
         currentTarget = targetA;
-        lastPosition = transform.position;
     }
 
     void FixedUpdate()
     {
-        
-        Vector3 oldPos = transform.position;
+        Vector3 oldPos = rb.position;
 
-        transform.position = Vector3.MoveTowards(
-            transform.position,
+        Vector3 newPos = Vector3.MoveTowards(
+            rb.position,
             currentTarget.position,
             speed * Time.fixedDeltaTime
         );
 
-        PlatformDelta = transform.position - oldPos;
+        PlatformDelta = newPos - oldPos;
+        rb.MovePosition(newPos);
 
-        if (Vector3.Distance(transform.position, currentTarget.position) < switchDistance)
+        if (Vector3.Distance(newPos, currentTarget.position) < switchDistance)
         {
             currentTarget = (currentTarget == targetA) ? targetB : targetA;
         }
-    
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(targetA.position, 1f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(targetB.position, 1f);
+        if (targetA != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(targetA.position, 1f);
+        }
+
+        if (targetB != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(targetB.position, 1f);
+        }
     }
 }
