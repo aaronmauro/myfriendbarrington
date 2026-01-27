@@ -13,9 +13,26 @@ public class ButtonCollect : MonoBehaviour
     public int buttonWorth;
 
     public TMP_Text messageText;
+    private Renderer colour;
+    [SerializeField]
+    private Material[] materials;
+
+    public enum pickMaterial
+    {
+        Pink,
+        Blue,
+        Purple,
+        Red
+    }
+
+    public pickMaterial materialType;
+    //private Color[] colors;
+
 
     private void Start()
     {
+        colour = GetComponent<Renderer>();
+        changeColour();
         messageText = GameObject.Find("messageText").GetComponent<TMP_Text>();
     }
 
@@ -25,7 +42,6 @@ public class ButtonCollect : MonoBehaviour
         {
             // Play Coin Sound Here
             //AudioManager.instance.playSFX("Coin");
-
 
             button.SetActive(false);
 
@@ -37,5 +53,26 @@ public class ButtonCollect : MonoBehaviour
     public void UpdateScore()
     {
         messageText.text = "x" + buttonCount;
+    }
+
+    private void changeColour()
+    {
+        if (materialType == pickMaterial.Pink)
+        {
+            colour.material = materials[0];
+        }
+        else if (materialType == pickMaterial.Blue)
+        {
+            colour.material = materials[1];
+        }
+        else if (materialType == pickMaterial.Purple)
+        {
+            colour.material = materials[2];
+        }
+        else if (materialType == pickMaterial.Red)
+        {
+            colour.material = materials[3];
+        }
+        //colour.material.color = colors[Random.Range(0, colors.Length)];
     }
 }

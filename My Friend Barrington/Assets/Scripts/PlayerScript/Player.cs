@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float jumpForceIncrease;
     public float fixedInAirVelocity;
+    [SerializeField]
+    private float coyoteTime;
+    private float coyoteTimeCounter;
 
     // Visual Speed Text
     //private float currentSpeed;
@@ -120,6 +123,7 @@ public class Player : MonoBehaviour
         rb.freezeRotation = true;
         playerInput = true;
         rb.linearDamping = linearDrag;
+        coyoteTimeCounter = 0f;
     }
     
     private void FixedUpdate()
@@ -136,6 +140,8 @@ public class Player : MonoBehaviour
 
             lastPlatformPosition = currentPlatform.transform.position;
         }
+        Debug.Log(coyoteTimeCounter);
+        Debug.Log(coyoteTime);
     }
 
     // Player moving method
@@ -181,6 +187,8 @@ public class Player : MonoBehaviour
             isRight = false;
             if(isGround) isWalking = true; // only walk on the ground foo - DV
         }
+
+
         // Drag player
         //currentSpeed = rb.linearVelocity.magnitude;
         //speedText.text = "Current Speed: " + currentSpeed;
@@ -203,22 +211,24 @@ public class Player : MonoBehaviour
             isGround = true;
             swing.DestroyHook();
         }
-        // start pressing jump button
-        jumping();
+        if (coyoteTimeCounter >= 0f)
+        {
+            jumping();
+        }
     }
     private void jumpEnd(InputAction.CallbackContext context)
     {
         // end pressing jump button
         isJump = false;
+        coyoteTimeCounter = 0f;
     }
     private void jumping()
     {
         // Jump
         // End code if not touching Ground
-        if (!isGround) return;
 
         // play Audio
-        AudioManager.instance.playPlayerSFX("PlatformJump");
+        //AudioManager.instance.playPlayerSFX("PlatformJump");
 
         // Turn on Bools
         isJump = true;
@@ -259,13 +269,24 @@ public class Player : MonoBehaviour
     private void playerAnimation()
     {
         // Player walking Audio
-        AudioManager.instance.playPlayerWalking(isWalking);
+        //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
     }
     private void isGroundRayCast()
     {
         // Ground Check
         isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+
+        // start pressing jump button
+        if (isGround)
+        {
+            coyoteTimeCounter = coyoteTime;
+            //isWalking = true;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
     }
     // aplly froce in air
     private void fixTheAir()
@@ -280,7 +301,7 @@ public class Player : MonoBehaviour
         // Stop player from moving
         rb.linearVelocity = Vector3.zero;
         isWalking = false;
-        AudioManager.instance.playPlayerWalking(isWalking);
+        //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
     }
     public void playerRotation()
