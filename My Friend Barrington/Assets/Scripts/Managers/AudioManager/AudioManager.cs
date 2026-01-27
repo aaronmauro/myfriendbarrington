@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+//using FMODUnity;
 
 public class AudioManager : MonoBehaviour
 {
@@ -103,4 +103,7 @@ public class AudioManager : MonoBehaviour
             NPCSFX.Play();
         }
     }
+
+    //private void Coin collect Method, line code is AudioManager.instance.PlayOneShot(coinCollectedSound, this.transform.position)
+
 }
