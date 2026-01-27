@@ -140,8 +140,8 @@ public class Player : MonoBehaviour
 
             lastPlatformPosition = currentPlatform.transform.position;
         }
-        Debug.Log(coyoteTimeCounter);
-        Debug.Log(coyoteTime);
+        //Debug.Log(coyoteTimeCounter);
+        //Debug.Log(coyoteTime);
     }
 
     // Player moving method
@@ -308,12 +308,12 @@ public class Player : MonoBehaviour
     {
         if (isRight)
         {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
             dangerDectect.direction = true;
         }
         else if (!isRight)
         {
-            transform.rotation = Quaternion.Euler(0, 270, 0);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = false;
         }
     }
