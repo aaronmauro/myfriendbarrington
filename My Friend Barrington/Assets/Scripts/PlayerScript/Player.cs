@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private bool isIdle;
     private bool isIdleAnimation;
     private bool isfalling;
+    private float facingCameraTimer;
 
     // Visual Speed Text
     //private float currentSpeed;
@@ -188,6 +189,7 @@ public class Player : MonoBehaviour
         rb.linearVelocity = playerMovement;
         isIdle = false;
         idleTimer = 0f;
+        facingCameraTimer = 0f;
         isIdleAnimation = false;
 
         // Fianlly found something to fix when input is too small like controller and the face won't change :D
@@ -225,6 +227,7 @@ public class Player : MonoBehaviour
     {
         isIdle = false;
         idleTimer = 0f;
+        facingCameraTimer = 0f;
         isIdleAnimation = false;
 
         if (swing != null)
@@ -357,15 +360,20 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(startPlayerIdle());
         }
+        facingCameraTimer += Time.deltaTime;
+        if (facingCameraTimer > 2f)
+        {
+            isIdle = true;
+        }
         //Debug.Log(rb.linearVelocity.y);
         //Debug.Log(rb.linearVelocity.y <= -1);
-        Debug.Log(idleTimer);
+        //Debug.Log(idleTimer);
     }
 
     // player idle
     private IEnumerator startPlayerIdle()
     {
-        isIdle = true;
+        //isIdle = true;
         isIdleAnimation = true;
         // wait for animation to end
         yield return new WaitForSeconds(10f);
