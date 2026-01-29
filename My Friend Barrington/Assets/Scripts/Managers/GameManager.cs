@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
         {
             //AudioManager.instance.playBackgroundMusic(backGroundAudio);
         }
+        player = gameObject.findPlayer();
     }
 
     // Update is called once per frame

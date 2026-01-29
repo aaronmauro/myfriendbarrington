@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 
 public class Player : MonoBehaviour
@@ -27,6 +28,13 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float coyoteTime;
     private float coyoteTimeCounter;
+    [SerializeField]
+    private float idleTime;
+    private float idleTimer;
+    private bool isIdle;
+    private bool isIdleAnimation;
+    private bool isfalling;
+    private float facingCameraTimer;
 
     // Visual Speed Text
     //private float currentSpeed;
@@ -87,6 +95,8 @@ public class Player : MonoBehaviour
         InputManager.GetInstance().playerAction += playerAnimation;
         InputManager.GetInstance().playerAction += playerRotation;
         InputManager.GetInstance().playerAction += fixTheAir;
+        InputManager.GetInstance().playerAction += playerIdle;
+        InputManager.GetInstance().playerAction += playerFalling;
         // Enable Actions
         InputManager.GetInstance().jumpAction.action.Enable();
         InputManager.GetInstance().moveAction.action.Enable();
@@ -107,6 +117,8 @@ public class Player : MonoBehaviour
         InputManager.GetInstance().playerAction -= playerAnimation;
         InputManager.GetInstance().playerAction -= playerRotation;
         InputManager.GetInstance().playerAction -= fixTheAir;
+        InputManager.GetInstance().playerAction -= playerIdle;
+        InputManager.GetInstance().playerAction -= playerFalling;
         // Disable Action
         InputManager.GetInstance().jumpAction.action.Disable();
         InputManager.GetInstance().moveAction.action.Disable();
@@ -122,6 +134,7 @@ public class Player : MonoBehaviour
         // Setting Up boolean
         rb.freezeRotation = true;
         playerInput = true;
+        //isIdle = true;
         rb.linearDamping = linearDrag;
         coyoteTimeCounter = 0f;
     }
@@ -129,7 +142,15 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
-        InputManager.GetInstance().playerAction?.Invoke();
+        if (!playerInput || dialogue)
+        {
+            freezePlayer();
+            return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
+        }
+        else
+        {
+            InputManager.GetInstance().playerAction?.Invoke();
+        }
 
         if (isGround && currentPlatform != null)
         {
@@ -140,19 +161,13 @@ public class Player : MonoBehaviour
 
             lastPlatformPosition = currentPlatform.transform.position;
         }
-        Debug.Log(coyoteTimeCounter);
-        Debug.Log(coyoteTime);
+        //Debug.Log(coyoteTimeCounter);
+        //Debug.Log(coyoteTime);
     }
 
     // Player moving method
     private void movePlayer()
     {
-        if (!playerInput || dialogue)
-        {
-            freezePlayer();
-            return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
-        }
-
         // Getting values from user input
         moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
         moveInput = new Vector2(moveInput.x,0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
@@ -172,6 +187,10 @@ public class Player : MonoBehaviour
 
         // Player Movement
         rb.linearVelocity = playerMovement;
+        isIdle = false;
+        idleTimer = 0f;
+        facingCameraTimer = 0f;
+        isIdleAnimation = false;
 
         // Fianlly found something to fix when input is too small like controller and the face won't change :D
         float playerDir = Mathf.Sign(moveInput.x);
@@ -206,6 +225,11 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        isIdle = false;
+        idleTimer = 0f;
+        facingCameraTimer = 0f;
+        isIdleAnimation = false;
+
         if (swing != null)
         {
             isGround = true;
@@ -235,7 +259,9 @@ public class Player : MonoBehaviour
         jumpButtonHoldTimer = 0;
         isWalking = false;
         currentPlatform = null;
+        
 
+        anim.SetTrigger("PlayerJump");
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
 
@@ -271,6 +297,8 @@ public class Player : MonoBehaviour
         // Player walking Audio
         //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
+        anim.SetBool("PlayerIdle", isIdleAnimation);
+        anim.SetBool("PlayerFalling", isfalling);
     }
     private void isGroundRayCast()
     {
@@ -281,6 +309,7 @@ public class Player : MonoBehaviour
         if (isGround)
         {
             coyoteTimeCounter = coyoteTime;
+            isfalling = false;
             //isWalking = true;
         }
         else
@@ -303,18 +332,64 @@ public class Player : MonoBehaviour
         isWalking = false;
         //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
+        anim.SetBool("PlayerIdle", true);
     }
     public void playerRotation()
     {
-        if (isRight)
+        if (isRight && !isIdle)
         {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
+            transform.rotation = Quaternion.Euler(0, -90, 0);
             dangerDectect.direction = true;
         }
-        else if (!isRight)
+        else if (!isRight && !isIdle)
         {
-            transform.rotation = Quaternion.Euler(0, 270, 0);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = false;
+        }
+        else if (rb.linearVelocity == Vector3.zero && isIdle) ; // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
+        {
+            // smooth rotate player to camera
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), 2f * Time.deltaTime);
+        }
+    }
+    // play idle animation
+    private void playerIdle()
+    {
+        idleTimer += Time.deltaTime;
+        if (idleTimer > idleTime)
+        {
+            StartCoroutine(startPlayerIdle());
+        }
+        facingCameraTimer += Time.deltaTime;
+        if (facingCameraTimer > 2f)
+        {
+            isIdle = true;
+        }
+        //Debug.Log(rb.linearVelocity.y);
+        //Debug.Log(rb.linearVelocity.y <= -1);
+        //Debug.Log(idleTimer);
+    }
+
+    // player idle
+    private IEnumerator startPlayerIdle()
+    {
+        //isIdle = true;
+        isIdleAnimation = true;
+        // wait for animation to end
+        yield return new WaitForSeconds(10f);
+        isIdleAnimation = false;
+        idleTimer = 0;
+    } 
+    
+    private void playerFalling()
+    {
+        if (rb.linearVelocity.y <= -1)
+        {
+            isfalling = true;
+        }
+        else
+        {
+            return;
         }
     }
     public void pushingPlayer(Vector3 dir, float force)
