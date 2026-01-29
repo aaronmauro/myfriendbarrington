@@ -664,17 +664,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306826204}
   m_CullTransparentMesh: 1
---- !u!114 &321616364 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3667833825409456079, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
-  m_PrefabInstance: {fileID: 4781263895608837156}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7914986cb1bb14a4c98510d32873dfd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &321616367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 589875596423712387, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
@@ -1135,11 +1124,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83d6da075900724cb4cf5c9146a0d99, type: 3}
---- !u!1 &660026166 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1374494159596250870, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-  m_PrefabInstance: {fileID: 5222322037379294999}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &720234405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3752,22 +3736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 330fe42183156a04eb3cd86554e2bbf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1556564876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 660026166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eca5f7b197096304d85e8c1b7509925d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerCam: {fileID: 92463474}
-  Cam: []
-  zoomOutMultipliers: 15
-  touchedTV: 0
 --- !u!1 &1563505303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3946,11 +3914,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f18ed394395e8b4f95888f28689ed5b, type: 3}
---- !u!1 &1597495172 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4069606640848313793, guid: 19cd55981ec986448b74b71db355d295, type: 3}
-  m_PrefabInstance: {fileID: 1097891247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1597495173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4174292486883586295, guid: 19cd55981ec986448b74b71db355d295, type: 3}
@@ -4523,7 +4486,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023451998}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -5589,38 +5552,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: vsync
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 321616364}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: EndAction
-      value: 
-      objectReference: {fileID: 1121317705835401851, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 92463474}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: spawnPoints
-      value: 
-      objectReference: {fileID: 1597495172}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: gameFrameRate
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: backGroundAudio
-      value: WhiteBoxMusic
-      objectReference: {fileID: 0}
-    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      propertyPath: zoomOutMultipliers
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 7187446486936986688, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.28695145
@@ -5661,15 +5592,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3543533285088538151, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1374494159596250870, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1556564876}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
+--- !u!1001 &6093746576478178017
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.869118
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.24074459
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.9371185
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530907194078246079, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2945661322894800932, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: m_Name
+      value: CinemachineManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 9215521516168240510, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 92463474}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a13cbc07a988f494eb9c3321da571056, type: 3}
 --- !u!1001 &7831919447924182103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5795,6 +5783,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 882563977427603364}
   - {fileID: 5222322037379294999}
+  - {fileID: 6093746576478178017}
   - {fileID: 4781263895608837156}
   - {fileID: 2099249562250842010}
   - {fileID: 1639858826}

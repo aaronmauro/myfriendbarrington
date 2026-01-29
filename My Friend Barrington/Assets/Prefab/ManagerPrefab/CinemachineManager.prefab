@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1374494159596250870
+--- !u!1 &2945661322894800932
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7187446486936986688}
-  - component: {fileID: 4819485401172098060}
+  - component: {fileID: 1530907194078246079}
+  - component: {fileID: 9215521516168240510}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: CinemachineManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7187446486936986688
+--- !u!4 &1530907194078246079
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374494159596250870}
+  m_GameObject: {fileID: 2945661322894800932}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.28695145, y: 0.038640127, z: -0.1841139}
+  m_LocalPosition: {x: -35.869118, y: 0.24074459, z: 2.9371185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4819485401172098060
+--- !u!114 &9215521516168240510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374494159596250870}
+  m_GameObject: {fileID: 2945661322894800932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35113bba46901b046b53e778dd12deb4, type: 3}
+  m_Script: {fileID: 11500000, guid: eca5f7b197096304d85e8c1b7509925d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  spawnPoints: {fileID: 0}
-  dangerDetect: 0
-  backGroundAudio: WhiteBoxMusic
-  gameFrameRate: 60
-  vsync: 1
-  EndAction: {fileID: -5929587468649728182, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  playerCam: {fileID: 0}
+  Cam: []
+  zoomOutMultipliers: 15
+  touchedTV: 0
+  zoomOutValue: 55
