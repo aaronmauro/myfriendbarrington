@@ -1,6 +1,6 @@
 using UnityEditor;
 using UnityEngine;
-
+// Shade from Agusia!
 public class DangerDetect : MonoBehaviour
 {
     // ground check in front
