@@ -364,7 +364,7 @@ public class Player : MonoBehaviour
     private void isGroundRayCast()
     {
         // Ground Check
-        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        isGround = Physics.Raycast(new Vector3(transform.position.x,transform.position.y + 0.5f,transform.position.z), Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
 
         // start pressing jump button
         if (isGround)
@@ -496,7 +496,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmoColour;
-        Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
+        Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down * (playerHeight * 0.5f + 0.2f));
     }
 
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
