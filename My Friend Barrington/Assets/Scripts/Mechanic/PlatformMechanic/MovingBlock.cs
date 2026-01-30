@@ -25,22 +25,32 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 oldPos = rb.position;
+        Vector3 oldPos = transform.position;
 
-        Vector3 newPos = Vector3.MoveTowards(
-            rb.position,
+        Vector3 move = Vector3.MoveTowards(
+            transform.position,
             currentTarget.position,
             speed * Time.fixedDeltaTime
-        );
+        ) - transform.position;
 
-        PlatformDelta = newPos - oldPos;
-        rb.MovePosition(newPos);
+        // Horizontal platforms: use transform.position directly to reduce jitter
+        if (Mathf.Abs(move.x) > Mathf.Abs(move.y))
+        {
+            transform.position += new Vector3(move.x, 0f, 0f);
+        }
+        else // Vertical platforms: keep Rigidbody.MovePosition for proper physics
+        {
+            rb.MovePosition(transform.position + move);
+        }
 
-        if (Vector3.Distance(newPos, currentTarget.position) < switchDistance)
+        PlatformDelta = transform.position - oldPos;
+
+        if (Vector3.Distance(transform.position, currentTarget.position) < switchDistance)
         {
             currentTarget = (currentTarget == targetA) ? targetB : targetA;
         }
     }
+
 
     private void OnDrawGizmos()
     {
@@ -57,3 +67,4 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 }
+
