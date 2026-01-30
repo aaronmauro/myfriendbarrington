@@ -1,6 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8629727974795173393
+--- !u!114 &-8646403760880531400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/LevelSoundTracks.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Desktop/LevelSoundTracks.bank
+  Name: LevelSoundTracks
+  StudioPath: bank:/LevelSoundTracks
+  lastModified: 639053849539750471
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-8449080913124887985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,23 +28,95 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/New Event
+  m_Name: event:/BarringtonWalking
   m_EditorClassIdentifier: 
-  Path: event:/New Event
+  Path: event:/BarringtonWalking
   Guid:
-    Data1: 750953263
-    Data2: 1234273501
-    Data3: -193491811
-    Data4: -1846235550
+    Data1: 241940493
+    Data2: 1285530128
+    Data3: 1328868536
+    Data4: 505488519
   Banks:
-  - {fileID: 3586172458853293496}
-  IsStream: 1
+  - {fileID: -2408931279339704618}
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-5376428447330859922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LevelOneSoundtrack
+  m_EditorClassIdentifier: 
+  Path: event:/LevelOneSoundtrack
+  Guid:
+    Data1: -824875991
+    Data2: 1187025957
+    Data3: 68099461
+    Data4: -1740170394
+  Banks:
+  - {fileID: -8646403760880531400}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 57815
+--- !u!114 &-2408931279339704618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Barrington.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Desktop/Barrington.bank
+  Name: Barrington
+  StudioPath: bank:/Barrington
+  lastModified: 639053849539690396
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-2110399825925708424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CoinCollect
+  m_EditorClassIdentifier: 
+  Path: event:/CoinCollect
+  Guid:
+    Data1: 1960762940
+    Data2: 1262817655
+    Data3: 1415148458
+    Data4: -728145646
+  Banks:
+  - {fileID: 7129832216070869592}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1060
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,23 +132,39 @@ MonoBehaviour:
   EditorBanks:
   - {fileID: 441834042941238912}
   - {fileID: 781250990316747695}
-  - {fileID: 3586172458853293496}
+  - {fileID: -2408931279339704618}
+  - {fileID: -8646403760880531400}
+  - {fileID: 7129832216070869592}
   EditorEvents:
-  - {fileID: -8629727974795173393}
+  - {fileID: -8449080913124887985}
+  - {fileID: -5376428447330859922}
+  - {fileID: 1849088393819135032}
+  - {fileID: 1037634799285094581}
+  - {fileID: 4178991842335270916}
+  - {fileID: 1477371110542727432}
+  - {fileID: -2110399825925708424}
   EditorParameters: []
   MasterBanks:
   - {fileID: 781250990316747695}
   StringsBanks:
   - {fileID: 441834042941238912}
   cacheVersion: 131848
-<<<<<<< Updated upstream
-  cacheTime: 639053636492187510
-=======
-  cacheTime: 639053686027268141
->>>>>>> Stashed changes
+  cacheTime: 639053849539816406
   SerializableEventsDict:
-  - key: event:/New Event
+  - key: event:/BarringtonWalking
     index: 0
+  - key: event:/LevelOneSoundtrack
+    index: 1
+  - key: event:/BeachSeagullsLoop
+    index: 2
+  - key: event:/BeachCalmWaves
+    index: 3
+  - key: event:/BeachSeagulls
+    index: 4
+  - key: event:/PlatformJump
+    index: 5
+  - key: event:/CoinCollect
+    index: 6
 --- !u!114 &441834042941238912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,14 +180,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-<<<<<<< Updated upstream
-  lastModified: 639053636492147509
-=======
-  lastModified: 639053686027218298
->>>>>>> Stashed changes
+  lastModified: 639053849539770513
   FileSizes:
   - Name: 
-    Value: 824
+    Value: 1212
   Exists: 1
 --- !u!114 &781250990316747695
 MonoBehaviour:
@@ -98,14 +200,118 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-<<<<<<< Updated upstream
-  lastModified: 639053636492137585
-=======
-  lastModified: 639053686027218298
->>>>>>> Stashed changes
+  lastModified: 639053849539760503
   FileSizes: []
   Exists: 1
---- !u!114 &3586172458853293496
+--- !u!114 &1037634799285094581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachCalmWaves
+  m_EditorClassIdentifier: 
+  Path: event:/BeachCalmWaves
+  Guid:
+    Data1: -2099142799
+    Data2: 1243363998
+    Data3: -1003396205
+    Data4: 1633168383
+  Banks:
+  - {fileID: 7129832216070869592}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20450
+--- !u!114 &1477371110542727432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlatformJump
+  m_EditorClassIdentifier: 
+  Path: event:/PlatformJump
+  Guid:
+    Data1: -1699619011
+    Data2: 1222626116
+    Data3: 445343118
+    Data4: -200810189
+  Banks:
+  - {fileID: -2408931279339704618}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 413
+--- !u!114 &1849088393819135032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachSeagullsLoop
+  m_EditorClassIdentifier: 
+  Path: event:/BeachSeagullsLoop
+  Guid:
+    Data1: 1228087057
+    Data2: 1078273932
+    Data3: -729257076
+    Data4: -1986866132
+  Banks:
+  - {fileID: 7129832216070869592}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5116
+--- !u!114 &4178991842335270916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachSeagulls
+  m_EditorClassIdentifier: 
+  Path: event:/BeachSeagulls
+  Guid:
+    Data1: 1517882041
+    Data2: 1079693267
+    Data3: 1576214705
+    Data4: -54130165
+  Banks:
+  - {fileID: 7129832216070869592}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7129832216070869592
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,15 +321,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/TestingBank.bank
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/TestingBank.bank
-  Name: TestingBank
-  StudioPath: bank:/TestingBank
-<<<<<<< Updated upstream
-  lastModified: 639053636492187510
-=======
-  lastModified: 639053686027268141
->>>>>>> Stashed changes
+  Path: FMOD/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 639053849539816406
   FileSizes: []
   Exists: 1
