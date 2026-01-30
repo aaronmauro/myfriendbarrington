@@ -279,8 +279,9 @@ public class Player : MonoBehaviour
         {
             isGround = true;
             swing.DestroyHook();
+            jumping();
         }
-        if (coyoteTimeCounter >= 0f)
+        else if (coyoteTimeCounter >= 0f)
         {
             jumping();
         }
