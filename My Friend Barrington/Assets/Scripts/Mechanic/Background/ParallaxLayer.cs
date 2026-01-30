@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
 {
     [Range(0f, 1f)]
     public float parallaxFactor = 0.2f;   // 0 = stuck to world, 1 = moves with camera (no parallax)
+    public bool inArea = false;
     public Transform cam;
 
     private Vector3 lastCamPos;
@@ -13,8 +15,20 @@ public class ParallaxLayer : MonoBehaviour
         if (!cam) cam = Camera.main.transform;
         lastCamPos = cam.position;
     }
+    void OnTriggerEnter()
+    
+    {
+        inArea = true;
 
-    void LateUpdate()
+}
+
+    void OnTriggerExit()
+
+    {
+        inArea = false;
+
+    }
+    public void UpdatePOS()
     {
         Vector3 delta = cam.position - lastCamPos;
 
@@ -22,5 +36,12 @@ public class ParallaxLayer : MonoBehaviour
         transform.position += new Vector3(delta.x * parallaxFactor, 0f, 0f);
 
         lastCamPos = cam.position;
+    }
+    void LateUpdate()
+    {
+        if (inArea == true)
+        {
+            UpdatePOS();
+        }
     }
 }
