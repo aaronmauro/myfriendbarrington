@@ -234,8 +234,9 @@ public class Player : MonoBehaviour
         {
             isGround = true;
             swing.DestroyHook();
+            jumping();
         }
-        if (coyoteTimeCounter >= 0f)
+        else if (coyoteTimeCounter >= 0f)
         {
             jumping();
         }
@@ -243,6 +244,7 @@ public class Player : MonoBehaviour
     private void jumpEnd(InputAction.CallbackContext context)
     {
         // end pressing jump button
+        //anim.SetBool("PlayerJump",false);
         isJump = false;
         coyoteTimeCounter = 0f;
     }
@@ -259,9 +261,10 @@ public class Player : MonoBehaviour
         jumpButtonHoldTimer = 0;
         isWalking = false;
         currentPlatform = null;
-        
 
-        anim.SetTrigger("PlayerJump");
+
+        //anim.SetBool("PlayerJump",true);
+        anim.SetTrigger("PlayerTJump");
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
 
@@ -303,7 +306,7 @@ public class Player : MonoBehaviour
     private void isGroundRayCast()
     {
         // Ground Check
-        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        isGround = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
 
         // start pressing jump button
         if (isGround)
@@ -315,6 +318,7 @@ public class Player : MonoBehaviour
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+            //playerHeight += 0.001f;
         }
     }
     // aplly froce in air
@@ -428,7 +432,7 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmoColour;
-        Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
+        Gizmos.DrawRay(new Vector3(transform.position.x,transform.position.y + 0.5f,transform.position.z), Vector3.down * (playerHeight * 0.5f + 0.2f));
     }
 
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
