@@ -1,47 +1,39 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
 {
     [Range(0f, 1f)]
-    public float parallaxFactor = 0.2f;   // 0 = stuck to world, 1 = moves with camera (no parallax)
-    public bool inArea = false;
+    public float parallaxFactor = 0.2f; // 0 = stuck to world, 1 = moves with camera
     public Transform cam;
 
     private Vector3 lastCamPos;
+    private bool isInTrigger = false;
 
     void Start()
     {
         if (!cam) cam = Camera.main.transform;
         lastCamPos = cam.position;
     }
-    void OnTriggerEnter()
-    
+
+    // Only sets flag for this layer
+    void OnTriggerEnter(Collider other)
     {
-        inArea = true;
-
-}
-
-    void OnTriggerExit()
-
-    {
-        inArea = false;
-
+        if (other.CompareTag("Player")) // Only trigger for player
+            isInTrigger = true;
     }
-    public void UpdatePOS()
+
+    void OnTriggerExit(Collider other)
     {
-        Vector3 delta = cam.position - lastCamPos;
-
-        // Usually parallax only on X for platformers; enable Y if you want vertical parallax too.
-        transform.position += new Vector3(delta.x * parallaxFactor, 0f, 0f);
-
-        lastCamPos = cam.position;
+        if (other.CompareTag("Player"))
+            isInTrigger = false;
     }
+
     void LateUpdate()
     {
-        if (inArea == true)
-        {
-            UpdatePOS();
-        }
+        if (!isInTrigger) return; // Only update position if in trigger
+
+        Vector3 delta = cam.position - lastCamPos;
+        transform.position += new Vector3(delta.x * parallaxFactor, 0f, 0f);
+        lastCamPos = cam.position;
     }
 }
