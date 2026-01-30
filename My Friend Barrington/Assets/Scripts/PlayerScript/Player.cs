@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
-
+using FMODUnity;
+using FMOD.Studio;
 
 public class Player : MonoBehaviour
 {
@@ -69,6 +70,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private DangerDetect dangerDectect;
 
+    // FMOD audio for walking
+    [Header("Audio (FMOD)")]
+    [SerializeField]
+    private FMODUnity.EventReference playerWalkEvent; // use EventReference instead of string
+    [SerializeField]
+    private FMODUnity.EventReference playerJumpEvent; // add jump event reference
+    private EventInstance walkEventInstance;
+    private bool walkAudioPlaying = false;
+    private bool fmodInitialized = false;
+
     // Dialogue
     static public bool dialogue = false;
 
@@ -122,7 +133,17 @@ public class Player : MonoBehaviour
         // Disable Action
         InputManager.GetInstance().jumpAction.action.Disable();
         InputManager.GetInstance().moveAction.action.Disable();
+
+        // Stop & release FMOD instance
+        if (fmodInitialized)
+        {
+            walkEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            walkEventInstance.release();
+            fmodInitialized = false;
+            walkAudioPlaying = false;
+        }
     }
+
     // Setting up values at start
     void Start()
     {
@@ -137,8 +158,21 @@ public class Player : MonoBehaviour
         //isIdle = true;
         rb.linearDamping = linearDrag;
         coyoteTimeCounter = 0f;
+
+        // Initialize FMOD walk event instance from EventReference
+        try
+        {
+            walkEventInstance = RuntimeManager.CreateInstance(playerWalkEvent);
+            RuntimeManager.AttachInstanceToGameObject(walkEventInstance, transform, rb);
+            fmodInitialized = true;
+        }
+        catch
+        {
+            Debug.LogWarning("FMOD: Failed to create/attach walk event instance. Check EventReference in inspector.");
+            fmodInitialized = false;
+        }
     }
-    
+
     private void FixedUpdate()
     {
         // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
@@ -170,7 +204,7 @@ public class Player : MonoBehaviour
     {
         // Getting values from user input
         moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
-        moveInput = new Vector2(moveInput.x,0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
+        moveInput = new Vector2(moveInput.x, 0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
         moveInput.Normalize();
 
         // Player cannot Input, end
@@ -199,12 +233,12 @@ public class Player : MonoBehaviour
         if (playerDir > 0)
         {
             isRight = true;
-            if(isGround) isWalking = true; // only walk on the ground foo - DV
+            if (isGround) isWalking = true; // only walk on the ground foo - DV
         }
         else if (playerDir < 0)
         {
             isRight = false;
-            if(isGround) isWalking = true; // only walk on the ground foo - DV
+            if (isGround) isWalking = true; // only walk on the ground foo - DV
         }
 
 
@@ -234,9 +268,8 @@ public class Player : MonoBehaviour
         {
             isGround = true;
             swing.DestroyHook();
-            jumping();
         }
-        else if (coyoteTimeCounter >= 0f)
+        if (coyoteTimeCounter >= 0f)
         {
             jumping();
         }
@@ -244,7 +277,6 @@ public class Player : MonoBehaviour
     private void jumpEnd(InputAction.CallbackContext context)
     {
         // end pressing jump button
-        //anim.SetBool("PlayerJump",false);
         isJump = false;
         coyoteTimeCounter = 0f;
     }
@@ -255,6 +287,18 @@ public class Player : MonoBehaviour
 
         // play Audio
         //AudioManager.instance.playPlayerSFX("PlatformJump");
+        // FMOD: play one-shot jump event (attached so it follows the player)
+        if (playerJumpEvent.Guid != null)
+        {
+            try
+            {
+                RuntimeManager.PlayOneShotAttached(playerJumpEvent, gameObject);
+            }
+            catch
+            {
+                Debug.LogWarning("FMOD: Failed to play jump event. Check EventReference in inspector.");
+            }
+        }
 
         // Turn on Bools
         isJump = true;
@@ -263,8 +307,7 @@ public class Player : MonoBehaviour
         currentPlatform = null;
 
 
-        //anim.SetBool("PlayerJump",true);
-        anim.SetTrigger("PlayerTJump");
+        anim.SetTrigger("PlayerJump");
         // jump movement - being remove later
         rb.linearVelocity = new Vector3(rb.linearVelocity.x /* + moveInput.x*/, jump, rb.linearVelocity.z);
 
@@ -302,11 +345,26 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerWalk", isWalking);
         anim.SetBool("PlayerIdle", isIdleAnimation);
         anim.SetBool("PlayerFalling", isfalling);
+
+        // FMOD: start/stop walking loop based on isWalking and grounded state
+        if (fmodInitialized)
+        {
+            if (isWalking && isGround && !walkAudioPlaying)
+            {
+                walkEventInstance.start();
+                walkAudioPlaying = true;
+            }
+            else if ((!isWalking || !isGround) && walkAudioPlaying)
+            {
+                walkEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                walkAudioPlaying = false;
+            }
+        }
     }
     private void isGroundRayCast()
     {
         // Ground Check
-        isGround = Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        isGround = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
 
         // start pressing jump button
         if (isGround)
@@ -318,7 +376,6 @@ public class Player : MonoBehaviour
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-            //playerHeight += 0.001f;
         }
     }
     // aplly froce in air
@@ -337,6 +394,13 @@ public class Player : MonoBehaviour
         //AudioManager.instance.playPlayerWalking(isWalking);
         anim.SetBool("PlayerWalk", isWalking);
         anim.SetBool("PlayerIdle", true);
+
+        // stop walking audio immediately when frozen
+        if (fmodInitialized && walkAudioPlaying)
+        {
+            walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            walkAudioPlaying = false;
+        }
     }
     public void playerRotation()
     {
@@ -383,8 +447,8 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(10f);
         isIdleAnimation = false;
         idleTimer = 0;
-    } 
-    
+    }
+
     private void playerFalling()
     {
         if (rb.linearVelocity.y <= -1)
@@ -432,11 +496,12 @@ public class Player : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmoColour;
-        Gizmos.DrawRay(new Vector3(transform.position.x,transform.position.y + 0.5f,transform.position.z), Vector3.down * (playerHeight * 0.5f + 0.2f));
+        Gizmos.DrawRay(transform.position, Vector3.down * (playerHeight * 0.5f + 0.2f));
     }
 
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
     {
         swing = swinging;
     }
+
 }

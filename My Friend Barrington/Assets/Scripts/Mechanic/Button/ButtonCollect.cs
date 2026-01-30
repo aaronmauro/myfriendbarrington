@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using FMODUnity;
 
 public class ButtonCollect : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class ButtonCollect : MonoBehaviour
     private Renderer colour;
     [SerializeField]
     private Material[] materials;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField]
+    private FMODUnity.EventReference coinCollectEvent; // FMOD EventReference for coin collection
 
     public enum pickMaterial
     {
@@ -42,6 +47,16 @@ public class ButtonCollect : MonoBehaviour
         {
             // Play Coin Sound Here
             //AudioManager.instance.playSFX("Coin");
+
+            // Play FMOD one-shot attached to this GameObject so it follows the player/object
+            try
+            {
+                RuntimeManager.PlayOneShotAttached(coinCollectEvent, gameObject);
+            }
+            catch
+            {
+                Debug.LogWarning("FMOD: Failed to play coinCollectEvent. Check EventReference in inspector.");
+            }
 
             button.SetActive(false);
 
