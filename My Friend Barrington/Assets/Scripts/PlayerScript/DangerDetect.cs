@@ -73,6 +73,6 @@ public class DangerDetect : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmoColour;
-        Gizmos.DrawRay(rayPosition, Vector3.down * rayLength);
+        //Gizmos.DrawRay(rayPosition, Vector3.down * rayLength);
     }
 }
