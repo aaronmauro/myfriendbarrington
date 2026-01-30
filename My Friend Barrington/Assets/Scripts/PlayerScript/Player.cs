@@ -175,29 +175,40 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // well atleast merge move and speed line inside one? - invoke all the methods inside delegate
+        // Invoke all normal player actions
         if (!playerInput || dialogue)
         {
             freezePlayer();
-            return; // sadly no simple line like if(!playerInput) freezePlayer(); it must have return :O
+            return;
         }
         else
         {
             InputManager.GetInstance().playerAction?.Invoke();
         }
 
+
+
         if (isGround && currentPlatform != null)
         {
+            // Calculate the platform movement since last frame
             Vector3 platformDelta = currentPlatform.transform.position - lastPlatformPosition;
 
-            // move player only by the platform's horizontal movement
-            rb.MovePosition(rb.position + new Vector3(platformDelta.x, 0f, 0f));
+            // Smoothly apply horizontal motion to the player
+            Vector3 targetPos = transform.position + new Vector3(platformDelta.x, 0f, platformDelta.z);
+            transform.position = Vector3.Lerp(transform.position, targetPos, 1.5f);
 
+            // Update last platform position
             lastPlatformPosition = currentPlatform.transform.position;
         }
-        //Debug.Log(coyoteTimeCounter);
-        //Debug.Log(coyoteTime);
+
+
     }
+
+    // Apply normal player input
+    
+    //Debug.Log(coyoteTimeCounter);
+    //Debug.Log(coyoteTime);
+
 
     // Player moving method
     private void movePlayer()
@@ -474,19 +485,21 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        NewMonoBehaviourScript platform =
-            collision.gameObject.GetComponent<NewMonoBehaviourScript>();
-
+        NewMonoBehaviourScript platform = collision.gameObject.GetComponent<NewMonoBehaviourScript>();
         if (platform != null)
         {
             currentPlatform = platform;
+            // Fix the landing jitter:
+            // Snap lastPlatformPosition to current platform position immediately
             lastPlatformPosition = platform.transform.position;
         }
     }
 
+
+
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.GetComponent<NewMonoBehaviourScript>())
+        if (collision.gameObject.GetComponent<NewMonoBehaviourScript>() != null)
         {
             currentPlatform = null;
         }
