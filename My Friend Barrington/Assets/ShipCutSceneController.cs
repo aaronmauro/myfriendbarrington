@@ -26,7 +26,7 @@ public class ShipCutsceneController : MonoBehaviour
         // Stop ship physics so animation/timeline can drive transform
         if (shipRb != null)
         {
-            shipRb.velocity = Vector3.zero;
+            shipRb.linearVelocity = Vector3.zero;
             shipRb.angularVelocity = Vector3.zero;
             shipRb.isKinematic = true;
         }
