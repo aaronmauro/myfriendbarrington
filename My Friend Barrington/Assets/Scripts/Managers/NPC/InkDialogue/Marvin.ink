@@ -10,7 +10,5 @@ Seems like you're a little lost at sea. It's easy enough to swing across the bra
 
 Lucky for you though! I came across this little rope gadget in my research.
 
-I saw another little one going over the same way. Blew right by me. Must have been in quite a fright.
-
 Oh, and another note for you. There are these strange cracks of thunder I've been hearing. I'd be careful. Never heard them before myself. 
 -> END 
