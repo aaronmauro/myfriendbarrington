@@ -11,7 +11,7 @@ public class ButtonCollect : MonoBehaviour
     [SerializeField] private int buttonWorth;
 
     [Header("UI")]
-    [SerializeField] private TMP_Text messageText;   // ?? assign in Inspector
+    [SerializeField] private TMP_Text messageText;   
 
     [Header("Visuals")]
     [SerializeField] private Material[] materials;
@@ -26,19 +26,31 @@ public class ButtonCollect : MonoBehaviour
     private void Start()
     {
         // Renderer safety check
-        if (!TryGetComponent(out colour))
-        {
-            Debug.LogError($"{name} has no Renderer component!");
-            return;
-        }
+       // if (!TryGetComponent(out colour))
+       // {
+         //   Debug.LogError($"{name} has no Renderer component!");
+          //  return;
+      //  }
 
-        changeColour();
+        
 
         // UI safety check
         if (messageText == null)
         {
             Debug.LogError("MessageText is NOT assigned in the inspector!");
         }
+    }
+    
+    private void OnValidate()
+    {
+            // Renderer safety check
+        if (!TryGetComponent(out colour))
+        {
+            Debug.LogError($"{name} has no Renderer component!");
+            return;
+        }
+
+            changeColour();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,8 +72,7 @@ public class ButtonCollect : MonoBehaviour
     }
 
     private void changeColour()
-    {
-        colour.material = materialType switch
+    {   colour.material = materialType switch
         {
             pickMaterial.Pink => materials[0],
             pickMaterial.Blue => materials[1],
@@ -69,5 +80,6 @@ public class ButtonCollect : MonoBehaviour
             pickMaterial.Red => materials[3],
             _ => colour.material
         };
+     
     }
 }
