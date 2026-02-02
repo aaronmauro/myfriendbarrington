@@ -4,90 +4,82 @@ using FMODUnity;
 
 public class ButtonCollect : MonoBehaviour
 {
-    // Shared across all instances
     public static int buttonCount = 0;
 
-    [SerializeField]
-    public GameObject button;
+    [Header("Button Settings")]
+    [SerializeField] private GameObject button;
+    [SerializeField] private int buttonWorth;
 
-    [SerializeField]
-    public int buttonWorth;
+    [Header("UI")]
+    [SerializeField] private TMP_Text messageText;   
 
-    public TMP_Text messageText;
+    [Header("Visuals")]
+    [SerializeField] private Material[] materials;
     private Renderer colour;
-    [SerializeField]
-    private Material[] materials;
 
     [Header("Audio (FMOD)")]
-    [SerializeField]
-    private FMODUnity.EventReference coinCollectEvent; // FMOD EventReference for coin collection
+    [SerializeField] private EventReference coinCollectEvent;
 
-    public enum pickMaterial
-    {
-        Pink,
-        Blue,
-        Purple,
-        Red
-    }
-
+    public enum pickMaterial { Pink, Blue, Purple, Red }
     public pickMaterial materialType;
-    //private Color[] colors;
-
 
     private void Start()
     {
-        colour = GetComponent<Renderer>();
-        changeColour();
-        messageText = GameObject.Find("messageText").GetComponent<TMP_Text>();
+        // Renderer safety check
+       // if (!TryGetComponent(out colour))
+       // {
+         //   Debug.LogError($"{name} has no Renderer component!");
+          //  return;
+      //  }
+
+        
+
+        // UI safety check
+        if (messageText == null)
+        {
+            Debug.LogError("MessageText is NOT assigned in the inspector!");
+        }
+    }
+    
+    private void OnValidate()
+    {
+            // Renderer safety check
+        if (!TryGetComponent(out colour))
+        {
+            Debug.LogError($"{name} has no Renderer component!");
+            return;
+        }
+
+            changeColour();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.isPlayer() && button != null)
-        {
-            // Play Coin Sound Here
-            //AudioManager.instance.playSFX("Coin");
+        if (!other.gameObject.isPlayer() || button == null)
+            return;
 
-            // Play FMOD one-shot attached to this GameObject so it follows the player/object
-            try
-            {
-                RuntimeManager.PlayOneShotAttached(coinCollectEvent, gameObject);
-            }
-            catch
-            {
-                Debug.LogWarning("FMOD: Failed to play coinCollectEvent. Check EventReference in inspector.");
-            }
+        RuntimeManager.PlayOneShotAttached(coinCollectEvent, gameObject);
 
-            button.SetActive(false);
-
-            buttonCount = buttonCount + buttonWorth;        // increases the global count
-            UpdateScore();
-        }
+        button.SetActive(false);
+        buttonCount += buttonWorth;
+        UpdateScore();
     }
 
-    public void UpdateScore()
+    private void UpdateScore()
     {
-        messageText.text = "x" + buttonCount;
+        if (messageText != null)
+            messageText.text = "x" + buttonCount;
     }
 
     private void changeColour()
-    {
-        if (materialType == pickMaterial.Pink)
+    {   colour.material = materialType switch
         {
-            colour.material = materials[0];
-        }
-        else if (materialType == pickMaterial.Blue)
-        {
-            colour.material = materials[1];
-        }
-        else if (materialType == pickMaterial.Purple)
-        {
-            colour.material = materials[2];
-        }
-        else if (materialType == pickMaterial.Red)
-        {
-            colour.material = materials[3];
-        }
-        //colour.material.color = colors[Random.Range(0, colors.Length)];
+            pickMaterial.Pink => materials[0],
+            pickMaterial.Blue => materials[1],
+            pickMaterial.Purple => materials[2],
+            pickMaterial.Red => materials[3],
+            _ => colour.material
+        };
+     
     }
 }
