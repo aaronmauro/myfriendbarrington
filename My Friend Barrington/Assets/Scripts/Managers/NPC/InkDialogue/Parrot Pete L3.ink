@@ -15,11 +15,11 @@ Ah, my good friend Fellini would agree with ye there. The two of you could put t
 
 -> tips
 === cruise ===
-Very stylish. My pal Marvin might tag along with ye! He loves to relax on the water when he aint nose deep in his 'science thingamajigs'
+Very stylish. My pal Marvin might just tag along with ye! He loves to relax on the water when he aint nose deep in his 'science thingamajigs'
 
 -> tips
 === pirate ===
-Aye, a chip off the old block! Ye'll need to be finding a great captain's cap to go with it! 
+Aye, a chip off the old block! Ye'll need to be finding a great captain's hat to go with it! 
 Ye can't have mine though friend, a pirate's hat is more precious than their treasure.
 -> tips
 
