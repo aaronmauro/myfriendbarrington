@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using FMODUnity;
+using FMOD.Studio;
+using JetBrains.Annotations;
 
 public class VideoManager : MonoBehaviour
 {
@@ -36,6 +39,7 @@ public class VideoManager : MonoBehaviour
     // remote raw image
     [SerializeField]
     private GameObject remoteImage;
+    private StudioEventEmitter fmodEventEmitter; 
 
     // Getting Component
     [Header("Component")]
@@ -50,6 +54,8 @@ public class VideoManager : MonoBehaviour
             //Destroy(FindFirstObjectByType<AudioManager>());
             AudioManager.instance.bgSFX.Stop();
         }
+
+        fmodEventEmitter = GameObject.Find("FMODEvent").GetComponent<StudioEventEmitter>();
 
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -132,6 +138,14 @@ public class VideoManager : MonoBehaviour
             videoPlayer.clip = _v.videoClip;
             videoPlayer.Play();
             remoteImage.SetActive(false);
+
+            // Initialize FMOD walk event instance from EventReference
+            
+            fmodEventEmitter.EventReference = _v.videoAudio;
+
+            fmodEventEmitter.Play();
+          
+
             if (_v.isLoop)
             {
                 loopVideo = true;
