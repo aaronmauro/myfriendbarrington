@@ -15,9 +15,36 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639057267360317140
+  lastModified: 639057282763005953
   FileSizes: []
   Exists: 1
+--- !u!114 &-8464506593497400277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Grapple
+  m_EditorClassIdentifier: 
+  Path: event:/Grapple
+  Guid:
+    Data1: -687908250
+    Data2: 1136587022
+    Data3: 836078766
+    Data4: -1913661109
+  Banks:
+  - {fileID: 2925791785526427722}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1800
 --- !u!114 &-8464174512813797890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +114,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Barrington.bank
   Name: Barrington
   StudioPath: bank:/Barrington
-  lastModified: 639057277567516974
+  lastModified: 639057282762745500
   FileSizes: []
   Exists: 1
 --- !u!114 &-5522770932519193975
@@ -240,7 +267,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639057277567572708
+  lastModified: 639057282763041043
   FileSizes: []
   Exists: 1
 --- !u!114 &-2311156307468348142
@@ -369,28 +396,65 @@ MonoBehaviour:
   - {fileID: -4239283649439578839}
   - {fileID: 8444170419066828892}
   - {fileID: -2311156307468348142}
+  - {fileID: -8464506593497400277}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3044498570608952273}
   StringsBanks:
   - {fileID: 2790616054717266019}
   cacheVersion: 131848
-  cacheTime: 639057277567990129
+  cacheTime: 639057282773965820
   SerializableEventsDict:
-  - key: event:/BarringtonWalking
-    index: 0
   - key: event:/LevelOneSoundtrack
-    index: 1
+    index: 0
   - key: event:/BeachSeagullsLoop
-    index: 2
+    index: 1
   - key: event:/BeachCalmWaves
-    index: 3
+    index: 2
   - key: event:/BeachSeagulls
-    index: 4
-  - key: event:/PlatformJump
-    index: 5
+    index: 3
   - key: event:/CoinCollect
+    index: 4
+  - key: event:/LevelTwoSoundtrack
+    index: 5
+  - key: event:/VideoEvents/AndreSlapTV
     index: 6
+  - key: event:/VideoEvents/AllTV
+    index: 7
+  - key: event:/VideoEvents/AndreLoopTV
+    index: 8
+  - key: event:/VideoEvents/Ad2TV
+    index: 9
+  - key: event:/VideoEvents/KieranFinalTV
+    index: 10
+  - key: event:/VideoEvents/KieranLoopTV
+    index: 11
+  - key: event:/VideoEvents/AndreFinalTV
+    index: 12
+  - key: event:/VideoEvents/Cutscene1_Part2
+    index: 13
+  - key: event:/VideoEvents/Cutscene1_Part1
+    index: 14
+  - key: event:/VideoEvents/KieranSlapTV
+    index: 15
+  - key: event:/VideoEvents/TylerLoopTV
+    index: 16
+  - key: event:/VideoEvents/NoAndreTV
+    index: 17
+  - key: event:/VideoEvents/TylerFinalTV
+    index: 18
+  - key: event:/VideoEvents/NoKieranTV
+    index: 19
+  - key: event:/VideoEvents/NoTylerTV
+    index: 20
+  - key: event:/VideoEvents/TylerSlapTV
+    index: 21
+  - key: event:/PlayerSFX/BarringtonWalking
+    index: 22
+  - key: event:/PlayerSFX/PlatformJump
+    index: 23
+  - key: event:/ButtonDrop
+    index: 24
 --- !u!114 &516932281256162768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +632,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639057277567582743
+  lastModified: 639057282763065066
   FileSizes: []
   Exists: 1
 --- !u!114 &2925791785526427722
@@ -586,7 +650,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639057277567990129
+  lastModified: 639057282763952304
   FileSizes: []
   Exists: 1
 --- !u!114 &3478275931603182488
@@ -820,7 +884,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Video.bank
   Name: Video
   StudioPath: bank:/Video
-  lastModified: 639057275017990717
+  lastModified: 639057282773965820
   FileSizes: []
   Exists: 1
 --- !u!114 &8792550673685432431
