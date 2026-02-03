@@ -10,6 +10,11 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
+    [SerializeField]
+    string npcName;
+    [SerializeField]
+    Sprite npcImage;
+
     private bool playerInRange;
     private Player player; // Reference to PlayerController
     private bool hasSubscribed = false;
@@ -58,6 +63,7 @@ public class DialogueTrigger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Starting dialogue from trigger!");
+                DialogueManager.GetInstance().UpdateNpc(npcName, npcImage);
                 DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
                 LockPlayerMovement(true);
             }
