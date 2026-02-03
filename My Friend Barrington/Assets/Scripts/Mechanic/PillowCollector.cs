@@ -16,6 +16,16 @@ public class PillowCollector : MonoBehaviour
     private float fade = 0;
 
     public TMP_Text pillowText;
+
+    [SerializeField]
+    GameObject one;
+    [SerializeField]
+    GameObject two;
+    [SerializeField]
+    GameObject three;
+    [SerializeField]
+    GameObject four;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,8 +55,21 @@ public class PillowCollector : MonoBehaviour
             other.GetComponent<PillowCollectable>().Collect();
             pillowsNeeded -= 1;
             pillowText.text = pillowsNeeded.ToString();
-            if(pillowsNeeded <= 0)
+            if(pillowsNeeded <= 3)
             {
+                one.SetActive(true);
+            }
+            if (pillowsNeeded <= 2)
+            {
+                two.SetActive(true);
+            }
+            if (pillowsNeeded <= 1)
+            {
+                three.SetActive(true);
+            }
+            if (pillowsNeeded <= 0)
+            {
+                four.SetActive(true);
                 EndLevel();
             }
         }
