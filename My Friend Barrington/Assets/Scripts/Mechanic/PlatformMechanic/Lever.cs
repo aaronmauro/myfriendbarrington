@@ -15,7 +15,7 @@ public class Lever : MonoBehaviour
     private bool startEnabled = false;
 
     [SerializeField] 
-    private bool isUsed;
+    public bool isUsed;
 
     [SerializeField]
     private ParticleSystem interactParticles;
