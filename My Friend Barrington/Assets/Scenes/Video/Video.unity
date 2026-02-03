@@ -452,6 +452,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &761429458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6697532352068030945, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+  m_PrefabInstance: {fileID: 8467178188748956895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &882070546
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +867,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1575317870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1138611756928285238, guid: 3df4c74e15a3fad4489811f4a28f6435, type: 3}
+  m_PrefabInstance: {fileID: 589637120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &402246291427694560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1942,13 +1952,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1360470993210045558, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       insertIndex: 1
       addedObject: {fileID: 882070547}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6697532352068030945, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8467178188748956900}
   m_SourcePrefab: {fileID: 100100000, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
 --- !u!224 &8467178188748956896 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1360470993210045558, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
   m_PrefabInstance: {fileID: 8467178188748956895}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8467178188748956900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761429458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 1575317870}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
