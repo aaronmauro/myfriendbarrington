@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639057282763005953
+  lastModified: 639057315265690678
   FileSizes: []
   Exists: 1
 --- !u!114 &-8464506593497400277
@@ -114,7 +114,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Barrington.bank
   Name: Barrington
   StudioPath: bank:/Barrington
-  lastModified: 639057282762745500
+  lastModified: 639057315265236741
   FileSizes: []
   Exists: 1
 --- !u!114 &-5522770932519193975
@@ -198,6 +198,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 831
+--- !u!114 &-4537995748999433149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/C2-pillow fort-plain
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/C2-pillow fort-plain
+  Guid:
+    Data1: -1143830032
+    Data2: 1180635056
+    Data3: 961863087
+    Data4: 1482103115
+  Banks:
+  - {fileID: 8718285585600317535}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12987
 --- !u!114 &-4239283649439578839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +294,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639057282763041043
+  lastModified: 639057315265730796
   FileSizes: []
   Exists: 1
 --- !u!114 &-2311156307468348142
@@ -397,13 +424,14 @@ MonoBehaviour:
   - {fileID: 8444170419066828892}
   - {fileID: -2311156307468348142}
   - {fileID: -8464506593497400277}
+  - {fileID: -4537995748999433149}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3044498570608952273}
   StringsBanks:
   - {fileID: 2790616054717266019}
   cacheVersion: 131848
-  cacheTime: 639057282773965820
+  cacheTime: 639057315277550455
   SerializableEventsDict:
   - key: event:/LevelOneSoundtrack
     index: 0
@@ -455,6 +483,10 @@ MonoBehaviour:
     index: 23
   - key: event:/ButtonDrop
     index: 24
+  - key: event:/Grapple
+    index: 25
+  - key: event:/VideoEvents/C2-pillow fort-plain
+    index: 26
 --- !u!114 &516932281256162768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,7 +664,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639057282763065066
+  lastModified: 639057315265750899
   FileSizes: []
   Exists: 1
 --- !u!114 &2925791785526427722
@@ -650,7 +682,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639057282763952304
+  lastModified: 639057315266686134
   FileSizes: []
   Exists: 1
 --- !u!114 &3478275931603182488
@@ -884,7 +916,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Video.bank
   Name: Video
   StudioPath: bank:/Video
-  lastModified: 639057282773965820
+  lastModified: 639057315277550455
   FileSizes: []
   Exists: 1
 --- !u!114 &8792550673685432431

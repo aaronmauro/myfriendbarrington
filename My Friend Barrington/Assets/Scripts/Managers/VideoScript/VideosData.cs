@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Video;
+using FMODUnity;
+using FMOD.Studio;
 
 // Output the script
 [System.Serializable]
@@ -12,4 +14,7 @@ public class VideosData
     public VideoClip videoClip;
     public bool isLoop;
     public bool isSmashingButton;
+    public FMODUnity.EventReference videoAudio;
+
+
 }
