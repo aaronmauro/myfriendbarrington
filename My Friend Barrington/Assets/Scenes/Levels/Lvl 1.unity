@@ -28338,6 +28338,26 @@ PrefabInstance:
       propertyPath: materialType
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -8079145629364944140, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
+      propertyPath: coinCollectEvent.Path
+      value: event:/ButtonDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: -8079145629364944140, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
+      propertyPath: coinCollectEvent.Guid.Data1
+      value: -1801467748
+      objectReference: {fileID: 0}
+    - target: {fileID: -8079145629364944140, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
+      propertyPath: coinCollectEvent.Guid.Data2
+      value: 1227699160
+      objectReference: {fileID: 0}
+    - target: {fileID: -8079145629364944140, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
+      propertyPath: coinCollectEvent.Guid.Data3
+      value: -1710408776
+      objectReference: {fileID: 0}
+    - target: {fileID: -8079145629364944140, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
+      propertyPath: coinCollectEvent.Guid.Data4
+      value: -1390394581
+      objectReference: {fileID: 0}
     - target: {fileID: 4290065265377303943, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -92654,11 +92674,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3667833825409456079, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: playerJumpEvent.Path
-      value: event:/PlatformJump
+      value: event:/PlayerSFX/PlatformJump
       objectReference: {fileID: 0}
     - target: {fileID: 3667833825409456079, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: playerWalkEvent.Path
-      value: event:/BarringtonWalking
+      value: event:/PlayerSFX/BarringtonWalking
       objectReference: {fileID: 0}
     - target: {fileID: 3667833825409456079, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: playerJumpEvent.Guid.Data1
