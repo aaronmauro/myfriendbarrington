@@ -102,7 +102,7 @@ public class ChangeScene : MonoBehaviour
             boatVideo.SetActive(true);
         }
         //Debug.Log(cm.enabled);
-        yield return new WaitForSeconds(62f);
+        yield return new WaitForSeconds(2f); //A BEAUTIFUL ARTIFACT OF OUR FUCKUPS
         SceneManagerScript.instance.nextScene(sceneName);
     }
     // skip level

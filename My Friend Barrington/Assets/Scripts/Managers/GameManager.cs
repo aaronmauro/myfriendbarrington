@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     public InputActionReference EndAction;
 
+    [SerializeField]
+    Transform EndOfLevel;
+
     private void Awake()
     {
         // Application frame rate
@@ -95,7 +98,7 @@ public class GameManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.End))
         {
-            player.transform.position = new Vector3(750,-195,0);
+            player.transform.position = EndOfLevel.position;
         }
         if (Input.GetKeyDown(KeyCode.Home))
         {

@@ -60,7 +60,7 @@ public class DialogueTrigger : MonoBehaviour
             visualCue.SetActive(true);
 
             // Try direct input check
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 Debug.Log("Starting dialogue from trigger!");
                 DialogueManager.GetInstance().UpdateNpc(npcName, npcImage);
