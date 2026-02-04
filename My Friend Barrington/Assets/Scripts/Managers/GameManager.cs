@@ -100,10 +100,6 @@ public class GameManager : MonoBehaviour
         {
             player.transform.position = EndOfLevel.position;
         }
-        if (Input.GetKeyDown(KeyCode.Home))
-        {
-            player.transform.position = new Vector3(796, 50, -27);
-        }
     }
 
     // respawn player Method
