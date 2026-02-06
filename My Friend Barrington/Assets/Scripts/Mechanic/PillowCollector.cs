@@ -84,6 +84,7 @@ public class PillowCollector : MonoBehaviour
     private IEnumerator ToNextLevel(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("Lvl3");
+        SceneManager.LoadScene("Video");
+        VideoManager.adsNumber = 1;
     }
 }

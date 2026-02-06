@@ -5,12 +5,15 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEditor.U2D;
 
 public class DialogueManager : MonoBehaviour
 {
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] public TextMeshProUGUI dialogueName;
+    [SerializeField] public Image dialogueImage;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -407,5 +410,11 @@ public class DialogueManager : MonoBehaviour
 
         // Re-enable buttons for next set of choices (DisplayChoices will handle this)
         isProcessingChoice = false;
+    }
+
+    public void UpdateNpc(string npcName, Sprite npcImage)
+    {
+        dialogueName.SetText(npcName);
+        dialogueImage.sprite = npcImage;
     }
 }
