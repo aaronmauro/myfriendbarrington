@@ -2,7 +2,7 @@
 -> greeting
 
 === greeting === 
-Ahoy! Welcome to the coast! I'm Pete. PARROT Pete.
+Ahoy! Welcome to the coast! I'm Pete. Parrot Pete.
 
 I'd be giving ya the skip about, but some scallywag has done away with me ship! Aye, at least I still have the hat atop me head!
 
