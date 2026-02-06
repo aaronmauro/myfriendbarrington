@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Player player;
 
-
-    private bool isVideoScene;
-
     // Manage respawn
     [Header("Respawn")]
     //public bool backToSpawn;
@@ -25,10 +22,6 @@ public class GameManager : MonoBehaviour
     private GameObject spawnPoints;
     [HideInInspector]
     public bool dangerDetect;
-
-    //public bool isInvincible;
-    [Header("Music")]
-    public string backGroundAudio;
 
     [Header("Build Components")]
     public int gameFrameRate;
@@ -64,15 +57,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // getting components
-        if (backGroundAudio == "") // Why can't this bull null :<
-        {
-            //AudioManager.instance.playBackgroundMusic(backGroundAudio);
-            return;
-        }
-        else
-        {
-            //AudioManager.instance.playBackgroundMusic(backGroundAudio);
-        }
         player = gameObject.findPlayer();
     }
 
