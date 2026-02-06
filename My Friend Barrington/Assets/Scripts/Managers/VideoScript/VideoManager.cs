@@ -5,6 +5,9 @@ using UnityEngine.Video;
 using FMODUnity;
 using FMOD.Studio;
 using JetBrains.Annotations;
+using System.IO;
+using UnityEditor;
+using System.Runtime.CompilerServices;
 
 public class VideoManager : MonoBehaviour
 {
@@ -47,6 +50,9 @@ public class VideoManager : MonoBehaviour
     private VideoPlayer videoPlayer;
     private ButtonManager bm;
 
+    // Finding Video In Folder
+    private string videoPath;
+
     private void Awake()
     {
         if (FindFirstObjectByType<AudioManager>() != null)
@@ -55,7 +61,29 @@ public class VideoManager : MonoBehaviour
             AudioManager.instance.bgSFX.Stop();
         }
 
+        // fmod
         fmodEventEmitter = GameObject.Find("FMODEvent").GetComponent<StudioEventEmitter>();
+
+        // adding video clip to the array
+        ads1[0].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/Cutscene1_Part1");
+        ads1[1].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AllTV");
+        ads1[2].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/NoAndreTV");
+        ads1[3].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/NoKieranTV");
+        ads1[4].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/NoTylerTV");
+        ads1[5].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AndreSlapTV");
+        ads1[6].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/TylerSlapTV");
+        ads1[7].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/KieranSlapTV");
+        ads1[8].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AndreLoopTV");
+        ads1[9].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/KieranLoopTV");
+        ads1[10].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/TylerLoopTV");
+        ads1[11].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AndreFinalTV");
+        ads1[12].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/TylerFinalTV");
+        ads1[13].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/KieranFinalTV");
+        ads1[14].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/Cutscene1_Part2");
+        //Debug.Log(ads1[0].videoClip);
+
+        ads2[0].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/c2-pillow fort-plain");
+        ads2[1].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/Ad2TV");
 
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
