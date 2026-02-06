@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639058316942943012
+  lastModified: 639059745793415832
   FileSizes: []
   Exists: 1
 --- !u!114 &-8464506593497400277
@@ -85,7 +85,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639055877345887733
+  lastModified: 639059742437005657
   FileSizes: []
   Exists: 1
 --- !u!114 &-6375256776107180107
@@ -129,7 +129,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Barrington.bank
   Name: Barrington
   StudioPath: bank:/Barrington
-  lastModified: 639058316942823026
+  lastModified: 639059745793355770
   FileSizes: []
   Exists: 1
 --- !u!114 &-5522770932519193975
@@ -333,7 +333,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639058316942953015
+  lastModified: 639059745793435754
   FileSizes: []
   Exists: 1
 --- !u!114 &-2311156307468348142
@@ -405,7 +405,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639055877345837734
+  lastModified: 639059742436915656
   FileSizes: []
   Exists: 1
 --- !u!114 &-863330351902167032
@@ -490,6 +490,7 @@ MonoBehaviour:
   - {fileID: -3572724405752291625}
   - {fileID: 814243623809044112}
   - {fileID: 6792876226385960085}
+  - {fileID: 9210862824679801772}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3044498570608952273}
@@ -498,7 +499,7 @@ MonoBehaviour:
   - {fileID: 2790616054717266019}
   - {fileID: 8262137035818675889}
   cacheVersion: 131848
-  cacheTime: 639058316943153025
+  cacheTime: 639059745793605795
   SerializableEventsDict:
   - key: event:/LevelOneSoundtrack
     index: 0
@@ -624,8 +625,7 @@ MonoBehaviour:
     Data2: 1227699160
     Data3: -1710408776
     Data4: -1390394581
-  Banks:
-  - {fileID: 2925791785526427722}
+  Banks: []
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -730,7 +730,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Barrington.bank
   Name: Barrington
   StudioPath: bank:/Barrington
-  lastModified: 639055877344257732
+  lastModified: 639059742434309061
   FileSizes: []
   Exists: 1
 --- !u!114 &2566922983849727897
@@ -792,7 +792,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639055877345847733
+  lastModified: 639059742436935796
   FileSizes: []
   Exists: 1
 --- !u!114 &2925791785526427722
@@ -810,7 +810,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639058316943013019
+  lastModified: 639059745793485763
   FileSizes: []
   Exists: 1
 --- !u!114 &3478275931603182488
@@ -940,8 +940,6 @@ MonoBehaviour:
     Data3: -1710408776
     Data4: -1390394581
   Banks:
-  - {fileID: -8706129802661197185}
-  - {fileID: 2925791785526427722}
   - {fileID: 2925791785526427722}
   IsStream: 0
   Is3D: 1
@@ -1043,7 +1041,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639055877345847733
+  lastModified: 639059742436935796
   FileSizes:
   - Name: 
     Value: 1212
@@ -1115,7 +1113,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Desktop/Video.bank
   Name: Video
   StudioPath: bank:/Video
-  lastModified: 639058316943153025
+  lastModified: 639059745793605795
   FileSizes: []
   Exists: 1
 --- !u!114 &8792550673685432431
@@ -1144,3 +1142,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 19921
+--- !u!114 &9210862824679801772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: 
+  Guid:
+    Data1: -1801467748
+    Data2: 1227699160
+    Data3: -1710408776
+    Data4: -1390394581
+  Banks:
+  - {fileID: -8706129802661197185}
+  - {fileID: 2925791785526427722}
+  - {fileID: 2925791785526427722}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 845
