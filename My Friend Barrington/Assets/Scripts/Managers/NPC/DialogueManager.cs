@@ -5,7 +5,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEditor.U2D;
+
 
 public class DialogueManager : MonoBehaviour
 {
