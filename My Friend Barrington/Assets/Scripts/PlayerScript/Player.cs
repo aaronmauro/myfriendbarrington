@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     {
         // Getting component from player
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        anim = GameObject.Find("barrington").GetComponent<Animator>();
         //gm = gameObject.findGameManager(); i guess we are not using game manager for now?
 
         // Setting Up boolean

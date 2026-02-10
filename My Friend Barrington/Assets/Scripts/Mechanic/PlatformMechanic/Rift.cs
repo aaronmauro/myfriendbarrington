@@ -20,7 +20,6 @@ public class Rift : MonoBehaviour
     private void Start()
     {
         // Get Player component
-        //GameObject findPlayer = GameObject.Find(GeneralGameTags.Player);
         otherRift = tpTransform.GetComponent<Rift>();
         player = gameObject.findPlayer();
         playerCam = GameObject.Find(GeneralGameTags.PlayerCamera).GetComponent<CinemachineFollow>();
@@ -28,17 +27,6 @@ public class Rift : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        /*
-        Debug.Log("apple");
-        if (player != null)
-        {
-            Debug.Log("found");
-        }
-        else if (player == null)
-        {
-            Debug.Log("sad");
-        }
-        */
         // Teleport Player
         if (other.gameObject.isPlayer())
         {
