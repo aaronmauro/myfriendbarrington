@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Player player;
+    private Animator anim;
 
     // Manage respawn
     [Header("Respawn")]
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         // getting components
         player = gameObject.findPlayer();
+        anim = GameObject.Find("barrington").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -89,7 +91,7 @@ public class GameManager : MonoBehaviour
     // respawn player Method
     public void respawn()
     {
-        player.gameObject.SetActive(false);
+        //player.gameObject.SetActive(false); we got animation now
         StartCoroutine(RespawnDelay1(0.25f));
         
     }
@@ -108,15 +110,17 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RespawnDelay1(float delay) // they aint ready for this one - DV
     {
+        anim.SetTrigger("PlayerDeath");
         yield return new WaitForSeconds(delay);
-        player.transform.position = spawnPoints.transform.position;
-        StartCoroutine(RespawnDelay2(0.25f));
+        //player.transform.position = spawnPoints.transform.position;
+        StartCoroutine(RespawnDelay2(1f));
     }
 
     private IEnumerator RespawnDelay2(float delay) // ohhhh they aint ready - DV
     {
         yield return new WaitForSeconds(delay);
-        player.gameObject.SetActive(true);
+        //player.gameObject.SetActive(true);
+        player.transform.position = spawnPoints.transform.position;
         var playRg = player.GetComponent<Rigidbody>();
         playRg.linearVelocity = Vector3.zero;
     }
