@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
         // Invoke all normal player actions
         if (!playerInput || dialogue)
         {
-            freezePlayer();
+            freezePlayer(true);
             return;
         }
         else
@@ -270,6 +270,10 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        if (!playerInput)
+        {
+            return;
+        }
         isIdle = false;
         idleTimer = 0f;
         facingCameraTimer = 0f;
@@ -398,21 +402,29 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.down * fixedInAirVelocity, ForceMode.VelocityChange);
         }
     }
-    public void freezePlayer()
+    public void freezePlayer(bool isFrozen)
     {
-        // Stop player from moving
-        rb.linearVelocity = Vector3.zero;
-        isWalking = false;
-        //AudioManager.instance.playPlayerWalking(isWalking);
-        anim.SetBool("PlayerWalk", isWalking);
-        anim.SetBool("PlayerIdle", true);
+        if (isFrozen) {
+            playerInput = false;
+            // Stop player from moving
+            //rb.linearVelocity = Vector3.zero; // this line breaks the player death, find a different solution to do this effect - DV
+            isWalking = false;
+            //AudioManager.instance.playPlayerWalking(isWalking);
+            anim.SetBool("PlayerWalk", isWalking);
+            anim.SetBool("PlayerIdle", true);
 
-        // stop walking audio immediately when frozen
-        if (fmodInitialized && walkAudioPlaying)
+            // stop walking audio immediately when frozen
+            if (fmodInitialized && walkAudioPlaying)
+            {
+                walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                walkAudioPlaying = false;
+            }
+        } else
         {
-            walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            walkAudioPlaying = false;
+            playerInput = true;
         }
+        
+        
     }
     public void playerRotation()
     {
@@ -516,6 +528,11 @@ public class Player : MonoBehaviour
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
     {
         swing = swinging;
+    }
+
+    public void TeleportTo(Transform target)
+    {
+        transform.position = target.position;
     }
 
 }
