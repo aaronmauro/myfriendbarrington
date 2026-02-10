@@ -60494,11 +60494,11 @@ PrefabInstance:
       objectReference: {fileID: 1376394332}
     - target: {fileID: 6596817448012632521, guid: 399b1d3d53f28074abe2ede8f5c2ccde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.11
+      value: -90.21
       objectReference: {fileID: 0}
     - target: {fileID: 6596817448012632521, guid: 399b1d3d53f28074abe2ede8f5c2ccde, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 101.34
+      value: 4.02
       objectReference: {fileID: 0}
     - target: {fileID: 6596817448012632521, guid: 399b1d3d53f28074abe2ede8f5c2ccde, type: 3}
       propertyPath: m_LocalPosition.z
@@ -81306,11 +81306,11 @@ ParticleSystem:
     primitives: []
   SubModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     subEmitters:
     - serializedVersion: 3
-      emitter: {fileID: 0}
-      type: 0
+      emitter: {fileID: 1745525818}
+      type: 2
       properties: 0
       emitProbability: 1
   LightsModule:
@@ -107952,11 +107952,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 589875596423712387, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.11
+      value: -90.21
       objectReference: {fileID: 0}
     - target: {fileID: 589875596423712387, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 98.09
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 589875596423712387, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.z
@@ -108134,11 +108134,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 692231879668178022, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7199999
+      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 692231879668178022, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.22000027
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 692231879668178022, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -108185,9 +108185,21 @@ PrefabInstance:
       value: Particle System
       objectReference: {fileID: 0}
     - target: {fileID: 6882504929749142142, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
+      propertyPath: SubModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882504929749142142, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6882504929749142142, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
+      propertyPath: SubModule.subEmitters.Array.data[0].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6882504929749142142, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
+      propertyPath: SubModule.subEmitters.Array.data[0].emitter
+      value: 
+      objectReference: {fileID: 1745525818}
     - target: {fileID: 9149672318527139757, guid: cf537f3615b3f174cbf1b9ef8438bba3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.352
