@@ -2,9 +2,11 @@
 -> greeting
 
 === greeting === 
-Ahoy! Welcome to the coast! I'm Pete. Parrot Pete.
+Ahoy there Barrington! Yer ol' pal Parrot Pete could use a hand, if ye think yar up to the challenge!
 
-I'd be giving ya the skip about, but some scallywag has done away with me ship! Aye, at least I still have the hat atop me head!
+I'd be giving ya the skip about, but some scallywag has done away with me ship! Aye, I'd lose the hat atop me head if it weren't glued down, yarr harr harr.
 
-Well, you look like a capable fellow! Would ye be so kind as to help find me ship? Last I saw it was away, up high in the skies!
+Why, I know ye's a capable fellow! Would'ya be so kind as to help find me ship? I think I heard Marv mention something about it, before scamperin' up and away like'ey always do.
+
+Safe travels, friend!
 -> END
