@@ -59,6 +59,7 @@ public class DangerDetect : MonoBehaviour
         isGround = Physics.Raycast(rayPosition, Vector3.down, out RaycastHit hit, rayLength, floorMask);
         //Debug.Log(isGround);
         // checking ground
+        
         if (!isGround)
         {
             gm.dangerDetect = true;
@@ -67,12 +68,13 @@ public class DangerDetect : MonoBehaviour
         {
             gm.dangerDetect = false;
         }
+        
     }
 
     // draw gizmos
     private void OnDrawGizmos()
     {
         Gizmos.color = gizmoColour;
-        //Gizmos.DrawRay(rayPosition, Vector3.down * rayLength);
+        Gizmos.DrawRay(rayPosition, Vector3.down * rayLength);
     }
 }

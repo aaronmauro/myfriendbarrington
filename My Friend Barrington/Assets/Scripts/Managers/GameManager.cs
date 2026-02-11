@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Player player;
+    private Animator anim;
 
     // Manage respawn
     [Header("Respawn")]
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         // getting components
         player = gameObject.findPlayer();
+        anim = GameObject.Find("barrington").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -89,8 +91,15 @@ public class GameManager : MonoBehaviour
     // respawn player Method
     public void respawn()
     {
-        player.gameObject.SetActive(false);
-        StartCoroutine(RespawnDelay1(0.25f));
+        //player.gameObject.SetActive(false); we got animation now
+        if (player.playerInput)
+        {
+            Debug.Log("heavy is dead!!");
+            player.freezePlayer(true);
+            anim.SetTrigger("PlayerDeath");
+            StartCoroutine(RespawnDelay1(1f));
+        }
+
         
     }
     // move respawn method
@@ -98,27 +107,30 @@ public class GameManager : MonoBehaviour
     {
         if (spawnPoints == null) return;
         if (player == null) return;
-
-        //Debug.Log(player.moveRespawn);
         if (player.isGround && !dangerDetect)
         {
+            
             spawnPoints.transform.position = player.transform.position;
         }
     }
 
     private IEnumerator RespawnDelay1(float delay) // they aint ready for this one - DV
     {
+        
         yield return new WaitForSeconds(delay);
-        player.transform.position = spawnPoints.transform.position;
-        StartCoroutine(RespawnDelay2(0.25f));
+        //player.transform.position = spawnPoints.transform.position;
+        player.TeleportTo(spawnPoints.transform);
+        //var playRg = player.GetComponent<Rigidbody>();
+        //playRg.linearVelocity = Vector3.zero;
+        StartCoroutine(RespawnDelay2(1f));
     }
 
     private IEnumerator RespawnDelay2(float delay) // ohhhh they aint ready - DV
     {
         yield return new WaitForSeconds(delay);
-        player.gameObject.SetActive(true);
-        var playRg = player.GetComponent<Rigidbody>();
-        playRg.linearVelocity = Vector3.zero;
+        //player.gameObject.SetActive(true);
+        
+        player.freezePlayer(false);
     }
     
     // quit the game for escape button

@@ -90,6 +90,8 @@ public class Player : MonoBehaviour
     private NewMonoBehaviourScript currentPlatform;
     private Vector3 lastPlatformPosition;
 
+    public bool isInteracting;
+
     // Cool new trick
     private void OnEnable()
     {
@@ -149,7 +151,7 @@ public class Player : MonoBehaviour
     {
         // Getting component from player
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        anim = GameObject.Find("barrington").GetComponent<Animator>();
         //gm = gameObject.findGameManager(); i guess we are not using game manager for now?
 
         // Setting Up boolean
@@ -178,7 +180,7 @@ public class Player : MonoBehaviour
         // Invoke all normal player actions
         if (!playerInput || dialogue)
         {
-            freezePlayer();
+            //freezePlayer(true); // this breaks the player death. not sure why its here, talk to me if its loadbearing - DV
             return;
         }
         else
@@ -270,6 +272,10 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        if (!playerInput)
+        {
+            return;
+        }
         isIdle = false;
         idleTimer = 0f;
         facingCameraTimer = 0f;
@@ -398,21 +404,29 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.down * fixedInAirVelocity, ForceMode.VelocityChange);
         }
     }
-    public void freezePlayer()
+    public void freezePlayer(bool isFrozen)
     {
-        // Stop player from moving
-        rb.linearVelocity = Vector3.zero;
-        isWalking = false;
-        //AudioManager.instance.playPlayerWalking(isWalking);
-        anim.SetBool("PlayerWalk", isWalking);
-        anim.SetBool("PlayerIdle", true);
+        if (isFrozen) {
+            playerInput = false;
+            // Stop player from moving
+            rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
+            isWalking = false;
+            //AudioManager.instance.playPlayerWalking(isWalking);
+            anim.SetBool("PlayerWalk", isWalking);
+            anim.SetBool("PlayerIdle", true);
 
-        // stop walking audio immediately when frozen
-        if (fmodInitialized && walkAudioPlaying)
+            // stop walking audio immediately when frozen
+            if (fmodInitialized && walkAudioPlaying)
+            {
+                walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                walkAudioPlaying = false;
+            }
+        } else
         {
-            walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            walkAudioPlaying = false;
+            playerInput = true;
         }
+        
+        
     }
     public void playerRotation()
     {
@@ -516,6 +530,11 @@ public class Player : MonoBehaviour
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
     {
         swing = swinging;
+    }
+
+    public void TeleportTo(Transform target)
+    {
+        transform.position = target.position;
     }
 
 }

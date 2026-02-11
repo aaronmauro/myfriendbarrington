@@ -78,7 +78,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (player != null)
         {
-            player.playerInput = !isLocked; // Use playerInput from Player class
+            player.freezePlayer(isLocked); // use new freezePlayer function
             Player.dialogue = isLocked; // Set the static dialogue variable
         }
     }
