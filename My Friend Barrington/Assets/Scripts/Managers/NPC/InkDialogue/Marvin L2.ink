@@ -2,13 +2,11 @@
 -> greeting
 
 === greeting === 
-Afternoon! Look at those clouds! So dark and full of water... blocking the sun. I'd hypothesize that rain is on the way.
+Grr... I can't believe this! All my calculations were completely incorrect -- these are nimbostratus, not cumulus!
 
-I'm Marvin, but you, my friend, can call me Marv.
+This is totally unfair! I did my best with the information I collected, and this isn't my fault!
 
-Seems like you're a little lost at sea. It's easy enough to swing across the branches... for me at least. Your tail may be slightly short.
+Oh, and now all my notes are getting soaked! Great, just great! I'd better clear some room in my bag, so they stay dry...
 
-Lucky for you though! I came across this little rope gadget in my research.
-
-Oh, and another note for you. There are these strange cracks of thunder I've been hearing. I'd be careful. Never heard them before myself. 
+Here, Barrington, do you want this thing? I picked it up a ways back, but it's taking up too much space in here, and it's gonna stick to my notes.
 -> END 
