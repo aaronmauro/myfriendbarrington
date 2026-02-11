@@ -90,6 +90,8 @@ public class Player : MonoBehaviour
     private NewMonoBehaviourScript currentPlatform;
     private Vector3 lastPlatformPosition;
 
+    public bool isInteracting;
+
     // Cool new trick
     private void OnEnable()
     {
