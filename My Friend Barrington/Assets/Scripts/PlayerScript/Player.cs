@@ -180,7 +180,7 @@ public class Player : MonoBehaviour
         // Invoke all normal player actions
         if (!playerInput || dialogue)
         {
-            freezePlayer(true);
+            //freezePlayer(true); // this breaks the player death. not sure why its here, talk to me if its loadbearing - DV
             return;
         }
         else
@@ -409,7 +409,7 @@ public class Player : MonoBehaviour
         if (isFrozen) {
             playerInput = false;
             // Stop player from moving
-            //rb.linearVelocity = Vector3.zero; // this line breaks the player death, find a different solution to do this effect - DV
+            rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
             isWalking = false;
             //AudioManager.instance.playPlayerWalking(isWalking);
             anim.SetBool("PlayerWalk", isWalking);
