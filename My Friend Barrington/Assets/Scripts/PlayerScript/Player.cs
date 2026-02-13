@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public bool playerInput = true;
     private bool isWalking;
     public bool isRight;
+    private bool isPushingBox;
     private Vector2 moveInput;
 
     // Swinging status - DV
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
     [Header("GroundCheck")]
     public bool isGround;
     public LayerMask groundMask;
-    public LayerMask platformMask;
+    //public LayerMask platformMask;
     public float playerHeight;
 
     // Getting components
@@ -363,6 +364,7 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerWalk", isWalking);
         anim.SetBool("PlayerIdle", isIdleAnimation);
         anim.SetBool("PlayerFalling", isfalling);
+        anim.SetBool("PlayerPush", isPushingBox);
 
         // FMOD: start/stop walking loop based on isWalking and grounded state
         if (fmodInitialized)
@@ -440,7 +442,7 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = false;
         }
-        else if (rb.linearVelocity == Vector3.zero && isIdle) ; // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
+        else if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox) ; // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
         {
             // smooth rotate player to camera
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), 2f * Time.deltaTime);
@@ -509,14 +511,24 @@ public class Player : MonoBehaviour
             lastPlatformPosition = platform.transform.position;
         }
     }
-
-
-
+    // when pushing box
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = true;
+        }
+    }
+    // when exit box
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.GetComponent<NewMonoBehaviourScript>() != null)
         {
             currentPlatform = null;
+        }
+        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = false;
         }
     }
 
