@@ -442,7 +442,7 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = false;
         }
-        else if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox) ; // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
+        else if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox) // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
         {
             // smooth rotate player to camera
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), 2f * Time.deltaTime);
