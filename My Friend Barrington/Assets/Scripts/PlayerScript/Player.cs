@@ -36,7 +36,14 @@ public class Player : MonoBehaviour
     private bool isIdleAnimation;
     private bool isfalling;
     private float facingCameraTimer;
-
+    
+    // Visual frame flip
+    [SerializeField] private Transform visual;
+    [SerializeField] private float turnSmoothTime = 0.12f; 
+    private float rootTurnVel; // used by SmoothDampAngle
+    private float visualYVel = 0f;
+    private float targetVisualY = 0f;
+    
     // Visual Speed Text
     //private float currentSpeed;
     //[SerializeField]
@@ -161,7 +168,7 @@ public class Player : MonoBehaviour
         //isIdle = true;
         rb.linearDamping = linearDrag;
         coyoteTimeCounter = 0f;
-
+        
         // Initialize FMOD walk event instance from EventReference
         try
         {
@@ -204,7 +211,6 @@ public class Player : MonoBehaviour
             lastPlatformPosition = currentPlatform.transform.position;
         }
 
-
     }
 
     // Apply normal player input
@@ -215,51 +221,58 @@ public class Player : MonoBehaviour
 
     // Player moving method
     private void movePlayer()
+{
+    // Getting values from user input
+    moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
+    moveInput = new Vector2(moveInput.x, 0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
+    moveInput.Normalize();
+
+    // Player cannot Input, end
+    if (moveInput == Vector2.zero)
     {
-        // Getting values from user input
-        moveInput = InputManager.GetInstance().moveAction.action.ReadValue<Vector2>();
-        moveInput = new Vector2(moveInput.x, 0); // THIS LINE SHOULD BE REVIEWED WHEN TESTING CONTROLLER MOVEMENT. IT WILL PROBABLY FUCK THINGS UP. - DV
-        moveInput.Normalize();
-
-        // Player cannot Input, end
-        if (moveInput == Vector2.zero) return;
-
-        if (swing != null) // use swinging movement instead - DV
-        {
-            swing.moveSwing(moveInput);
-            return;
-        }
-
-        Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
-        //Debug.Log(rb.linearVelocity.y + "-1");
-
-        // Player Movement
-        rb.linearVelocity = playerMovement;
-        isIdle = false;
-        idleTimer = 0f;
-        facingCameraTimer = 0f;
-        isIdleAnimation = false;
-
-        // Fianlly found something to fix when input is too small like controller and the face won't change :D
-        float playerDir = Mathf.Sign(moveInput.x);
-
-        // Rotate player based on input
-        if (playerDir > 0)
-        {
-            isRight = true;
-            if (isGround) isWalking = true; // only walk on the ground foo - DV
-        }
-        else if (playerDir < 0)
-        {
-            isRight = false;
-            if (isGround) isWalking = true; // only walk on the ground foo - DV
-        }
-
-
-        // Drag player
-        //currentSpeed = rb.linearVelocity.magnitude;
-        //speedText.text = "Current Speed: " + currentSpeed;
+        isWalking = false; // IMPORTANT: stop walk state when no input
+        targetVisualY = 0f;
+        return;
     }
+
+    if (swing != null) // use swinging movement instead - DV
+    {
+        swing.moveSwing(moveInput);
+        return;
+    }
+
+    Vector3 playerMovement = new Vector3(moveInput.x * speedAcceleration, rb.linearVelocity.y, rb.linearVelocity.z);
+
+    // Player Movement
+    rb.linearVelocity = playerMovement;
+    isIdle = false;
+    idleTimer = 0f;
+    facingCameraTimer = 0f;
+    isIdleAnimation = false;
+
+    // Direction
+    int dir = (int)Mathf.Sign(moveInput.x);
+
+    // Update facing + walking 
+    if (dir > 0)
+    {
+        isRight = true;
+        if (isGround) isWalking = true;
+        targetVisualY = 90f; 
+    }
+    else if (dir < 0)
+    {
+        isRight = false;
+        if (isGround) isWalking = true;
+        targetVisualY = -90f;
+    }
+
+    
+
+    // Drag player
+    //currentSpeed = rb.linearVelocity.magnitude;
+    //speedText.text = "Current Speed: " + currentSpeed;
+}
     private void startPlayer(InputAction.CallbackContext context)
     {
         //isWalking = true; // only walk on the ground foo - DV
@@ -431,23 +444,34 @@ public class Player : MonoBehaviour
         
     }
     public void playerRotation()
+{
+    float targetY;
+
+    if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
-        if (isRight && !isIdle)
-        {
-            transform.rotation = Quaternion.Euler(0, -90, 0);
-            dangerDectect.direction = true;
-        }
-        else if (!isRight && !isIdle)
-        {
-            transform.rotation = Quaternion.Euler(0, 90, 0);
-            dangerDectect.direction = false;
-        }
-        else if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox) // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
-        {
-            // smooth rotate player to camera
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), 2f * Time.deltaTime);
-        }
+        // idle: face camera
+        targetY = 0f;
     }
+    else
+    {
+        // moving: face left/right 
+        targetY = isRight ? -90f : 90f;
+        isIdle = false; // prevent idle camera-facing from fighting movement
+    }
+
+    float currentY = transform.eulerAngles.y;
+
+    float newY = Mathf.SmoothDampAngle(
+        currentY,
+        targetY,
+        ref rootTurnVel,
+        turnSmoothTime
+    );
+
+    transform.rotation = Quaternion.Euler(0f, newY, 0f);
+
+    dangerDectect.direction = isRight;
+}
     // play idle animation
     private void playerIdle()
     {

@@ -27632,6 +27632,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3834248827169801993, guid: 867d5c04247080f4192bdaf839051b0a, type: 3}
   m_PrefabInstance: {fileID: 720934293}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &721874892 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6220185339115323298, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+  m_PrefabInstance: {fileID: 2140701272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &724683488
 GameObject:
   m_ObjectHideFlags: 0
@@ -110297,8 +110302,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: visual
+      value: 
+      objectReference: {fileID: 721874892}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: isPushingBox
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: faceBlendSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: faceCameraTime
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: turnSmoothTime
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: faceBlendInTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: faceBlendOutTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: facePulseDuration
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: groundMask.m_Bits
