@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     public bool playerInput = true;
     private bool isWalking;
     public bool isRight;
-    private bool isPushingBox;
+    public bool isPushingBox;
     private Vector2 moveInput;
 
     // Swinging status - DV
@@ -542,6 +542,15 @@ public class Player : MonoBehaviour
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
     {
         swing = swinging;
+        if (swing != null)
+        {
+            anim.SetTrigger("PlayerSwing");
+        }
+    }
+
+    public void HookJump() // backdooring my way into calling jump on some hook destroys - DV
+    {
+        jumping();
     }
 
     public void TeleportTo(Transform target)
