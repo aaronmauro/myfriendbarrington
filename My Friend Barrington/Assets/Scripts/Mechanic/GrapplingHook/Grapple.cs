@@ -62,6 +62,7 @@ public class Grapple : MonoBehaviour
         else if (hook != null && hookAction.action.triggered)
         {
             DestroyHook();
+            player.HookJump();
         }
     }
 
