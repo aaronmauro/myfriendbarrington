@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     private float rootTurnVel; // used by SmoothDampAngle
     private float visualYVel = 0f;
     private float targetVisualY = 0f;
-    
+
     // Visual Speed Text
     //private float currentSpeed;
     //[SerializeField]
