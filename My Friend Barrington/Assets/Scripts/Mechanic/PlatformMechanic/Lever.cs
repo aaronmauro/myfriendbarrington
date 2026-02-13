@@ -71,12 +71,18 @@ public class Lever : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             isTrigger = true;
+            other.GetComponent<Player>().isInteracting = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             isTrigger = false;
+            other.GetComponent<Player>().isInteracting = false;
+        }
     }
 }

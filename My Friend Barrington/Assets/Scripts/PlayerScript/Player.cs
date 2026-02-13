@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public bool playerInput = true;
     private bool isWalking;
     public bool isRight;
+    private bool isPushingBox;
     private Vector2 moveInput;
 
     // Swinging status - DV
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour
     [Header("GroundCheck")]
     public bool isGround;
     public LayerMask groundMask;
-    public LayerMask platformMask;
+    //public LayerMask platformMask;
     public float playerHeight;
 
     // Getting components
@@ -89,6 +90,8 @@ public class Player : MonoBehaviour
     // Platform
     private NewMonoBehaviourScript currentPlatform;
     private Vector3 lastPlatformPosition;
+
+    public bool isInteracting;
 
     // Cool new trick
     private void OnEnable()
@@ -149,7 +152,7 @@ public class Player : MonoBehaviour
     {
         // Getting component from player
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        anim = GameObject.Find("barrington").GetComponent<Animator>();
         //gm = gameObject.findGameManager(); i guess we are not using game manager for now?
 
         // Setting Up boolean
@@ -178,7 +181,7 @@ public class Player : MonoBehaviour
         // Invoke all normal player actions
         if (!playerInput || dialogue)
         {
-            freezePlayer();
+            //freezePlayer(true); // this breaks the player death. not sure why its here, talk to me if its loadbearing - DV
             return;
         }
         else
@@ -270,6 +273,10 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
+        if (!playerInput)
+        {
+            return;
+        }
         isIdle = false;
         idleTimer = 0f;
         facingCameraTimer = 0f;
@@ -357,6 +364,7 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerWalk", isWalking);
         anim.SetBool("PlayerIdle", isIdleAnimation);
         anim.SetBool("PlayerFalling", isfalling);
+        anim.SetBool("PlayerPush", isPushingBox);
 
         // FMOD: start/stop walking loop based on isWalking and grounded state
         if (fmodInitialized)
@@ -398,21 +406,29 @@ public class Player : MonoBehaviour
             rb.AddForce(Vector3.down * fixedInAirVelocity, ForceMode.VelocityChange);
         }
     }
-    public void freezePlayer()
+    public void freezePlayer(bool isFrozen)
     {
-        // Stop player from moving
-        rb.linearVelocity = Vector3.zero;
-        isWalking = false;
-        //AudioManager.instance.playPlayerWalking(isWalking);
-        anim.SetBool("PlayerWalk", isWalking);
-        anim.SetBool("PlayerIdle", true);
+        if (isFrozen) {
+            playerInput = false;
+            // Stop player from moving
+            rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
+            isWalking = false;
+            //AudioManager.instance.playPlayerWalking(isWalking);
+            anim.SetBool("PlayerWalk", isWalking);
+            anim.SetBool("PlayerIdle", true);
 
-        // stop walking audio immediately when frozen
-        if (fmodInitialized && walkAudioPlaying)
+            // stop walking audio immediately when frozen
+            if (fmodInitialized && walkAudioPlaying)
+            {
+                walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                walkAudioPlaying = false;
+            }
+        } else
         {
-            walkEventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-            walkAudioPlaying = false;
+            playerInput = true;
         }
+        
+        
     }
     public void playerRotation()
     {
@@ -426,7 +442,7 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 90, 0);
             dangerDectect.direction = false;
         }
-        else if (rb.linearVelocity == Vector3.zero && isIdle) ; // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
+        else if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox) // might change back to rb.linearVelocity == Vector3.zero //Mathf.Approximately(rb.linearVelocity.magnitude, 0)
         {
             // smooth rotate player to camera
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 0), 2f * Time.deltaTime);
@@ -495,14 +511,24 @@ public class Player : MonoBehaviour
             lastPlatformPosition = platform.transform.position;
         }
     }
-
-
-
+    // when pushing box
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = true;
+        }
+    }
+    // when exit box
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.GetComponent<NewMonoBehaviourScript>() != null)
         {
             currentPlatform = null;
+        }
+        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = false;
         }
     }
 
@@ -516,6 +542,11 @@ public class Player : MonoBehaviour
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
     {
         swing = swinging;
+    }
+
+    public void TeleportTo(Transform target)
+    {
+        transform.position = target.position;
     }
 
 }

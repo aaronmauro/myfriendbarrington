@@ -47,7 +47,7 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         // Shoot or retract the hook based on player input
-        if (hook == null && hookAction.action.triggered) //Input.GetKeyDown(KeyCode.E))
+        if (hook == null && hookAction.action.triggered && !player.isInteracting) //Input.GetKeyDown(KeyCode.E))
         {
             GrapplePoint availablePoint = GetNearestGrapplePoint();
             if (availablePoint != null)
