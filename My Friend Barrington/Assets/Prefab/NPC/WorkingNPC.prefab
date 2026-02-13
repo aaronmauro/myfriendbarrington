@@ -64,6 +64,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorkingNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 5653009705577093805, guid: 07e0f1c3629bffe4182e9a412129be9f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ef7fcd3d7314a94e8adc882a54e055c, type: 2}
+    - target: {fileID: 5653009705577093805, guid: 07e0f1c3629bffe4182e9a412129be9f, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f186ffe2bbec484396089a457bdf869, type: 2}
+    - target: {fileID: 5653009705577093805, guid: 07e0f1c3629bffe4182e9a412129be9f, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 91dcc36241d22204487f5016ce725dac, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -126,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visualCue: {fileID: 2521556357736024711, guid: 0eb488c0321faab43bd02d849f79d645, type: 3}
   inkJSON: {fileID: 4900000, guid: 0265fa8a468585044b3ded9f8fab0ac6, type: 3}
+  npcName: 
+  npcImage: {fileID: 0}
 --- !u!95 &8232914075637772017
 Animator:
   serializedVersion: 7
@@ -281,9 +295,17 @@ PrefabInstance:
       value: 75.75
       objectReference: {fileID: 0}
     - target: {fileID: 4205838965806766056, guid: 0eb488c0321faab43bd02d849f79d645, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8322860723942678991, guid: 084929ad7841e3147966e8eea7f6e45a, type: 2}
+    - target: {fileID: 4205838965806766056, guid: 0eb488c0321faab43bd02d849f79d645, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5065011195983744356, guid: 0eb488c0321faab43bd02d849f79d645, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8322860723942678991, guid: 084929ad7841e3147966e8eea7f6e45a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

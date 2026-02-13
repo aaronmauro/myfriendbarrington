@@ -590,6 +590,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
   attenuationObject: {fileID: 0}
+--- !u!1 &1107843172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6697532352068030945, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+  m_PrefabInstance: {fileID: 8467178188748956895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1345808628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1435,7 +1440,7 @@ PrefabInstance:
     - target: {fileID: 5806846546603392182, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
       propertyPath: videoPlayer
       value: 
-      objectReference: {fileID: 8075004510221162168}
+      objectReference: {fileID: 0}
     - target: {fileID: 5806846546603392182, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
       propertyPath: videoLibrary.Array.size
       value: 8
@@ -1642,15 +1647,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5806846546603392182, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
+    - {fileID: 897668522592202086, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
---- !u!328 &8075004510221162168 stripped
-VideoPlayer:
-  m_CorrespondingSourceObject: {fileID: 897668522592202086, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
-  m_PrefabInstance: {fileID: 8075004510221162167}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8467178188748956895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2189,13 +2190,52 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1360470993210045558, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
       insertIndex: 1
       addedObject: {fileID: 882070547}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6697532352068030945, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8467178188748956900}
   m_SourcePrefab: {fileID: 100100000, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
 --- !u!224 &8467178188748956896 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1360470993210045558, guid: dbecf7bd82383f64cb7ced55efd54a80, type: 3}
   m_PrefabInstance: {fileID: 8467178188748956895}
   m_PrefabAsset: {fileID: 0}
+--- !u!328 &8467178188748956900
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107843172}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 0}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 049032ea51607b747893667cdc1c40fa, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 0
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
