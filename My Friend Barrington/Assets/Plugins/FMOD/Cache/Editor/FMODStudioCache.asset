@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7534596550522182937
+--- !u!114 &-8637770701577966367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,54 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/C2-pillow fort-plain
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Video.bank
   m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/C2-pillow fort-plain
-  Guid:
-    Data1: -1143830032
-    Data2: 1180635056
-    Data3: 961863087
-    Data4: 1482103115
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 12987
---- !u!114 &-7482847342514119713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/Ad2TV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/Ad2TV
-  Guid:
-    Data1: -339853222
-    Data2: 1311015459
-    Data3: 970228919
-    Data4: 1409480645
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 49560
---- !u!114 &-6360350607808960241
+  Path: FMOD/Desktop/Video.bank
+  Name: Video
+  StudioPath: bank:/Video
+  lastModified: 639065758472117755
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-8464506593497400277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,8 +37,7 @@ MonoBehaviour:
     Data3: 836078766
     Data4: -1913661109
   Banks:
-  - {fileID: 6312189941172805649}
-  - {fileID: 7301237615117379489}
+  - {fileID: -7064343704765732657}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -84,155 +45,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1800
---- !u!114 &-5588263592448136392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639065755345965735
-  FileSizes: []
-  Exists: 1
---- !u!114 &-5513382292479853230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Master.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Desktop/Master.bank
-  Name: Desktop/Master
-  StudioPath: bank:/Master
-  lastModified: 639065768242195851
-  FileSizes: []
-  Exists: 1
---- !u!114 &-4053114022010699166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BeachSeagulls
-  m_EditorClassIdentifier: 
-  Path: event:/BeachSeagulls
-  Guid:
-    Data1: 1517882041
-    Data2: 1079693267
-    Data3: 1576214705
-    Data4: -54130165
-  Banks:
-  - {fileID: 6312189941172805649}
-  - {fileID: 7301237615117379489}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-3432013850127136773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/TylerFinalTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/TylerFinalTV
-  Guid:
-    Data1: 390819975
-    Data2: 1299778318
-    Data3: 690424765
-    Data4: -739165941
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3159
---- !u!114 &-3316703509536639864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/AndreLoopTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/AndreLoopTV
-  Guid:
-    Data1: 1184251689
-    Data2: 1265190956
-    Data3: 350273422
-    Data4: -1850413598
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2938
---- !u!114 &-2462715958602108448
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerSFX/BarringtonWalking
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerSFX/BarringtonWalking
-  Guid:
-    Data1: 241940493
-    Data2: 1285530128
-    Data3: 1328868536
-    Data4: 505488519
-  Banks:
-  - {fileID: -566065710540933494}
-  - {fileID: 5747714997922923339}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-2227968321155425841
+--- !u!114 &-8464174512813797890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,8 +64,7 @@ MonoBehaviour:
     Data3: -386769497
     Data4: 1281765482
   Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
+  - {fileID: -8637770701577966367}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -260,146 +72,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 34143
---- !u!114 &-2108850895169084614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/NoKieranTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/NoKieranTV
-  Guid:
-    Data1: -742472804
-    Data2: 1235174447
-    Data3: 1870647995
-    Data4: -744113259
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1919
---- !u!114 &-1742349341048131701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/Cutscene1_Part1
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/Cutscene1_Part1
-  Guid:
-    Data1: 398720204
-    Data2: 1097710020
-    Data3: -498304578
-    Data4: 1616033085
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 62352
---- !u!114 &-1447135426457206396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/CoinCollect
-  m_EditorClassIdentifier: 
-  Path: event:/CoinCollect
-  Guid:
-    Data1: 1960762940
-    Data2: 1262817655
-    Data3: 1415148458
-    Data4: -728145646
-  Banks:
-  - {fileID: 6312189941172805649}
-  - {fileID: 7301237615117379489}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1060
---- !u!114 &-1332156063580504549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/NoTylerTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/NoTylerTV
-  Guid:
-    Data1: 2044556994
-    Data2: 1113570697
-    Data3: -730918757
-    Data4: 1367573307
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2085
---- !u!114 &-801047007818035202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/RiftCloser
-  m_EditorClassIdentifier: 
-  Path: event:/RiftCloser
-  Guid:
-    Data1: 955871069
-    Data2: 1333168496
-    Data3: -2073369439
-    Data4: -1254468461
-  Banks:
-  - {fileID: 6312189941172805649}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2089
---- !u!114 &-566065710540933494
+--- !u!114 &-7064343704765732657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -409,505 +82,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Barrington.bank
+  m_Name: bank:/SFX.bank
   m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Barrington.bank
-  Name: Barrington
-  StudioPath: bank:/Barrington
-  lastModified: 639065755345910692
+  Path: FMOD/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 639065758472057753
   FileSizes: []
   Exists: 1
---- !u!114 &-551850149447005031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/LevelSoundTracks.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/LevelSoundTracks.bank
-  Name: LevelSoundTracks
-  StudioPath: bank:/LevelSoundTracks
-  lastModified: 639065755345945734
-  FileSizes: []
-  Exists: 1
---- !u!114 &-459942140838129084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BeachCalmWaves
-  m_EditorClassIdentifier: 
-  Path: event:/BeachCalmWaves
-  Guid:
-    Data1: -2099142799
-    Data2: 1243363998
-    Data3: -1003396205
-    Data4: 1633168383
-  Banks:
-  - {fileID: 6312189941172805649}
-  - {fileID: 7301237615117379489}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 20450
---- !u!114 &-145065082336640321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Video.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Video.bank
-  Name: Video
-  StudioPath: bank:/Video
-  lastModified: 639065755346041485
-  FileSizes: []
-  Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 872438927793895158}
-  - {fileID: -566065710540933494}
-  - {fileID: -551850149447005031}
-  - {fileID: -5588263592448136392}
-  - {fileID: 6312189941172805649}
-  - {fileID: -145065082336640321}
-  - {fileID: 5747714997922923339}
-  - {fileID: 7010974084768526796}
-  - {fileID: -5513382292479853230}
-  - {fileID: 7301237615117379489}
-  - {fileID: 2088511688032813224}
-  EditorEvents:
-  - {fileID: -2462715958602108448}
-  - {fileID: 2047672674282861545}
-  - {fileID: 6759558423313034745}
-  - {fileID: 586214303418456852}
-  - {fileID: 8838597987844189205}
-  - {fileID: -1447135426457206396}
-  - {fileID: -801047007818035202}
-  - {fileID: -6360350607808960241}
-  - {fileID: -459942140838129084}
-  - {fileID: 9096981219246534613}
-  - {fileID: -4053114022010699166}
-  - {fileID: 5066268408746642440}
-  - {fileID: 3099100813854881814}
-  - {fileID: 3866997327663660301}
-  - {fileID: 3916161043576472439}
-  - {fileID: -3316703509536639864}
-  - {fileID: -7482847342514119713}
-  - {fileID: 4797349481818920121}
-  - {fileID: 6298983533508181458}
-  - {fileID: 3592122924375901683}
-  - {fileID: -2227968321155425841}
-  - {fileID: -3432013850127136773}
-  - {fileID: -2108850895169084614}
-  - {fileID: -1332156063580504549}
-  - {fileID: -1742349341048131701}
-  - {fileID: 6223882384147144490}
-  - {fileID: -7534596550522182937}
-  - {fileID: 5998893981909355423}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -5588263592448136392}
-  - {fileID: -5513382292479853230}
-  StringsBanks:
-  - {fileID: 872438927793895158}
-  cacheVersion: 131848
-  cacheTime: 639065768242408138
-  SerializableEventsDict:
-  - key: event:/PlayerSFX/BarringtonWalking
-    index: 0
-  - key: event:/PlayerSFX/PlatformJump
-    index: 1
-  - key: event:/LevelOneSoundtrack
-    index: 2
-  - key: event:/LevelTwoSoundtrack
-    index: 3
-  - key: event:/BeachSeagullsLoop
-    index: 4
-  - key: event:/CoinCollect
-    index: 5
-  - key: event:/RiftCloser
-    index: 6
-  - key: event:/Grapple
-    index: 7
-  - key: event:/BeachCalmWaves
-    index: 8
-  - key: event:/ButtonDrop
-    index: 9
-  - key: event:/BeachSeagulls
-    index: 10
-  - key: event:/VideoEvents/TylerLoopTV
-    index: 11
-  - key: event:/VideoEvents/AndreSlapTV
-    index: 12
-  - key: event:/VideoEvents/AllTV
-    index: 13
-  - key: event:/VideoEvents/NoAndreTV
-    index: 14
-  - key: event:/VideoEvents/AndreLoopTV
-    index: 15
-  - key: event:/VideoEvents/Ad2TV
-    index: 16
-  - key: event:/VideoEvents/KieranFinalTV
-    index: 17
-  - key: event:/VideoEvents/KieranLoopTV
-    index: 18
-  - key: event:/VideoEvents/AndreFinalTV
-    index: 19
-  - key: event:/VideoEvents/Cutscene1_Part2
-    index: 20
-  - key: event:/VideoEvents/TylerFinalTV
-    index: 21
-  - key: event:/VideoEvents/NoKieranTV
-    index: 22
-  - key: event:/VideoEvents/NoTylerTV
-    index: 23
-  - key: event:/VideoEvents/Cutscene1_Part1
-    index: 24
-  - key: event:/VideoEvents/TylerSlapTV
-    index: 25
-  - key: event:/VideoEvents/C2-pillow fort-plain
-    index: 26
-  - key: event:/VideoEvents/KieranSlapTV
-    index: 27
---- !u!114 &586214303418456852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/LevelTwoSoundtrack
-  m_EditorClassIdentifier: 
-  Path: event:/LevelTwoSoundtrack
-  Guid:
-    Data1: -885444472
-    Data2: 1105155795
-    Data3: -2058194498
-    Data4: 1716451847
-  Banks:
-  - {fileID: -551850149447005031}
-  - {fileID: 7010974084768526796}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 19921
---- !u!114 &872438927793895158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639065768242388092
-  FileSizes:
-  - Name: 
-    Value: 2220
-  Exists: 1
---- !u!114 &2047672674282861545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/PlayerSFX/PlatformJump
-  m_EditorClassIdentifier: 
-  Path: event:/PlayerSFX/PlatformJump
-  Guid:
-    Data1: -1699619011
-    Data2: 1222626116
-    Data3: 445343118
-    Data4: -200810189
-  Banks:
-  - {fileID: -566065710540933494}
-  - {fileID: 5747714997922923339}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 413
---- !u!114 &2088511688032813224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Video.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Desktop/Video.bank
-  Name: Desktop/Video
-  StudioPath: bank:/Video
-  lastModified: 639065768242372830
-  FileSizes: []
-  Exists: 1
---- !u!114 &3099100813854881814
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/AndreSlapTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/AndreSlapTV
-  Guid:
-    Data1: 862850577
-    Data2: 1199704701
-    Data3: -1408860023
-    Data4: 1284482705
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 831
---- !u!114 &3592122924375901683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/AndreFinalTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/AndreFinalTV
-  Guid:
-    Data1: 1781228414
-    Data2: 1294018525
-    Data3: -1419058012
-    Data4: 1538320129
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3464
---- !u!114 &3866997327663660301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/AllTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/AllTV
-  Guid:
-    Data1: 445937425
-    Data2: 1184007142
-    Data3: -1861725555
-    Data4: 919737046
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1914
---- !u!114 &3916161043576472439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/NoAndreTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/NoAndreTV
-  Guid:
-    Data1: 409785106
-    Data2: 1092197186
-    Data3: -1434917247
-    Data4: -1488806638
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1828
---- !u!114 &4797349481818920121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/KieranFinalTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/KieranFinalTV
-  Guid:
-    Data1: 1326374777
-    Data2: 1180973305
-    Data3: -1894997575
-    Data4: 1868163274
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2763
---- !u!114 &5066268408746642440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/TylerLoopTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/TylerLoopTV
-  Guid:
-    Data1: 1610838541
-    Data2: 1315637955
-    Data3: 1062774435
-    Data4: -2117996890
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4697
---- !u!114 &5747714997922923339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/Barrington.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Desktop/Barrington.bank
-  Name: Desktop/Barrington
-  StudioPath: bank:/Barrington
-  lastModified: 639065768242115683
-  FileSizes: []
-  Exists: 1
---- !u!114 &5998893981909355423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/KieranSlapTV
-  m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/KieranSlapTV
-  Guid:
-    Data1: 431922942
-    Data2: 1110256319
-    Data3: -726443381
-    Data4: -720624935
-  Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 729
---- !u!114 &6223882384147144490
+--- !u!114 &-6375256776107180107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -926,8 +109,7 @@ MonoBehaviour:
     Data3: 1789227451
     Data4: -1172203633
   Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
+  - {fileID: -8637770701577966367}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -935,7 +117,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 622
---- !u!114 &6298983533508181458
+--- !u!114 &-5522770932519193975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -945,43 +127,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoEvents/KieranLoopTV
+  m_Name: event:/VideoEvents/AndreFinalTV
   m_EditorClassIdentifier: 
-  Path: event:/VideoEvents/KieranLoopTV
+  Path: event:/VideoEvents/AndreFinalTV
   Guid:
-    Data1: 908816253
-    Data2: 1088979717
-    Data3: 1894094242
-    Data4: -1504077607
+    Data1: 1781228414
+    Data2: 1294018525
+    Data3: -1419058012
+    Data4: 1538320129
   Banks:
-  - {fileID: -145065082336640321}
-  - {fileID: 2088511688032813224}
+  - {fileID: -8637770701577966367}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 364
---- !u!114 &6312189941172805649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/SFX.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/SFX.bank
-  Name: SFX
-  StudioPath: bank:/SFX
-  lastModified: 639065768242408138
-  FileSizes: []
-  Exists: 1
---- !u!114 &6759558423313034745
+  Length: 3464
+--- !u!114 &-5376428447330859922
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1000,8 +163,7 @@ MonoBehaviour:
     Data3: 68099461
     Data4: -1740170394
   Banks:
-  - {fileID: -551850149447005031}
-  - {fileID: 7010974084768526796}
+  - {fileID: -953579598835850283}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -1009,43 +171,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 57815
---- !u!114 &7010974084768526796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/LevelSoundTracks.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Desktop/LevelSoundTracks.bank
-  Name: Desktop/LevelSoundTracks
-  StudioPath: bank:/LevelSoundTracks
-  lastModified: 639065768242175786
-  FileSizes: []
-  Exists: 1
---- !u!114 &7301237615117379489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Desktop/SFX.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Desktop/Desktop/SFX.bank
-  Name: Desktop/SFX
-  StudioPath: bank:/SFX
-  lastModified: 639065768242300707
-  FileSizes: []
-  Exists: 1
---- !u!114 &8838597987844189205
+--- !u!114 &-4861891407172514222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1055,25 +181,105 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BeachSeagullsLoop
+  m_Name: event:/VideoEvents/AndreSlapTV
   m_EditorClassIdentifier: 
-  Path: event:/BeachSeagullsLoop
+  Path: event:/VideoEvents/AndreSlapTV
   Guid:
-    Data1: 1228087057
-    Data2: 1078273932
-    Data3: -729257076
-    Data4: -1986866132
+    Data1: 862850577
+    Data2: 1199704701
+    Data3: -1408860023
+    Data4: 1284482705
   Banks:
-  - {fileID: 6312189941172805649}
-  - {fileID: 7301237615117379489}
+  - {fileID: -8637770701577966367}
   IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
+  Is3D: 1
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 5116
---- !u!114 &9096981219246534613
+  Length: 831
+--- !u!114 &-4537995748999433149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/C2-pillow fort-plain
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/C2-pillow fort-plain
+  Guid:
+    Data1: -1143830032
+    Data2: 1180635056
+    Data3: 961863087
+    Data4: 1482103115
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12987
+--- !u!114 &-4239283649439578839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSFX/BarringtonWalking
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSFX/BarringtonWalking
+  Guid:
+    Data1: 241940493
+    Data2: 1285530128
+    Data3: 1328868536
+    Data4: 505488519
+  Banks:
+  - {fileID: 2128960115673528053}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3598912444001036879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/KieranSlapTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/KieranSlapTV
+  Guid:
+    Data1: 431922942
+    Data2: 1110256319
+    Data3: -726443381
+    Data4: -720624935
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 729
+--- !u!114 &-2311156307468348142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1092,8 +298,7 @@ MonoBehaviour:
     Data3: -1710408776
     Data4: -1390394581
   Banks:
-  - {fileID: 6312189941172805649}
-  - {fileID: 7301237615117379489}
+  - {fileID: -7064343704765732657}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1101,3 +306,675 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 845
+--- !u!114 &-2110399825925708424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CoinCollect
+  m_EditorClassIdentifier: 
+  Path: event:/CoinCollect
+  Guid:
+    Data1: 1960762940
+    Data2: 1262817655
+    Data3: 1415148458
+    Data4: -728145646
+  Banks:
+  - {fileID: -7064343704765732657}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1060
+--- !u!114 &-953579598835850283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/LevelSoundTracks.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Desktop/LevelSoundTracks.bank
+  Name: LevelSoundTracks
+  StudioPath: bank:/LevelSoundTracks
+  lastModified: 639065758471997752
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-863330351902167032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/Cutscene1_Part1
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/Cutscene1_Part1
+  Guid:
+    Data1: 398720204
+    Data2: 1097710020
+    Data3: -498304578
+    Data4: 1616033085
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 62352
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 8262137035818675889}
+  - {fileID: 2128960115673528053}
+  - {fileID: -953579598835850283}
+  - {fileID: 2892043384270427309}
+  - {fileID: -7064343704765732657}
+  - {fileID: -8637770701577966367}
+  EditorEvents:
+  - {fileID: -5376428447330859922}
+  - {fileID: 1849088393819135032}
+  - {fileID: 1037634799285094581}
+  - {fileID: 4178991842335270916}
+  - {fileID: -2110399825925708424}
+  - {fileID: 8792550673685432431}
+  - {fileID: -4861891407172514222}
+  - {fileID: 7770375542697749358}
+  - {fileID: 3478275931603182488}
+  - {fileID: 811265536657878810}
+  - {fileID: 2566922983849727897}
+  - {fileID: 8694539062940610019}
+  - {fileID: -5522770932519193975}
+  - {fileID: -8464174512813797890}
+  - {fileID: -863330351902167032}
+  - {fileID: -3598912444001036879}
+  - {fileID: 4203337085255142914}
+  - {fileID: 1263043557695069892}
+  - {fileID: 7314362792287728861}
+  - {fileID: 516932281256162768}
+  - {fileID: 7736049896317163985}
+  - {fileID: -6375256776107180107}
+  - {fileID: -4239283649439578839}
+  - {fileID: 8444170419066828892}
+  - {fileID: -2311156307468348142}
+  - {fileID: -8464506593497400277}
+  - {fileID: -4537995748999433149}
+  - {fileID: 8284951699340292994}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 2892043384270427309}
+  StringsBanks:
+  - {fileID: 8262137035818675889}
+  cacheVersion: 131848
+  cacheTime: 639065758472117755
+  SerializableEventsDict:
+  - key: event:/LevelOneSoundtrack
+    index: 0
+  - key: event:/BeachSeagullsLoop
+    index: 1
+  - key: event:/BeachCalmWaves
+    index: 2
+  - key: event:/BeachSeagulls
+    index: 3
+  - key: event:/CoinCollect
+    index: 4
+  - key: event:/LevelTwoSoundtrack
+    index: 5
+  - key: event:/VideoEvents/AndreSlapTV
+    index: 6
+  - key: event:/VideoEvents/AllTV
+    index: 7
+  - key: event:/VideoEvents/AndreLoopTV
+    index: 8
+  - key: event:/VideoEvents/Ad2TV
+    index: 9
+  - key: event:/VideoEvents/KieranFinalTV
+    index: 10
+  - key: event:/VideoEvents/KieranLoopTV
+    index: 11
+  - key: event:/VideoEvents/AndreFinalTV
+    index: 12
+  - key: event:/VideoEvents/Cutscene1_Part2
+    index: 13
+  - key: event:/VideoEvents/Cutscene1_Part1
+    index: 14
+  - key: event:/VideoEvents/KieranSlapTV
+    index: 15
+  - key: event:/VideoEvents/TylerLoopTV
+    index: 16
+  - key: event:/VideoEvents/NoAndreTV
+    index: 17
+  - key: event:/VideoEvents/TylerFinalTV
+    index: 18
+  - key: event:/VideoEvents/NoKieranTV
+    index: 19
+  - key: event:/VideoEvents/NoTylerTV
+    index: 20
+  - key: event:/VideoEvents/TylerSlapTV
+    index: 21
+  - key: event:/PlayerSFX/BarringtonWalking
+    index: 22
+  - key: event:/PlayerSFX/PlatformJump
+    index: 23
+  - key: event:/ButtonDrop
+    index: 24
+  - key: event:/Grapple
+    index: 25
+  - key: event:/VideoEvents/C2-pillow fort-plain
+    index: 26
+  - key: 
+    index: 27
+--- !u!114 &516932281256162768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/NoKieranTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/NoKieranTV
+  Guid:
+    Data1: -742472804
+    Data2: 1235174447
+    Data3: 1870647995
+    Data4: -744113259
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1919
+--- !u!114 &811265536657878810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/Ad2TV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/Ad2TV
+  Guid:
+    Data1: -339853222
+    Data2: 1311015459
+    Data3: 970228919
+    Data4: 1409480645
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 49560
+--- !u!114 &1037634799285094581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachCalmWaves
+  m_EditorClassIdentifier: 
+  Path: event:/BeachCalmWaves
+  Guid:
+    Data1: -2099142799
+    Data2: 1243363998
+    Data3: -1003396205
+    Data4: 1633168383
+  Banks:
+  - {fileID: -7064343704765732657}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 20450
+--- !u!114 &1263043557695069892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/NoAndreTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/NoAndreTV
+  Guid:
+    Data1: 409785106
+    Data2: 1092197186
+    Data3: -1434917247
+    Data4: -1488806638
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1828
+--- !u!114 &1849088393819135032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachSeagullsLoop
+  m_EditorClassIdentifier: 
+  Path: event:/BeachSeagullsLoop
+  Guid:
+    Data1: 1228087057
+    Data2: 1078273932
+    Data3: -729257076
+    Data4: -1986866132
+  Banks:
+  - {fileID: -7064343704765732657}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5116
+--- !u!114 &2128960115673528053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Barrington.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Desktop/Barrington.bank
+  Name: Barrington
+  StudioPath: bank:/Barrington
+  lastModified: 639065758471967731
+  FileSizes: []
+  Exists: 1
+--- !u!114 &2566922983849727897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/KieranFinalTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/KieranFinalTV
+  Guid:
+    Data1: 1326374777
+    Data2: 1180973305
+    Data3: -1894997575
+    Data4: 1868163274
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2763
+--- !u!114 &2892043384270427309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639065758472017753
+  FileSizes: []
+  Exists: 1
+--- !u!114 &3478275931603182488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/AndreLoopTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/AndreLoopTV
+  Guid:
+    Data1: 1184251689
+    Data2: 1265190956
+    Data3: 350273422
+    Data4: -1850413598
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2938
+--- !u!114 &4178991842335270916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachSeagulls
+  m_EditorClassIdentifier: 
+  Path: event:/BeachSeagulls
+  Guid:
+    Data1: 1517882041
+    Data2: 1079693267
+    Data3: 1576214705
+    Data4: -54130165
+  Banks:
+  - {fileID: -7064343704765732657}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4203337085255142914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/TylerLoopTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/TylerLoopTV
+  Guid:
+    Data1: 1610838541
+    Data2: 1315637955
+    Data3: 1062774435
+    Data4: -2117996890
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4697
+--- !u!114 &7314362792287728861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/TylerFinalTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/TylerFinalTV
+  Guid:
+    Data1: 390819975
+    Data2: 1299778318
+    Data3: 690424765
+    Data4: -739165941
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3159
+--- !u!114 &7736049896317163985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/NoTylerTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/NoTylerTV
+  Guid:
+    Data1: 2044556994
+    Data2: 1113570697
+    Data3: -730918757
+    Data4: 1367573307
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2085
+--- !u!114 &7770375542697749358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/AllTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/AllTV
+  Guid:
+    Data1: 445937425
+    Data2: 1184007142
+    Data3: -1861725555
+    Data4: 919737046
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1914
+--- !u!114 &8262137035818675889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: FMOD/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639065758472037757
+  FileSizes:
+  - Name: 
+    Value: 2180
+  Exists: 1
+--- !u!114 &8284951699340292994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: 
+  Guid:
+    Data1: -1801467748
+    Data2: 1227699160
+    Data3: -1710408776
+    Data4: -1390394581
+  Banks:
+  - {fileID: 0}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 845
+--- !u!114 &8444170419066828892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSFX/PlatformJump
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSFX/PlatformJump
+  Guid:
+    Data1: -1699619011
+    Data2: 1222626116
+    Data3: 445343118
+    Data4: -200810189
+  Banks:
+  - {fileID: 2128960115673528053}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 413
+--- !u!114 &8694539062940610019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VideoEvents/KieranLoopTV
+  m_EditorClassIdentifier: 
+  Path: event:/VideoEvents/KieranLoopTV
+  Guid:
+    Data1: 908816253
+    Data2: 1088979717
+    Data3: 1894094242
+    Data4: -1504077607
+  Banks:
+  - {fileID: -8637770701577966367}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 364
+--- !u!114 &8792550673685432431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LevelTwoSoundtrack
+  m_EditorClassIdentifier: 
+  Path: event:/LevelTwoSoundtrack
+  Guid:
+    Data1: -885444472
+    Data2: 1105155795
+    Data3: -2058194498
+    Data4: 1716451847
+  Banks:
+  - {fileID: -953579598835850283}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 19921
