@@ -26,6 +26,7 @@ public class VideoManager : MonoBehaviour
     private long videoFrame;
     [HideInInspector] public bool playNextVideo;
     private bool isPauseVideo;
+    private bool fixingVideoLooping;
 
     // Change Scene
     public string[] nextSceneName;
@@ -38,6 +39,7 @@ public class VideoManager : MonoBehaviour
     [Header("Component")]
     [SerializeField] private VideoPlayer videoPlayer;
     private ButtonManager bm;
+    private FMOD.Studio.EventInstance videoAudioEvent;
 
     private void Awake()
     {
@@ -67,12 +69,13 @@ public class VideoManager : MonoBehaviour
         newVideoList.Add(1);
 
         playNextVideo = true;
+        fixingVideoLooping = false;
         videoCount = 0;
         newVideoCount = 0;
         videoControlNumber = 0;
         remoteImage.SetActive(false);
 
-        fmodEventEmitter.Play();
+        //fmodEventEmitter.Play();
 
     }
 
@@ -122,14 +125,17 @@ public class VideoManager : MonoBehaviour
             // --- FMOD AUDIO SWAP ---
             if (fmodEventEmitter != null)
             {
-                // Stop previous audio immediately
-                //fmodEventEmitter.Stop();
-
+               /* // Stop previous audio immediately
+                fmodEventEmitter.EventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                fmodEventEmitter.EventInstance.release();
                 // Update the event reference from your VideosData scriptable/struct
                 fmodEventEmitter.EventReference = _v.videoAudio;
 
+
                 // Play the new event
-                //fmodEventEmitter.Play();
+                fmodEventEmitter.Play();*/
+
+                playAudio(_v.videoAudio);
             }
 
             // --- LOGIC CHECKS ---
@@ -154,7 +160,7 @@ public class VideoManager : MonoBehaviour
 
         if (afterLoopVideo) videoControlNumber = 1;
 
-        if (currentFrame >= videoFrame - 1)
+        if (!fixingVideoLooping && currentFrame >= videoFrame - 1)
         {
             if ((loopVideo && isPauseVideo) || !isPauseVideo)
             {
@@ -167,7 +173,24 @@ public class VideoManager : MonoBehaviour
             }
             videoControlNumber = 0;
             afterLoopVideo = false;
+            fixingVideoLooping = true;
+        //Debug.Log("testing");
         }
+
+        if (currentFrame < videoFrame - 1)
+        {
+            fixingVideoLooping = false;
+        }
+    }
+
+    private void playAudio(EventReference newVideoAudio)
+    {
+        videoAudioEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        videoAudioEvent.release();
+        videoAudioEvent = RuntimeManager.CreateInstance(newVideoAudio);
+        var attributes = FMODUnity.RuntimeUtils.To3DAttributes(Camera.main.gameObject);
+        videoAudioEvent.set3DAttributes(attributes);
+        videoAudioEvent.start();
     }
 
     private void LoadVideoClips()

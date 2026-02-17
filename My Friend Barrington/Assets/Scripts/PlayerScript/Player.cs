@@ -267,11 +267,6 @@ public class Player : MonoBehaviour
         targetVisualY = -90f;
     }
 
-    
-
-    // Drag player
-    //currentSpeed = rb.linearVelocity.magnitude;
-    //speedText.text = "Current Speed: " + currentSpeed;
 }
     private void startPlayer(InputAction.CallbackContext context)
     {
@@ -485,15 +480,11 @@ public class Player : MonoBehaviour
         {
             isIdle = true;
         }
-        //Debug.Log(rb.linearVelocity.y);
-        //Debug.Log(rb.linearVelocity.y <= -1);
-        //Debug.Log(idleTimer);
     }
 
     // player idle
     private IEnumerator startPlayerIdle()
     {
-        //isIdle = true;
         isIdleAnimation = true;
         // wait for animation to end
         yield return new WaitForSeconds(10f);

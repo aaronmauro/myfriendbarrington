@@ -526,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 1095742905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -807,6 +807,18 @@ PrefabInstance:
     - target: {fileID: 1138611756928285238, guid: 3df4c74e15a3fad4489811f4a28f6435, type: 3}
       propertyPath: m_Name
       value: FMODEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138611756928285238, guid: 3df4c74e15a3fad4489811f4a28f6435, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423199185860995368, guid: 3df4c74e15a3fad4489811f4a28f6435, type: 3}
+      propertyPath: TriggerOnce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423199185860995368, guid: 3df4c74e15a3fad4489811f4a28f6435, type: 3}
+      propertyPath: AllowFadeout
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8423199185860995368, guid: 3df4c74e15a3fad4489811f4a28f6435, type: 3}
       propertyPath: EventPlayTrigger
@@ -1403,15 +1415,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3703242491556805337, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 342.0502
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703242491556805337, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 188.94582
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703242491556805337, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.7371025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3703242491556805337, guid: 44cfa2a2213ac924087f6810395cede4, type: 3}
       propertyPath: m_LocalRotation.w
