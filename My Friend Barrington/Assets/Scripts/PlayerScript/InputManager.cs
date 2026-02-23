@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
     public InputActionReference interactAction;
     public InputActionReference videoSkipAction;
     public InputActionReference videoNextAction;
+    public InputActionReference pauseGame;
+
 
     public delegate void PlayerAction();
     public PlayerAction playerAction;
@@ -125,4 +127,6 @@ public class InputManager : MonoBehaviour
     {
         submitPressed = false;
     }
+
+
 }
