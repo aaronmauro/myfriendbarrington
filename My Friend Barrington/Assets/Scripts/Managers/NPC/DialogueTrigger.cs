@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -19,9 +20,8 @@ public class DialogueTrigger : MonoBehaviour
     private Player player; // Reference to PlayerController
     private bool hasSubscribed = false;
 
-
-
-
+    // For subscribing to the InputAction on the InputManager
+    private bool inputSubscribed = false;
 
     private void Awake()
     {
@@ -32,6 +32,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         // Try to subscribe in Start instead of Awake
         TrySubscribeToDialogueManager();
+        TrySubscribeToInputManager();
     }
 
     private void TrySubscribeToDialogueManager()
@@ -43,35 +44,55 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
+    private void TrySubscribeToInputManager()
+    {
+        var im = InputManager.GetInstance();
+        if (!inputSubscribed && im != null && im.interactAction != null && im.interactAction.action != null)
+        {
+            im.interactAction.action.performed += OnInteractAction;
+            inputSubscribed = true;
+        }
+    }
 
     private void Update()
     {
-        if (DialogueManager.GetInstance() == null)
+        // Keep trying to subscribe if managers come up later
+        if (DialogueManager.GetInstance() == null || !inputSubscribed)
         {
             if (!hasSubscribed)
-            {
                 TrySubscribeToDialogueManager();
-            }
-            return;
+
+            if (!inputSubscribed)
+                TrySubscribeToInputManager();
+
+            // still continue, we don't rely on Update polling for input anymore
         }
 
-        if (playerInRange && !DialogueManager.GetInstance().dialogueIsPlaying)
+        if (playerInRange && DialogueManager.GetInstance() != null && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
-
-            // Try direct input check
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Starting dialogue from trigger!");
-                DialogueManager.GetInstance().UpdateNpc(npcName, npcImage);
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-                LockPlayerMovement(true);
-            }
         }
         else
-        {
+        {       
             visualCue.SetActive(false);
         }
+    }
+
+    // Called when the InputActionReference on the InputManager is triggered
+    private void OnInteractAction(InputAction.CallbackContext context)
+    {
+        // Only start dialogue on performed phase (should always be the case for .performed)
+        if (!context.performed) return;
+
+        if (!playerInRange) return;
+
+        var dm = DialogueManager.GetInstance();
+        if (dm == null || dm.dialogueIsPlaying) return;
+
+        Debug.Log("Starting dialogue from trigger via InputAction!");
+        dm.UpdateNpc(npcName, npcImage);
+        dm.EnterDialogueMode(inkJSON);
+        LockPlayerMovement(true);
     }
 
     private void LockPlayerMovement(bool isLocked)
@@ -88,20 +109,16 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player") 
         {
             playerInRange = true;
-
         }
-
-       
-        
     }
 
-private void OnTriggerExit(Collider collider)
-{
-    if (collider.gameObject.tag == "Player")
+    private void OnTriggerExit(Collider collider)
     {
-        playerInRange = false;
+        if (collider.gameObject.tag == "Player")
+        {
+            playerInRange = false;
+        }
     }
-}
 
     private void UnlockPlayerMovement()
     {
@@ -109,11 +126,18 @@ private void OnTriggerExit(Collider collider)
     }
 
     private void OnDestroy()
-{
-    if (DialogueManager.GetInstance() != null)
     {
-        DialogueManager.GetInstance().OnDialogueEnd -= UnlockPlayerMovement;
+        if (DialogueManager.GetInstance() != null)
+        {
+            DialogueManager.GetInstance().OnDialogueEnd -= UnlockPlayerMovement;
+        }
+
+        var im = InputManager.GetInstance();
+        if (inputSubscribed && im != null && im.interactAction != null && im.interactAction.action != null)
+        {
+            im.interactAction.action.performed -= OnInteractAction;
+            inputSubscribed = false;
+        }
     }
-}
 
 }
