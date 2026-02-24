@@ -20,6 +20,9 @@ public class InputManager : MonoBehaviour
     public InputActionReference videoSkipAction;
     public InputActionReference videoNextAction;
     public InputActionReference pauseGame;
+    public InputActionReference OninteractAction;
+    public InputActionReference submitAction;
+
 
 
     public delegate void PlayerAction();
