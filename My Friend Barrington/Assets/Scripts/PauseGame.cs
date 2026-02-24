@@ -8,23 +8,24 @@ public class PauseGame : MonoBehaviour
 
     public static bool GameIsPaused = false;
 
+
     public InputActionReference endAction;
     // Update is called once per frame
 
     private void Awake()
     {
         endAction.action.Enable();
-        endAction.action.performed += pressedPauseGame;
+        //endAction.action.performed += pressedPauseGame;
     }
 
     private void OnDisable()
     {
-        endAction.action.performed -= pressedPauseGame;
+        //endAction.action.performed -= pressedPauseGame;
         endAction.action.Disable();
     }
     void Update()
     {
-/*        if (Input.GetKeyUp(KeyCode.Escape))
+        if (endAction.action.triggered)
         {
             if (GameIsPaused)
             {
@@ -32,22 +33,27 @@ public class PauseGame : MonoBehaviour
             }
             else
             {
-                 Pause();
+                Pause();
             }
-        }*/
+        }
+
     }
 
+    //private void FixedUpdate()
+    //{
+    //    if (GameIsPaused)
+    //    {
+    //        Pause();
+    //    }
+    //    else
+    //    {
+    //        Resume();
+    //    }
+    //}
     private void pressedPauseGame(InputAction.CallbackContext context)
     {
         //Debug.Log("not happy");
-        if (GameIsPaused)
-        {
-            Resume();
-        }
-        else
-        {
-            Pause();
-        }
+        GameIsPaused = true;
     }
     public void Resume()
     {
@@ -70,8 +76,9 @@ public class PauseGame : MonoBehaviour
 
     }
 
-    public void LoadMenu()
+    public void LoadMenu(string nextSceneName)
     {
+        SceneManagerScript.instance.nextScene(nextSceneName);
         Time.timeScale = 1f;
     }
 
