@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     private float rootTurnVel; // used by SmoothDampAngle
     private float visualYVel = 0f;
     private float targetVisualY = 0f;
+    private float targetY;
 
     // Visual Speed Text
     //private float currentSpeed;
@@ -440,18 +441,19 @@ public class Player : MonoBehaviour
     }
     public void playerRotation()
 {
-    float targetY;
 
     if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
         // idle: face camera
         targetY = 0f;
+            //Debug.Log("not Happy");
     }
-    else
+    else if (rb.linearVelocity != Vector3.zero && !isIdle && !isPushingBox) // adding condition so it won't conflict with the if statement above
     {
         // moving: face left/right 
         targetY = isRight ? -90f : 90f;
         isIdle = false; // prevent idle camera-facing from fighting movement
+            //Debug.Log("very happy");
     }
 
     float currentY = transform.eulerAngles.y;
