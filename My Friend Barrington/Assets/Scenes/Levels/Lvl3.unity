@@ -13038,6 +13038,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 965440331453837776, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      propertyPath: visual
+      value: 
+      objectReference: {fileID: 1851824884}
     - target: {fileID: 8115678734397985337, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.81
@@ -28583,10 +28587,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8327187794828846247, guid: d8a43d692e78ba84b95c3ef629e20188, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a43d692e78ba84b95c3ef629e20188, type: 3}
 --- !u!1001 &790249752
 PrefabInstance:
@@ -45919,10 +45920,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8327187794828846247, guid: d8a43d692e78ba84b95c3ef629e20188, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a43d692e78ba84b95c3ef629e20188, type: 3}
 --- !u!1 &1263426009
 GameObject:
@@ -56273,6 +56271,7 @@ MonoBehaviour:
   LeverCam: {fileID: 25351885}
   LeverCheck: {fileID: 1535279691}
   IsCameraTrigger: 0
+  lingerTime: 3
 --- !u!1 &1538044288
 GameObject:
   m_ObjectHideFlags: 0
@@ -65976,6 +65975,7 @@ MonoBehaviour:
   LeverCam: {fileID: 968463107}
   LeverCheck: {fileID: 1805916007}
   IsCameraTrigger: 0
+  lingerTime: 3
 --- !u!1 &1809168140
 GameObject:
   m_ObjectHideFlags: 0
@@ -67111,6 +67111,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848785557}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1851824884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2151227661694646533, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+  m_PrefabInstance: {fileID: 403082307}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1853129304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6063002404625692640, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
@@ -74865,10 +74870,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8327187794828846247, guid: d8a43d692e78ba84b95c3ef629e20188, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8a43d692e78ba84b95c3ef629e20188, type: 3}
 --- !u!1001 &2091983101
 PrefabInstance:
