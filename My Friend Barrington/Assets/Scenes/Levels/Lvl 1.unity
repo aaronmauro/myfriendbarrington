@@ -31228,6 +31228,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648203519}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &650652499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1161130086236131893, guid: 08f5605137faf9d4688025081fb81624, type: 3}
+  m_PrefabInstance: {fileID: 473125715}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7c8d89cf3a8b6b40bc8a5cfc923bf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &658749203
 GameObject:
   m_ObjectHideFlags: 0
@@ -131919,6 +131930,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3786230790206110539, guid: aa21e685b19361247b29a2d28ee18147, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 650652499}
     - target: {fileID: 8016816507129009281, guid: aa21e685b19361247b29a2d28ee18147, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

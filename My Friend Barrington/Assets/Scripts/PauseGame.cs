@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseGame : MonoBehaviour
 {
@@ -7,10 +8,23 @@ public class PauseGame : MonoBehaviour
 
     public static bool GameIsPaused = false;
 
+    public InputActionReference endAction;
     // Update is called once per frame
+
+    private void Awake()
+    {
+        endAction.action.Enable();
+        endAction.action.performed += pressedPauseGame;
+    }
+
+    private void OnDisable()
+    {
+        endAction.action.performed -= pressedPauseGame;
+        endAction.action.Disable();
+    }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+/*        if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
@@ -19,8 +33,20 @@ public class PauseGame : MonoBehaviour
             else
             {
                  Pause();
-                
             }
+        }*/
+    }
+
+    private void pressedPauseGame(InputAction.CallbackContext context)
+    {
+        //Debug.Log("not happy");
+        if (GameIsPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
     public void Resume()
@@ -52,5 +78,6 @@ public class PauseGame : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        Debug.Log("quit");
     }
 }
