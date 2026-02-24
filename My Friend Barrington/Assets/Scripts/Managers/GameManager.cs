@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         // getting components
         player = gameObject.findPlayer();
+        if (GameObject.Find("barrington") == null) return;
         anim = GameObject.Find("barrington").GetComponent<Animator>();
     }
 
