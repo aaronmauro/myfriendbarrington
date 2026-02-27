@@ -55,14 +55,14 @@ public class ButtonCollect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (!other.gameObject.isPlayer() || button == null)
             return;
-
-        RuntimeManager.PlayOneShotAttached(coinCollectEvent, gameObject);
 
         button.SetActive(false);
         buttonCount += buttonWorth;
         UpdateScore();
+        RuntimeManager.PlayOneShotAttached(coinCollectEvent, gameObject);
     }
 
     private void UpdateScore()

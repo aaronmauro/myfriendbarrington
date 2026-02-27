@@ -2,7 +2,6 @@ using Unity.Cinemachine;
 using UnityEngine;
 using System.Collections;
 
-
 public class LeverCamera : MonoBehaviour
 {
     [SerializeField]
@@ -13,39 +12,40 @@ public class LeverCamera : MonoBehaviour
 
     [SerializeField]
     private bool IsCameraTrigger;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField] 
+    private float lingerTime = 3f;  
+
+    private bool isRunning;          
+
     void Start()
     {
      
     }
+
     private void Awake()
     {
         LeverCam.enabled = false;
         IsCameraTrigger = true;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
-        //if (LeverCheck.isUsed == true)
-        //{
-        //    IsCameraTrigger = true;
-        //}
-        if (LeverCheck.isUsed && IsCameraTrigger)
+        if (LeverCheck.isUsed && IsCameraTrigger && !isRunning) 
         {
-            StartCoroutine(LeverCamChange(3f));
+            StartCoroutine(LeverCamChange(lingerTime)); 
         }
-     
     }
+
     private IEnumerator LeverCamChange(float waitTime)
     {
+        isRunning = true; 
 
         LeverCam.enabled = true;
         yield return new WaitForSeconds(waitTime);
         IsCameraTrigger = false;
         LeverCam.enabled = false;
+
+        isRunning = false;  
     }
-
-
 }

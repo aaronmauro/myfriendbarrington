@@ -2,13 +2,9 @@
 -> greeting
 
 === greeting === 
-Afternoon! Look at those clouds! So dark and full of water... blocking the sun. I'd hypothesize that rain is on the way.
+Oh, err -- Salutations, Barrington! Beautiful day for a climb, isn't it?
 
-I'm Marvin, but you, my friend, can call me Marv.
+Speaking of which, I was just trying to figure out how to progress up this sheer incline here! I want to get a better look at those clouds -- they may look light and fluffy now, but I hypothesize there's a storm on the way!
 
-Seems like you're a little lost at sea. It's easy enough to swing across the branches... for me at least. Your tail may be slightly short.
-
-Lucky for you though! I came across this little rope gadget in my research.
-
-Oh, and another note for you. There are these strange cracks of thunder I've been hearing. I'd be careful. Never heard them before myself. 
+I saw you knock over that container of bubble solution into the pond below! If only we could find a way to move this platform, then the bubbles might rise up here...
 -> END 

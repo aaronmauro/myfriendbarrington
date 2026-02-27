@@ -78,6 +78,7 @@ public class PillowCollector : MonoBehaviour
 
     private void EndLevel()
     {
+        FadeToBlack.gameObject.SetActive(true);
         FadeStart = true;
         StartCoroutine(ToNextLevel(3f));
     }
