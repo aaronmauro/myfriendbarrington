@@ -11,6 +11,9 @@ public class Lever : MonoBehaviour
     private GameObject secondTargetObject;
 
     [SerializeField]
+    private GameObject indecator;
+
+    [SerializeField]
     private bool startEnabled = false;
 
     [SerializeField]
@@ -39,6 +42,9 @@ public class Lever : MonoBehaviour
         // Initialize second target with the same startEnabled value (if assigned)
         if (secondTargetObject != null)
             secondTargetObject.SetActive(startEnabled);
+
+        if (indecator != null)
+            indecator.SetActive(false);
 
         // Ensure the lever animation does not play until the player presses the interact action.
         if (leverAnimator != null)
@@ -97,6 +103,7 @@ public class Lever : MonoBehaviour
         {
             isTrigger = true;
             other.GetComponent<Player>().isInteracting = true;
+            indecator.SetActive(true);
         }
     }
 
@@ -106,6 +113,7 @@ public class Lever : MonoBehaviour
         {
             isTrigger = false;
             other.GetComponent<Player>().isInteracting = false;
+            indecator.SetActive(false);
         }
     }
 
