@@ -1,20 +1,19 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Lever : MonoBehaviour
 {
-    [SerializeField] 
-    private KeyCode interactButton = KeyCode.E;
-    [SerializeField] 
+    [SerializeField]
     private GameObject targetObject;
 
     // New: second serialized target object
     [SerializeField]
     private GameObject secondTargetObject;
 
-    [SerializeField] 
+    [SerializeField]
     private bool startEnabled = false;
 
-    [SerializeField] 
+    [SerializeField]
     public bool isUsed;
 
     [SerializeField]
@@ -29,6 +28,9 @@ public class Lever : MonoBehaviour
 
     private bool isTrigger;
 
+    // Input subscription tracking
+    private bool inputSubscribed = false;
+
     void Start()
     {
         if (targetObject != null)
@@ -38,33 +40,54 @@ public class Lever : MonoBehaviour
         if (secondTargetObject != null)
             secondTargetObject.SetActive(startEnabled);
 
-        // Ensure the lever animation does not play until the player presses E.
-        // Disabling the Animator prevents it from updating/playing any default clip.
+        // Ensure the lever animation does not play until the player presses the interact action.
         if (leverAnimator != null)
             leverAnimator.enabled = false;
+
+        TrySubscribeToInputManager();
     }
 
     void Update()
     {
-        if (isTrigger && targetObject != null && Input.GetKeyDown(interactButton) && isUsed == false)
+        // Try to subscribe in case InputManager is created after this object
+        if (!inputSubscribed)
+            TrySubscribeToInputManager();
+    }
+
+    private void TrySubscribeToInputManager()
+    {
+        var im = InputManager.GetInstance();
+        if (!inputSubscribed && im != null && im.interactAction != null && im.interactAction.action != null)
         {
-            targetObject.SetActive(!targetObject.activeSelf);
+            im.interactAction.action.performed += OnInteractAction;
+            inputSubscribed = true;
+        }
+    }
 
-            // Toggle second target if assigned
-            if (secondTargetObject != null)
-                secondTargetObject.SetActive(!secondTargetObject.activeSelf);
+    private void OnInteractAction(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
 
-            isUsed = true;
+        if (!isTrigger) return;
+        if (targetObject == null) return;
+        if (isUsed) return;
 
-            if (interactParticles != null)
-                interactParticles.Play();
+        targetObject.SetActive(!targetObject.activeSelf);
 
-            // Enable the Animator (so it can run) and trigger the animation.
-            if (leverAnimator != null)
-            {
-                leverAnimator.enabled = true;
-                leverAnimator.SetTrigger(AnimatorTriggerName);
-            }
+        // Toggle second target if assigned
+        if (secondTargetObject != null)
+            secondTargetObject.SetActive(!secondTargetObject.activeSelf);
+
+        isUsed = true;
+
+        if (interactParticles != null)
+            interactParticles.Play();
+
+        // Enable the Animator (so it can run) and trigger the animation.
+        if (leverAnimator != null)
+        {
+            leverAnimator.enabled = true;
+            leverAnimator.SetTrigger(AnimatorTriggerName);
         }
     }
 
@@ -83,6 +106,18 @@ public class Lever : MonoBehaviour
         {
             isTrigger = false;
             other.GetComponent<Player>().isInteracting = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (!inputSubscribed) return;
+
+        var im = InputManager.GetInstance();
+        if (im != null && im.interactAction != null && im.interactAction.action != null)
+        {
+            im.interactAction.action.performed -= OnInteractAction;
+            inputSubscribed = false;
         }
     }
 }

@@ -43,12 +43,12 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         // interesting lambda, learn something new! quick and easy
-        EndAction.action.Enable();
+/*        EndAction.action.Enable();
         EndAction.action.performed += ctx =>
         {
             Application.Quit();
             Debug.Log("Quit");
-        };
+        };*/
     }
     private void OnDisable()
     {

@@ -101,6 +101,10 @@ public class SoundWaves : MonoBehaviour
         {
             isSpawn = false;
         }
+        if (goingdirection == GoingDirection.isRight)
+        {
+            _soundWavesObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     // checking soundwave moving direction
