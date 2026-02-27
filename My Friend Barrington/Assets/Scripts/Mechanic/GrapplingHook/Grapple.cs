@@ -1,3 +1,5 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +17,12 @@ public class Grapple : MonoBehaviour
     [SerializeField] private float forceIncreaseTime = 1.5f;
     [SerializeField] float lifetime = 0f;
     private bool applyForce;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField]
+    private FMODUnity.EventReference grappleSound; // use EventReference instead of string
+
+  
 
     Hook hook;
     bool pulling;
@@ -39,6 +47,8 @@ public class Grapple : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         pulling = false;
         player = gameObject.findPlayer();
+
+
     }
 
 
@@ -61,6 +71,7 @@ public class Grapple : MonoBehaviour
         }
         else if (hook != null && hookAction.action.triggered)
         {
+            
             DestroyHook();
             player.HookJump();
         }
@@ -130,6 +141,7 @@ public class Grapple : MonoBehaviour
     {
         pulling = true;
         player.Swing(this);
+        RuntimeManager.PlayOneShotAttached(grappleSound, gameObject);
     }
 
     public void DestroyHook()
