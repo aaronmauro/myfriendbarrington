@@ -39,6 +39,7 @@ public class DialogueManager : MonoBehaviour
     private static DialogueManager instance;
     public event System.Action OnDialogueEnd;
     [SerializeField] private Player player;
+    [SerializeField] public Animator animator;
 
     private void Awake()
     {
@@ -97,7 +98,6 @@ public class DialogueManager : MonoBehaviour
         {
             return;
         }
-
         // Allow Space to skip typing or continue when there are no choices
         if (Input.GetKeyDown(KeyCode.Space) && currentStory.currentChoices.Count == 0)
         {
@@ -202,6 +202,7 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             string text = currentStory.Continue();
+            HandleTags(currentStory.currentTags);
             Debug.Log("Story text: " + text);
 
             // Start typing effect instead of displaying text immediately
@@ -416,5 +417,53 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueName.SetText(npcName);
         dialogueImage.sprite = npcImage;
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        // Validate input
+        if (currentTags == null || currentTags.Count == 0)
+        {
+            Debug.Log("HandleTags: no tags on this line.");
+            return;
+        }
+
+        foreach (string tag in currentTags)
+        {
+            if (string.IsNullOrWhiteSpace(tag))
+                continue;
+
+            Debug.Log($"HandleTags: found tag '{tag}'");
+
+            // Support multiple separators just in case: 'anim_idle', 'anim:idle', 'anim idle'
+            string[] splitTag = tag.Split(new char[] { '_', ':', ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+            if (splitTag.Length == 0)
+                continue;
+
+            string key = splitTag[0].Trim();
+            if (key == "anim")
+            {
+                if (splitTag.Length >= 2)
+                {
+                    string animName = splitTag[1].Trim();
+                    Debug.Log($"HandleTags: triggering animation '{animName}'");
+
+                    if (animator != null)
+                    {
+                        animator.SetTrigger(animName);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("HandleTags: animator is null on DialogueManager");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"HandleTags: 'anim' tag found but no animation name provided ('{tag}')");
+                }
+            }
+
+            // Add other tag handlers here (e.g. 'name', 'portrait', etc.)
+        }
     }
 }

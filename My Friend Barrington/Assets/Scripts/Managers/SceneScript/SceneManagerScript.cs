@@ -27,8 +27,6 @@ public class SceneManagerScript : MonoBehaviour
     public void nextScene(string name)
     {
         SceneManager.LoadScene(name);
-
-
     }
     public IEnumerator loadScene(string name)
     {

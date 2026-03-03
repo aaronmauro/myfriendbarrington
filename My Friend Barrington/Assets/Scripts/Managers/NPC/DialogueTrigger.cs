@@ -16,6 +16,7 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField]
     Sprite npcImage;
 
+
     private bool playerInRange;
     private Player player; // Reference to PlayerController
     private bool hasSubscribed = false;
@@ -26,6 +27,7 @@ public class DialogueTrigger : MonoBehaviour
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+
     }
 
     private void Start()
@@ -109,6 +111,8 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player") 
         {
             playerInRange = true;
+            var dm = DialogueManager.GetInstance();
+            dm.animator = gameObject.GetComponent<Animator>();
         }
     }
 
@@ -117,6 +121,8 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             playerInRange = false;
+            var dm = DialogueManager.GetInstance();
+            dm.animator = null;
         }
     }
 
@@ -139,5 +145,7 @@ public class DialogueTrigger : MonoBehaviour
             inputSubscribed = false;
         }
     }
+
+
 
 }
