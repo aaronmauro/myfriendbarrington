@@ -40323,6 +40323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorkingNPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 940341137427717576, guid: 3921cea28ea4f864ba3ed31a42766cc0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2044121445822677786, guid: 3921cea28ea4f864ba3ed31a42766cc0, type: 3}
       propertyPath: npcName
       value: Fellini
@@ -49235,6 +49239,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6063002404625692640, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
   m_PrefabInstance: {fileID: 853274768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &856198984
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 46.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 76.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6268286023948457037, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752791679004970743, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
+      propertyPath: m_Name
+      value: Fellini
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2a4f01a8b1cb9e141a67f68746cd7580, type: 3}
 --- !u!1 &858624180
 GameObject:
   m_ObjectHideFlags: 0
@@ -130856,7 +130917,7 @@ PrefabInstance:
     - target: {fileID: 2044121445822677786, guid: 3921cea28ea4f864ba3ed31a42766cc0, type: 3}
       propertyPath: inkJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 7bfcc2abbb9987445b8cd1216ab2a679, type: 3}
+      objectReference: {fileID: 4900000, guid: 8e34a6ef5dd92e646a6568c548525d2d, type: 3}
     - target: {fileID: 2044121445822677786, guid: 3921cea28ea4f864ba3ed31a42766cc0, type: 3}
       propertyPath: npcName
       value: Marvin
@@ -140654,3 +140715,4 @@ SceneRoots:
   - {fileID: 372538225}
   - {fileID: 918115706}
   - {fileID: 460472229}
+  - {fileID: 856198984}
