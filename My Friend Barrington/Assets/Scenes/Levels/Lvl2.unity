@@ -2437,6 +2437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundWavesSpawn (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 328
@@ -3167,6 +3171,10 @@ PrefabInstance:
     - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_Name
       value: SoundWavesSpawn (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11205,7 +11213,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1296703489012372075, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 867428387}
   m_SourcePrefab: {fileID: 100100000, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
 --- !u!1001 &316374224
 PrefabInstance:
@@ -14198,7 +14209,6 @@ Transform:
   - {fileID: 1740029506}
   - {fileID: 984320995}
   - {fileID: 57897929}
-  - {fileID: 1379386977}
   - {fileID: 1610952690}
   - {fileID: 89226502}
   - {fileID: 1015953099}
@@ -17173,6 +17183,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
+--- !u!1 &511565476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1296703489012372075, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
+  m_PrefabInstance: {fileID: 314275055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &512425135
 GameObject:
   m_ObjectHideFlags: 0
@@ -28050,6 +28065,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8115678734397985337, guid: 471c5b55a9b7fcf4abb62b94a43d8c31, type: 3}
   m_PrefabInstance: {fileID: 314275055}
   m_PrefabAsset: {fileID: 0}
+--- !u!81 &867428387
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511565476}
+  m_Enabled: 1
 --- !u!4 &872046846 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6063002404625692640, guid: 219d9e9769fbf4d43b29db0c43c24e97, type: 3}
@@ -30982,6 +31005,10 @@ PrefabInstance:
     - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_Name
       value: SoundWavesSpawn (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalScale.x
@@ -40421,6 +40448,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundWavesSpawn (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 442
@@ -42076,128 +42107,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378860411}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1379386976
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 411577452}
-    m_Modifications:
-    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_Name
-      value: SoundWavesSpawn (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 781
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -38
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.00006198883
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: isUp
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: isRun
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: isLeft
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: isRight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: moveSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: waveForce
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: goingdirection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: destoryDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: destroyDistance
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841825461461376842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-      propertyPath: respawnSoundTime
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
---- !u!4 &1379386977 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
-  m_PrefabInstance: {fileID: 1379386976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1380826816
 GameObject:
   m_ObjectHideFlags: 0
@@ -43529,6 +43438,10 @@ PrefabInstance:
     - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_Name
       value: SoundWavesSpawn (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47479,6 +47392,10 @@ PrefabInstance:
     - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_Name
       value: SoundWavesSpawn (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53609,6 +53526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundWavesSpawn (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 434
@@ -58819,6 +58740,10 @@ PrefabInstance:
     - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_Name
       value: SoundWavesSpawn (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838517671586751842, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2549081015820184649, guid: b7bcc966f11fe4f4abf22cc59f76f39a, type: 3}
       propertyPath: m_LocalScale.x
