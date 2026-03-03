@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
     {
         if (spawnPoints == null) return;
         if (player == null) return;
+        if (!player.playerInput) return;
         if (player.isGround && !dangerDetect)
         {
             
@@ -119,6 +120,8 @@ public class GameManager : MonoBehaviour
     {
         
         yield return new WaitForSeconds(delay);
+
+        
         //player.transform.position = spawnPoints.transform.position;
         player.TeleportTo(spawnPoints.transform);
         //var playRg = player.GetComponent<Rigidbody>();

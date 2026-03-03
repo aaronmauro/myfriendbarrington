@@ -15,6 +15,7 @@ public class Grapple : MonoBehaviour
     [SerializeField] private float forceIncreaseTime = 1.5f;
     [SerializeField] float lifetime = 0f;
     private bool applyForce;
+    private float swingDirection = 90f;
 
     Hook hook;
     bool pulling;
@@ -61,14 +62,32 @@ public class Grapple : MonoBehaviour
         }
         else if (hook != null && hookAction.action.triggered)
         {
+            if (hook.hasLatched)
+            {
+                player.HookJump();
+            }
             DestroyHook();
-            player.HookJump();
+            
+            
         }
     }
 
     private void FixedUpdate()
     {
         if (!pulling || hook == null) return;
+
+        Vector3 targetDirection = hook.transform.position - transform.position;
+        //Debug.DrawRay(transform.position, targetDirection, Color.cyan);
+        float singleStep = 5f * Time.fixedDeltaTime; // f is speed
+        Vector3 newDirection = Vector3.RotateTowards(transform.up, targetDirection, singleStep, 0f);
+        //Debug.DrawRay(transform.position, newDirection, Color.red); // not needed, for debug only - DV
+        //Debug.Log(swingDirection);
+        newDirection = Quaternion.Euler(0, 0, swingDirection) * newDirection;
+        transform.rotation = Quaternion.LookRotation(newDirection);
+        //transform.LookAt(hook.transform.position);
+
+        
+
         if (Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
         {
             //DestroyHook(); new behaviour - DV
@@ -95,7 +114,7 @@ public class Grapple : MonoBehaviour
                     applyForce = true;
                 }
             }
-            fixSpeed();
+            //fixSpeed();
         }
     }
 
@@ -130,6 +149,13 @@ public class Grapple : MonoBehaviour
     {
         pulling = true;
         player.Swing(this);
+        if (player.isRight)
+        {
+            swingDirection = 90f;
+        } else
+        {
+            swingDirection = -90f;
+        }
     }
 
     public void DestroyHook()
@@ -159,7 +185,15 @@ public class Grapple : MonoBehaviour
 
     public void moveSwing(Vector2 moveInput)
     {
-        Vector3 playerMovement = new Vector3(moveInput.x * 200f, rigid.linearVelocity.y, rigid.linearVelocity.z);
+
+        
+        Vector3 playerMovement = transform.forward * moveInput.x * swingDirection * -2f;
+
+        // THIS KINDA WORKS, BUT WE CAN DO BETTER - DV
+        //Vector3 playerMovement = new Vector3(moveInput.x * 200f, rigid.linearVelocity.y, rigid.linearVelocity.z);
+
+        // NONE OF THE CODE BELOW WORKS - DV
+
         //Debug.Log(rb.linearVelocity.y + "-1");
         //Debug.Log("before: "+playerMovement.ToString());
         // HERE WE GO LADS

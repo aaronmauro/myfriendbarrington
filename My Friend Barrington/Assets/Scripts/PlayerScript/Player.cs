@@ -101,6 +101,9 @@ public class Player : MonoBehaviour
 
     public bool isInteracting;
 
+    private bool waitingToTeleport; // for use in fixing respawn bug - DV
+    private Vector3 waitingToTeleportTarget; 
+
     // Cool new trick
     private void OnEnable()
     {
@@ -190,6 +193,11 @@ public class Player : MonoBehaviour
         if (!playerInput || dialogue)
         {
             //freezePlayer(true); // this breaks the player death. not sure why its here, talk to me if its loadbearing - DV
+            if (waitingToTeleport)
+            {
+                transform.position = waitingToTeleportTarget; // trying to teleport the player between fixedupdate frames causes weirdness, hence this - DV
+                waitingToTeleport = false;
+            }
             return;
         }
         else
@@ -420,7 +428,7 @@ public class Player : MonoBehaviour
         if (isFrozen) {
             playerInput = false;
             // Stop player from moving
-            rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
+            //rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
             isWalking = false;
             //AudioManager.instance.playPlayerWalking(isWalking);
             anim.SetBool("PlayerWalk", isWalking);
@@ -441,6 +449,8 @@ public class Player : MonoBehaviour
     }
     public void playerRotation()
 {
+
+        if (swing) return; // i need to disable your good code so my jank code can work <3 - DV
 
     if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
@@ -572,7 +582,7 @@ public class Player : MonoBehaviour
 
     public void TeleportTo(Transform target)
     {
-        transform.position = target.position;
+        waitingToTeleport = true;
+        waitingToTeleportTarget = target.position;
     }
-
 }
