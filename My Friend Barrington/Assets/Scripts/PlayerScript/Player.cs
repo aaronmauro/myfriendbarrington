@@ -450,6 +450,8 @@ public class Player : MonoBehaviour
     public void playerRotation()
 {
 
+        if (swing) return; // i need to disable your good code so my jank code can work <3 - DV
+
     if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
         // idle: face camera
