@@ -269,7 +269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &359469348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 359469347}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &483991968
@@ -830,6 +830,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2969601375771143564, guid: 9c068d9ebb692884a9b8e71b4f02584f, type: 3}
+      propertyPath: pauseGame
+      value: 
+      objectReference: {fileID: -1553118052978315946, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 2969601375771143564, guid: 9c068d9ebb692884a9b8e71b4f02584f, type: 3}
+      propertyPath: submitAction
+      value: 
+      objectReference: {fileID: 392368643174621059, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+    - target: {fileID: 2969601375771143564, guid: 9c068d9ebb692884a9b8e71b4f02584f, type: 3}
+      propertyPath: OninteractAction
+      value: 
+      objectReference: {fileID: -8252539610731751160, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     - target: {fileID: 5042035115507716103, guid: 9c068d9ebb692884a9b8e71b4f02584f, type: 3}
       propertyPath: m_Name
       value: InputManager
