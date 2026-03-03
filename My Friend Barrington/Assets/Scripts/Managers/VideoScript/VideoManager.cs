@@ -214,8 +214,13 @@ public class VideoManager : MonoBehaviour
         ads1[14].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/Cutscene1_Part2");
         //Debug.Log(ads1[0].videoClip);
 
-        ads2[0].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/c2-pillow fort-plain");
-        ads2[1].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/Ad2TV");
+        ads2[0].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_1");
+        ads2[1].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_2 (Interactive)");
+        ads2[2].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_3");
+        ads2[3].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_4 (Interactive)");
+        ads2[4].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_5");
+        ads2[5].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_6 (Interactive)");
+        ads2[6].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_7");
         // ... (rest of your loads)
     }
 }

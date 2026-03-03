@@ -69,7 +69,7 @@ public class ButtonManager : MonoBehaviour
     {
         // show and hide button
         enableButton(buttonStatus);
-        if (invisibleButton && buttonStatus)
+        if (invisibleButton && buttonStatus && VideoManager.adsNumber != 1)
         {
             EventSystem.current.SetSelectedGameObject(buttons[0][0]);
             invisibleButton = false;
@@ -170,6 +170,9 @@ public class ButtonManager : MonoBehaviour
 
     public void calculateVideoNumber()
     {
+        //if (buttons[VideoManager.adsNumber].Count == 0) return;
+        if (VideoManager.adsNumber == 1) return;
+
         totalAddition = 0;
         for (int k = 0; k < buttons[VideoManager.adsNumber].Count; k++)
         {
