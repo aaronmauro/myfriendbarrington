@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 
 // Manages the activation and deactivation of buttons based on the current advertisement number.
@@ -20,6 +21,7 @@ public class ButtonManager : MonoBehaviour
     // Getting Component
     private int totalAddition;
     private int videoAddition = 9; // control what video to play next
+    private bool invisibleButton;
 
     [SerializeField]
     private VideoManager videoManager;
@@ -67,7 +69,15 @@ public class ButtonManager : MonoBehaviour
     {
         // show and hide button
         enableButton(buttonStatus);
-
+        if (invisibleButton && buttonStatus)
+        {
+            EventSystem.current.SetSelectedGameObject(buttons[0][0]);
+            invisibleButton = false;
+        }
+        if (!buttonStatus)
+        {
+            invisibleButton = true;
+        }
         //Debug.Log(videoManager.newVideoList.Count);
     }
     // Changing Button active

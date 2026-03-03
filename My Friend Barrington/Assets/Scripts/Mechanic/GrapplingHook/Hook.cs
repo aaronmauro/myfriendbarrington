@@ -45,7 +45,7 @@ public class Hook : MonoBehaviour
         lineRenderer.SetPositions(positions);
     }
 
-    private bool hasLatched = false;
+    public bool hasLatched = false;
 
     // Called when the hook collides with another collider
     private void OnTriggerEnter(Collider other)
