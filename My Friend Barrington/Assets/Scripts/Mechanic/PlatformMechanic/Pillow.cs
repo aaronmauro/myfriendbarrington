@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class Pillow : MonoBehaviour
@@ -5,6 +6,9 @@ public class Pillow : MonoBehaviour
 [SerializeField]
 private float force;
 private Player player;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference whoopieCushionEvent;
 
     // When Player collides with the pillow
     private void OnCollisionEnter(Collision collision)
@@ -17,7 +21,7 @@ private Player player;
             //player.isPushed = true;
             //player.isPushedDirection(2, force); sorry changing your script because I changed the method
             player.pushingPlayer(Vector3.up, force);
-           
+           RuntimeManager.PlayOneShotAttached(whoopieCushionEvent, gameObject);
         }
     }
 }

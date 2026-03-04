@@ -9,7 +9,7 @@ public class VideoManager : MonoBehaviour
 {
     // Inputing video clips
     [Header("Videos")]
-    public VideosData[] ads1, ads2;
+    public VideosData[] ads1, ads2, ads3;
     private VideosData _v;
     public List<int> newVideoList = new List<int>(new int[8]);
     public int newVideoCount;
@@ -109,6 +109,10 @@ public class VideoManager : MonoBehaviour
         {
             _v = Array.Find(ads2, x => x.Name == videoName);
         }
+        else if (adsNumber == 2)
+        {
+            _v = Array.Find(ads3, x => x.Name == videoName);
+        }
 
         if (_v == null)
         {
@@ -123,20 +127,20 @@ public class VideoManager : MonoBehaviour
             remoteImage.SetActive(false);
 
             // --- FMOD AUDIO SWAP ---
-/*            if (fmodEventEmitter != null)
-            {
-                *//* // Stop previous audio immediately
-                 fmodEventEmitter.EventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                 fmodEventEmitter.EventInstance.release();
-                 // Update the event reference from your VideosData scriptable/struct
-                 fmodEventEmitter.EventReference = _v.videoAudio;
+            /*            if (fmodEventEmitter != null)
+                        {
+                            *//* // Stop previous audio immediately
+                             fmodEventEmitter.EventInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                             fmodEventEmitter.EventInstance.release();
+                             // Update the event reference from your VideosData scriptable/struct
+                             fmodEventEmitter.EventReference = _v.videoAudio;
 
 
-                 // Play the new event
-                 fmodEventEmitter.Play();*//*
+                             // Play the new event
+                             fmodEventEmitter.Play();*//*
 
-                playAudio(_v.videoAudio);
-            }*/
+                            playAudio(_v.videoAudio);
+                        }*/
 
             // --- LOGIC CHECKS ---
             if (_v.isLoop)
@@ -214,13 +218,16 @@ public class VideoManager : MonoBehaviour
         ads1[14].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/Cutscene1_Part2");
         //Debug.Log(ads1[0].videoClip);
 
-        ads2[0].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_1");
-        ads2[1].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_2 (Interactive)");
-        ads2[2].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_3");
-        ads2[3].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_4 (Interactive)");
-        ads2[4].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_5");
-        ads2[5].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_6 (Interactive)");
-        ads2[6].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_7");
+        ads2[0].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/c2-pillow fort-plain");
+        ads2[1].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_1");
+        ads2[2].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_2 (Interactive)");
+        ads2[3].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_3");
+        ads2[4].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_4 (Interactive)");
+        ads2[5].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_5");
+        ads2[6].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_6 (Interactive)");
+        ads2[7].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_7");
+
+        ads3[0].videoClip = Resources.Load<VideoClip>("Video/Ads3/c3-the wagon-plain");
         // ... (rest of your loads)
     }
 }
