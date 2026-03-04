@@ -38,7 +38,7 @@ public class MenuChangeScene : MonoBehaviour
     private void startGame()
     {
         // going to level 1
-        SceneManagerScript.instance.nextScene("whiteboxLevel1");
+        //SceneManagerScript.instance.nextScene("Lvl 1");
     }
     // option menu
     private void optionMenu()
