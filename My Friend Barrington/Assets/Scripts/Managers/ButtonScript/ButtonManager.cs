@@ -67,9 +67,10 @@ public class ButtonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (VideoManager.adsNumber != 0) return;
         // show and hide button
         enableButton(buttonStatus);
-        if (invisibleButton && buttonStatus && VideoManager.adsNumber != 1)
+        if (invisibleButton && buttonStatus)
         {
             EventSystem.current.SetSelectedGameObject(buttons[0][0]);
             invisibleButton = false;

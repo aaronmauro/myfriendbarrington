@@ -34,6 +34,7 @@ public class VideoManager : MonoBehaviour
     public int skipVideoCount;
 
     [SerializeField] private GameObject remoteImage;
+    [SerializeField] private GameObject texts;
     //private StudioEventEmitter fmodEventEmitter;
 
     [Header("Component")]
@@ -74,6 +75,7 @@ public class VideoManager : MonoBehaviour
         newVideoCount = 0;
         videoControlNumber = 0;
         remoteImage.SetActive(false);
+        texts.SetActive(false);
 
         //fmodEventEmitter.Play();
 
@@ -125,6 +127,10 @@ public class VideoManager : MonoBehaviour
             videoPlayer.clip = _v.videoClip;
             videoPlayer.Play();
             remoteImage.SetActive(false);
+            if (adsNumber == 1)
+            {
+                texts.SetActive(false);
+            }
 
             // --- FMOD AUDIO SWAP ---
             /*            if (fmodEventEmitter != null)
@@ -148,6 +154,10 @@ public class VideoManager : MonoBehaviour
                 loopVideo = true;
                 bm.buttonStatus = true;
                 remoteImage.SetActive(true);
+                if (adsNumber == 1)
+                {
+                    texts.SetActive(true);
+                }
                 if (_v.isSmashingButton) isPauseVideo = true;
             }
             else if (_v.isSmashingButton)
