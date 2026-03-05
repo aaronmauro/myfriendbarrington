@@ -14940,6 +14940,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6621284475489761651, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6659688077926617015, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
       propertyPath: m_Name
       value: Canvas (1)
@@ -14949,6 +14953,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+--- !u!1 &382981278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5996549604325732964, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+  m_PrefabInstance: {fileID: 382981277}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &388687814
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41322,7 +41331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1424057422}
+  m_FirstSelected: {fileID: 382981278}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &988933310
@@ -60620,6 +60629,10 @@ PrefabInstance:
       propertyPath: dialogueText
       value: 
       objectReference: {fileID: 1937326027}
+    - target: {fileID: 3241914615186348192, guid: 06933b4815223f94d98d21436f774d48, type: 3}
+      propertyPath: canSkipTyping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3241914615186348192, guid: 06933b4815223f94d98d21436f774d48, type: 3}
       propertyPath: dialogueImage
       value: 

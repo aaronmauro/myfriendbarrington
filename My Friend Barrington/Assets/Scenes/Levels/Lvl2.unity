@@ -15146,6 +15146,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 639349842}
     - target: {fileID: 3241914615186348192, guid: 06933b4815223f94d98d21436f774d48, type: 3}
+      propertyPath: canSkipTyping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241914615186348192, guid: 06933b4815223f94d98d21436f774d48, type: 3}
       propertyPath: dialogueImage
       value: 
       objectReference: {fileID: 1159812596}
@@ -42839,6 +42843,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479207438}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1480581962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5996549604325732964, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+  m_PrefabInstance: {fileID: 639349837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1480959924
 GameObject:
   m_ObjectHideFlags: 0
@@ -62330,7 +62339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 1480581962}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &2119834849
