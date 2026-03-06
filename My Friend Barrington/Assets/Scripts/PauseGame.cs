@@ -82,6 +82,9 @@ public class PauseGame : MonoBehaviour
 
     public void LoadMenu(string nextSceneName)
     {
+        VideoManager.adsNumber = 0;
+        VideoManager.newVideoCount = 0;
+        VideoManager.videoCount = 0;
         SceneManagerScript.instance.nextScene(nextSceneName);
         Time.timeScale = 1f;
     }
