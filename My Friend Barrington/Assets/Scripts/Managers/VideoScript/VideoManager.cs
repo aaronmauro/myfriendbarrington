@@ -13,12 +13,12 @@ public class VideoManager : MonoBehaviour
     public VideosData[] ads1, ads2, ads3;
     private VideosData _v;
     public List<int> newVideoList = new List<int>(new int[8]);
-    public int newVideoCount;
+    public static int newVideoCount;
     public static int adsNumber;
 
     [Header("Video Number")]
     [HideInInspector] public bool loopVideo;
-    [HideInInspector] public int videoCount;
+    [HideInInspector] public static int videoCount;
     private int videoControlNumber;
     [HideInInspector] public bool afterLoopVideo;
 
