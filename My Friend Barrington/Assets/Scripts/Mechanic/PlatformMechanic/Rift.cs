@@ -16,6 +16,8 @@ public class Rift : MonoBehaviour
     private float tpCooldown;
     public bool isTp;
     public bool hideSpawn;
+    [SerializeField]
+    private float triggerDistance;
 
     private void Start()
     {
@@ -25,6 +27,17 @@ public class Rift : MonoBehaviour
         playerCam = GameObject.Find(GeneralGameTags.PlayerCamera).GetComponent<CinemachineFollow>();
     }
 
+    private void FixedUpdate()
+    {
+        if (isTp)
+        {
+            StartCoroutine(startFollowing());
+        }
+        else
+        {
+            return;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         // Teleport Player
@@ -38,7 +51,6 @@ public class Rift : MonoBehaviour
                 isTp = true;
                 otherRift.isTp = true;
                 StartCoroutine(startCooldown());
-                StartCoroutine(startFollowing());
                 otherRift.StartCoroutine(otherRift.startCooldown());
             }
         }
@@ -61,5 +73,11 @@ public class Rift : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         playerCam.TrackerSettings.PositionDamping = Vector3.one;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, triggerDistance);
     }
 }
