@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
     private Vector2 moveDirection = Vector2.zero;
     private bool jumpPressed = false;
     private bool interactPressed = false;
-    private bool submitPressed = false;
+    public bool submitPressed = false;
 
     // Player
     // Input Action Map
@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
     public InputActionReference videoSkipAction;
     public InputActionReference videoNextAction;
     public InputActionReference pauseGame;
-    public InputActionReference OninteractAction;
+    //public InputActionReference OninteractAction;
     public InputActionReference submitAction;
 
 
@@ -74,9 +74,9 @@ public class InputManager : MonoBehaviour
     //    }
     //}
 
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        Debug.Log("OnInteract called! Phase: " + context.phase); // Add this line
+   // public void OnInteract(InputAction.CallbackContext context)
+    //{
+  /*      Debug.Log("OnInteract called! Phase: " + context.phase); // Add this line
         if (context.performed)
         {
             interactPressed = true;
@@ -85,7 +85,7 @@ public class InputManager : MonoBehaviour
         {
             interactPressed = false;
         }
-    }
+    }*/
 
     public void SubmitPressed(InputAction.CallbackContext context)
     {
