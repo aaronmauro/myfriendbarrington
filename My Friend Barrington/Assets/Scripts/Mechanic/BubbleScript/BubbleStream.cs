@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 
 public class BubbleStream : MonoBehaviour
@@ -6,6 +7,8 @@ public class BubbleStream : MonoBehaviour
 
     [SerializeField]
     private float force;
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference bubbleStreamEvent;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +24,7 @@ public class BubbleStream : MonoBehaviour
         if (other.gameObject.isPlayer())
         {
             player.inBubbleStream(force);
+            //RuntimeManager.PlayOneShotAttached(bubbleStreamEvent, gameObject);
         }
     }
 }
