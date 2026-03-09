@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.InputSystem;
 
 public class VideoManager : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class VideoManager : MonoBehaviour
     public VideosData[] ads1, ads2, ads3;
     private VideosData _v;
     public List<int> newVideoList = new List<int>(new int[8]);
-    public int newVideoCount;
+    public static int newVideoCount;
     public static int adsNumber;
 
     [Header("Video Number")]
     [HideInInspector] public bool loopVideo;
-    [HideInInspector] public int videoCount;
+    [HideInInspector] public static int videoCount;
     private int videoControlNumber;
     [HideInInspector] public bool afterLoopVideo;
 
@@ -40,7 +41,7 @@ public class VideoManager : MonoBehaviour
     [Header("Component")]
     [SerializeField] private VideoPlayer videoPlayer;
     private ButtonManager bm;
-    private FMOD.Studio.EventInstance videoAudioEvent;
+    //private FMOD.Studio.EventInstance videoAudioEvent;
 
     private void Awake()
     {
@@ -49,6 +50,8 @@ public class VideoManager : MonoBehaviour
             AudioManager.instance.bgSFX.Stop();
         }
 
+        InputManager.GetInstance().submitAction.action.performed += ads2ControllerPressed;
+        InputManager.GetInstance().submitAction.action.Enable();
         // fmod - ensure the object name matches your hierarchy
         //GameObject fmodObj = GameObject.Find("FMODEvent");
         //if (fmodObj != null)
@@ -60,6 +63,11 @@ public class VideoManager : MonoBehaviour
         LoadVideoClips();
     }
 
+    private void OnDisable()
+    {
+        InputManager.GetInstance().submitAction.action.performed -= ads2ControllerPressed;
+        InputManager.GetInstance().submitAction.action.Disable();
+    }
     void Start()
     {
         videoPlayer = GameObject.Find("VideoCanvas").GetComponent<VideoPlayer>();
@@ -196,17 +204,21 @@ public class VideoManager : MonoBehaviour
         //    fixingVideoLooping = false;
         //}
     }
-/*
-    private void playAudio(EventReference newVideoAudio)
+    /*
+        private void playAudio(EventReference newVideoAudio)
+        {
+            videoAudioEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            videoAudioEvent.release();
+            videoAudioEvent = RuntimeManager.CreateInstance(newVideoAudio);
+            var attributes = FMODUnity.RuntimeUtils.To3DAttributes(Camera.main.gameObject);
+            videoAudioEvent.set3DAttributes(attributes);
+            videoAudioEvent.start();
+        }*/
+    public void ads2ControllerPressed(InputAction.CallbackContext context)
     {
-        videoAudioEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        videoAudioEvent.release();
-        videoAudioEvent = RuntimeManager.CreateInstance(newVideoAudio);
-        var attributes = FMODUnity.RuntimeUtils.To3DAttributes(Camera.main.gameObject);
-        videoAudioEvent.set3DAttributes(attributes);
-        videoAudioEvent.start();
-    }*/
-
+        isPauseVideo = false;
+        loopVideo = false;
+    }
     private void LoadVideoClips()
     {
         // Existing Load logic here...

@@ -539,13 +539,13 @@ public class Player : MonoBehaviour
         }
     }
     // when pushing box
-    private void OnCollisionStay(Collision collision)
+/*    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag(GeneralGameTags.Box))
         {
             isPushingBox = true;
         }
-    }
+    }*/
     // when exit box
     private void OnCollisionExit(Collision collision)
     {
@@ -553,7 +553,19 @@ public class Player : MonoBehaviour
         {
             currentPlatform = null;
         }
-        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box))
         {
             isPushingBox = false;
         }

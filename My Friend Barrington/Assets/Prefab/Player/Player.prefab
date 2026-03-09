@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4397528424396709710}
   - component: {fileID: 3127850747348862370}
   - component: {fileID: 5075095442661722310}
+  - component: {fileID: 1895403303403278080}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -133,8 +134,11 @@ MonoBehaviour:
   fixedInAirVelocity: 0.37
   coyoteTime: 0.1
   idleTime: 10
+  visual: {fileID: 0}
+  turnSmoothTime: 0.12
   playerInput: 0
   isRight: 0
+  isPushingBox: 0
   isGround: 0
   groundMask:
     serializedVersion: 2
@@ -229,6 +233,14 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 8
   m_CollisionDetection: 0
+--- !u!81 &1895403303403278080
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296703489012372075}
+  m_Enabled: 1
 --- !u!1 &4342035338753397498
 GameObject:
   m_ObjectHideFlags: 0
