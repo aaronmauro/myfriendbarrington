@@ -10,7 +10,7 @@ Barrington, you feel like my closest friend in the world! I’m very lucky to ha
 
 I can be the start of that! I found a piece of a ship! Just like Pete’s. You’re trying to build one, right? Take it!
 
-Barrington.. Is there anything you need help with?
+Barrington… Is there anything you need help with?
 * [How do I get my stuffing back?] -> stuffing
 * [I just need someone to talk to.] -> talking
 * [Who else do I ask for help?] -> help
