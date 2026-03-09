@@ -13,7 +13,7 @@ public class MainMenuVideo : MonoBehaviour
     private void Awake()
     {
         videoPlayer = GetComponent<VideoPlayer>();
-        videoPlayer.clip = Resources.Load<VideoClip>("Video/MainMenuVideo/Intro Animation V2(1)");
+        videoPlayer.clip = Resources.Load<VideoClip>("Video/UnityVideoFolder/Intro Animation V2(1)");
         mainMenuVideo.SetActive(false);
         //Debug.Log(Resources.Load<VideoClip>("Videos/MainMenuVideo/Intro Animation V2(1)"));
     }
