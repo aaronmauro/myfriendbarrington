@@ -25,7 +25,7 @@ public class TextManager : MonoBehaviour
         {
             // Get TextScript component
             ts = texts[i].GetComponent<TextScript>();
-            if (VideoManager.adsNumber == ts.whenTextActive && vm.videoCount == ts.whichVideoNumber)
+            if (VideoManager.adsNumber == ts.whenTextActive && VideoManager.videoCount == ts.whichVideoNumber)
             {
                 ts.gameObject.SetActive(true);
             }

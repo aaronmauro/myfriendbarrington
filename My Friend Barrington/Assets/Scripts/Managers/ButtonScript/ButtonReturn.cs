@@ -57,7 +57,7 @@ public class ButtonReturn : MonoBehaviour
     // When button are presssed - this is not using for now
     public void onPress(int buttonValue)
     {
-        vm.videoCount = buttonValue - 1;
+        VideoManager.videoCount = buttonValue - 1;
         vm.afterLoopVideo = true;
         vm.loopVideo = false;
         bm.buttonStatus = false;
@@ -70,7 +70,7 @@ public class ButtonReturn : MonoBehaviour
         //Debug.Log("testing");
         //vm.videoCount = inputValues[bm.numberOfChocie]; // testing
         vm.newVideoList.Add(inputValues[bm.numberOfChocie]);
-        vm.newVideoCount += 1;
+        VideoManager.newVideoCount += 1;
         vm.afterLoopVideo = true;
         bm.numberOfChocie++;
         vm.loopVideo = false;
@@ -83,7 +83,7 @@ public class ButtonReturn : MonoBehaviour
     // all the status when button the pressed - delay
     public void onButtonPressed(ButtonManager bm)
     {
-        vm.videoCount = inputValues[bm.numberOfChocie] - 1;
+        VideoManager.videoCount = inputValues[bm.numberOfChocie] - 1;
         vm.afterLoopVideo = true;
         vm.loopVideo = false;
         bm.buttonStatus = false;
