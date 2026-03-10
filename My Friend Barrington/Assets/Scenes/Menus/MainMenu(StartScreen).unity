@@ -246,6 +246,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 0}
   mainMenuVideo: {fileID: 854152104}
+  mainMenuPressedSound:
+    Guid:
+      Data1: 234357342
+      Data2: 1106949850
+      Data3: 792680113
+      Data4: -804860038
+    Path: event:/UIMenuStartGameButton
 --- !u!328 &417662167
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -1488,6 +1495,26 @@ PrefabInstance:
     - target: {fileID: 4885628729973251249, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
       propertyPath: mainMenuCheck
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885628729973251249, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
+      propertyPath: optionMenuPressedSound.Path
+      value: event:/UIMenuOptionsButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885628729973251249, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
+      propertyPath: optionMenuPressedSound.Guid.Data1
+      value: -50841129
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885628729973251249, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
+      propertyPath: optionMenuPressedSound.Guid.Data2
+      value: 1180611962
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885628729973251249, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
+      propertyPath: optionMenuPressedSound.Guid.Data3
+      value: -2056753487
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885628729973251249, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
+      propertyPath: optionMenuPressedSound.Guid.Data4
+      value: -457937005
       objectReference: {fileID: 0}
     - target: {fileID: 7382345807011138219, guid: ef0ac1a059e2be34388d570d6f286b5e, type: 3}
       propertyPath: m_Name

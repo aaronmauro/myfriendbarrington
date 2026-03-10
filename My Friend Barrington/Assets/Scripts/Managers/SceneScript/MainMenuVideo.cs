@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Video;
@@ -9,6 +10,8 @@ public class MainMenuVideo : MonoBehaviour
     private VideoPlayer videoPlayer;
     [SerializeField]
     private GameObject mainMenuVideo;
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference mainMenuPressedSound;
 
     private void Awake()
     {
@@ -21,6 +24,7 @@ public class MainMenuVideo : MonoBehaviour
     // play video, wait to end, then load next scene
     public IEnumerator buttonPressed()
     {
+        RuntimeManager.PlayOneShotAttached(mainMenuPressedSound, gameObject);
         yield return new WaitForSeconds(2f);
         mainMenuVideo.SetActive(true);
         videoPlayer.Play();

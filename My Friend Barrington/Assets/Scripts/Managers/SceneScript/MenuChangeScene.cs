@@ -1,3 +1,4 @@
+using FMODUnity;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,8 @@ public class MenuChangeScene : MonoBehaviour
     private Button mainButton;
     [SerializeField]
     private bool mainMenuCheck;
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference optionMenuPressedSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,6 +47,7 @@ public class MenuChangeScene : MonoBehaviour
     private void optionMenu()
     {
         // going to option menu
+        RuntimeManager.PlayOneShotAttached(optionMenuPressedSound, gameObject);
         SceneManagerScript.instance.nextScene("OptionsMenu");
     }
     // main menu
