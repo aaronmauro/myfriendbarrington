@@ -249,7 +249,7 @@ public class VideoManager : MonoBehaviour
         ads2[6].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_6 (Interactive)");
         ads2[7].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_7");
 
-        ads3[0].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS3/c3-the wagon-plain");
+        ads3[0].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS3/CUTSCENE3_PLAYTEST");
         // ... (rest of your loads)
     }
 }
