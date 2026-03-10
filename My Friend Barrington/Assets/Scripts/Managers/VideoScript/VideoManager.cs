@@ -241,7 +241,7 @@ public class VideoManager : MonoBehaviour
         //Debug.Log(ads1[0].videoClip);
 
         ads2[0].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/c2-pillow fort-plain");
-        ads2[1].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_1");
+        ads2[1].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_0000");
         ads2[2].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_2 (Interactive)");
         ads2[3].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_3");
         ads2[4].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_4 (Interactive)");
