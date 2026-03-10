@@ -2,13 +2,9 @@
 -> greeting
 
 === greeting === 
-Oh! Barrington, it's good to see you...
+Barrington! Thank goodness you’re here. I don’t know what happened.
 
-I don't know where everyone else went... And then those awful noises started... I don't know what to do...
+One moment I was after the flying fish and the next… I don’t know where I am! I don’t know where our friends are!
 
-I'm... I'm really scared...
-
-But... now that you're here, maybe we can do something?
-
-Could you collect four piles of pillows for me? If you do, I'll let you stay in here with me!
+It’s so loud… It's too much! How do we make them stop?! Can you help me quiet it down?
 -> END

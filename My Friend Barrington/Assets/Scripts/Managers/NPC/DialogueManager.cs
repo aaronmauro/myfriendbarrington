@@ -101,8 +101,10 @@ public class DialogueManager : MonoBehaviour
         // Allow Space to skip typing or continue when there are no choices
         if (Input.GetKeyDown(KeyCode.Space) && currentStory.currentChoices.Count == 0)
         {
+            //Debug.Log("i'm pressing space");
             if (isTyping && canSkipTyping)
             {
+                //Debug.Log("Space pressed during typing - skipping to end");
                 // Skip the typing animation
                 SkipTyping();
             }

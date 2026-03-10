@@ -9,6 +9,7 @@ public class BubbleStream : MonoBehaviour
     private float force;
     [Header("Audio (FMOD)")]
     [SerializeField] private EventReference bubbleStreamEvent;
+    [SerializeField] private ParticleSystem bubbleSystem;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +26,14 @@ public class BubbleStream : MonoBehaviour
         {
             player.inBubbleStream(force);
             //RuntimeManager.PlayOneShotAttached(bubbleStreamEvent, gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box) && bubbleSystem != null)
+        {
+            bubbleSystem.Play();
         }
     }
 }

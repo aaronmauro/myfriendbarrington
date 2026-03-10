@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PauseGame : MonoBehaviour
@@ -10,6 +11,8 @@ public class PauseGame : MonoBehaviour
 
 
     public InputActionReference endAction;
+    public GameObject resumeButton;
+
     // Update is called once per frame
 
     private void Awake()
@@ -67,6 +70,7 @@ public class PauseGame : MonoBehaviour
         PausePanel.SetActive(true);
         Time.timeScale = 0;
         GameIsPaused = true;
+        EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     public void Continue()
@@ -78,6 +82,9 @@ public class PauseGame : MonoBehaviour
 
     public void LoadMenu(string nextSceneName)
     {
+        VideoManager.adsNumber = 0;
+        VideoManager.newVideoCount = 0;
+        VideoManager.videoCount = 0;
         SceneManagerScript.instance.nextScene(nextSceneName);
         Time.timeScale = 1f;
     }

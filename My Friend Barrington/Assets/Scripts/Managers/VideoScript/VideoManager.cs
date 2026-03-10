@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.InputSystem;
 
 public class VideoManager : MonoBehaviour
 {
@@ -12,12 +13,12 @@ public class VideoManager : MonoBehaviour
     public VideosData[] ads1, ads2, ads3;
     private VideosData _v;
     public List<int> newVideoList = new List<int>(new int[8]);
-    public int newVideoCount;
+    public static int newVideoCount;
     public static int adsNumber;
 
     [Header("Video Number")]
     [HideInInspector] public bool loopVideo;
-    [HideInInspector] public int videoCount;
+    [HideInInspector] public static int videoCount;
     private int videoControlNumber;
     [HideInInspector] public bool afterLoopVideo;
 
@@ -34,12 +35,13 @@ public class VideoManager : MonoBehaviour
     public int skipVideoCount;
 
     [SerializeField] private GameObject remoteImage;
+    [SerializeField] private GameObject texts;
     //private StudioEventEmitter fmodEventEmitter;
 
     [Header("Component")]
     [SerializeField] private VideoPlayer videoPlayer;
     private ButtonManager bm;
-    private FMOD.Studio.EventInstance videoAudioEvent;
+    //private FMOD.Studio.EventInstance videoAudioEvent;
 
     private void Awake()
     {
@@ -48,6 +50,8 @@ public class VideoManager : MonoBehaviour
             AudioManager.instance.bgSFX.Stop();
         }
 
+        InputManager.GetInstance().submitAction.action.performed += ads2ControllerPressed;
+        InputManager.GetInstance().submitAction.action.Enable();
         // fmod - ensure the object name matches your hierarchy
         //GameObject fmodObj = GameObject.Find("FMODEvent");
         //if (fmodObj != null)
@@ -59,6 +63,11 @@ public class VideoManager : MonoBehaviour
         LoadVideoClips();
     }
 
+    private void OnDisable()
+    {
+        InputManager.GetInstance().submitAction.action.performed -= ads2ControllerPressed;
+        InputManager.GetInstance().submitAction.action.Disable();
+    }
     void Start()
     {
         videoPlayer = GameObject.Find("VideoCanvas").GetComponent<VideoPlayer>();
@@ -74,6 +83,7 @@ public class VideoManager : MonoBehaviour
         newVideoCount = 0;
         videoControlNumber = 0;
         remoteImage.SetActive(false);
+        texts.SetActive(false);
 
         //fmodEventEmitter.Play();
 
@@ -125,6 +135,10 @@ public class VideoManager : MonoBehaviour
             videoPlayer.clip = _v.videoClip;
             videoPlayer.Play();
             remoteImage.SetActive(false);
+            if (adsNumber == 1)
+            {
+                texts.SetActive(false);
+            }
 
             // --- FMOD AUDIO SWAP ---
             /*            if (fmodEventEmitter != null)
@@ -148,6 +162,10 @@ public class VideoManager : MonoBehaviour
                 loopVideo = true;
                 bm.buttonStatus = true;
                 remoteImage.SetActive(true);
+                if (adsNumber == 1)
+                {
+                    texts.SetActive(true);
+                }
                 if (_v.isSmashingButton) isPauseVideo = true;
             }
             else if (_v.isSmashingButton)
@@ -186,48 +204,52 @@ public class VideoManager : MonoBehaviour
         //    fixingVideoLooping = false;
         //}
     }
-/*
-    private void playAudio(EventReference newVideoAudio)
+    /*
+        private void playAudio(EventReference newVideoAudio)
+        {
+            videoAudioEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            videoAudioEvent.release();
+            videoAudioEvent = RuntimeManager.CreateInstance(newVideoAudio);
+            var attributes = FMODUnity.RuntimeUtils.To3DAttributes(Camera.main.gameObject);
+            videoAudioEvent.set3DAttributes(attributes);
+            videoAudioEvent.start();
+        }*/
+    public void ads2ControllerPressed(InputAction.CallbackContext context)
     {
-        videoAudioEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        videoAudioEvent.release();
-        videoAudioEvent = RuntimeManager.CreateInstance(newVideoAudio);
-        var attributes = FMODUnity.RuntimeUtils.To3DAttributes(Camera.main.gameObject);
-        videoAudioEvent.set3DAttributes(attributes);
-        videoAudioEvent.start();
-    }*/
-
+        isPauseVideo = false;
+        loopVideo = false;
+    }
     private void LoadVideoClips()
     {
         // Existing Load logic here...
         // adding video clip to the array
-        ads1[0].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/Cutscene1_Part1");
-        ads1[1].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AllTV");
-        ads1[2].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/NoAndreTV");
-        ads1[3].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/NoKieranTV");
-        ads1[4].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/NoTylerTV");
-        ads1[5].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AndreSlapTV");
-        ads1[6].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/TylerSlapTV");
-        ads1[7].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/KieranSlapTV");
-        ads1[8].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AndreLoopTV");
-        ads1[9].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/KieranLoopTV");
-        ads1[10].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/TylerLoopTV");
-        ads1[11].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/AndreFinalTV");
-        ads1[12].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/TylerFinalTV");
-        ads1[13].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/KieranFinalTV");
-        ads1[14].videoClip = Resources.Load<VideoClip>("Video/Ads1Final/Cutscene1_Part2");
+        ads1[0].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/Cutscene1_Part1");
+        ads1[1].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/AllTV");
+        ads1[2].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/NoAndreTV");
+        ads1[3].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/NoKieranTV");
+        ads1[4].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/NoTylerTV");
+        ads1[5].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/AndreSlapTV");
+        ads1[6].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/TylerSlapTV");
+        ads1[7].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/KieranSlapTV");
+        ads1[8].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/AndreLoopTV");
+        ads1[9].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/KieranLoopTV");
+        ads1[10].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/TylerLoopTV");
+        ads1[11].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/AndreFinalTV");
+        ads1[12].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/TylerFinalTV");
+        ads1[13].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/KieranFinalTV");
+        ads1[14].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS1/Cutscene1_Part2");
         //Debug.Log(ads1[0].videoClip);
 
-        ads2[0].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/c2-pillow fort-plain");
-        ads2[1].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_1");
-        ads2[2].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_2 (Interactive)");
-        ads2[3].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_3");
-        ads2[4].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_4 (Interactive)");
-        ads2[5].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_5");
-        ads2[6].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_6 (Interactive)");
-        ads2[7].videoClip = Resources.Load<VideoClip>("Video/Ads2Testing/KK_7");
+        ads2[0].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/c2-pillow fort-plain");
+        ads2[1].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_1");
+        ads2[2].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_2 (Interactive)");
+        ads2[3].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_3");
+        ads2[4].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_4 (Interactive)");
+        ads2[5].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_5");
+        ads2[6].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_6 (Interactive)");
+        ads2[7].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS2/KK_7");
 
-        ads3[0].videoClip = Resources.Load<VideoClip>("Video/Ads3/c3-the wagon-plain");
+        ads3[0].videoClip = Resources.Load<VideoClip>("Video/UnityVideoFolder/ADS3/c3-the wagon-plain");
         // ... (rest of your loads)
     }
 }

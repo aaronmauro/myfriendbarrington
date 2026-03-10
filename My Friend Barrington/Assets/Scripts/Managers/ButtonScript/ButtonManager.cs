@@ -67,9 +67,10 @@ public class ButtonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (VideoManager.adsNumber != 0) return;
         // show and hide button
         enableButton(buttonStatus);
-        if (invisibleButton && buttonStatus && VideoManager.adsNumber != 1)
+        if (invisibleButton && buttonStatus)
         {
             EventSystem.current.SetSelectedGameObject(buttons[0][0]);
             invisibleButton = false;
@@ -116,22 +117,22 @@ public class ButtonManager : MonoBehaviour
         if (VideoManager.adsNumber == 0)
         {
             // maybe next scene?
-            videoManager.newVideoCount = videoManager.newVideoList.Count - 1;
+            VideoManager.newVideoCount = videoManager.newVideoList.Count - 1;
             videoManager.afterLoopVideo = true;
         }
         else if (VideoManager.adsNumber == 1)
         {
-            videoManager.videoCount = videoManager.ads2.Length;
+            VideoManager.videoCount = videoManager.ads2.Length;
             videoManager.afterLoopVideo = true;
         }
     }
     // playe next video method
     private void nextVideoMethod(InputAction.CallbackContext context)
     {
-        videoManager.videoCount++;
-        videoManager.newVideoCount++;
+        VideoManager.videoCount++;
+        VideoManager.newVideoCount++;
         videoManager.afterLoopVideo = true;
-        Debug.Log("Next Video: " + videoManager.videoCount);
+        //Debug.Log("Next Video: " + VideoManager.videoCount);
     }
 
     // check witch video to play
