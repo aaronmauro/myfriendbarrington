@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System.Runtime.CompilerServices;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class DialogueTrigger : MonoBehaviour
     private bool playerInRange;
     private Player player; // Reference to PlayerController
     private bool hasSubscribed = false;
+
+    private bool hasTalked = false;
 
     // For subscribing to the InputAction on the InputManager
     private bool inputSubscribed = false;
@@ -88,13 +91,19 @@ public class DialogueTrigger : MonoBehaviour
 
         if (!playerInRange) return;
 
+        Debug.Log("Starting dialogue from trigger via InputAction!");
+        StartDialogue();
+    }
+
+    private void StartDialogue() // dialogue can be started in two places now - DV
+    {
         var dm = DialogueManager.GetInstance();
         if (dm == null || dm.dialogueIsPlaying) return;
 
-        Debug.Log("Starting dialogue from trigger via InputAction!");
         dm.UpdateNpc(npcName, npcImage);
         dm.EnterDialogueMode(inkJSON);
         LockPlayerMovement(true);
+        hasTalked = true;
     }
 
     private void LockPlayerMovement(bool isLocked)
@@ -120,6 +129,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            if (!hasTalked)
+            {
+                StartDialogue(); // you can't run from me - DV
+            }
             playerInRange = false;
             var dm = DialogueManager.GetInstance();
             dm.animator = null;
