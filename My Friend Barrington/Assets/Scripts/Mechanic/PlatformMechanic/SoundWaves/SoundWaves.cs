@@ -2,6 +2,7 @@ using System.Collections;
 using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class SoundWaves : MonoBehaviour
 {
@@ -33,6 +34,8 @@ public class SoundWaves : MonoBehaviour
     private float fadeRateInternal;
     private float fadeAmount;
     private float fadeDistance;
+
+    [SerializeField] bool mute;
 
     // Trigger to Activate
     [Header("RunCode")]
@@ -114,6 +117,9 @@ public class SoundWaves : MonoBehaviour
     {
        
         _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);
+        _soundWavesObject.GetComponent<AudioSource>().time = Random.Range(0f, _soundWavesObject.GetComponent<AudioSource>().clip.length-10f);
+        _soundWavesObject.GetComponent<AudioSource>().volume = 0f;
+        _soundWavesObject.GetComponent<AudioSource>().Play();
         _soundWavesCollider = _soundWavesObject.GetComponent<Collider>();
         if (_soundWavesObject == null)
         {
@@ -247,11 +253,10 @@ public class SoundWaves : MonoBehaviour
         {
             fadeAmount = 0f;
         }
-        _soundWavesObject.GetComponent<AudioSource>().volume = fadeAmount;
         Color tmp = _soundWavesObject.GetComponentInChildren<SpriteRenderer>().color;
         tmp.a = fadeAmount;
         _soundWavesObject.GetComponentInChildren<SpriteRenderer>().color = tmp;
-
-
+        if (mute) return;
+        _soundWavesObject.GetComponent<AudioSource>().volume = fadeAmount;
     }
 }
