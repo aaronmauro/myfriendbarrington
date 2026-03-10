@@ -195,10 +195,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639086927218514773
+  lastModified: 639086978956244686
   FileSizes:
   - Name: 
-    Value: 3302
+    Value: 3404
   Exists: 1
 --- !u!114 &-5738445028350477731
 MonoBehaviour:
@@ -810,13 +810,14 @@ MonoBehaviour:
   - {fileID: 3054738534520786287}
   - {fileID: 5983627363533224561}
   - {fileID: -4478648673615849126}
+  - {fileID: 3653411017344573468}
   EditorParameters: []
   MasterBanks:
   - {fileID: 3709428756242736240}
   StringsBanks:
   - {fileID: -6151738419805688388}
   cacheVersion: 131848
-  cacheTime: 639086927219219423
+  cacheTime: 639086978956244686
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -918,6 +919,8 @@ MonoBehaviour:
     index: 48
   - key: event:/VideoEvents/KieranSlapTV
     index: 49
+  - key: event:/IntroPageSoundtrack
+    index: 50
 --- !u!114 &516589950027079734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,6 +1029,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &2481282087737184078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/IntroPageSoundtrack/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3478517335
+    data2: 2325217055
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &2525406306726332610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1080,6 +1107,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 622
+--- !u!114 &3653411017344573468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/IntroPageSoundtrack
+  m_EditorClassIdentifier: 
+  Path: event:/IntroPageSoundtrack
+  Guid:
+    Data1: 1802625766
+    Data2: 1172676406
+    Data3: 67314816
+    Data4: -15501250
+  Banks:
+  - {fileID: 8993085851513333452}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 2481282087737184078}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40000
 --- !u!114 &3709428756242736240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +1150,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639086925389396426
+  lastModified: 639086978956244686
   FileSizes: []
   Exists: 1
 --- !u!114 &3842402992230984091
@@ -1608,7 +1663,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639081609614001573
+  lastModified: 639086978956219595
   FileSizes: []
   Exists: 1
 --- !u!114 &9157919321905253926
