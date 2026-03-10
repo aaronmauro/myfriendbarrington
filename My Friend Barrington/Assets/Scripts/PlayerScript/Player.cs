@@ -102,7 +102,9 @@ public class Player : MonoBehaviour
     public bool isInteracting;
 
     private bool waitingToTeleport; // for use in fixing respawn bug - DV
-    private Vector3 waitingToTeleportTarget; 
+    private Vector3 waitingToTeleportTarget;
+
+    private float stunTimer = 0f; // for sound wave stun - DV
 
     // Cool new trick
     private void OnEnable()
@@ -197,6 +199,14 @@ public class Player : MonoBehaviour
             {
                 transform.position = waitingToTeleportTarget; // trying to teleport the player between fixedupdate frames causes weirdness, hence this - DV
                 waitingToTeleport = false;
+            }
+            if (stunTimer > 0)
+            {
+                stunTimer -= Time.fixedDeltaTime;
+                if (stunTimer <= 0) {
+                    anim.SetBool("PlayerStun", false);
+                    playerInput = true;
+                }
             }
             return;
         }
@@ -601,5 +611,17 @@ public class Player : MonoBehaviour
     {
         waitingToTeleport = true;
         waitingToTeleportTarget = target.position;
+    }
+
+    public void Stun(float stun)
+    {
+        playerInput = false;
+        stunTimer = stun;
+        if (!anim.GetBool("PlayerStun"))
+        {
+            anim.SetBool("PlayerStun", true);
+            anim.SetTrigger("PlayerStunStart");
+            Debug.Log("bzzt");
+        }
     }
 }
