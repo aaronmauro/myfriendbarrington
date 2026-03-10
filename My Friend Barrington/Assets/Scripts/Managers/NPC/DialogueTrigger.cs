@@ -27,6 +27,8 @@ public class DialogueTrigger : MonoBehaviour
     // For subscribing to the InputAction on the InputManager
     private bool inputSubscribed = false;
 
+    [SerializeField] GameObject rift;
+
     private void Awake()
     {
         player = FindObjectOfType<Player>();
@@ -104,6 +106,7 @@ public class DialogueTrigger : MonoBehaviour
         dm.EnterDialogueMode(inkJSON);
         LockPlayerMovement(true);
         hasTalked = true;
+        if (rift != null) rift.SetActive(true);
     }
 
     private void LockPlayerMovement(bool isLocked)
