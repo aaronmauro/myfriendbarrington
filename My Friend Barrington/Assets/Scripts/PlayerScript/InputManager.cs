@@ -22,6 +22,9 @@ public class InputManager : MonoBehaviour
     public InputActionReference pauseGame;
     //public InputActionReference OninteractAction;
     public InputActionReference submitAction;
+    public InputActionReference cancelAction;
+    public InputActionReference nextAction;
+    public InputActionReference navigateAction;
 
 
 
