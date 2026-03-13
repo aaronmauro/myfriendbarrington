@@ -5,6 +5,7 @@ using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 
 public class DialogueManager : MonoBehaviour
@@ -30,6 +31,7 @@ public class DialogueManager : MonoBehaviour
     public bool dialogueIsPlaying { get; private set; }
 
     private Coroutine selectFirstChoiceCoroutine;
+    private Coroutine selectContinueCoroutine;
     private Coroutine typingCoroutine;
 
     private bool isProcessingChoice = false;
@@ -174,6 +176,19 @@ public class DialogueManager : MonoBehaviour
             choices[0].activeInHierarchy)
         {
             EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        }
+    }
+
+    private IEnumerator SelectContinueButton()
+    {
+        if (EventSystem.current == null || continueButton == null) yield break;
+
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+
+        if (continueButton.activeInHierarchy)
+        {
+            EventSystem.current.SetSelectedGameObject(continueButton);
         }
     }
 
@@ -343,6 +358,12 @@ public class DialogueManager : MonoBehaviour
                     {
                         btnText.text = "Continue";
                     }
+
+                    if (selectContinueCoroutine != null)
+                    {
+                        StopCoroutine(selectContinueCoroutine);
+                    }
+                    selectContinueCoroutine = StartCoroutine(SelectContinueButton());
                 }
             }
             else
@@ -357,6 +378,12 @@ public class DialogueManager : MonoBehaviour
                     {
                         btnText.text = "Close";
                     }
+
+                    if (selectContinueCoroutine != null)
+                    {
+                        StopCoroutine(selectContinueCoroutine);
+                    }
+                    selectContinueCoroutine = StartCoroutine(SelectContinueButton());
                 }
             }
         }
