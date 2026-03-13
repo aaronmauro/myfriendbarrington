@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,10 @@ public class SceneManagerScript : MonoBehaviour
 {
     // Create instance to access in another script
     public static SceneManagerScript instance;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference creditSceneSound;
+    [SerializeField] private EventReference mainMenuSceneSound;
 
     // Don't destory on load
     private void Awake()
@@ -27,6 +32,14 @@ public class SceneManagerScript : MonoBehaviour
     public void nextScene(string name)
     {
         SceneManager.LoadScene(name);
+        if (name == "CreditsMenu")
+        {
+            RuntimeManager.PlayOneShotAttached(creditSceneSound, gameObject);
+        }
+        else if (name == "MainMenu(StartScreen)")
+        {
+            RuntimeManager.PlayOneShotAttached(mainMenuSceneSound, gameObject);
+        }
     }
     public IEnumerator loadScene(string name)
     {

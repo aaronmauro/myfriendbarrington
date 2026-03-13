@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 1215881768748770479}
   - component: {fileID: 5182374767124434157}
   - component: {fileID: 231177853875383017}
+  - component: {fileID: 3292707975927352192}
   m_Layer: 11
   m_Name: SoundWaves
   m_TagString: Untagged
@@ -236,8 +237,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: dd5fff0bfcf514545b0ba32ce97111f5, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 38f3d454307085a4aadbd53987fbb202, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -322,3 +323,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3292707975927352192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7732631693700965459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bea7da57b19a143b5b586f81109b51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

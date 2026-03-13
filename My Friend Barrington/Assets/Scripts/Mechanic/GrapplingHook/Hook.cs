@@ -5,6 +5,8 @@ public class Hook : MonoBehaviour
 {
     [SerializeField] float hookForce = 25f;
 
+    [SerializeField] public Transform hand;
+
     private Transform shootTransform;
 
     Grapple grapple;
@@ -38,7 +40,7 @@ public class Hook : MonoBehaviour
         // Update the line renderer to draw the rope between the grapple and the hook
         Vector3[] positions = new Vector3[]
         {
-            shootTransform.position,   // origin at hand
+            hand.position,   // origin at hand // actually from hand - DV
             transform.position  
         };
 

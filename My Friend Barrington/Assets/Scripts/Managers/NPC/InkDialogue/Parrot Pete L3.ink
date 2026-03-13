@@ -2,14 +2,21 @@
 -> greeting
 
 === greeting ===
-Ahoy! I see ye've found my scoping spot. The seas do look fierce out there today. Lott'a fun for a pirate!
-Oy! I see ye've got a piece to make a ship yourself! Feel like braving the water? Good!
+Lad! Good news! I’ve found a sliver of a ship here! If we find just a few more, we can build ye a grand vessel to sail away on!
 
-Now, what kind of a ship will ye be makin?
-* [A fishing boat, with nets and baskets!] -> fishing
-* [A cruise ship made of steel!] -> cruise
-* [A pirate ship, just like yours!] -> pirate
+Aye, I’ll warn ye, one captain to another, the waves here are always going to be rough, but that be the challenge for a true pirate! When this world gets cruel, ye’ll have to brave through it.
 
+I’ve picked up some tricks along the way tho! A breath along the tide gets you balanced - breathe in like the ship going up, right to the top! Breathing out while ye descend brings you in tune with the waves themselves.
+
+And a little self confidence goes a long way too!
+
+What do you think?
+* [I'll be a strong captain!] -> farewell
+* [I can steer my own ship!] -> farewell
+* [No wave can defeat me!] -> farewell
+
+/*******************
+*** to be edited ***
 === fishing ===
 Ah, my good friend Fellini would agree with ye there. The two of you could put together a great fish market at the beaches!
 
@@ -27,3 +34,9 @@ Ye can't have mine though friend, a pirate's hat is more precious than their tre
 Aye, I'm sure you'll build a grand ship though! Might I offer a tip?
 The waters will be harsh, but holding steady and keeping faith in yourself will steer you out of any swell.
 Good luck, Captain! -> END
+******************/
+
+=== farewell === 
+That's the spirit, lad! Keep remindin' yerself of that.
+
+Yer a chip off the old block, ye'll make a great pirate in no time. Good luck, Captain! -> END

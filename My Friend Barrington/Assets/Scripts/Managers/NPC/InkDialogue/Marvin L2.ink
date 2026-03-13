@@ -2,11 +2,11 @@
 -> greeting
 
 === greeting === 
-Grr... I can't believe this! All my calculations were completely incorrect -- these are nimbostratus, not cumulus!
+Stupid cloud formations. Of course it was silly of me to think the clouds would be any different today. Will my studies of meteorology ever amount to anything?
 
-This is totally unfair! I did my best with the information I collected, and this isn't my fault!
+I predict this storm is going to be a bad one, Barrington. I’m not sure how hard it’ll be to weather this one.
 
-Oh, and now all my notes are getting soaked! Great, just great! I'd better clear some room in my bag, so they stay dry...
+I mean, I can easily swing through the trees with my tail, but yours seems to be cut a bit short. Here, take this item - I came across it in my travels and I can’t quite make sense of it. You might be able to swing along with me.
 
-Here, Barrington, do you want this thing? I picked it up a ways back, but it's taking up too much space in here, and it's gonna stick to my notes.
+But hurry, I can’t predict when the thunder will start. 
 -> END 

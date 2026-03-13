@@ -102,7 +102,9 @@ public class Player : MonoBehaviour
     public bool isInteracting;
 
     private bool waitingToTeleport; // for use in fixing respawn bug - DV
-    private Vector3 waitingToTeleportTarget; 
+    private Vector3 waitingToTeleportTarget;
+
+    private float stunTimer = 0f; // for sound wave stun - DV
 
     // Cool new trick
     private void OnEnable()
@@ -197,6 +199,14 @@ public class Player : MonoBehaviour
             {
                 transform.position = waitingToTeleportTarget; // trying to teleport the player between fixedupdate frames causes weirdness, hence this - DV
                 waitingToTeleport = false;
+            }
+            if (stunTimer > 0)
+            {
+                stunTimer -= Time.fixedDeltaTime;
+                if (stunTimer <= 0) {
+                    anim.SetBool("PlayerStun", false);
+                    playerInput = true;
+                }
             }
             return;
         }
@@ -506,7 +516,7 @@ public class Player : MonoBehaviour
 
     private void playerFalling()
     {
-        if (rb.linearVelocity.y <= -1)
+        if (rb.linearVelocity.y < 0) // falling should happen immediately - DV
         {
             isfalling = true;
         }
@@ -539,13 +549,13 @@ public class Player : MonoBehaviour
         }
     }
     // when pushing box
-    private void OnCollisionStay(Collision collision)
+/*    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag(GeneralGameTags.Box))
         {
             isPushingBox = true;
         }
-    }
+    }*/
     // when exit box
     private void OnCollisionExit(Collision collision)
     {
@@ -553,7 +563,19 @@ public class Player : MonoBehaviour
         {
             currentPlatform = null;
         }
-        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box))
         {
             isPushingBox = false;
         }
@@ -564,6 +586,11 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = gizmoColour;
         Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down * (playerHeight * 0.5f + 0.2f));
+    }
+
+    public void Shoot()
+    {
+        anim.SetTrigger("PlayerShoot");
     }
 
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
@@ -584,5 +611,17 @@ public class Player : MonoBehaviour
     {
         waitingToTeleport = true;
         waitingToTeleportTarget = target.position;
+    }
+
+    public void Stun(float stun)
+    {
+        playerInput = false;
+        stunTimer = stun;
+        if (!anim.GetBool("PlayerStun"))
+        {
+            anim.SetBool("PlayerStun", true);
+            anim.SetTrigger("PlayerStunStart");
+            Debug.Log("bzzt");
+        }
     }
 }

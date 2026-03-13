@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using FMODUnity;
 
 
 public class GameManager : MonoBehaviour
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
     public bool vsync;
 
     public InputActionReference EndAction;
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference quitGameSound;
 
     [SerializeField]
     Transform EndOfLevel;
@@ -140,6 +143,7 @@ public class GameManager : MonoBehaviour
     // quit the game for escape button
     public void onEscapePressed()
     {
+        RuntimeManager.PlayOneShotAttached(quitGameSound, gameObject);
         Debug.Log("Quit");
         Application.Quit();
     }

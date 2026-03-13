@@ -16,6 +16,7 @@ public class Grapple : MonoBehaviour
     [SerializeField] float lifetime = 0f;
     private bool applyForce;
     private float swingDirection = 90f;
+    [SerializeField] Transform hand;
 
     Hook hook;
     bool pulling;
@@ -55,8 +56,10 @@ public class Grapple : MonoBehaviour
             {
                 StopAllCoroutines();
                 pulling = false;
+                player.Shoot();
                 hook = Instantiate(hookPrefab, shootTransform.position, Quaternion.identity).GetComponent<Hook>();
                 hook.Initialize(this, shootTransform);
+                hook.hand = hand;
                 StartCoroutine(DestroyHookAfterLifetime());
             }
         }
@@ -134,6 +137,7 @@ public class Grapple : MonoBehaviour
     // Get the nearest grapple point within range
     GrapplePoint GetNearestGrapplePoint()
     {
+
         // Query current GrapplePoints in the scene so ones enabled at runtime (by your lever) are found.
         var points = FindObjectsOfType<GrapplePoint>();
         foreach (var point in points)

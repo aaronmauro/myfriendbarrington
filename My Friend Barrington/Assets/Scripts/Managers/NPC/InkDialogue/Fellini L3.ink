@@ -2,19 +2,34 @@
 -> greeting
 
 === greeting ===
-Hello again friend! Funny to find you here again. I thought I’d try out a new fishing spot; my usual pond was a little thin this week.
-I seem to be having a lot of trouble finding the best spot to cast my line.
+Barrington! There you are. I got a little lost and didn’t know what to do!
 
-// Fellini fishes out a piece of the ship
-See! This isn't a fish. 
-I guess it may be more use to you than me, if you like it.
-Do you ever feel a little lost? I'm getting nowhere here, and I don't know where to cast my next line!
+Are you okay? You’re missing a bunch of your stuffing…
 
-* [Cast it in the middle!] -> answer
-* [Try all the way across the pond!] -> answer
-* [Cast it close to you, by the surface] -> answer
+Barrington, you feel like my closest friend in the world! I’m very lucky to have you. Do you have someone that makes you feel like that? I’ve relied on you so much, sometimes you need to rely on someone else to help you out of a sticky situation!
+
+I can be the start of that! I found a piece of a ship! Just like Pete’s. You’re trying to build one, right? Take it!
+
+Barrington… Is there anything you need help with?
+* [How do I get my stuffing back?] -> stuffing
+* [I just need someone to talk to.] -> talking
+* [Who else do I ask for help?] -> help
+
+=== stuffing ===
+Bit by bit! It takes time to heal, but even just one stitch at a time, you'll get there!
+-> farewell
+
+=== talking ===
+I'm happy to listen! It feels really good just to get things off your chest sometimes. Tell me all about what's going on.
+-> farewell
+
+=== help ===
+Well, when I need help, I always go to someone I know cares about me. Like a best friend! The people who care about you are always happy to help.
+-> farewell
 
 
-=== answer ===
-Hmmm, I haven't tried this before. I have a good feeling about it though! Thank you, friend.
+=== farewell ===
+I know things feel hard right now Barrington. But I know you'll be able to pick yourself up! It's always good to rely on friends. 
+
+Good luck!
 -> END
