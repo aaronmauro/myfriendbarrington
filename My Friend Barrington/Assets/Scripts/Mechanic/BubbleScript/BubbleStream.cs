@@ -10,6 +10,7 @@ public class BubbleStream : MonoBehaviour
     [Header("Audio (FMOD)")]
     [SerializeField] private EventReference bubbleStreamEvent;
     [SerializeField] private ParticleSystem bubbleSystem;
+    [SerializeField] private bool bubbleActive = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,8 +23,9 @@ public class BubbleStream : MonoBehaviour
         Player player = other.gameObject.GetComponent<Player>();
         //Debug.Log(player);
 
-        if (other.gameObject.isPlayer())
+        if (other.gameObject.isPlayer() && bubbleActive)
         {
+           
             player.inBubbleStream(force);
             //RuntimeManager.PlayOneShotAttached(bubbleStreamEvent, gameObject);
         }
@@ -34,6 +36,7 @@ public class BubbleStream : MonoBehaviour
         if (other.gameObject.CompareTag(GeneralGameTags.Box) && bubbleSystem != null)
         {
             bubbleSystem.Play();
+            bubbleActive = true;
         }
     }
 }
