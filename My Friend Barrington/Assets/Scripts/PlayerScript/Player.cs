@@ -384,7 +384,7 @@ public class Player : MonoBehaviour
             //rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
     }
-    private void playerAnimation()
+    private void playerAnimation() 
     {
         // Player walking Audio
         //AudioManager.instance.playPlayerWalking(isWalking);

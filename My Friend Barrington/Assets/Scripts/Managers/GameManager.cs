@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     Transform EndOfLevel;
+    [SerializeField] Transform DebugTeleport;
 
     private void Awake()
     {
@@ -89,6 +90,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.End))
         {
             player.transform.position = EndOfLevel.position;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            player.transform.position = DebugTeleport.position;
         }
     }
 

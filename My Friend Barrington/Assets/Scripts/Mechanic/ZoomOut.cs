@@ -6,8 +6,11 @@ public class ZoomOut : MonoBehaviour
 {
     [SerializeField] private CinemachineCamera playerCam;
     [SerializeField] private CinemachineCamera zoomOutCam;
+    [SerializeField] private CinemachineBrain brain;
 
     [SerializeField] private float lingerTime = 2f;
+    [SerializeField] float easeTime = 5f;
+    private float originalEaseTime;
 
     private bool colliding = false;
     private bool isRunning = false;
@@ -16,6 +19,7 @@ public class ZoomOut : MonoBehaviour
     {
         zoomOutCam.enabled = false;
         playerCam.enabled = true;
+        originalEaseTime = brain.DefaultBlend.Time;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,6 +42,8 @@ public class ZoomOut : MonoBehaviour
 
     private IEnumerator CameraSwitch()
     {
+        brain.DefaultBlend.Time = easeTime;
+
         isRunning = true;
 
         playerCam.enabled = false;
@@ -50,7 +56,9 @@ public class ZoomOut : MonoBehaviour
 
     private IEnumerator ReturnCamera()
     {
-        yield return new WaitForSeconds(.7f);
+        brain.DefaultBlend.Time = originalEaseTime;
+
+        yield return new WaitForSeconds(lingerTime);
 
         if (!colliding)
         {
