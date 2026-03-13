@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class FirstSelectedButtonController : MonoBehaviour
 {
@@ -8,14 +9,18 @@ public class FirstSelectedButtonController : MonoBehaviour
     private GameObject firstSelected;
     [SerializeField]
     private GameObject secondSelected;
+    [SerializeField]
+    private GameObject thirdSelected;
     public static bool isController = true;
+
 
     void Start()
     {
-        if (isController)
-        {
-            EventSystem.current.firstSelectedGameObject = firstSelected;
-        }
+        if (!isController) return;
+        if (EventSystem.current == null) return;
+
+        // Use same logic as changeSelectedButton to pick the appropriate initial selection
+        changeSelectedButton();
     }
 
     // Update is called once per frame
@@ -26,11 +31,15 @@ public class FirstSelectedButtonController : MonoBehaviour
 
     private void changeSelectedButton()
     {
-        // if controller
-        if (!isController) return;
-        if (secondSelected == null) return;
+        // if not using controller or no EventSystem, do nothing
+        if (!isController || EventSystem.current == null) return;
 
-        if (secondSelected.activeInHierarchy)
+        // Priority: thirdSelected -> secondSelected -> firstSelected
+        if (thirdSelected != null && thirdSelected.activeInHierarchy)
+        {
+            EventSystem.current.firstSelectedGameObject = thirdSelected;
+        }
+        else if (secondSelected != null && secondSelected.activeInHierarchy)
         {
             EventSystem.current.firstSelectedGameObject = secondSelected;
         }
