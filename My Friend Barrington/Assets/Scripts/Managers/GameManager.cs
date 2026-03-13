@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("Build Components")]
     public int gameFrameRate;
     public bool vsync;
+    public bool aspectRatio16_9;
 
     public InputActionReference EndAction;
     [Header("Audio (FMOD)")]
