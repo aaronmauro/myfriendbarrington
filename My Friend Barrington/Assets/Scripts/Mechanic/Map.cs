@@ -1,24 +1,21 @@
 using UnityEngine;
 
-
 public class Map : MonoBehaviour
 {
-    private Player player;
-    public GameObject mapPanel;
-    private bool isFrozen = true;
-    void Start()
-    {
-        player = gameObject.findPlayer();
-    }
+    [Header("Map UI")]
+    public GameObject mapUI;
+
+    [Header("Controls")]
+    public KeyCode toggleKey = KeyCode.M;
+
+    bool mapOpen = false;
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(toggleKey))
         {
-            mapPanel.SetActive(!mapPanel.activeSelf);
-            player.freezePlayer(isFrozen);
-            isFrozen = !isFrozen;
+            mapOpen = !mapOpen;
+            mapUI.SetActive(mapOpen);
         }
-
-
     }
 }
