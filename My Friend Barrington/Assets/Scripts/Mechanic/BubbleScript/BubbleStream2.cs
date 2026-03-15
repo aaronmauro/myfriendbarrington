@@ -1,44 +1,39 @@
 using UnityEngine;
-
 using FMODUnity;
 
-public class BubbleStream2 : MonoBehaviour
+public class BubbleStream2point2 : MonoBehaviour
 {
     private BoxCollider bxCollider;
 
-    [SerializeField]
-    private float force;
+    [SerializeField] private float force;
+
     [Header("Audio (FMOD)")]
     [SerializeField] private EventReference bubbleStreamEvent;
     [SerializeField] private ParticleSystem bubbleSystem;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         bxCollider = GetComponent<BoxCollider>();
     }
 
-    // When the player is inside the bubble stream, apply a continuous upward force
     private void OnTriggerStay(Collider other)
     {
-        Player player = other.gameObject.GetComponent<Player>();
-        //Debug.Log(player);
-
-        if (other.gameObject.isPlayer() )
+        if (other.CompareTag("Player"))
         {
-           
-            player.inBubbleStream(force);
-            //RuntimeManager.PlayOneShotAttached(bubbleStreamEvent, gameObject);
+            Player player = other.GetComponent<Player>();
+
+            if (player != null)
+            {
+                player.inBubbleStream(force);
+            }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(GeneralGameTags.Box) && bubbleSystem != null)
+        if (other.CompareTag(GeneralGameTags.Box) && bubbleSystem != null)
         {
             bubbleSystem.Play();
-           
         }
     }
 }
-
