@@ -11,7 +11,7 @@ public class VideosData
 
     [Header("Media Assets")]
     public VideoClip videoClip;
-    public EventReference videoAudio; // This allows you to pick the FMOD event from the UI
+    //public EventReference videoAudio; // This allows you to pick the FMOD event from the UI
 
     [Header("Settings")]
     public bool isLoop;

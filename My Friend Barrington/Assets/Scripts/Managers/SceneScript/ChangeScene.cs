@@ -84,6 +84,7 @@ public class ChangeScene : MonoBehaviour
             //playVideo();
             StartCoroutine(playVideo());
             player.playerInput = false;
+            VideoManager.adsNumber = nextAds;
         }
     }
     // controls scene change

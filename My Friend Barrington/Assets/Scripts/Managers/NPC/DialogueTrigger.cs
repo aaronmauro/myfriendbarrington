@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using System.Runtime.CompilerServices;
 
 public class DialogueTrigger : MonoBehaviour
 {
@@ -16,16 +17,22 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField]
     Sprite npcImage;
 
+
     private bool playerInRange;
     private Player player; // Reference to PlayerController
     private bool hasSubscribed = false;
 
+    private bool hasTalked = false;
+
     // For subscribing to the InputAction on the InputManager
     private bool inputSubscribed = false;
+
+    [SerializeField] GameObject rift;
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
+
     }
 
     private void Start()
@@ -86,13 +93,20 @@ public class DialogueTrigger : MonoBehaviour
 
         if (!playerInRange) return;
 
+        Debug.Log("Starting dialogue from trigger via InputAction!");
+        StartDialogue();
+    }
+
+    private void StartDialogue() // dialogue can be started in two places now - DV
+    {
         var dm = DialogueManager.GetInstance();
         if (dm == null || dm.dialogueIsPlaying) return;
 
-        Debug.Log("Starting dialogue from trigger via InputAction!");
         dm.UpdateNpc(npcName, npcImage);
         dm.EnterDialogueMode(inkJSON);
         LockPlayerMovement(true);
+        hasTalked = true;
+        if (rift != null) rift.SetActive(true);
     }
 
     private void LockPlayerMovement(bool isLocked)
@@ -101,6 +115,8 @@ public class DialogueTrigger : MonoBehaviour
         {
             player.freezePlayer(isLocked); // use new freezePlayer function
             Player.dialogue = isLocked; // Set the static dialogue variable
+            // Ensure jump state follows lock state (locked -> can't jump)
+            player.canJump = !isLocked;
         }
     }
 
@@ -109,6 +125,13 @@ public class DialogueTrigger : MonoBehaviour
         if (collider.gameObject.tag == "Player") 
         {
             playerInRange = true;
+            var dm = DialogueManager.GetInstance();
+            dm.animator = gameObject.GetComponent<Animator>();
+            if (player != null)
+            {
+                // disable jump while in range
+                player.canJump = false;
+            }
         }
     }
 
@@ -116,13 +139,34 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            if (!hasTalked)
+            {
+                StartDialogue(); // you can't run from me - DV
+            }
             playerInRange = false;
+            var dm = DialogueManager.GetInstance();
+            dm.animator = null;
+
+            // If dialogue was just started above, StartDialogue will handle lock state.
+            // Only re-enable jump here if there is no active dialogue.
+            if (player != null)
+            {
+                if (DialogueManager.GetInstance() == null || !DialogueManager.GetInstance().dialogueIsPlaying)
+                {
+                    player.canJump = true;
+                }
+            }
         }
     }
 
     private void UnlockPlayerMovement()
     {
         LockPlayerMovement(false);
+        // Ensure jump is re-enabled when dialogue ends
+        if (player != null)
+        {
+            player.canJump = true;
+        }
     }
 
     private void OnDestroy()
@@ -139,5 +183,7 @@ public class DialogueTrigger : MonoBehaviour
             inputSubscribed = false;
         }
     }
+
+
 
 }

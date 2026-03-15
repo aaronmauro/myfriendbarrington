@@ -1,5 +1,7 @@
+using FMODUnity;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PauseGame : MonoBehaviour
@@ -10,6 +12,13 @@ public class PauseGame : MonoBehaviour
 
 
     public InputActionReference endAction;
+    public GameObject resumeButton;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference resumeGameSound;
+    [SerializeField] private EventReference quitGameSound;
+    [SerializeField] private EventReference pauseGameSound;
+
     // Update is called once per frame
 
     private void Awake()
@@ -64,13 +73,16 @@ public class PauseGame : MonoBehaviour
     public void Pause()
 
     {
+        RuntimeManager.PlayOneShotAttached(pauseGameSound, gameObject);
         PausePanel.SetActive(true);
         Time.timeScale = 0;
         GameIsPaused = true;
+        EventSystem.current.SetSelectedGameObject(resumeButton);
     }
 
     public void Continue()
     {
+        RuntimeManager.PlayOneShotAttached(resumeGameSound, gameObject);
         PausePanel.SetActive(false);
         Time.timeScale = 1;
 
@@ -78,12 +90,16 @@ public class PauseGame : MonoBehaviour
 
     public void LoadMenu(string nextSceneName)
     {
+        VideoManager.adsNumber = 0;
+        VideoManager.newVideoCount = 0;
+        VideoManager.videoCount = 0;
         SceneManagerScript.instance.nextScene(nextSceneName);
         Time.timeScale = 1f;
     }
 
     public void QuitGame()
     {
+        RuntimeManager.PlayOneShotAttached(quitGameSound, gameObject);
         Application.Quit();
         Debug.Log("quit");
     }

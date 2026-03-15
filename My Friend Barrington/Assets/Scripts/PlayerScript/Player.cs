@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
     // This is the player script
     // Setting serializable field for editor to edit in inspector
+    public PlayerInput playerinput;
     [Header("Movement")]
     [SerializeField]
     private float speedAcceleration;
@@ -57,6 +59,9 @@ public class Player : MonoBehaviour
     public bool isPushingBox;
     private Vector2 moveInput;
 
+    // New toggle: allow jump when true
+    public bool canJump = true;
+
     // Swinging status - DV
     private Grapple swing = null;
 
@@ -100,6 +105,16 @@ public class Player : MonoBehaviour
     private Vector3 lastPlatformPosition;
 
     public bool isInteracting;
+
+    private bool waitingToTeleport; // for use in fixing respawn bug - DV
+    private Vector3 waitingToTeleportTarget;
+
+    private float stunTimer = 0f; // for sound wave stun - DV
+
+    private void Awake()
+    {
+        playerinput = GetComponent<PlayerInput>();
+    }
 
     // Cool new trick
     private void OnEnable()
@@ -190,6 +205,19 @@ public class Player : MonoBehaviour
         if (!playerInput || dialogue)
         {
             //freezePlayer(true); // this breaks the player death. not sure why its here, talk to me if its loadbearing - DV
+            if (waitingToTeleport)
+            {
+                transform.position = waitingToTeleportTarget; // trying to teleport the player between fixedupdate frames causes weirdness, hence this - DV
+                waitingToTeleport = false;
+            }
+            if (stunTimer > 0)
+            {
+                stunTimer -= Time.fixedDeltaTime;
+                if (stunTimer <= 0) {
+                    anim.SetBool("PlayerStun", false);
+                    playerInput = true;
+                }
+            }
             return;
         }
         else
@@ -273,6 +301,20 @@ public class Player : MonoBehaviour
     {
         //isWalking = true; // only walk on the ground foo - DV
         // lol i didn't realize it,
+        if (context.performed)
+        {
+            var device = context.control.device;
+            if (device is Keyboard)
+            {
+                Debug.Log("Jump triggered by Keyboard");
+                //update ui 
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Jump triggered by Gamepad");
+                //update ui
+            }
+        }
     }
     private void stopPlayer(InputAction.CallbackContext context)
     {
@@ -282,7 +324,23 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
-        if (!playerInput)
+        if (context.performed)
+        {
+            var device = context.control.device;
+            if (device is Keyboard)
+            {
+                Debug.Log("Jump triggered by Keyboard");
+                //update ui 
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Jump triggered by Gamepad");
+                //update ui
+            }
+        }
+       
+
+        if (!playerInput || !canJump)
         {
             return;
         }
@@ -420,7 +478,7 @@ public class Player : MonoBehaviour
         if (isFrozen) {
             playerInput = false;
             // Stop player from moving
-            rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
+            //rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
             isWalking = false;
             //AudioManager.instance.playPlayerWalking(isWalking);
             anim.SetBool("PlayerWalk", isWalking);
@@ -441,6 +499,8 @@ public class Player : MonoBehaviour
     }
     public void playerRotation()
 {
+
+        if (swing) return; // i need to disable your good code so my jank code can work <3 - DV
 
     if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
@@ -496,7 +556,7 @@ public class Player : MonoBehaviour
 
     private void playerFalling()
     {
-        if (rb.linearVelocity.y <= -1)
+        if (rb.linearVelocity.y < 0) // falling should happen immediately - DV
         {
             isfalling = true;
         }
@@ -529,13 +589,13 @@ public class Player : MonoBehaviour
         }
     }
     // when pushing box
-    private void OnCollisionStay(Collision collision)
+/*    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag(GeneralGameTags.Box))
         {
             isPushingBox = true;
         }
-    }
+    }*/
     // when exit box
     private void OnCollisionExit(Collision collision)
     {
@@ -543,7 +603,19 @@ public class Player : MonoBehaviour
         {
             currentPlatform = null;
         }
-        if (collision.gameObject.CompareTag(GeneralGameTags.Box))
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box))
+        {
+            isPushingBox = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag(GeneralGameTags.Box))
         {
             isPushingBox = false;
         }
@@ -554,6 +626,11 @@ public class Player : MonoBehaviour
     {
         Gizmos.color = gizmoColour;
         Gizmos.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), Vector3.down * (playerHeight * 0.5f + 0.2f));
+    }
+
+    public void Shoot()
+    {
+        anim.SetTrigger("PlayerShoot");
     }
 
     public void Swing(Grapple swinging) // is this good practice? idk man im trying - DV
@@ -572,7 +649,32 @@ public class Player : MonoBehaviour
 
     public void TeleportTo(Transform target)
     {
-        transform.position = target.position;
+        waitingToTeleport = true;
+        waitingToTeleportTarget = target.position;
+    }
+
+    public void Stun(float stun)
+    {
+        playerInput = false;
+        stunTimer = stun;
+        if (!anim.GetBool("PlayerStun"))
+        {
+            anim.SetBool("PlayerStun", true);
+            anim.SetTrigger("PlayerStunStart");
+            Debug.Log("bzzt");
+        }
+    }
+    public void OnControlsChanged()
+    {
+        string currentScheme = playerinput.currentControlScheme;
+        if (currentScheme == "Keyboard&Mouse")
+        {
+            //update ui for kbm
+        }
+        else if (currentScheme == "Gamepad")
+        {
+            //update ui for Gamepad 
+        } 
     }
 
 }

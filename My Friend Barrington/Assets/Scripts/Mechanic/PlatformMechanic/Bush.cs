@@ -27,7 +27,7 @@ public class Bush : MonoBehaviour
         if (other.gameObject.isPlayer())
         {
             waves.inBush = true;
-            playerCam.Lens.NearClipPlane = nearClipPlane;
+            //playerCam.Lens.NearClipPlane = nearClipPlane;
         }
     }
     /*
@@ -48,7 +48,7 @@ public class Bush : MonoBehaviour
         if (other.gameObject.isPlayer())
         {
             waves.inBush = false;
-            playerCam.Lens.NearClipPlane = orignalClipPlane;
+            //playerCam.Lens.NearClipPlane = orignalClipPlane;
         }
     }
 }

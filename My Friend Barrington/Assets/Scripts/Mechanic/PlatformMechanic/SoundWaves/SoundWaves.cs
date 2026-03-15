@@ -2,6 +2,7 @@ using System.Collections;
 using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class SoundWaves : MonoBehaviour
 {
@@ -27,6 +28,14 @@ public class SoundWaves : MonoBehaviour
     [SerializeField]
     private float waveForce;
     public bool inBush;
+
+    [SerializeField]
+    private float fadeRate;
+    private float fadeRateInternal;
+    private float fadeAmount;
+    private float fadeDistance;
+
+    [SerializeField] bool mute;
 
     // Trigger to Activate
     [Header("RunCode")]
@@ -67,14 +76,26 @@ public class SoundWaves : MonoBehaviour
         {
             StartCoroutine(spawnSoundWaves());
             isSpawn = true;
+            fadeAmount = 0f;
+            fadeRateInternal = fadeRate;
         }
         //Debug.Log(inBush);
         // If sound Wave is Spawned
         if (_soundWavesObject != null)
         {
             moveSoundWaves();
+            if (fadeAmount < 1f)
+            {
+                fade();
+            }
+            else if (travelDistance >= fadeDistance)
+            {
+                fadeRateInternal = -fadeRate;
+                fade();
+            }
             //Debug.Log(direction);
         }
+        //Debug.Log(fadeAmount);
         pushPlayer();
         //it works just poping out so many error message, will figure it out
         //if (player != null)
@@ -96,6 +117,9 @@ public class SoundWaves : MonoBehaviour
     {
        
         _soundWavesObject = Instantiate(soundWavesPrefab, transform.position, Quaternion.identity);
+        _soundWavesObject.GetComponent<AudioSource>().time = Random.Range(0f, _soundWavesObject.GetComponent<AudioSource>().clip.length-10f);
+        _soundWavesObject.GetComponent<AudioSource>().volume = 0f;
+        _soundWavesObject.GetComponent<AudioSource>().Play();
         _soundWavesCollider = _soundWavesObject.GetComponent<Collider>();
         if (_soundWavesObject == null)
         {
@@ -105,6 +129,7 @@ public class SoundWaves : MonoBehaviour
         {
             _soundWavesObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
+        fade();
     }
 
     // checking soundwave moving direction
@@ -215,5 +240,23 @@ public class SoundWaves : MonoBehaviour
         {
             Physics.IgnoreCollision(playerCollider, _soundWavesCollider, true);
         }
+    }
+    private void fade() // another vidberg special, hot n ready - DV
+    {
+        fadeAmount += fadeRateInternal * Time.fixedDeltaTime;
+        if (fadeAmount >= 1f)
+        {
+            fadeAmount = 1f;
+            fadeDistance = destroyDistance - travelDistance;
+        }
+        if (fadeAmount < 0f)
+        {
+            fadeAmount = 0f;
+        }
+        Color tmp = _soundWavesObject.GetComponentInChildren<SpriteRenderer>().color;
+        tmp.a = fadeAmount;
+        _soundWavesObject.GetComponentInChildren<SpriteRenderer>().color = tmp;
+        if (mute) return;
+        _soundWavesObject.GetComponent<AudioSource>().volume = fadeAmount;
     }
 }
