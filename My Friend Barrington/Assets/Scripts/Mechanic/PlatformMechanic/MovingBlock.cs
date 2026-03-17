@@ -12,6 +12,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float speed = 0.5f;
     public float switchDistance = 0.05f;
 
+    [SerializeField] bool stopAtEnd = false;
+
     public Vector3 PlatformDelta { get; private set; }
 
     void Start()
@@ -45,7 +47,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         PlatformDelta = transform.position - oldPos;
 
-        if (Vector3.Distance(transform.position, currentTarget.position) < switchDistance)
+        if (Vector3.Distance(transform.position, currentTarget.position) < switchDistance && !stopAtEnd)
         {
             currentTarget = (currentTarget == targetA) ? targetB : targetA;
         }
