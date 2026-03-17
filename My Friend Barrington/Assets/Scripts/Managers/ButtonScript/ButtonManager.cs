@@ -30,7 +30,7 @@ public class ButtonManager : MonoBehaviour
     // singleton this :>
     private void Awake()
     {
-        if (instance == null)
+/*        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -38,7 +38,7 @@ public class ButtonManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        }*/
         addButton();
     }
     // adding and removing skipping video methods
