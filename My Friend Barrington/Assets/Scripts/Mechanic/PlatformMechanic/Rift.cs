@@ -51,9 +51,9 @@ public class Rift : MonoBehaviour
                 // Teleport the player to the other rift's position
                 playerCam.TrackerSettings.PositionDamping = Vector3.zero;
                 player.transform.position = tpTransform.transform.position;
-                Debug.Log("teleporting");
+                //Debug.Log("teleporting");
                 isTpCam = true;
-                Debug.Log("hello world");
+                //Debug.Log("hello world");
                 isTp = true;
                 otherRift.isTp = true;
                 StartCoroutine(startCooldown());
@@ -80,7 +80,7 @@ public class Rift : MonoBehaviour
         isTpCam = false;
         yield return new WaitForSeconds(0.1f);
         playerCam.TrackerSettings.PositionDamping = Vector3.one;
-        Debug.Log("start following");   
+        //Debug.Log("start following");   
     }
 
     private void startPlayerCameraFollowing()
