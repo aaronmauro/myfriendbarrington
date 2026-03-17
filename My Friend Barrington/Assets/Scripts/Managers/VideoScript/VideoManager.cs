@@ -103,6 +103,8 @@ public class VideoManager : MonoBehaviour
             {
                 isPauseVideo = false;
                 loopVideo = false;
+                //playNextVideo = true;
+                //afterLoopVideo = true;
             }
         }
 
@@ -218,6 +220,8 @@ public class VideoManager : MonoBehaviour
     {
         isPauseVideo = false;
         loopVideo = false;
+        //playNextVideo = true;
+        //afterLoopVideo = true;
     }
     private void LoadVideoClips()
     {

@@ -39,6 +39,8 @@ public class SceneManagerScript : MonoBehaviour
         else if (name == "MainMenu(StartScreen)")
         {
             RuntimeManager.PlayOneShotAttached(mainMenuSceneSound, gameObject);
+            VideoManager.adsNumber = 0;
+            VideoManager.newVideoCount = 0;
         }
     }
     public IEnumerator loadScene(string name)
