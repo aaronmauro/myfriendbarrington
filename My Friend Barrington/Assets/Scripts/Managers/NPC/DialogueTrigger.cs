@@ -115,6 +115,8 @@ public class DialogueTrigger : MonoBehaviour
         {
             player.freezePlayer(isLocked); // use new freezePlayer function
             Player.dialogue = isLocked; // Set the static dialogue variable
+            // Ensure jump state follows lock state (locked -> can't jump)
+            player.canJump = !isLocked;
         }
     }
 
@@ -125,6 +127,11 @@ public class DialogueTrigger : MonoBehaviour
             playerInRange = true;
             var dm = DialogueManager.GetInstance();
             dm.animator = gameObject.GetComponent<Animator>();
+            if (player != null)
+            {
+                // disable jump while in range
+                player.canJump = false;
+            }
         }
     }
 
@@ -139,12 +146,27 @@ public class DialogueTrigger : MonoBehaviour
             playerInRange = false;
             var dm = DialogueManager.GetInstance();
             dm.animator = null;
+
+            // If dialogue was just started above, StartDialogue will handle lock state.
+            // Only re-enable jump here if there is no active dialogue.
+            if (player != null)
+            {
+                if (DialogueManager.GetInstance() == null || !DialogueManager.GetInstance().dialogueIsPlaying)
+                {
+                    player.canJump = true;
+                }
+            }
         }
     }
 
     private void UnlockPlayerMovement()
     {
         LockPlayerMovement(false);
+        // Ensure jump is re-enabled when dialogue ends
+        if (player != null)
+        {
+            player.canJump = true;
+        }
     }
 
     private void OnDestroy()

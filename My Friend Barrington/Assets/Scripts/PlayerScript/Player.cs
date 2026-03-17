@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
     // This is the player script
     // Setting serializable field for editor to edit in inspector
+    public PlayerInput playerinput;
     [Header("Movement")]
     [SerializeField]
     private float speedAcceleration;
@@ -56,6 +58,9 @@ public class Player : MonoBehaviour
     public bool isRight;
     public bool isPushingBox;
     private Vector2 moveInput;
+
+    // New toggle: allow jump when true
+    public bool canJump = true;
 
     // Swinging status - DV
     private Grapple swing = null;
@@ -105,6 +110,11 @@ public class Player : MonoBehaviour
     private Vector3 waitingToTeleportTarget;
 
     private float stunTimer = 0f; // for sound wave stun - DV
+
+    private void Awake()
+    {
+        playerinput = GetComponent<PlayerInput>();
+    }
 
     // Cool new trick
     private void OnEnable()
@@ -291,6 +301,20 @@ public class Player : MonoBehaviour
     {
         //isWalking = true; // only walk on the ground foo - DV
         // lol i didn't realize it,
+        if (context.performed)
+        {
+            var device = context.control.device;
+            if (device is Keyboard)
+            {
+                Debug.Log("Jump triggered by Keyboard");
+                //update ui 
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Jump triggered by Gamepad");
+                //update ui
+            }
+        }
     }
     private void stopPlayer(InputAction.CallbackContext context)
     {
@@ -300,7 +324,23 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
-        if (!playerInput)
+        if (context.performed)
+        {
+            var device = context.control.device;
+            if (device is Keyboard)
+            {
+                Debug.Log("Jump triggered by Keyboard");
+                //update ui 
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Jump triggered by Gamepad");
+                //update ui
+            }
+        }
+       
+
+        if (!playerInput || !canJump)
         {
             return;
         }
@@ -624,4 +664,17 @@ public class Player : MonoBehaviour
             Debug.Log("bzzt");
         }
     }
+    public void OnControlsChanged()
+    {
+        string currentScheme = playerinput.currentControlScheme;
+        if (currentScheme == "Keyboard&Mouse")
+        {
+            //update ui for kbm
+        }
+        else if (currentScheme == "Gamepad")
+        {
+            //update ui for Gamepad 
+        } 
+    }
+
 }

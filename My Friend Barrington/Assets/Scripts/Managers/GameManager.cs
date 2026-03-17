@@ -28,11 +28,22 @@ public class GameManager : MonoBehaviour
     [Header("Build Components")]
     public int gameFrameRate;
     public bool vsync;
+    public bool aspectRatio16_9;
 
+    [Header("Interface")]
     public InputActionReference EndAction;
+
     [Header("Audio (FMOD)")]
     [SerializeField] private EventReference quitGameSound;
 
+    [Header("Aspect Ratio")]
+    private float targetaspect;
+    private float windowaspect;
+    private float scaleHeight;
+    [SerializeField]
+    private Camera mainCamera;
+
+    [Header("Teleport")]
     [SerializeField]
     Transform EndOfLevel;
     [SerializeField] Transform DebugTeleport;
@@ -42,6 +53,31 @@ public class GameManager : MonoBehaviour
         // Application frame rate
         Application.targetFrameRate = gameFrameRate;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
+
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
+        windowaspect = (float)Screen.width / Screen.height; // Window Size
+        scaleHeight = windowaspect / targetaspect; // calculate current viewport
+        
+        if (scaleHeight < 1.0f)
+        {
+            Rect rect = mainCamera.rect;
+            rect.width = 1.0f;
+            rect.height = scaleHeight;
+            rect.x = 0;
+            rect.y = (1.0f - scaleHeight) / 2.0f;
+            mainCamera.rect = rect;
+        }
+        else
+        {
+            float scalewidth = 1.0f / scaleHeight;
+            Rect rect = mainCamera.rect;
+            rect.width = scalewidth;
+            rect.height = 1.0f;
+            rect.x = (1.0f - scalewidth) / 2.0f;
+            rect.y = 0;
+            mainCamera.rect = rect;
+        }
     }
 
     private void OnEnable()
