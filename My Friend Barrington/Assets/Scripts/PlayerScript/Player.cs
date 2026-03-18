@@ -111,6 +111,8 @@ public class Player : MonoBehaviour
 
     private float stunTimer = 0f; // for sound wave stun - DV
 
+    public Transform idleLookAt = null; // for lvl2 ship crossing - DV
+
     private void Awake()
     {
         playerinput = GetComponent<PlayerInput>();
@@ -504,8 +506,17 @@ public class Player : MonoBehaviour
 
     if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
-        // idle: face camera
-        targetY = 0f;
+            // idle: face camera
+            targetY = 0f;
+            // lvl2 ship crossing - DV
+            if (idleLookAt != null)
+            {
+                Quaternion ilat = Quaternion.LookRotation(this.transform.position - idleLookAt.position);
+                Vector3 vilat = ilat.eulerAngles;
+                targetY = vilat.y;
+                Debug.Log(targetY);
+            }
+        
             //Debug.Log("not Happy");
     }
     else if (rb.linearVelocity != Vector3.zero && !isIdle && !isPushingBox) // adding condition so it won't conflict with the if statement above
