@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("Build Components")]
     public int gameFrameRate;
     public bool vsync;
-    public bool aspectRatio16_9;
+    //public bool aspectRatio16_9;
 
     [Header("Interface")]
     public InputActionReference EndAction;
@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EventReference quitGameSound;
 
     [Header("Aspect Ratio")]
+    [SerializeField]
+    private bool pc;
     private float targetaspect;
     private float windowaspect;
     private float scaleHeight;
@@ -58,8 +60,15 @@ public class GameManager : MonoBehaviour
 
         borderCamera.depth = -2;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
-        windowaspect = (float)Screen.width / Screen.height; // Window Size
+        if (pc)
+        {
+            targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
+        }
+        else
+        {
+            targetaspect = 19.0f / 10.0f;
+        }
+            windowaspect = (float)Screen.width / Screen.height; // Window Size
         scaleHeight = windowaspect / targetaspect; // calculate current viewport
         
         if (scaleHeight < 1.0f)
