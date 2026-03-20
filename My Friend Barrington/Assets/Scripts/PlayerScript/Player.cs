@@ -437,6 +437,7 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerFalling", isfalling);
         anim.SetBool("PlayerPush", isPushingBox);
         anim.SetBool("PlayerInBush", inBush);
+        anim.SetBool("PlayerGrounded", isGround);
 
         // FMOD: start/stop walking loop based on isWalking and grounded state
         if (fmodInitialized)
