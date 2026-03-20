@@ -33,6 +33,6 @@ public class FallingMenuObjectsSpawner : MonoBehaviour
     {
         item += Random.Range(1, menuThings.Length - 1);
         if (item >= 4) item -= 4;
-        Instantiate(menuThings[item], new Vector2(Random.Range(0, 1800), 1124), Quaternion.Euler(0, 0, Random.Range(0, 359)), this.transform);
+        Instantiate(menuThings[item], new Vector2(Random.Range(0, Screen.width), Screen.height*1.2f), Quaternion.Euler(0, 0, Random.Range(0, 359)), this.transform);
     }
 }

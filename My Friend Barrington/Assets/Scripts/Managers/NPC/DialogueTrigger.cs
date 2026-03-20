@@ -12,32 +12,26 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
-    [SerializeField]
-    string npcName;
-    [SerializeField]
-    Sprite npcImage;
-
+    [SerializeField] string npcName;
+    [SerializeField] Sprite npcImage;
 
     private bool playerInRange;
-    private Player player; // Reference to PlayerController
+    private Player player;
     private bool hasSubscribed = false;
-
     private bool hasTalked = false;
 
-    // For subscribing to the InputAction on the InputManager
     private bool inputSubscribed = false;
 
-    [SerializeField] GameObject rift;
+    // ✅ MULTIPLE RIFTS
+    [SerializeField] private List<GameObject> rifts = new List<GameObject>();
 
     private void Awake()
     {
         player = FindObjectOfType<Player>();
-
     }
 
     private void Start()
     {
-        // Try to subscribe in Start instead of Awake
         TrySubscribeToDialogueManager();
         TrySubscribeToInputManager();
     }
@@ -63,7 +57,6 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        // Keep trying to subscribe if managers come up later
         if (DialogueManager.GetInstance() == null || !inputSubscribed)
         {
             if (!hasSubscribed)
@@ -71,8 +64,6 @@ public class DialogueTrigger : MonoBehaviour
 
             if (!inputSubscribed)
                 TrySubscribeToInputManager();
-
-            // still continue, we don't rely on Update polling for input anymore
         }
 
         if (playerInRange && DialogueManager.GetInstance() != null && !DialogueManager.GetInstance().dialogueIsPlaying)
@@ -85,19 +76,16 @@ public class DialogueTrigger : MonoBehaviour
         }
     }
 
-    // Called when the InputActionReference on the InputManager is triggered
     private void OnInteractAction(InputAction.CallbackContext context)
     {
-        // Only start dialogue on performed phase (should always be the case for .performed)
         if (!context.performed) return;
-
         if (!playerInRange) return;
 
         Debug.Log("Starting dialogue from trigger via InputAction!");
         StartDialogue();
     }
 
-    private void StartDialogue() // dialogue can be started in two places now - DV
+    private void StartDialogue()
     {
         var dm = DialogueManager.GetInstance();
         if (dm == null || dm.dialogueIsPlaying) return;
@@ -106,16 +94,23 @@ public class DialogueTrigger : MonoBehaviour
         dm.EnterDialogueMode(inkJSON);
         LockPlayerMovement(true);
         hasTalked = true;
-        if (rift != null) rift.SetActive(true);
+
+        // ✅ FIXED: ACTIVATE ALL RIFTS
+        foreach (GameObject rift in rifts)
+        {
+            if (rift != null)
+            {
+                rift.SetActive(true);
+            }
+        }
     }
 
     private void LockPlayerMovement(bool isLocked)
     {
         if (player != null)
         {
-            player.freezePlayer(isLocked); // use new freezePlayer function
-            Player.dialogue = isLocked; // Set the static dialogue variable
-            // Ensure jump state follows lock state (locked -> can't jump)
+            player.freezePlayer(isLocked);
+            Player.dialogue = isLocked;
             player.canJump = !isLocked;
         }
     }
@@ -127,9 +122,9 @@ public class DialogueTrigger : MonoBehaviour
             playerInRange = true;
             var dm = DialogueManager.GetInstance();
             dm.animator = gameObject.GetComponent<Animator>();
+
             if (player != null)
             {
-                // disable jump while in range
                 player.canJump = false;
             }
         }
@@ -141,14 +136,13 @@ public class DialogueTrigger : MonoBehaviour
         {
             if (!hasTalked)
             {
-                StartDialogue(); // you can't run from me - DV
+                StartDialogue();
             }
+
             playerInRange = false;
             var dm = DialogueManager.GetInstance();
             dm.animator = null;
 
-            // If dialogue was just started above, StartDialogue will handle lock state.
-            // Only re-enable jump here if there is no active dialogue.
             if (player != null)
             {
                 if (DialogueManager.GetInstance() == null || !DialogueManager.GetInstance().dialogueIsPlaying)
@@ -162,7 +156,7 @@ public class DialogueTrigger : MonoBehaviour
     private void UnlockPlayerMovement()
     {
         LockPlayerMovement(false);
-        // Ensure jump is re-enabled when dialogue ends
+
         if (player != null)
         {
             player.canJump = true;
@@ -183,7 +177,4 @@ public class DialogueTrigger : MonoBehaviour
             inputSubscribed = false;
         }
     }
-
-
-
 }
