@@ -4,8 +4,12 @@ using System.Collections;
 public class WhoopieCushion : MonoBehaviour
 {
     Vector3 originalScale;
+
     public float squashAmount = 0.8f;
     public float speed = 8f;
+
+    [Header("Particles")]
+    [SerializeField] private ParticleSystem landingParticles;
 
     void Start()
     {
@@ -18,12 +22,22 @@ public class WhoopieCushion : MonoBehaviour
         {
             StopAllCoroutines();
             StartCoroutine(Squash());
+
+            // Play particle effect
+            if (landingParticles != null)
+            {
+                landingParticles.Play();
+            }
         }
     }
 
     IEnumerator Squash()
     {
-        Vector3 squashed = new Vector3(originalScale.x, originalScale.y , originalScale.z * squashAmount);
+        Vector3 squashed = new Vector3(
+            originalScale.x,
+            originalScale.y,
+            originalScale.z * squashAmount
+        );
 
         // squash down
         float t = 0;
