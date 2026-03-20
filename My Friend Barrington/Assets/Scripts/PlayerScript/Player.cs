@@ -113,6 +113,8 @@ public class Player : MonoBehaviour
 
     public Transform idleLookAt = null; // for lvl2 ship crossing - DV
 
+    public bool inBush = false; // only controls animation, script controlling collision is between bush and wave - DV
+
     private void Awake()
     {
         playerinput = GetComponent<PlayerInput>();
@@ -434,6 +436,8 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerIdle", isIdleAnimation);
         anim.SetBool("PlayerFalling", isfalling);
         anim.SetBool("PlayerPush", isPushingBox);
+        anim.SetBool("PlayerInBush", inBush);
+        anim.SetBool("PlayerGrounded", isGround);
 
         // FMOD: start/stop walking loop based on isWalking and grounded state
         if (fmodInitialized)

@@ -6,12 +6,12 @@ public class RiftOpen : MonoBehaviour
     [SerializeField] private Transform targetObject;
 
     [Header("Scale Settings")]
-    [SerializeField] private Vector3 smallScale = new Vector3(0f, 0f, 0f);
-    [SerializeField] private Vector3 openScale = new Vector3(3f, 3f, 3f);
+    [SerializeField] private Vector3 smallScale = new Vector3(0.1f, 0.1f, 0.1f);
+    [SerializeField] private Vector3 openScale = new Vector3(20f, 20f, 20f);
 
     [Header("Timing")]
     [SerializeField] private float openSpeed = 8f;
-    [SerializeField] private float delayBeforeOpen = 0.1f;
+    [SerializeField] private float delayBeforeOpen = 0.5f;
 
     private bool isActive = false;
     private bool isOpening = false;
