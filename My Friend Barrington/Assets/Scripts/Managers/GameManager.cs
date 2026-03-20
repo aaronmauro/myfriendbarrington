@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     private float scaleHeight;
     [SerializeField]
     private Camera mainCamera;
+    [SerializeField]
+    private Camera borderCamera;
 
     [Header("Teleport")]
     [SerializeField]
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = gameFrameRate;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
 
+        borderCamera.depth = -2;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
         windowaspect = (float)Screen.width / Screen.height; // Window Size
