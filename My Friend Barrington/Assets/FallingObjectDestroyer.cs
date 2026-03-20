@@ -4,7 +4,7 @@ using System.Collections;
 public class FallingObjectDestroyer : MonoBehaviour
 {
 
-    [SerializeField] float destroyTime = 40f;
+    [SerializeField] float destroyTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
