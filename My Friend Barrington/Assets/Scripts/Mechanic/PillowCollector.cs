@@ -5,8 +5,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+
 public class PillowCollector : MonoBehaviour
 {
+
+public Image original;
+public Sprite newSprite;
+
+
     [SerializeField]
     private int pillowsNeeded = 4;
 
@@ -70,6 +77,7 @@ public class PillowCollector : MonoBehaviour
             if (pillowsNeeded <= 0)
             {
                 four.SetActive(true);
+                original.sprite = newSprite;
                 EndLevel();
             }
         }
