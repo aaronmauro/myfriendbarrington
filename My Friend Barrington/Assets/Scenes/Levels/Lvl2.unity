@@ -8274,6 +8274,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 145112556}
   m_Mesh: {fileID: 7682724294687611154, guid: c06c7a7de10d416488ef2504c569777a, type: 3}
+--- !u!1 &150346821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8346129451233320076, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+  m_PrefabInstance: {fileID: 639349837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &150346823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4030775388088319216, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+  m_PrefabInstance: {fileID: 639349837}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150346821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &150346825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150346821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33660e58c93d9a449adb39a56e05536d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  original: {fileID: 150346823}
+  newSprite: {fileID: 21300000, guid: 7e6a946c7fcc0644cb4d2eac9f92ae09, type: 3}
 --- !u!1 &151984875
 GameObject:
   m_ObjectHideFlags: 0
@@ -21407,6 +21437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c099ce36e028c438b514669fee12d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  original: {fileID: 150346823}
+  newSprite: {fileID: 21300000, guid: 7e6a946c7fcc0644cb4d2eac9f92ae09, type: 3}
   pillowsNeeded: 4
   FadeToBlack: {fileID: 2134302504}
   pillowText: {fileID: 1139213399}
@@ -35345,7 +35377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2403040894672761038, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030775388088319216, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_Color.a
+      value: 0.59607846
       objectReference: {fileID: 0}
     - target: {fileID: 5835645931884086095, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
       propertyPath: m_Pivot.x
@@ -35455,12 +35491,44 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6621284475489761651, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 61.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6659688077926617015, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
       propertyPath: m_Name
       value: LevelUI
       objectReference: {fileID: 0}
     - target: {fileID: 8346129451233320076, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_text
+      value: Collect Pillows
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 084929ad7841e3147966e8eea7f6e45a, type: 2}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8322860723942678991, guid: 084929ad7841e3147966e8eea7f6e45a, type: 2}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976795858446059598, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -35474,7 +35542,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5835645931884086095, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2134302503}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8346129451233320076, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 150346825}
   m_SourcePrefab: {fileID: 100100000, guid: 5dce800efc4d3564fa9524290acb434a, type: 3}
 --- !u!1 &639349838 stripped
 GameObject:
