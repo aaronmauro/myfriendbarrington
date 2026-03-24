@@ -120,6 +120,8 @@ public class GameManager : MonoBehaviour
     {
         // moving respawn point
         moveRespawn();
+
+
     }
 
     private void FixedUpdate() // THIS IS ALL TEMPORARY STUFF FOR PLAYTESTING WEEKLY BUILDS, BY DV

@@ -603,12 +603,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867686667}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0e486f769b369a4f85a7bcb5e742354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 3
+  spawnTime: 6
   menuThings:
   - {fileID: 2752332192948594171, guid: 4b2fcac63dafa234fa895a4a8c0731c6, type: 3}
   - {fileID: 900170676764990455, guid: b2a458cbd40d09a4c94b77170983c88c, type: 3}
@@ -618,6 +618,68 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 593321224498430409, guid: 6a9d1569ff68d7f40a99616545f332e4, type: 3}
   m_PrefabInstance: {fileID: 8937610245181568803}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &971776447
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 626505538488541649, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_Name
+      value: BlackBorderCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -55.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5465996990072987384, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+--- !u!20 &971776448 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7947457962405743833, guid: 3e70b9cf4b361bf46b7501850ea01dd7, type: 3}
+  m_PrefabInstance: {fileID: 971776447}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1010974486 stripped
 MonoBehaviour:
@@ -642,6 +704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
+      propertyPath: borderCamera
+      value: 
+      objectReference: {fileID: 971776448}
     - target: {fileID: 4819485401172098060, guid: 91c6e81fce46be546bed7bcae9448bf7, type: 3}
       propertyPath: backGroundAudio
       value: 
@@ -1434,7 +1500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5032267809115077575, guid: 5784d18375557d845811948decf9fa6e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7042750431882105923, guid: 5784d18375557d845811948decf9fa6e, type: 3}
       propertyPath: m_Enabled
@@ -2003,3 +2069,4 @@ SceneRoots:
   - {fileID: 1110582572}
   - {fileID: 6432733031773219132}
   - {fileID: 6115170223412305117}
+  - {fileID: 971776447}
