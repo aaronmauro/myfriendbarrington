@@ -6,6 +6,15 @@ public class BreakingBlock : MonoBehaviour
     //public string playerTag = "Player";
     public float respawnDelay = 2f;
     public float destroyDelay = 0.75f;
+
+    // Animator
+    [SerializeField]
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     /*private void OnCollisionEnter(Collision collision)
     {
         // Check if the colliding object has the player tag
@@ -22,6 +31,7 @@ public class BreakingBlock : MonoBehaviour
         // Check if the colliding object has the player tag
         if (other.gameObject.isPlayer())
         {
+            anim.SetTrigger("Break");
             Invoke(nameof(Delay), destroyDelay);
 
             Invoke(nameof(Reactivate), respawnDelay);
