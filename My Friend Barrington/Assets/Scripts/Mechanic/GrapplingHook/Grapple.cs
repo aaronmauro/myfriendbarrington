@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class Grapple : MonoBehaviour
 {
     [SerializeField] float pullSpeed = 0.5f;
@@ -20,32 +22,34 @@ public class Grapple : MonoBehaviour
     bool pulling;
     Rigidbody rigid;
     Player player;
-    private GrapplePoint highlightedPoint; // NEW
 
     public InputActionReference hookAction;
 
     private void OnEnable()
     {
-        hookAction.action.Enable();
+      hookAction.action.Enable();
     }
 
     private void OnDisable()
     {
         hookAction.action.Disable();
     }
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Get the Rigidbody component
         rigid = GetComponent<Rigidbody>();
         pulling = false;
         player = gameObject.findPlayer();
     }
 
+
+
+    // Update is called once per frame
     void Update()
     {
-        UpdateIndicator(); // NEW
-
-        if (hook == null && hookAction.action.triggered && !player.isInteracting)
+        // Shoot or retract the hook based on player input
+        if (hook == null && hookAction.action.triggered && !player.isInteracting) //Input.GetKeyDown(KeyCode.E))
         {
             GrapplePoint availablePoint = GetNearestGrapplePoint();
             if (availablePoint != null)
@@ -66,23 +70,9 @@ public class Grapple : MonoBehaviour
                 player.HookJump();
             }
             DestroyHook();
+            
+            
         }
-    }
-
-    // NEW
-    private void UpdateIndicator()
-    {
-        GrapplePoint nearest = hook == null ? GetNearestGrapplePoint() : null;
-
-        if (nearest == highlightedPoint) return;
-
-        if (highlightedPoint != null)
-            highlightedPoint.HideIndicator();
-
-        highlightedPoint = nearest;
-
-        if (highlightedPoint != null)
-            highlightedPoint.ShowIndicator();
     }
 
     private void FixedUpdate()
@@ -90,14 +80,20 @@ public class Grapple : MonoBehaviour
         if (!pulling || hook == null) return;
 
         Vector3 targetDirection = hook.transform.position - transform.position;
-        float singleStep = 5f * Time.fixedDeltaTime;
+        //Debug.DrawRay(transform.position, targetDirection, Color.cyan);
+        float singleStep = 5f * Time.fixedDeltaTime; // f is speed
         Vector3 newDirection = Vector3.RotateTowards(transform.up, targetDirection, singleStep, 0f);
+        //Debug.DrawRay(transform.position, newDirection, Color.red); // not needed, for debug only - DV
+        //Debug.Log(swingDirection);
         newDirection = Quaternion.Euler(0, 0, swingDirection) * newDirection;
         transform.rotation = Quaternion.LookRotation(newDirection);
+        //transform.LookAt(hook.transform.position);
+
+        
 
         if (Vector3.Distance(transform.position, hook.transform.position) <= stopDistance)
         {
-            // new behaviour - DV
+            //DestroyHook(); new behaviour - DV
         }
         else
         {
@@ -106,6 +102,7 @@ public class Grapple : MonoBehaviour
             {
                 rigid.AddForce(Vector3.right * 2f, ForceMode.Impulse);
                 forceTimer += Time.deltaTime;
+                //Debug.Log(forceTimer);
                 if (forceTimer >= forceIncreaseTime)
                 {
                     applyForce = true;
@@ -120,12 +117,15 @@ public class Grapple : MonoBehaviour
                     applyForce = true;
                 }
             }
+            //fixSpeed();
         }
     }
 
     private void fixSpeed()
     {
+        // Check for speed (wihtout jumping)
         Vector3 getLinearVelocity = new Vector3(rigid.linearVelocity.x, rigid.linearVelocity.y, rigid.linearVelocity.z);
+        // If exceed the speed
         if (getLinearVelocity.magnitude > maxHookSpeed)
         {
             Vector3 limitLinearVelocity = getLinearVelocity.normalized * maxHookSpeed;
@@ -133,8 +133,12 @@ public class Grapple : MonoBehaviour
         }
     }
 
+
+    // Get the nearest grapple point within range
     GrapplePoint GetNearestGrapplePoint()
     {
+
+        // Query current GrapplePoints in the scene so ones enabled at runtime (by your lever) are found.
         var points = FindObjectsOfType<GrapplePoint>();
         foreach (var point in points)
         {
@@ -144,6 +148,7 @@ public class Grapple : MonoBehaviour
         return null;
     }
 
+
     public void StartPull()
     {
         pulling = true;
@@ -151,8 +156,7 @@ public class Grapple : MonoBehaviour
         if (player.isRight)
         {
             swingDirection = 90f;
-        }
-        else
+        } else
         {
             swingDirection = -90f;
         }
@@ -180,12 +184,26 @@ public class Grapple : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, stopDistance);
+        Gizmos.DrawWireSphere(transform.position,stopDistance);
     }
 
     public void moveSwing(Vector2 moveInput)
     {
+
+        
         Vector3 playerMovement = transform.forward * moveInput.x * swingDirection * -2f;
+
+        // THIS KINDA WORKS, BUT WE CAN DO BETTER - DV
+        //Vector3 playerMovement = new Vector3(moveInput.x * 200f, rigid.linearVelocity.y, rigid.linearVelocity.z);
+
+        // NONE OF THE CODE BELOW WORKS - DV
+
+        //Debug.Log(rb.linearVelocity.y + "-1");
+        //Debug.Log("before: "+playerMovement.ToString());
+        // HERE WE GO LADS
+        //playerMovement = Vector3.RotateTowards(playerMovement.y, hook.transform.position - transform.position, 10f, 0f);
+        //Debug.Log("after:  "+playerMovement.ToString());
+        // Player Movement
         rigid.AddForce(playerMovement);
     }
 }
