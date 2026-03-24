@@ -28,19 +28,68 @@ public class GameManager : MonoBehaviour
     [Header("Build Components")]
     public int gameFrameRate;
     public bool vsync;
+    //public bool aspectRatio16_9;
 
+    [Header("Interface")]
     public InputActionReference EndAction;
+
     [Header("Audio (FMOD)")]
     [SerializeField] private EventReference quitGameSound;
 
+    [Header("Aspect Ratio")]
+    [SerializeField]
+    private bool pc;
+    private float targetaspect;
+    private float windowaspect;
+    private float scaleHeight;
+    [SerializeField]
+    private Camera mainCamera;
+    [SerializeField]
+    private Camera borderCamera;
+
+    [Header("Teleport")]
     [SerializeField]
     Transform EndOfLevel;
+    [SerializeField] Transform DebugTeleport;
 
     private void Awake()
     {
         // Application frame rate
         Application.targetFrameRate = gameFrameRate;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
+
+        borderCamera.depth = -2;
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        if (pc)
+        {
+            targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
+        }
+        else
+        {
+            targetaspect = 19.0f / 10.0f;
+        }
+            windowaspect = (float)Screen.width / Screen.height; // Window Size
+        scaleHeight = windowaspect / targetaspect; // calculate current viewport
+        
+        if (scaleHeight < 1.0f)
+        {
+            Rect rect = mainCamera.rect;
+            rect.width = 1.0f;
+            rect.height = scaleHeight;
+            rect.x = 0;
+            rect.y = (1.0f - scaleHeight) / 2.0f;
+            mainCamera.rect = rect;
+        }
+        else
+        {
+            float scalewidth = 1.0f / scaleHeight;
+            Rect rect = mainCamera.rect;
+            rect.width = scalewidth;
+            rect.height = 1.0f;
+            rect.x = (1.0f - scalewidth) / 2.0f;
+            rect.y = 0;
+            mainCamera.rect = rect;
+        }
     }
 
     private void OnEnable()
@@ -89,6 +138,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.End))
         {
             player.transform.position = EndOfLevel.position;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            player.transform.position = DebugTeleport.position;
         }
     }
 

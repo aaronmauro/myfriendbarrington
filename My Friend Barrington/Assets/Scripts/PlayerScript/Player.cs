@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.VFX;
 
 public class Player : MonoBehaviour
 {
     // This is the player script
     // Setting serializable field for editor to edit in inspector
+    public PlayerInput playerinput;
     [Header("Movement")]
     [SerializeField]
     private float speedAcceleration;
@@ -56,6 +58,9 @@ public class Player : MonoBehaviour
     public bool isRight;
     public bool isPushingBox;
     private Vector2 moveInput;
+
+    // New toggle: allow jump when true
+    public bool canJump = true;
 
     // Swinging status - DV
     private Grapple swing = null;
@@ -105,6 +110,15 @@ public class Player : MonoBehaviour
     private Vector3 waitingToTeleportTarget;
 
     private float stunTimer = 0f; // for sound wave stun - DV
+
+    public Transform idleLookAt = null; // for lvl2 ship crossing - DV
+
+    public bool inBush = false; // only controls animation, script controlling collision is between bush and wave - DV
+
+    private void Awake()
+    {
+        playerinput = GetComponent<PlayerInput>();
+    }
 
     // Cool new trick
     private void OnEnable()
@@ -291,6 +305,20 @@ public class Player : MonoBehaviour
     {
         //isWalking = true; // only walk on the ground foo - DV
         // lol i didn't realize it,
+        if (context.performed)
+        {
+            var device = context.control.device;
+            if (device is Keyboard)
+            {
+                Debug.Log("Jump triggered by Keyboard");
+                //update ui 
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Jump triggered by Gamepad");
+                //update ui
+            }
+        }
     }
     private void stopPlayer(InputAction.CallbackContext context)
     {
@@ -300,7 +328,23 @@ public class Player : MonoBehaviour
     }
     private void jumpStart(InputAction.CallbackContext context)
     {
-        if (!playerInput)
+        if (context.performed)
+        {
+            var device = context.control.device;
+            if (device is Keyboard)
+            {
+                Debug.Log("Jump triggered by Keyboard");
+                //update ui 
+            }
+            else if (device is Gamepad)
+            {
+                Debug.Log("Jump triggered by Gamepad");
+                //update ui
+            }
+        }
+       
+
+        if (!playerInput || !canJump)
         {
             return;
         }
@@ -384,7 +428,7 @@ public class Player : MonoBehaviour
             //rb.linearVelocity = new Vector3(limitLinearVelocity.x, rb.linearVelocity.y, limitLinearVelocity.z);
         }
     }
-    private void playerAnimation()
+    private void playerAnimation() 
     {
         // Player walking Audio
         //AudioManager.instance.playPlayerWalking(isWalking);
@@ -392,6 +436,8 @@ public class Player : MonoBehaviour
         anim.SetBool("PlayerIdle", isIdleAnimation);
         anim.SetBool("PlayerFalling", isfalling);
         anim.SetBool("PlayerPush", isPushingBox);
+        anim.SetBool("PlayerInBush", inBush);
+        anim.SetBool("PlayerGrounded", isGround);
 
         // FMOD: start/stop walking loop based on isWalking and grounded state
         if (fmodInitialized)
@@ -464,8 +510,17 @@ public class Player : MonoBehaviour
 
     if (rb.linearVelocity == Vector3.zero && isIdle && !isPushingBox)
     {
-        // idle: face camera
-        targetY = 0f;
+            // idle: face camera
+            targetY = 0f;
+            // lvl2 ship crossing - DV
+            if (idleLookAt != null)
+            {
+                Quaternion ilat = Quaternion.LookRotation(this.transform.position - idleLookAt.position);
+                Vector3 vilat = ilat.eulerAngles;
+                targetY = vilat.y;
+                Debug.Log(targetY);
+            }
+        
             //Debug.Log("not Happy");
     }
     else if (rb.linearVelocity != Vector3.zero && !isIdle && !isPushingBox) // adding condition so it won't conflict with the if statement above
@@ -624,4 +679,17 @@ public class Player : MonoBehaviour
             Debug.Log("bzzt");
         }
     }
+    public void OnControlsChanged()
+    {
+        string currentScheme = playerinput.currentControlScheme;
+        if (currentScheme == "Keyboard&Mouse")
+        {
+            //update ui for kbm
+        }
+        else if (currentScheme == "Gamepad")
+        {
+            //update ui for Gamepad 
+        } 
+    }
+
 }

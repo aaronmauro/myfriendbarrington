@@ -20,6 +20,8 @@ public class SpecialMovingBlock : MonoBehaviour
 
     private bool colliding = false;
 
+    [SerializeField] bool DoTheCameraThing = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,13 +31,14 @@ public class SpecialMovingBlock : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!DoTheCameraThing) return;
         if (zoomOut)
         {
             if (playerCam.Lens.FieldOfView <= zoomOutValueNew)
             {
                 playerCam.Lens.FieldOfView += Time.deltaTime * zoomOutMultipliers;
             }
-        } else if (playerCam.Lens.FieldOfView >= zoomOutValueDefault)
+        } else if (playerCam.Lens.FieldOfView >= zoomOutValueDefault) //This will lock the player camera - EH, TDLL
         {
             playerCam.Lens.FieldOfView -= Time.deltaTime * zoomOutMultipliers;
         }
