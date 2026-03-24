@@ -77,7 +77,7 @@ public Sprite newSprite;
             if (pillowsNeeded <= 0)
             {
                 four.SetActive(true);
-                original.sprite = newSprite;
+                // original.sprite = newSprite; why is this here? it breaks my things >:( - DV
                 EndLevel();
             }
         }
