@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("Build Components")]
     public int gameFrameRate;
     public bool vsync;
-    public bool aspectRatio16_9;
+    //public bool aspectRatio16_9;
 
     [Header("Interface")]
     public InputActionReference EndAction;
@@ -37,11 +37,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EventReference quitGameSound;
 
     [Header("Aspect Ratio")]
+    [SerializeField]
+    private bool pc;
     private float targetaspect;
     private float windowaspect;
     private float scaleHeight;
     [SerializeField]
     private Camera mainCamera;
+    [SerializeField]
+    private Camera borderCamera;
 
     [Header("Teleport")]
     [SerializeField]
@@ -54,9 +58,17 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = gameFrameRate;
         QualitySettings.vSyncCount = vsync ? 1 : 0;
 
+        borderCamera.depth = -2;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
-        windowaspect = (float)Screen.width / Screen.height; // Window Size
+        if (pc)
+        {
+            targetaspect = 16.0f / 9.0f; // Aspect Ratio 16/9
+        }
+        else
+        {
+            targetaspect = 19.0f / 10.0f;
+        }
+            windowaspect = (float)Screen.width / Screen.height; // Window Size
         scaleHeight = windowaspect / targetaspect; // calculate current viewport
         
         if (scaleHeight < 1.0f)
@@ -108,6 +120,8 @@ public class GameManager : MonoBehaviour
     {
         // moving respawn point
         moveRespawn();
+
+
     }
 
     private void FixedUpdate() // THIS IS ALL TEMPORARY STUFF FOR PLAYTESTING WEEKLY BUILDS, BY DV
