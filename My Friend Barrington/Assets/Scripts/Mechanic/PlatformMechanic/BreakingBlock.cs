@@ -10,10 +10,13 @@ public class BreakingBlock : MonoBehaviour
     // Animator
     [SerializeField]
     private Animator anim;
+    [SerializeField]
+    private Renderer[] r;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+        r = GetComponentsInChildren<Renderer>();
     }
     /*private void OnCollisionEnter(Collision collision)
     {
@@ -40,10 +43,26 @@ public class BreakingBlock : MonoBehaviour
 
     private void Reactivate()
     {
-        gameObject.SetActive(true);
+        //gameObject.SetActive(true); this will turn off code
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = true;
+        }
+        foreach (Renderer ren in r)
+        {
+            ren.enabled = true;
+        }
     }
     private void Delay()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            c.enabled = false;
+        }
+        foreach (Renderer ren in r)
+        {
+            ren.enabled = false;
+        }
     }
 }
