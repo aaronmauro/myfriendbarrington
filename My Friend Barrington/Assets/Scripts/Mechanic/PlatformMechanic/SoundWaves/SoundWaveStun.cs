@@ -16,7 +16,7 @@ public class SoundWaveStun : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.isPlayer())
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Player>().Stun(1f);
         }

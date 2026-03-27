@@ -2,13 +2,20 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public GameObject mapPanel;
+    [Header("Map UI")]
+    public GameObject mapUI;
+
+    [Header("Controls")]
+    public KeyCode toggleKey = KeyCode.M;
+
+    bool mapOpen = false;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(toggleKey))
         {
-            mapPanel.SetActive(!mapPanel.activeSelf);
+            mapOpen = !mapOpen;
+            mapUI.SetActive(mapOpen);
         }
     }
 }
