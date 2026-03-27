@@ -9,32 +9,16 @@ public class SteamAchieve : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    //  void Update()
-    //{
-    //  if (!SteamManager.Initialized) { return; }
+     
+    void Update()
+    {
+     if (!SteamManager.Initialized) { return; }
 
-    // if (!Input.GetKeyDown(KeyCode.Space)) { return; }
+     if (!Input.GetKeyDown(KeyCode.F8)) { return; }
 
-    // SteamUserStats.ResetAllStats(true);   // use to reset stats when testing
+     SteamUserStats.ResetAllStats(true);   // use to reset stats when testing
 
-    //SteamUserStats.SetAchievement("BEAR_TESTING");
-
-    //SteamUserStats.SetAchievement("Hooking");
-
-    //SteamUserStats.SetAchievement("NPCM");
-
-    //SteamUserStats.SetAchievement("NPCP");
-
-    //SteamUserStats.SetAchievement("NPCF");
-
-    //.SetAchievement("Lvl_1");
-
-    //SteamUserStats.SetAchievement("Lvl_2");
-
-    //SteamUserStats.SetAchievement("Lvl_3");
-
-    //SteamUserStats.SetAchievement("Find_Marty");
+    
 
 
 
@@ -43,8 +27,7 @@ public class SteamAchieve : MonoBehaviour
 
 
 
+     SteamUserStats.StoreStats();
 
-    //  SteamUserStats.StoreStats();
-
-    //}
+    }
 }
