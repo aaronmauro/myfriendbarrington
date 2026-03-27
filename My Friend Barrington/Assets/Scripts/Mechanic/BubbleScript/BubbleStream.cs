@@ -40,7 +40,7 @@ public class BubbleStream : MonoBehaviour
         {
            
             player.inBubbleStream(force);
-            RuntimeManager.PlayOneShotAttached(bubbleStreamEvent, gameObject);
+            //RuntimeManager.PlayOneShotAttached(bubbleStreamEvent, gameObject);
         }
     }
 
