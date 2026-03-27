@@ -148,6 +148,9 @@ public class Grapple : MonoBehaviour
     {
         pulling = true;
         player.Swing(this);
+
+        GrappleAchievementTracker.RegisterGrapple(); // ADD THIS
+
         if (player.isRight)
         {
             swingDirection = 90f;

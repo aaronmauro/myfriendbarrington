@@ -23,6 +23,12 @@ using Steamworks;
 public class SteamManager : MonoBehaviour
 {
 #if !DISABLESTEAMWORKS
+    // Set your Steam AppID here. You can change it in the Inspector at runtime for testing,
+    // or hard-code your real production AppID before shipping.
+    [SerializeField]
+    [Tooltip("Your Steam App ID. Replace 480 (Spacewar) with your actual AppID for release.")]
+    private int m_SteamAppID = 4318500;
+
     protected static bool s_EverInitialized = false;
 
     protected static SteamManager s_instance;
@@ -105,10 +111,9 @@ public class SteamManager : MonoBehaviour
             // If Steam is not running or the game wasn't started through Steam, SteamAPI_RestartAppIfNecessary starts the
             // Steam client and also launches this game again if the User owns it. This can act as a rudimentary form of DRM.
 
-            // Once you get a Steam AppID assigned by Valve, you need to replace AppId_t.Invalid with it and
-            // remove steam_appid.txt from the game depot. eg: "(AppId_t)480" or "new AppId_t(480)". 
-            // See the Valve documentation for more information: https://partner.steamgames.com/doc/sdk/api#initialization_and_shutdown
-            if (SteamAPI.RestartAppIfNecessary(AppId_t.Invalid))
+            // Use the configured AppID when checking RestartAppIfNecessary. For editor/testing you can keep 480
+            // (SpaceWar). Replace m_SteamAppID with your real AppID for release and remove any steam_appid.txt from the build.
+            if (SteamAPI.RestartAppIfNecessary(new AppId_t((uint)m_SteamAppID)))
             {
                 Application.Quit();
                 return;

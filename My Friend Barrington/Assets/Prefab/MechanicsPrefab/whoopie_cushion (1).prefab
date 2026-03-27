@@ -278,11 +278,11 @@ MonoBehaviour:
   force: 500
   whoopieCushionEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -1376301439
+      Data2: 1313730401
+      Data3: -1964869724
+      Data4: 130545153
+    Path: event:/WhoopieCushion
 --- !u!64 &1680013841489590205
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -333,6 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squashAmount: 0.8
   speed: 4
+  landingParticles: {fileID: 0}
 --- !u!114 &2080378900703646387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +348,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 0}
   zoomOutCam: {fileID: 3036238171854338253}
+  brain: {fileID: 0}
   lingerTime: 0
+  easeTime: 5
 --- !u!65 &4150144997931351965
 BoxCollider:
   m_ObjectHideFlags: 0
