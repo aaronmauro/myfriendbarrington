@@ -639,7 +639,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3000
---- !u!114 &-3771257415442857972
+--- !u!114 &-3715664320739587067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -649,14 +649,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/StickyRetract
+  m_Name: event:/ButtonPickUp
   m_EditorClassIdentifier: 
-  Path: event:/StickyRetract
+  Path: event:/ButtonPickUp
   Guid:
-    Data1: 808141371
-    Data2: 1192780158
-    Data3: 1794838203
-    Data4: -1597826932
+    Data1: 1214481722
+    Data2: 1182694788
+    Data3: 1898551998
+    Data4: -1020810339
   Banks:
   - {fileID: 4196543210511341658}
   IsStream: 0
@@ -665,7 +665,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1230
 --- !u!114 &-3704472923734190446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,10 +996,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639102125580189407
+  lastModified: 639102217285676328
   FileSizes:
   - Name: 
-    Value: 3496
+    Value: 3682
   Exists: 1
 --- !u!114 &-273425419323144221
 MonoBehaviour:
@@ -1101,14 +1101,18 @@ MonoBehaviour:
   - {fileID: 6986680064632885588}
   - {fileID: -3217616731846707847}
   - {fileID: -3976527581966287512}
-  - {fileID: -3771257415442857972}
+  - {fileID: 108093966961546984}
+  - {fileID: 8283616487910363730}
+  - {fileID: -3715664320739587067}
+  - {fileID: 7980816308397880968}
+  - {fileID: 564004050898786714}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1556990543963516638}
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639102125627617906
+  cacheTime: 639102217286131049
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1216,6 +1220,43 @@ MonoBehaviour:
     index: 51
   - key: event:/FelliniVoices
     index: 52
+  - key: event:/EnterBush
+    index: 53
+  - key: event:/CrayonBreak
+    index: 54
+  - key: event:/ButtonPickUp
+    index: 55
+  - key: event:/BeachBall
+    index: 56
+  - key: event:/FallInWater
+    index: 57
+--- !u!114 &108093966961546984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnterBush
+  m_EditorClassIdentifier: 
+  Path: event:/EnterBush
+  Guid:
+    Data1: -1491248384
+    Data2: 1200712780
+    Data3: 1046081679
+    Data4: -1559328630
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &155902643528612290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1270,6 +1311,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 831
+--- !u!114 &564004050898786714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/FallInWater
+  m_EditorClassIdentifier: 
+  Path: event:/FallInWater
+  Guid:
+    Data1: -1013049928
+    Data2: 1341041173
+    Data3: 1815267726
+    Data4: 2096699421
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1242253052179185182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,7 +1533,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639102125617827684
+  lastModified: 639102217286131049
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
@@ -1702,6 +1770,60 @@ MonoBehaviour:
   lastModified: 639102125580135974
   FileSizes: []
   Exists: 1
+--- !u!114 &7980816308397880968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BeachBall
+  m_EditorClassIdentifier: 
+  Path: event:/BeachBall
+  Guid:
+    Data1: -1481501620
+    Data2: 1096674815
+    Data3: 1114894780
+    Data4: 1959591915
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &8283616487910363730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/CrayonBreak
+  m_EditorClassIdentifier: 
+  Path: event:/CrayonBreak
+  Guid:
+    Data1: -164990687
+    Data2: 1188422519
+    Data3: 414018688
+    Data4: -441673861
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &8557254738894599048
 MonoBehaviour:
   m_ObjectHideFlags: 0
