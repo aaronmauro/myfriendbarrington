@@ -18,7 +18,7 @@ public class SteamAchieve : MonoBehaviour
 
         //SteamUserStats.ResetAllStats(true);   // use to reset stats when testing
 
-        SteamUserStats.SetAchievement("ACH_WIN_ONE_GAME");
+        SteamUserStats.SetAchievement("BEAR_TESTING");
 
         SteamUserStats.StoreStats();
 
