@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] public TextMeshProUGUI dialogueName;
     [SerializeField] public Image dialogueImage;
+    [SerializeField] public Image dialogueBox;
 
     [Header("Choices UI")]
     [SerializeField] private GameObject[] choices;
@@ -442,10 +443,11 @@ public class DialogueManager : MonoBehaviour
         isProcessingChoice = false;
     }
 
-    public void UpdateNpc(string npcName, Sprite npcImage)
+    public void UpdateNpc(string npcName, Sprite npcImage, Sprite npcDialogueBox)
     {
         dialogueName.SetText(npcName);
         dialogueImage.sprite = npcImage;
+        dialogueBox.sprite = npcDialogueBox;
     }
 
     private void HandleTags(List<string> currentTags)
