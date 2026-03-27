@@ -14,6 +14,7 @@ public class DialogueTrigger : MonoBehaviour
 
     [SerializeField] string npcName;
     [SerializeField] Sprite npcImage;
+    [SerializeField] Sprite npcDialogueBox;
 
     private bool playerInRange;
     private Player player;
@@ -90,7 +91,7 @@ public class DialogueTrigger : MonoBehaviour
         var dm = DialogueManager.GetInstance();
         if (dm == null || dm.dialogueIsPlaying) return;
 
-        dm.UpdateNpc(npcName, npcImage);
+        dm.UpdateNpc(npcName, npcImage, npcDialogueBox);
         dm.EnterDialogueMode(inkJSON);
         LockPlayerMovement(true);
         hasTalked = true;
