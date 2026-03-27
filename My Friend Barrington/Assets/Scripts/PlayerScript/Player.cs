@@ -483,6 +483,8 @@ public class Player : MonoBehaviour
     {
         if (isFrozen) {
             playerInput = false;
+
+            gameObject.GetComponent<Grapple>().DestroyHook();
             // Stop player from moving
             //rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
             isWalking = false;

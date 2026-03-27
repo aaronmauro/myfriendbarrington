@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
         //player.gameObject.SetActive(false); we got animation now
         if (player.playerInput)
         {
-            Debug.Log("heavy is dead!!");
+            //Debug.Log("heavy is dead!!");
             player.freezePlayer(true);
             anim.SetTrigger("PlayerDeath");
             StartCoroutine(RespawnDelay1(1f));
