@@ -16,9 +16,33 @@ public class SteamAchieve : MonoBehaviour
 
         if (!Input.GetKeyDown(KeyCode.Space)) { return; }
 
-        //SteamUserStats.ResetAllStats(true);   // use to reset stats when testing
+        SteamUserStats.ResetAllStats(true);   // use to reset stats when testing
 
-        SteamUserStats.SetAchievement("BEAR_TESTING");
+        //SteamUserStats.SetAchievement("BEAR_TESTING");
+
+        //SteamUserStats.SetAchievement("Hooking");
+
+        //SteamUserStats.SetAchievement("NPCM");
+
+        //SteamUserStats.SetAchievement("NPCP");
+
+        //SteamUserStats.SetAchievement("NPCF");
+
+        //.SetAchievement("Lvl_1");
+
+        //SteamUserStats.SetAchievement("Lvl_2");
+
+        //SteamUserStats.SetAchievement("Lvl_3");
+
+        //SteamUserStats.SetAchievement("Find_Marty");
+
+
+
+
+
+
+
+
 
         SteamUserStats.StoreStats();
 
