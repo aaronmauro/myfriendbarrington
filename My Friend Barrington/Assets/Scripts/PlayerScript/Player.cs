@@ -681,17 +681,17 @@ public class Player : MonoBehaviour
             Debug.Log("bzzt");
         }
     }
-    public void OnControlsChanged()
-    {
-        string currentScheme = playerinput.currentControlScheme;
-        if (currentScheme == "Keyboard&Mouse")
-        {
+   // public void OnControlsChanged()
+    //{
+      //  string currentScheme = playerinput.currentControlScheme;
+      //  if (currentScheme == "Keyboard&Mouse")
+      //  {
             //update ui for kbm
-        }
-        else if (currentScheme == "Gamepad")
-        {
+       // }
+       // else if (currentScheme == "Gamepad")
+       // {
             //update ui for Gamepad 
-        } 
-    }
+       // } 
+    ///}
 
 }
