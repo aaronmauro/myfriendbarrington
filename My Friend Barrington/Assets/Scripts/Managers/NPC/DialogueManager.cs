@@ -1,12 +1,13 @@
+using FMODUnity;
+using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using Ink.Runtime;
+using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
+using UnityEngine.UI;
+using FMODUnity;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -27,6 +28,13 @@ public class DialogueManager : MonoBehaviour
     [Header("Typewriter Effect")]
     [SerializeField] private float typingSpeed = 0.04f; // Time between each character
     [SerializeField] private bool canSkipTyping = true; // Allow players to skip typing animation
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference dialogueFelliniEvent;
+
+    /*[Header("Audio (FMOD)")]
+    [SerializeField]
+    private FMODUnity.EventReference dialogueFelliniEvent; // use EventReference instead of string*/
 
     private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
@@ -242,6 +250,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeText(string text)
     {
+        RuntimeManager.PlayOneShotAttached(dialogueFelliniEvent, gameObject);
         isTyping = true;
         dialogueText.text = "";
 
@@ -263,6 +272,7 @@ public class DialogueManager : MonoBehaviour
 
         // After typing is complete, display choices or continue button
         DisplayChoices();
+       
     }
 
     private void SkipTyping()

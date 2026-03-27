@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -18,6 +19,9 @@ public class Rift : MonoBehaviour
     public bool hideSpawn;
     [SerializeField]
     private float triggerDistance;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference riftExitEvent;
 
     private void Start()
     {
@@ -48,6 +52,7 @@ public class Rift : MonoBehaviour
                 // Teleport the player to the other rift's position
                 playerCam.TrackerSettings.PositionDamping = Vector3.zero;
                 player.transform.position = tpTransform.transform.position;
+                RuntimeManager.PlayOneShotAttached(riftExitEvent, gameObject);
                 isTp = true;
                 otherRift.isTp = true;
                 StartCoroutine(startCooldown());
