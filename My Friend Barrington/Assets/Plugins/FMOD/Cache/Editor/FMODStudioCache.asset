@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: 7849206422242635289}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -103,7 +103,7 @@ MonoBehaviour:
   - {fileID: 7849206422242635289}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -951,9 +951,36 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639102125580179353
+  lastModified: 639102242933747797
   FileSizes: []
   Exists: 1
+--- !u!114 &-1459931971722098020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/EnterBush 2
+  m_EditorClassIdentifier: 
+  Path: event:/EnterBush 2
+  Guid:
+    Data1: -542830193
+    Data2: 1292326104
+    Data3: 44927622
+    Data4: -278469410
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1138
 --- !u!114 &-1090716650146158454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -996,10 +1023,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639102217285676328
+  lastModified: 639102242933773478
   FileSizes:
   - Name: 
-    Value: 3682
+    Value: 3814
   Exists: 1
 --- !u!114 &-273425419323144221
 MonoBehaviour:
@@ -1106,13 +1133,16 @@ MonoBehaviour:
   - {fileID: -3715664320739587067}
   - {fileID: 7980816308397880968}
   - {fileID: 564004050898786714}
+  - {fileID: 1570051667032889358}
+  - {fileID: -1459931971722098020}
+  - {fileID: 8542267199767073969}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1556990543963516638}
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639102217286131049
+  cacheTime: 639102242934922695
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1230,6 +1260,12 @@ MonoBehaviour:
     index: 56
   - key: event:/FallInWater
     index: 57
+  - key: event:/StickyRetract
+    index: 58
+  - key: event:/EnterBush 2
+    index: 59
+  - key: event:/StickyRetract 2
+    index: 60
 --- !u!114 &108093966961546984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1396,33 @@ MonoBehaviour:
   - {fileID: 4196543210511341658}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1570051667032889358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StickyRetract
+  m_EditorClassIdentifier: 
+  Path: event:/StickyRetract
+  Guid:
+    Data1: 808141371
+    Data2: 1192780158
+    Data3: 1794838203
+    Data4: -1597826932
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1533,7 +1596,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639102217286131049
+  lastModified: 639102242934922695
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
@@ -1767,7 +1830,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639102125580135974
+  lastModified: 639102242764764783
   FileSizes: []
   Exists: 1
 --- !u!114 &7980816308397880968
@@ -1824,6 +1887,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &8542267199767073969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StickyRetract 2
+  m_EditorClassIdentifier: 
+  Path: event:/StickyRetract 2
+  Guid:
+    Data1: 508286970
+    Data2: 1291780357
+    Data3: 342100108
+    Data4: -1914588008
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 314
 --- !u!114 &8557254738894599048
 MonoBehaviour:
   m_ObjectHideFlags: 0

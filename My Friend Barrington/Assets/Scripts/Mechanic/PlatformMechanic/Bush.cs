@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using FMODUnity;
 
 public class Bush : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Bush : MonoBehaviour
     private float nearClipPlane;
     private float orignalClipPlane;
 
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference enterBushEvent;
+
     private void Start()
     {
         playerCam = gameObject.findPlayerCamera();
@@ -28,6 +32,7 @@ public class Bush : MonoBehaviour
         {
             waves.inBush = true;
             other.gameObject.GetComponent<Player>().inBush = true;
+            RuntimeManager.PlayOneShotAttached(enterBushEvent, gameObject);
             //playerCam.Lens.NearClipPlane = nearClipPlane;
         }
     }
