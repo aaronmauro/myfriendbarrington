@@ -11,6 +11,8 @@ public class WhoopieCushion : MonoBehaviour
     [Header("Particles")]
     [SerializeField] private ParticleSystem landingParticles;
 
+    private bool isSquashing = false; // ✅ added flag
+
     void Start()
     {
         originalScale = transform.localScale;
@@ -18,12 +20,10 @@ public class WhoopieCushion : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isSquashing)
         {
-            StopAllCoroutines();
             StartCoroutine(Squash());
 
-            // Play particle effect
             if (landingParticles != null)
             {
                 landingParticles.Play();
@@ -33,14 +33,17 @@ public class WhoopieCushion : MonoBehaviour
 
     IEnumerator Squash()
     {
+        isSquashing = true; // ✅ prevent re-triggering
+
         Vector3 squashed = new Vector3(
             originalScale.x,
             originalScale.y,
             originalScale.z * squashAmount
         );
 
-        // squash down
         float t = 0;
+
+        // squash down
         while (t < 1)
         {
             t += Time.deltaTime * speed;
@@ -56,5 +59,7 @@ public class WhoopieCushion : MonoBehaviour
             transform.localScale = Vector3.Lerp(squashed, originalScale, t);
             yield return null;
         }
+
+        isSquashing = false; // ✅ allow future triggers
     }
 }
