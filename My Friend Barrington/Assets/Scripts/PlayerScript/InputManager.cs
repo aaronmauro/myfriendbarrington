@@ -114,11 +114,11 @@ public class InputManager : MonoBehaviour
         FirstSelectedButtonController.isController = usingController;
 
         // Notify player(s) so they can update UI for control scheme
-        var players = FindObjectsOfType<Player>();
-        foreach (var p in players)
-        {
-            p.OnControlsChanged();
-        }
+     //   var players = FindObjectsOfType<Player>();
+      //  foreach (var p in players)
+      //  {
+      //      p.OnControlsChanged();
+       // }
     }
 
     public static InputManager GetInstance()

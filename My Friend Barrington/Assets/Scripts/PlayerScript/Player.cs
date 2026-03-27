@@ -483,6 +483,8 @@ public class Player : MonoBehaviour
     {
         if (isFrozen) {
             playerInput = false;
+
+            gameObject.GetComponent<Grapple>().DestroyHook();
             // Stop player from moving
             //rb.linearVelocity = Vector3.zero; // if freezePlayer is called every frame, this line has odd effects. be careful with calling freezePlayer. - DV
             isWalking = false;
@@ -679,17 +681,17 @@ public class Player : MonoBehaviour
             Debug.Log("bzzt");
         }
     }
-    public void OnControlsChanged()
-    {
-        string currentScheme = playerinput.currentControlScheme;
-        if (currentScheme == "Keyboard&Mouse")
-        {
+   // public void OnControlsChanged()
+    //{
+      //  string currentScheme = playerinput.currentControlScheme;
+      //  if (currentScheme == "Keyboard&Mouse")
+      //  {
             //update ui for kbm
-        }
-        else if (currentScheme == "Gamepad")
-        {
+       // }
+       // else if (currentScheme == "Gamepad")
+       // {
             //update ui for Gamepad 
-        } 
-    }
+       // } 
+    ///}
 
 }
