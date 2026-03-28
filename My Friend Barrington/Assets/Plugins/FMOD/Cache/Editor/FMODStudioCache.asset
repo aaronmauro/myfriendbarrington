@@ -990,6 +990,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-1890694739208619788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RiftEnter 2
+  m_EditorClassIdentifier: 
+  Path: event:/RiftEnter 2
+  Guid:
+    Data1: -1774066737
+    Data2: 1339822185
+    Data3: 1261092255
+    Data4: 1502262494
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1830377273473076669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,6 +1044,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1914
+--- !u!114 &-1567851223477509711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/RiftExit
+  m_EditorClassIdentifier: 
+  Path: event:/RiftExit
+  Guid:
+    Data1: -963884251
+    Data2: 1132431940
+    Data3: 2047064988
+    Data4: -640068681
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1556990543963516638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,7 +1086,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639103094934136120
+  lastModified: 639103179114189267
   FileSizes: []
   Exists: 1
 --- !u!114 &-1459931971722098020
@@ -1104,10 +1158,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639103094934156067
+  lastModified: 639103179114209217
   FileSizes:
   - Name: 
-    Value: 4116
+    Value: 4206
   Exists: 1
 --- !u!114 &-273425419323144221
 MonoBehaviour:
@@ -1224,13 +1278,15 @@ MonoBehaviour:
   - {fileID: -3329115353960962068}
   - {fileID: 6584685070642504346}
   - {fileID: 7484707922860642127}
+  - {fileID: -1567851223477509711}
+  - {fileID: -1890694739208619788}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1556990543963516638}
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639103097357160527
+  cacheTime: 639103179118102924
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1368,6 +1424,10 @@ MonoBehaviour:
     index: 66
   - key: event:/MapOpen
     index: 67
+  - key: event:/RiftExit
+    index: 68
+  - key: event:/RiftEnter 2
+    index: 69
 --- !u!114 &2424733617150124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1725,7 +1785,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639103097357160527
+  lastModified: 639103179118102924
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
