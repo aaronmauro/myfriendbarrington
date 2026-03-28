@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
 
 public class Lever : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Lever : MonoBehaviour
     // New: assign the Animator that controls the lever animation
     [SerializeField]
     private Animator leverAnimator;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference leverPullEvent;
 
     // Name of the trigger parameter in the Animator
     private const string AnimatorTriggerName = "Activate";
@@ -79,6 +83,7 @@ public class Lever : MonoBehaviour
         if (isUsed) return;
 
         targetObject.SetActive(!targetObject.activeSelf);
+        RuntimeManager.PlayOneShotAttached(leverPullEvent, gameObject);
 
         // Toggle second target if assigned
         if (secondTargetObject != null)

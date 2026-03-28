@@ -135,6 +135,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &-8062479292418897949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/LeverPull
+  m_EditorClassIdentifier: 
+  Path: event:/LeverPull
+  Guid:
+    Data1: -1109146965
+    Data2: 1160647607
+    Data3: -478074180
+    Data4: -289155291
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-7968021742299491235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +216,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 265300
+--- !u!114 &-7847843107181430239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Pushing
+  m_EditorClassIdentifier: 
+  Path: event:/Pushing
+  Guid:
+    Data1: -1241013362
+    Data2: 1074978123
+    Data3: -689849670
+    Data4: 1034588062
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3297
 --- !u!114 &-7561240035532687974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +609,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Barrington.bank
   Name: Barrington
   StudioPath: bank:/Barrington
-  lastModified: 639102125568992335
+  lastModified: 639103094934076277
   FileSizes: []
   Exists: 1
 --- !u!114 &-4570363228950454038
@@ -720,6 +774,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 364
+--- !u!114 &-3329115353960962068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSFX/SoftFootsteps
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSFX/SoftFootsteps
+  Guid:
+    Data1: -84145611
+    Data2: 1224962985
+    Data3: -1504681558
+    Data4: -1497236632
+  Banks:
+  - {fileID: -4602078392209194838}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2507
 --- !u!114 &-3217616731846707847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -951,7 +1032,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639102242933747797
+  lastModified: 639103094934136120
   FileSizes: []
   Exists: 1
 --- !u!114 &-1459931971722098020
@@ -1023,10 +1104,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639102242933773478
+  lastModified: 639103094934156067
   FileSizes:
   - Name: 
-    Value: 3814
+    Value: 4116
   Exists: 1
 --- !u!114 &-273425419323144221
 MonoBehaviour:
@@ -1136,13 +1217,20 @@ MonoBehaviour:
   - {fileID: 1570051667032889358}
   - {fileID: -1459931971722098020}
   - {fileID: 8542267199767073969}
+  - {fileID: -8062479292418897949}
+  - {fileID: 2424733617150124}
+  - {fileID: -7847843107181430239}
+  - {fileID: 9152379643696747853}
+  - {fileID: -3329115353960962068}
+  - {fileID: 6584685070642504346}
+  - {fileID: 7484707922860642127}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1556990543963516638}
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639102242934922695
+  cacheTime: 639103097357160527
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1266,6 +1354,47 @@ MonoBehaviour:
     index: 59
   - key: event:/StickyRetract 2
     index: 60
+  - key: event:/LeverPull
+    index: 61
+  - key: event:/BounceCloud
+    index: 62
+  - key: event:/Pushing
+    index: 63
+  - key: event:/StickyHand
+    index: 64
+  - key: event:/PlayerSFX/SoftFootsteps
+    index: 65
+  - key: event:/PlayerSFX/Jump1
+    index: 66
+  - key: event:/MapOpen
+    index: 67
+--- !u!114 &2424733617150124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BounceCloud
+  m_EditorClassIdentifier: 
+  Path: event:/BounceCloud
+  Guid:
+    Data1: 1912026241
+    Data2: 1088843481
+    Data3: -536650607
+    Data4: 1078269617
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &108093966961546984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,7 +1626,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Video.bank
   Name: Video
   StudioPath: bank:/Video
-  lastModified: 639102125627617906
+  lastModified: 639102991474101624
   FileSizes: []
   Exists: 1
 --- !u!114 &3299143982751840017
@@ -1596,7 +1725,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639102242934922695
+  lastModified: 639103097357160527
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
@@ -1734,6 +1863,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &6584685070642504346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PlayerSFX/Jump1
+  m_EditorClassIdentifier: 
+  Path: event:/PlayerSFX/Jump1
+  Guid:
+    Data1: 563596595
+    Data2: 1109449223
+    Data3: 888045242
+    Data4: -1675814785
+  Banks:
+  - {fileID: -4602078392209194838}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &6619761388713162106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1788,6 +1944,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12987
+--- !u!114 &7484707922860642127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/MapOpen
+  m_EditorClassIdentifier: 
+  Path: event:/MapOpen
+  Guid:
+    Data1: -883832258
+    Data2: 1271232090
+    Data3: 1680921741
+    Data4: 562654117
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &7773510591506903899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1830,7 +2013,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/LevelSoundTracks.bank
   Name: LevelSoundTracks
   StudioPath: bank:/LevelSoundTracks
-  lastModified: 639102242764764783
+  lastModified: 639102991396014062
   FileSizes: []
   Exists: 1
 --- !u!114 &7980816308397880968
@@ -1968,3 +2151,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 57815
+--- !u!114 &9152379643696747853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/StickyHand
+  m_EditorClassIdentifier: 
+  Path: event:/StickyHand
+  Guid:
+    Data1: -1633164320
+    Data2: 1074365987
+    Data3: 2066409126
+    Data4: 1444551711
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
