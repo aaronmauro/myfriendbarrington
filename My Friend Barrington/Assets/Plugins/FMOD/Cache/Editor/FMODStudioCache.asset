@@ -540,6 +540,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2763
+--- !u!114 &-5173484870814273617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SignPopUp
+  m_EditorClassIdentifier: 
+  Path: event:/SignPopUp
+  Guid:
+    Data1: 1979869421
+    Data2: 1174797110
+    Data3: -794880336
+    Data4: -2065268071
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-5062085148845974239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,7 +1113,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639103179114189267
+  lastModified: 639103215207542244
   FileSizes: []
   Exists: 1
 --- !u!114 &-1459931971722098020
@@ -1158,10 +1185,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639103179114209217
+  lastModified: 639103215207562186
   FileSizes:
   - Name: 
-    Value: 4206
+    Value: 4306
   Exists: 1
 --- !u!114 &-273425419323144221
 MonoBehaviour:
@@ -1280,13 +1307,15 @@ MonoBehaviour:
   - {fileID: 7484707922860642127}
   - {fileID: -1567851223477509711}
   - {fileID: -1890694739208619788}
+  - {fileID: 1120038675121129942}
+  - {fileID: -5173484870814273617}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1556990543963516638}
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639103179118102924
+  cacheTime: 639103219301172150
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1428,6 +1457,10 @@ MonoBehaviour:
     index: 68
   - key: event:/RiftEnter 2
     index: 69
+  - key: event:/SignNotify
+    index: 70
+  - key: event:/SignPopUp
+    index: 71
 --- !u!114 &2424733617150124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1558,6 +1591,33 @@ MonoBehaviour:
   - {fileID: 4196543210511341658}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1120038675121129942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SignNotify
+  m_EditorClassIdentifier: 
+  Path: event:/SignNotify
+  Guid:
+    Data1: 829033448
+    Data2: 1302989534
+    Data3: -1226969970
+    Data4: -1912382996
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1785,7 +1845,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639103179118102924
+  lastModified: 639103219301172150
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
