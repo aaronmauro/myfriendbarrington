@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8944225812607938330}
   - component: {fileID: 3944285500753186288}
   - component: {fileID: 2013033214194048914}
+  - component: {fileID: 8439134347277929347}
   m_Layer: 0
   m_Name: Hazard
   m_TagString: Danger
@@ -123,6 +124,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962cf8e72c3801248a0e63cc7e805afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8439134347277929347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168336766242995146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbde30950be28634fb1b9085528c116b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterSplashEvent:
+    Guid:
+      Data1: 856483488
+      Data2: 1279270048
+      Data3: -1552028486
+      Data4: -1166287115
+    Path: event:/GlassFall_1
 --- !u!1 &1458506216636295589
 GameObject:
   m_ObjectHideFlags: 0
