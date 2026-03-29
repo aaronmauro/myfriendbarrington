@@ -663,7 +663,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Barrington.bank
   Name: Barrington
   StudioPath: bank:/Barrington
-  lastModified: 639103094934076277
+  lastModified: 639103277145894865
   FileSizes: []
   Exists: 1
 --- !u!114 &-4570363228950454038
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639103265384796467
+  lastModified: 639103275745040478
   FileSizes: []
   Exists: 1
 --- !u!114 &-1459931971722098020
@@ -1212,7 +1212,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639103265384816410
+  lastModified: 639103275745060425
   FileSizes:
   - Name: 
     Value: 4484
@@ -1346,7 +1346,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639103265386942811
+  cacheTime: 639103277145894865
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1496,6 +1496,10 @@ MonoBehaviour:
     index: 72
   - key: event:/GlassFall
     index: 73
+  - key: event:/PillowGet_1
+    index: 74
+  - key: event:/PillowGet
+    index: 75
 --- !u!114 &2424733617150124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,7 +1911,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639103265386942811
+  lastModified: 639103275749353580
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
@@ -2113,14 +2117,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/PlayerSFX/Jump1
   Guid:
-    Data1: 563596595
-    Data2: 1109449223
-    Data3: 888045242
-    Data4: -1675814785
+    Data1: -782381544
+    Data2: 1226181647
+    Data3: -1810710649
+    Data4: 516621440
   Banks:
   - {fileID: -4602078392209194838}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
