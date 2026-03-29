@@ -554,14 +554,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SignPopUp
   Guid:
-    Data1: 1979869421
-    Data2: 1174797110
-    Data3: -794880336
-    Data4: -2065268071
+    Data1: 465383039
+    Data2: 1238992737
+    Data3: -2096151642
+    Data4: -1933145426
   Banks:
   - {fileID: 4196543210511341658}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639103229278345271
+  lastModified: 639103265384796467
   FileSizes: []
   Exists: 1
 --- !u!114 &-1459931971722098020
@@ -1212,10 +1212,10 @@ MonoBehaviour:
   Path: FMOD/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639103229278360361
+  lastModified: 639103265384816410
   FileSizes:
   - Name: 
-    Value: 4402
+    Value: 4484
   Exists: 1
 --- !u!114 &-273425419323144221
 MonoBehaviour:
@@ -1338,13 +1338,15 @@ MonoBehaviour:
   - {fileID: -5173484870814273617}
   - {fileID: 4394011803599377308}
   - {fileID: -4828754514951012281}
+  - {fileID: 1751140790306869085}
+  - {fileID: 4428280006011706934}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1556990543963516638}
   StringsBanks:
   - {fileID: -423273127227636401}
   cacheVersion: 131848
-  cacheTime: 639103230302304792
+  cacheTime: 639103265386942811
   SerializableEventsDict:
   - key: event:/PlayerSFX/BarringtonWalking
     index: 0
@@ -1643,14 +1645,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SignNotify
   Guid:
-    Data1: 829033448
-    Data2: 1302989534
-    Data3: -1226969970
-    Data4: -1912382996
+    Data1: 95841814
+    Data2: 1238803110
+    Data3: 321448335
+    Data4: 1169433237
   Banks:
   - {fileID: 4196543210511341658}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1705,6 +1707,33 @@ MonoBehaviour:
   - {fileID: 4196543210511341658}
   IsStream: 0
   Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &1751140790306869085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PillowGet_1
+  m_EditorClassIdentifier: 
+  Path: event:/PillowGet_1
+  Guid:
+    Data1: 1312113343
+    Data2: 1167236737
+    Data3: 550509720
+    Data4: -1993923554
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1878,7 +1907,7 @@ MonoBehaviour:
   Path: FMOD/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639103230302304792
+  lastModified: 639103265386942811
   FileSizes: []
   Exists: 1
 --- !u!114 &4234587101684707336
@@ -1957,6 +1986,33 @@ MonoBehaviour:
   - {fileID: 4196543210511341658}
   IsStream: 0
   Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &4428280006011706934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/PillowGet
+  m_EditorClassIdentifier: 
+  Path: event:/PillowGet
+  Guid:
+    Data1: -1896817926
+    Data2: 1186443183
+    Data3: -1857575769
+    Data4: 225444792
+  Banks:
+  - {fileID: 4196543210511341658}
+  IsStream: 0
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
