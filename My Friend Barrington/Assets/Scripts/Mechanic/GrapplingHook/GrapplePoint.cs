@@ -32,7 +32,10 @@ public class GrapplePoint : MonoBehaviour
     public void HideIndicator() => indicator.SetActive(false);
 
     // NEW
-   
+    public void OnGrappleUsed()
+    {
+        GrappleAchievementTracker.RegisterGrapple();
+    }
 
     public bool IsInRange(Vector3 playerPosition)
     {

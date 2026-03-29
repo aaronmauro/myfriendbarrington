@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class BreakingBlock : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class BreakingBlock : MonoBehaviour
     private Animator anim;
     [SerializeField]
     private Renderer[] r;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference crayonBreakEvent;
 
     private void Start()
     {
@@ -35,6 +39,7 @@ public class BreakingBlock : MonoBehaviour
         if (other.gameObject.isPlayer())
         {
             anim.SetTrigger("Break");
+            RuntimeManager.PlayOneShotAttached(crayonBreakEvent, gameObject);
             Invoke(nameof(Delay), destroyDelay);
 
             Invoke(nameof(Reactivate), respawnDelay);

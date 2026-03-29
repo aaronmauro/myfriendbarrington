@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using FMODUnity;
 
 public class FallingPlatform : MonoBehaviour
 {
@@ -7,6 +8,10 @@ public class FallingPlatform : MonoBehaviour
     private float distanceTravel;
     private Vector3 towardTransition;
     private bool isFalling;
+
+      [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference rocksFallEvent;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,6 +44,7 @@ public class FallingPlatform : MonoBehaviour
         if (collision.gameObject.isPlayer())
         {
             isFalling = true;
+            RuntimeManager.PlayOneShotAttached(rocksFallEvent, gameObject);
             //Invoke("StartFalling", 0.5f);
         }
     }

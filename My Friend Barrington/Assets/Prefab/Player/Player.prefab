@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 3127850747348862370}
   - component: {fileID: 5075095442661722310}
   - component: {fileID: 1895403303403278080}
+  - component: {fileID: 4374107157682740806}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -183,18 +184,18 @@ MonoBehaviour:
   dangerDectect: {fileID: 1174281424994863564}
   playerWalkEvent:
     Guid:
-      Data1: 241940493
-      Data2: 1285530128
-      Data3: 1328868536
-      Data4: 505488519
-    Path: event:/PlayerSFX/BarringtonWalking
+      Data1: -84145611
+      Data2: 1224962985
+      Data3: -1504681558
+      Data4: -1497236632
+    Path: event:/PlayerSFX/SoftFootsteps
   playerJumpEvent:
     Guid:
-      Data1: -1699619011
-      Data2: 1222626116
-      Data3: 445343118
-      Data4: -200810189
-    Path: event:/PlayerSFX/PlatformJump
+      Data1: -782381544
+      Data2: 1226181647
+      Data3: -1810710649
+      Data4: 516621440
+    Path: event:/PlayerSFX/Jump1
   isInteracting: 0
   idleLookAt: {fileID: 0}
   inBush: 0
@@ -277,6 +278,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296703489012372075}
   m_Enabled: 1
+--- !u!114 &4374107157682740806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296703489012372075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a9d945b7c8b934fad134bea93314d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4342035338753397498
 GameObject:
   m_ObjectHideFlags: 0

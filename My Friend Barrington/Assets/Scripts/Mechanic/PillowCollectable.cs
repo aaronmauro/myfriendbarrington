@@ -1,7 +1,11 @@
 using UnityEngine;
+using FMODUnity;
 
 public class PillowCollectable : MonoBehaviour
 {
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference pillowCollectEvent;
+
     private bool shrink = false;
     [SerializeField]
     private float shrinkFactor = 0.1f;
@@ -30,5 +34,6 @@ public class PillowCollectable : MonoBehaviour
     {
         shrink = true;
         Destroy(gameObject.GetComponent<BoxCollider>());
+        RuntimeManager.PlayOneShotAttached(pillowCollectEvent, gameObject);
     }
 }

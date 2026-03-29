@@ -118,13 +118,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7234de0d7d283e94bad92e5578032402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactButton: 101
   targetObject: {fileID: 0}
   secondTargetObject: {fileID: 0}
+  indecator: {fileID: 0}
   startEnabled: 0
   isUsed: 0
   interactParticles: {fileID: 0}
   leverAnimator: {fileID: 4256289391979823138}
+  leverPullEvent:
+    Guid:
+      Data1: -1109146965
+      Data2: 1160647607
+      Data3: -478074180
+      Data4: -289155291
+    Path: event:/LeverPull
 --- !u!95 &4256289391979823138
 Animator:
   serializedVersion: 7

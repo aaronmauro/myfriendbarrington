@@ -1,4 +1,5 @@
 using UnityEngine;
+using FMODUnity;
 
 public class SignPopUp : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class SignPopUp : MonoBehaviour
     private bool hasPlayed = false;
 
     private int phase = 0;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference popupSignEvent;
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference notifySignEvent;
 
     void Start()
     {
@@ -75,6 +81,8 @@ public class SignPopUp : MonoBehaviour
         if (other.CompareTag("Player") && !hasPlayed)
         {
             activated = true;
+            RuntimeManager.PlayOneShotAttached(popupSignEvent, gameObject);
+            RuntimeManager.PlayOneShotAttached(notifySignEvent, gameObject);
         }
     }
 }

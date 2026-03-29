@@ -1,11 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using FMODUnity;
 
 public class Hook : MonoBehaviour
 {
     [SerializeField] float hookForce = 25f;
 
     [SerializeField] public Transform hand;
+
+    [Header("Audio (FMOD)")]
+    [SerializeField] private EventReference stickyStretchEvent;
+    [SerializeField] private EventReference stickyStickEvent;
+    [SerializeField] private EventReference stickyRetractEvent;
 
     private Transform shootTransform;
 
@@ -53,6 +59,7 @@ public class Hook : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (hasLatched) return;
+        RuntimeManager.PlayOneShotAttached(stickyStickEvent, gameObject);
 
         if ((LayerMask.GetMask(GeneralGameTags.Grapple) & 1 << other.gameObject.layer) > 0)
         {
